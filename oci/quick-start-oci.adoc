@@ -17,7 +17,7 @@ summary: 只需几个步骤，即可在 NetApp Workload Factory 中开始使用 
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"] 添加凭据和权限
 [role="quick-margin-para"]
-link:add-credentials.html["向帐户添加凭据"]。这包括选择工作负载功能并为所需权限创建 IAM 策略。
+link:add-credentials-oci.html["向帐户添加凭据"]。这包括选择工作负载功能并为所需权限创建 IAM 策略。
 
 [role="quick-margin-para"]
 选择默认 link:permissions-oci.html["查看、规划和分析"] 权限策略。
