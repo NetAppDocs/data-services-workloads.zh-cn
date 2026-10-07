@@ -1,0 +1,166 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/use-onprem-data.html 
+keywords: use, detect, replicate, remove, on-premises, ONTAP cluster, on-premises cluster, ONTAP 
+summary: 在 NetApp Workload Factory 中发现和复制本地 ONTAP 数据，以便将其用作云中的备份。 
+---
+= 在 NetApp Workload Factory 中复制本地 ONTAP 集群数据
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 NetApp Workload Factory 中发现和复制本地 ONTAP 数据，以便将其用作云中的备份。
+
+.关于此任务
+若要使用来自本地 ONTAP 集群的数据，您首先需要发现本地 ONTAP 集群。发现本地 ONTAP 集群后，您可以将数据用于以下任何用例。
+
+使用情形::
++
+--
+* *备份和迁移到云*：复制到 FSx for ONTAP 文件系统的本地 ONTAP 卷数据可用作云中的备份。
+* *数据分层*：复制后，不经常访问的本地 ONTAP 卷数据可以从 SSD 存储层分层到容量池存储层。
+
+
+--
+
+
+
+
+[[discover-an-on-premises-ontap-cluster]]
+== 发现本地 ONTAP 集群
+
+在 NetApp Workload Factory 中发现本地 ONTAP 群集，以便您可以将数据复制到 Amazon FSx for NetApp ONTAP 文件系统。
+
+.开始之前
+在开始之前，请确保您具备下列条件：
+
+* 用于复制的 FSx for ONTAP 文件系统。
+* 与发现的本地集群关联的已连接链接。如果您没有链接，则需要 link:create-link.html["创建一个"^]。
+* 具有所需权限的 ONTAP 用户凭据。
+* 本地 ONTAP 版本 9.8 及更高版本。
+* 连接如下图所示。
++
+image:screenshot-on-prem-connectivity.png["显示本地 ONTAP 集群应如何连接到 Amazon Web Services Cloud 的管理路径和数据路径的屏幕截图"]
+
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 菜单中，选择 *On-premises ONTAP*。
+. 选择 *Discover*。
+. 查看先决条件并选择*下一步*。
+. 在 Discover ONTAP 本地页面上，在 *群集配置* 下提供以下内容：
++
+.. *链接*：选择一个链接。该链接将与本地集群关联，以在集群和 Workload Factory 之间创建连接。
++
+如果您尚未创建链接，请按照说明操作，然后返回此操作并选择该链接。
+
+.. *集群 IP 地址*：提供要复制的本地 ONTAP 集群的 IP 地址。
+.. *ONTAP credentials*：提供以下信息：
++
+*** GovCloud 账号：输入带有 ONTAP 凭据的 ARN。
+*** 所有其他帐户：输入本地 ONTAP 集群的 ONTAP 凭据。确保用户具有所需的权限。
+
+
+
+
+. 选择*发现*以开始发现过程。
+
+
+.结果
+已发现本地 ONTAP 群集，现在显示在 *本地 ONTAP* 选项卡中。
+
+您现在可以查看本地 ONTAP 集群中的数据和 <<从本地 ONTAP 集群复制卷数据,将数据复制到 FSx for ONTAP 文件系统>>。
+
+
+
+[[replicate-volume-data-from-an-on-premises-ontap-cluster]]
+== 从本地 ONTAP 集群复制卷数据
+
+将卷数据从本地 ONTAP 集群复制到 FSx for ONTAP 文件系统。复制后，这些数据可用于丰富 AI 知识库。
+
+.开始之前
+* 您必须发现本地 ONTAP 集群才能复制其卷数据。
+* 您必须拥有一个可用的 FSx for ONTAP 文件系统作为复制目标。
+* 用于复制关系的本地 ONTAP 集群和 FSx for ONTAP 文件系统都必须具有关联的链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 菜单中，选择 *On-premises ONTAP*。
+. 要按存储 VM 查找卷，您可以从下拉列表中*选择存储 VM*。
+. 选择一个或多个要复制的卷，然后选择*复制*。
+. 在“创建复制”页面上的“复制目标”下，提供以下内容：
++
+.. *FSx for ONTAP 文件系统*：为目标 FSx for ONTAP 文件系统选择凭据、区域和 FSx for ONTAP 文件系统名称。
+.. *Storage VM name*：从下拉菜单中选择 Storage VM。
+.. *卷名*：目标卷名将按以下格式自动生成 `{OriginalVolumeName}_copy`。您可以使用自动生成的卷名或输入其他卷名。
+.. *分层数据*：为目标卷中存储的数据选择分层策略。
++
+*** *自动*：使用 Workload Factory FSx for ONTAP 用户界面创建卷时的默认分层策略。在特定时间段内将包括用户数据和快照在内的所有冷数据分层到容量池存储层。
+*** *仅快照*：仅将快照数据分层到容量池存储层。
+*** *无*：将卷的所有数据保留在主存储层上。
+*** *全部*：将所有用户数据和快照数据标记为冷数据，并将其存储在容量池存储层中。
++
+请注意，某些分层策略具有关联的最小冷却期，该冷却期设置了卷中的用户数据必须保持非活动状态的时间或_冷却天数_，以便将数据视为“冷”并移动到容量池存储层。当数据写入磁盘时，冷却期开始。
+
++
+有关卷分层策略的详细信息，请参见 AWS FSx for NetApp ONTAP 文档中的link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["卷存储容量"^]。
+
+
+
+.. *最大传输速率*：选择*有限*并输入以 MiB/s 为单位的最大传输限制。或者，选择*无限制*。
++
+如果没有限制，网络和应用程序性能可能会下降。或者，我们建议为 FSx for ONTAP 文件系统提供无限制的传输速率，用于关键工作负载，例如主要用于灾难恢复的工作负载。
+
+
+
+. 在复制设置下，提供以下内容：
++
+.. *复制间隔*：选择快照从源卷传输至目标卷的频率。
+.. *长期保留*：（可选）启用快照以进行长期保留。
++
+如果启用了长期保留，请选择一个现有策略或创建一个新策略来定义要复制的快照和保留的数量。
+
++
+*** 对于现有策略，请选择*选择现有策略*，然后从下拉菜单中选择现有策略。
+*** 对于新策略，请选择*创建新策略*并提供以下信息：
++
+**** *策略名称*：输入一个策略名称。
+**** *快照策略*：在表中，选择快照策略频率和要保留的副本数。您可以选择多个快照策略。
+
+
+
+
+
+
+. 选择 *Create*。
+
+
+.结果
+复制关系显示在目标 FSx for ONTAP 文件系统的*复制关系*选项卡中。
+
+
+
+[[remove-an-on-premises-ontap-cluster-from-netapp-workload-factory]]
+== 从 NetApp Workload Factory 中删除本地 ONTAP 集群
+
+必要时从 NetApp Workload Factory 中删除本地 ONTAP 集群。
+
+.开始之前
+在删除集群之前，您必须为本地 ONTAP 集群中的任何卷link:manage-replication.html["删除所有现有复制关系"]，以免留下任何损坏的关系。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 菜单中，选择 *On-premises ONTAP*。
+. 选择要删除的本地 ONTAP 集群。
+. 选择操作菜单并选择 *Remove from Workload Factory*。
+
+
+.结果
+已从 NetApp Workload Factory 中删除本地 ONTAP 集群。

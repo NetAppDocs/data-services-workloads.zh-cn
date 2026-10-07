@@ -1,0 +1,152 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/register-instance.html 
+keywords: manage, register, Microsoft SQL Server instance, Oracle database, manage database, manage instance 
+summary: 注册资源，以便您可以在 NetApp Workload Factory for Databases 中监控资源状态、资源利用率、保护和存储性能。 
+---
+= 在 NetApp Workload Factory 中为数据库注册资源
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+为 Microsoft SQL Server 注册实例，为 Oracle 注册数据库，以便您可以在 NetApp Workload Factory for Databases 中管理资源、创建数据库和沙盒克隆、运行错误日志分析以及优化配置。
+
+仅当资源在 FSx for ONTAP 文件系统存储上运行时，您才能注册资源。
+
+
+
+[[about-the-task]]
+== 关于任务
+
+注册实例（SQL Server）或数据库（Oracle）涉及两个步骤：实例或数据库身份验证和准备。身份验证是验证实例或数据库凭据的过程。准备工作包括在实例或数据库上安装 AWS、NetApp 和 PowerShell 模块，以满足 Workload Factory for Databases 功能（如 link:create-sql-database.html["创建数据库"]、link:create-sandbox-clone.html["创建沙盒"]、link:analyze-error-logs.html["错误日志分析"] 或 link:optimize-configurations.html["架构完善的评估"]）的最低要求。
+
+Workload Factory 仅支持 Microsoft SQL Server 实例和 Oracle 数据库注册和管理。根据您在 Workload Factory 中选择的 AWS 账户凭据，PostgreSQL 主机将显示在清单中。目前，Workload Factory 支持仅在 Amazon Linux 操作系统上运行的未注册 PostgreSQL 实例。
+
+
+
+[[before-you-begin]]
+== 开始之前
+
+在注册实例或数据库之前，必须执行以下操作：
+
+* 请确保要注册的资源的主机显示在清单中。link:../fsx-storage/add-credentials.html["授予_操作和修复_权限"^]在您的 AWS 帐户中。
+* 将链接与托管要注册的资源的 FSx for ONTAP 文件系统关联。link:../fsx-storage/create-link.html["了解如何关联现有链接或创建和关联新链接。"^] 链接关联后，返回此操作。
+
+
+
+
+[[registering-an-instance-in-a-private-network]]
+=== 在专用网络中注册实例
+
+要在没有外部连接的专用网络中注册实例或数据库，请在 VPC 中提供所需的端点，并将其与相关子网关联。允许接口端点的 Security Group 中的端口 443。
+
+* `S3 Gateway/endpoint`
+* `ssm`
+* `ssmmessages`
+* `fsx`
++
+如果使用代理服务器进行出站 EC2 连接，请允许访问以下域进行管理操作：
+
+* ``.microsoft.com`` （SQL Server）
+* ``.powershellgallery.com`` （SQL Server）
+* ``.aws.amazon.com``
+* ``.amazonaws.com``
+
+
+
+
+[[register-a-microsoft-sql-server-instance]]
+== 注册 Microsoft SQL Server 实例
+
+注册实例有两个步骤 - 实例身份验证和准备。您可以注册单个实例或多个实例。
+
+Workload Factory 支持 SQL Server 的故障转移群集实例 (FCI) 和独立部署的注册。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Databases*。
+. 从“数据库”菜单中，选择 *清单*。
+. 在清单中，选择 *Microsoft SQL Server* 作为引擎类型。
+. 选择*实例*选项卡。
+. 选择注册单个实例或多个实例。
+. 要验证实例（步骤 1），请执行以下操作，然后选择 *Next*：
++
+.. 选择 *Use the same credentials for all instances* 或 *Manage credentials manually*。
+.. 通过提供用户名和密码信息对 SQL Server 和 Windows 进行身份验证。
++
+如果实例已通过身份验证，请选择 *Next*。
+
+
+
+. 要准备（步骤 2），请确保实例满足最低要求。
++
+为了满足最低要求，实例必须安装 AWS 和 NetApp PowerShell 模块以及 PowerShell 7 模块，并且您必须完成先决条件检查中列出的至少一项功能的先决条件。
+
++
+.. 在*先决条件检查视图*中查看先决条件。
++
+您必须完成单个功能的所有先决条件，例如 *Review well-architected issues and recommendations* 才能注册实例。
+
+.. 为每个功能选择 *Setup details* 以了解功能先决条件，并按照屏幕上的说明完成任何缺少的功能先决条件。
++
+要使 Workload Factory 能够link:optimize-configurations.html["审核并修复架构完善的问题"]，请完成*审核架构良好的问题和建议*和*修复架构良好的问题*下的所有先决条件。
+
+
+
+. 完成所有先决条件后，*注册*实例。
+
+
+.结果
+实例注册启动。选择 *Job monitoring* 选项卡以跟踪进度。
+
+
+
+[[register-an-oracle-database]]
+== 注册 Oracle 数据库
+
+注册实例有两个步骤 - 数据库身份验证和准备。您可以注册单个实例或多个数据库。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Databases*。
+. 从“数据库”菜单中，选择 *清单*。
+. 在库存中，选择 *Oracle* 作为引擎类型。
+. 选择
+. 选择注册单个数据库或多个数据库。
+. 要验证数据库（步骤 1），请执行以下操作，然后选择 *Next*：
++
+.. 选择 *Use the same credentials for all instances* 或 *Manage credentials manually*。
+.. 通过提供用户名和密码信息对 Oracle 用户和自动存储管理 (ASM) 网格用户（如果适用）进行身份验证。
++
+如果数据库已通过身份验证，请选择 *Next*。
+
+
+
+. 要准备（步骤 2），请确保数据库满足所需的先决条件。如果安装了所有必需的模块并满足先决条件，请选择*下一步*注册数据库。否则，请按照以下步骤操作。
++
+.. 在*先决条件检查视图*中查看先决条件。
++
+您必须完成单个功能的所有先决条件，例如 *Review well-architected issues and recommendations* 才能注册数据库。
+
+.. 为每个功能选择 *Setup details* 以了解功能先决条件，并按照屏幕上的说明完成任何缺少的功能先决条件。
++
+要为您的数据库使用 Workload Factory link:optimize-configurations.html["审核并修复架构完善的问题"]，请完成*查看精心设计的问题和建议*和*修复精心设计的问题*功能下列出的所有先决条件。
+
+
+
+. 完成先决条件后，*注册*数据库。
+
+
+.结果
+数据库注册启动。选择 *Job monitoring* 选项卡以跟踪进度。
+
+.下一步
+注册后，您可以执行这些任务。
+
+* 从库存中查看数据库
+* link:create-sql-database.html["创建数据库"]
+* link:create-sandbox-clone.html["创建数据库克隆（沙箱）"]
+* link:optimize-configurations.html["对数据库配置进行全面、精心设计的评估"]
+

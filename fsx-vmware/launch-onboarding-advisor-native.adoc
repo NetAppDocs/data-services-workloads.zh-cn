@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/launch-onboarding-advisor-native.html 
+keywords: overview, concepts, features, use case, workloads, how Workload Factory works 
+summary: 登录到 NetApp Workload Factory 以访问 VMware 迁移顾问。您将按照向导中的步骤创建根据您的需求定制的部署计划或迁移计划。 
+---
+= 使用 VMware 工作负载迁移顾问为 Amazon EC2 创建部署计划
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+登录到 NetApp Workload Factory 以访问 VMware 迁移顾问。您将按照向导中的步骤创建根据您的需求定制的部署计划或迁移计划。
+
+请注意，您必须拥有用户名和密码才能访问 Workload Factory。如果您没有访问权限，请立即创建账号。查看说明 link:quick-start-vmware.html["此处"]。
+
+
+
+[[create-a-deployment-plan-based-on-an-on-premises-vsphere-environment]]
+== 基于本地 vSphere 环境创建部署计划
+
+您可以将本地 vSphere 环境中的当前虚拟机配置迁移到 Amazon EC2 中的虚拟机，并将定制的 Amazon FSx for NetApp ONTAP 文件系统用作外部数据存储。
+
+.要求
+* 您必须拥有 link:upload-vm-inventory.html["已上传 VM 清单"]。
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *VMware*。
++
+此时将显示规划中心。
+
+. 如果您尚未上传虚拟机清单，请选择*上传虚拟机清单*，然后按照 link:upload-vm-inventory.html["上传虚拟机清单数据"] 中的说明进行操作。
+. 从列表中选择一个虚拟机清单数据集，并打开该数据集的*开始规划*菜单。
+. 选择 *AWS 原生计算*。
++
+此时将显示 *准备 AWS 云入门* 页面。
+
+. 在 _VM configuration upload_ 部分中，选择 image:button-upload-file.png["上传按钮"] 并选择由 RVTools 创建的 .xlsx 文件。
++
+*数据收集详细信息*部分提供了使用 Onboarding Advisor 数据收集器收集数据的日期范围和小时数。
+
++
+*虚拟机清单摘要*部分是从清单文件中填充的，以反映虚拟机的数量和总存储容量。
+
+. 在 _VM 库存注意事项_ 部分中，选择用于筛选要迁移的 VM 列表的选项。
++
+.. *区域*：选择将部署 Amazon FSx for NetApp ONTAP 文件系统的区域。为了获得最佳性能和成本效益，此区域通常与部署现有 Amazon EC2 SDDC 的区域相同。
+.. 选择此区域中 VM 的预测性能级别。我们建议您从较小的 IOPS 设置开始。随着工作负载的迁移或部署，您可以在创建文件系统后增加已调配的 SSD IOPS：
++
+*** *标准到高性能*：适用于平均 IO 速率在 20 到 5000 IOPS 之间的虚拟机。
+*** *非常高的性能*：适用于平均 IO 速率超过 5000 IOPS 的虚拟机。
+*** *性能非常低*：适用于平均 IO 速率低于 20 IOPS 的虚拟机。
+
+
+
+
+. 在_目标容量和保护注意事项_部分，从几个存储选项中进行选择。
++
+.. *要考虑的虚拟机存储*：选择为每个接入的虚拟机创建的数据存储是根据其当前使用的大小（推荐）还是其配置的大小来确定容量。
++
+外部数据存储将使用 Amazon FSx for NetApp ONTAP 文件系统卷来实现。
+
+.. *平均数据缩减率*：从三种常见数据缩减率中选择。选择“1:1 - 无缩减”、“1:1.25 - 缩减 20%”或“1:1.5 - 缩减 33%”。
++
+如果您不确定选择哪个比例，请选择 *帮助我决定*。此时将显示 _Data reduction ratio assistant_ 对话框。选择适用于您的 VM 清单和存储资产的任何语句。该助手将推荐合适的数据缩减率。选择 *应用* 以使用推荐的比例。
+
+.. *余量百分比*：输入添加到您的 FSx for ONTAP 文件系统容量中的容量增长百分比。
++
+请注意，如果选择的数量小于 20%，您将无法创建用于保护和长期备份的卷快照。
+
+.. *虚拟机快照保护*：启用此选项可使用快照保护虚拟机。
+
+
+. 选择 *Next*。
+. 在*范围*页面上，从列表中选择要包含在 AWS 迁移中的虚拟机。您可以按每个虚拟机的电源状态以及虚拟机所在的数据中心和群集筛选列表。
++
+在虚拟机列表中，您可以选择要显示为列的虚拟机信息类型。例如，根据虚拟机资源要求，选择 _Estimated instance type_ 将显示一列，其中包含每个虚拟机的估计 Amazon EC2 实例类型。
+
+. 选择 *Next*。
+. 在*分类*页面上，查看虚拟机信息、卷分类规则、卷分配以及将作为部署的一部分进行迁移的卷列表，然后选择*下一步*。
++
+
+NOTE: 如果卷的容量或性能要求超出了特定区域中 Amazon FSx for NetApp ONTAP 文件系统的能力，迁移顾问建议将该卷部署在 Amazon EBS 文件系统上。
+
+. 在 *包* 页面上，查看 EC2 实例和分配给不同 FSx for ONTAP 集群的卷，然后选择 *下一步*。
+. 在*审核计划*页面上，查看您计划迁移的所有虚拟机的预计每月节省金额和成本估算。
++
+页面顶部估算了 FSx for ONTAP 文件系统和 EBS 卷的每月节省费用。您可以展开每个部分，查看建议的文件系统配置、估算的节省明细、假设和技术免责声明的详细信息。
+
++
+默认情况下，迁移计划会自动保存在规划中心的计划列表中。
+
++
+对迁移计划感到满意后，有以下几种选择：
+
++
+** 选择 *下载计划 > 下载报告* 以下载 .pdf 格式的部署计划，以便分发计划以供审核。
+** 选择*下载计划 > 下载实例存储部署*以下载 .csv 格式的外部数据存储部署计划，以便您可以使用它来创建新的基于云的智能数据基础架构。
+** 选择 *Provision* 开始部署推荐的 Amazon FSx for NetApp ONTAP 文件系统。
+
+
+

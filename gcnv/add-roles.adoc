@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: gcnv/add-roles.html 
+keywords: setup, set up, add role, requirements, permissions, google cloud netapp volumes, gcnv, bluexp. netapp console,assign 
+summary: NetApp Console 需要为成员分配正确的角色。 
+---
+= 分配 Google Cloud NetApp Volumes 角色
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必须在 NetApp Console 中为成员分配正确的角色，才能开始使用 Google Cloud NetApp Volumes。有关详细信息，请参见link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["了解所有服务的 NetApp Console 访问角色"^]。
+
+
+
+[[assign-roles-to-the-service-account-member]]
+== 将角色分配给服务帐户成员
+
+. 登录到 https://docs.netapp.com/us-en/console-setup-admin/task-logging-in.html["NetApp Console"^]。
+. 选择*管理*，然后选择*身份和访问权限*。
+. 选择要分配角色的成员旁边的操作菜单 image:screenshot_gallery_options.gif["带有三个点的图标。"]，然后选择*添加角色*。
+. 要添加角色，请完成对话框中的步骤：
++
+.. 选择文件夹或项目：选择成员应具有权限的资源层次结构级别。
++
+如果选择文件夹，则成员有权访问文件夹中的所有内容。
+
+.. 从*类别*下拉列表中，选择*应用程序*角色类别。https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["了解访问角色"^]。
+.. 从*角色*下拉列表中，选择一个角色，该角色为成员提供与您选择的文件夹或项目关联的资源的权限。
++
+*Important:* 您必须添加以下一个或两个角色：
+
++
+*** _Google Cloud NetApp Volumes admin_ 或
+*** _Google Cloud NetApp Volumes 查看器_
+
+
+.. 添加角色：如果要提供对组织内其他文件夹或项目的访问权限，请选择*添加角色*，指定其他文件夹或项目或角色类别，然后选择角色类别和相应的角色。
+
+
+. 选择*添加新角色*。
+
+
+.下一步是什么？
+link:create-discover-systems.html["添加 Google Cloud NetApp Volumes 系统"]。

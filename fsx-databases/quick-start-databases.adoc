@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/quick-start-databases.html 
+keywords: requirements, setup, quick start, getting started, getting started with databases, getting started with workload factory for databases 
+summary: 开始使用 NetApp Workload Factory for Databases，以使用基础架构即代码片段、发现主机、管理资源等。 
+---
+= NetApp Workload Factory for Databases 快速入门
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用 NetApp Workload Factory for Databases，您可以立即开始使用 _查看、规划和分析_ 权限。如果您想使用 Workload Factory 来发现主机、管理资源等，只需几个步骤即可开始。
+
+要使用数据库，您必须具有 AWS 帐户。
+
+按照下面的步骤开始。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"] 登录到 NetApp Workload Factory
+[role="quick-margin-para"]
+您需要link:../setup/sign-up-and-log-in.html["注册"^]并登录到 NetApp Console。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"] 为数据库工作负载添加凭据和权限
+[role="quick-margin-para"]
+link:../fsx-storage/add-credentials.html["手动向帐户添加凭据"^] 其中包括选择数据库工作负载功能并选择link:../fsx-storage/permissions-reference-fsx.html["权限策略"^]以满足您的需求。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"] 发现或部署资源
+[role="quick-margin-para"]
+借助凭据和 IAM 策略，您可以在清单或 link:create-sql-database-server.html["部署 Microsoft SQL Server"] 或 link:create-postgresql-server.html["部署 PostgreSQL 服务器"] 中发现现有数据库资源。清单提供了一个统一的界面来管理资源。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"] 探索节省成本的机会
+[role="quick-margin-para"]
+当您在本地或 AWS 上运行数据库，并且存储位于 Amazon Elastic Block Store (EBS) 或 FSx for Windows File Server 上时，您可以 link:explore-savings-databases.html["使用探索节省计算器"] 来有效分析成本并规划迁移。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"] 实施精心设计的数据库配置
+[role="quick-margin-para"]
+Workload Factory for Databases 定期从架构完善的仪表板分析 Amazon FSx for NetApp ONTAP 存储上的 Microsoft SQL Server 和 Oracle 部署。要从架构完善的仪表板中对数据库资源的问题进行故障排除，您首先需要link:register-instance.html["注册实例"]。
+
+[role="quick-margin-para"]
+注册实例后，您可以在 Workload Factory 中查看架构良好的状态并采取行动来link:optimize-configurations.html["实施精心设计的数据库配置"]。
+
+.下一步
+当您在数据库清单中注册了采用 FSx for ONTAP 文件系统存储的资源时，您可以link:create-sql-database.html["创建用户数据库"]或link:create-sandbox-clone.html["克隆主机以创建沙盒"]。

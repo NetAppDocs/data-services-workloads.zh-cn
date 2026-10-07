@@ -1,0 +1,254 @@
+---
+sidebar: sidebar 
+permalink: admin/configure-notifications.html 
+keywords: amazon, sns, notification, topic, notifications, notifications service, alerts, email, email notifications, console notifications, filter, filtering 
+summary: 您可以将 NetApp Workload Factory 配置为在发生某些类型的事件时向人员或其他应用程序发送通知。 
+---
+= 配置 NetApp Workload Factory 通知
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以将 NetApp Workload Factory 通知服务配置为在 NetApp Console 中将通知作为警报发送，发送到与帐户关联的任何电子邮件地址，或发送到 Amazon SNS 主题。当您部署了 Console 代理或链接时，作为警报发送的通知将显示在 NetApp Console 中。当 Workload Factory 向 Amazon SNS 主题发布通知时，主题的订阅者（如人员或其他应用程序）会在为主题配置的端点（如电子邮件或短信）收到通知。
+
+
+
+[[configure-workload-factory-notifications]]
+== 配置 Workload Factory 通知
+
+您可以使用 NetApp Console 或 Workload Factory 控制台配置 Workload Factory 通知。
+
+接收通知的选项包括：
+
+
+
+[[netapp-console]]
+=== NetApp Console
+
+* *通知*：配置 Workload Factory 以发送通知，这些通知会显示在 NetApp Console 中的铃铛图标下。
+* *电子邮件*：在 NetApp Console 中启用电子邮件通知，以接收发送到与帐户关联的任何电子邮件地址的通知，而无需 Amazon SNS 配置。
+* *Amazon SNS*：配置 Workload Factory 以向 Amazon SNS 主题发送通知。
+
+
+
+
+[[workload-factory-console]]
+=== Workload Factory 控制台
+
+* *Email*：在 Workload Factory 控制台中启用电子邮件通知，以接收发送到与帐户关联的任何电子邮件地址的通知，而无需 Amazon SNS 配置。
+* *Amazon SNS*：配置 Workload Factory 以使用 Workload Factory 控制台向 Amazon SNS 主题发送通知。
+
+
+
+IMPORTANT: 在 NetApp Console 中配置通知时，它将获得通知传递的所有权，并且 Workload Factory 控制台通知选项将被禁用并以只读模式显示。工具提示说明通知是从 NetApp Console 管理的。然后，您只能从 NetApp Console 管理通知。
+
+.开始之前
+以下前提条件仅适用于配置 Amazon SNS 通知时：
+
+* 您需要使用 Amazon SNS 控制台或 AWS CLI 配置 Amazon SNS 并创建 Amazon SNS 主题。
+* 请注意，Workload Factory 支持 *Standard* 主题类型。此类主题无法确保按照接收顺序向订阅者发送通知，因此，如果您有关键或紧急通知，请考虑这一点。
+
+
+[role="tabbed-block"]
+====
+.配置来自 NetApp Console 的通知
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 从 NetApp Console 菜单中，选择 *Workloads*、*Administration*，然后选择 *Notifications setup*。
+. 在通知设置页面上，启用以下一种或多种通知类型：
++
+.. *NetApp Console 通知*：选择*启用 NetApp Console 通知*以配置 Workload Factory 在 NetApp Console 中发送通知。
+.. *电子邮件通知*：选择 *启用电子邮件通知* 以配置 Workload Factory 将通知发送到与帐户关联的任何电子邮件地址。
+.. *Amazon SNS 通知*：选择*启用 SNS 通知*，然后按照说明从 Amazon SNS 控制台配置 Amazon SNS。
++
+创建主题后，复制主题 ARN 并将其输入到 *通知设置* 页面上的 *SNS 主题 ARN* 字段中。
+
+
+
+. 通过发送测试通知来验证配置后，选择*应用*。
+
+
+--
+[[wf-console-email-notifications]]
+.从 Workload Factory 控制台配置通知
+--
+.步骤
+. 登录到 link:https://console.workloads.netapp.com["Workload Factory 控制台"^]。
+. 从 Workload Factory 控制台菜单中，选择 *Workloads*、*Administration*，然后选择 *Notifications setup*。
+. 启用以下一个或多个通知类型：
++
+** *电子邮件通知*：选择 *启用电子邮件通知*。与帐户关联的任何电子邮件地址都将以只读模式显示。
+** *Amazon SNS 通知*：选择*启用 SNS 通知*，然后按照说明从 Amazon SNS 控制台配置 Amazon SNS。
++
+通过发送测试通知来验证配置后，选择*应用*。
+
+
+
+
+
+--
+====
+
+
+[[subscribe-to-the-amazon-sns-topic]]
+== 订阅 Amazon SNS 主题
+
+将 Workload Factory 配置为向主题发送通知后，请按照 Amazon SNS 文档中的 https://docs.aws.amazon.com/sns/latest/dg/sns-create-subscribe-endpoint-to-topic.html["说明"]订阅该主题，以便您可以接收来自 Workload Factory 的通知。
+
+
+
+[[filter-notifications]]
+== 筛选通知
+
+您可以通过对通知应用过滤器来减少不必要的通知流量，并为特定用户定位特定的通知类型。您可以使用针对 SNS 通知的 Amazon SNS 策略以及 NetApp Console 中的通知设置来执行此操作。
+
+
+
+[[filter-amazon-sns-notifications]]
+=== 筛选 Amazon SNS 通知
+
+默认情况下，当您订阅 Amazon SNS 主题时，您会收到发布到该主题的所有通知。如果您只想接收来自该主题的特定通知，则可以使用筛选策略来控制您收到的通知。筛选策略使 Amazon SNS 仅向订阅者发送与筛选策略匹配的通知。
+
+您可以按照以下标准筛选 Amazon SNS 通知：
+
+[cols="3*"]
+|===
+| 问题描述 | 筛选策略字段名称 | 可能的值 
+
+
+| 资源类型 | `resourceType`  a| 
+* `DB`
+* `Microsoft SQL Server host`
+* `PostgreSQL Server host`
+
+
+
+
+| 工作负载 | `workload` | `WLMDB` 
+
+
+| 优先级 | `priority`  a| 
+* `Success`
+* `Info`
+* `Recommendation`
+* `Warning`
+* `Error`
+* `Critical`
+
+
+
+
+| 通知类型 | `notificationType`  a| 
+* `Deployment`
+* `Well-architected`
+
+
+|===
+.步骤
+. 在 Amazon SNS 控制台中，编辑 SNS 主题的订阅详细信息。
+. 在*订阅过滤器策略*区域中，选择按*消息属性*进行过滤。
+. 启用*订阅过滤器策略*选项。
+. 在 *JSON 编辑器* 框中输入 JSON 过滤器策略。
++
+例如，以下 JSON 筛选器策略接受来自 Microsoft SQL Server 资源的通知，这些通知与 WLMDB 工作负载相关，具有成功或错误的优先级，并提供有关良好架构状态的详细信息：
+
++
+[source, json]
+----
+{
+  "accountId": [
+    "account-a"
+  ],
+  "resourceType": [
+    "Microsoft SQL Server host"
+  ],
+  "workload": [
+    "WLMDB"
+  ],
+  "priority": [
+    "Success",
+    "Error"
+  ],
+  "notificationType": [
+    "Well-architected"
+  ]
+}
+----
+. 选择*Save changes*。
+
+
+要查看筛选策略的其他示例，请参阅 https://docs.aws.amazon.com/sns/latest/dg/example-filter-policies.html["Amazon SNS 筛选策略示例"^]。
+
+有关创建过滤器策略的详细信息，请参阅 https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html["Amazon SNS 文档"^]。
+
+
+
+[[filter-notifications-in-netapp-console]]
+=== 在 NetApp Console 中过滤通知
+
+您可以使用 NetApp Console 通知设置按严重性级别（如 Critical、Info 或 Warning）过滤您在 Console 中收到的通知。
+
+有关在控制台中过滤通知的详细信息，请参阅 https://docs.netapp.com/us-en/console-setup-admin/task-monitor-cm-operations.html#filter-notifications["NetApp Console 文档"^]。
+
+
+
+[[notification-types-and-messages]]
+== 通知类型和消息
+
+Workload Factory 发送以下事件的通知：
+
+[cols="6*"]
+|===
+| 事件 | 问题描述 | 通知类型 | 严重性 | 工作负载 | 资源类型 
+
+
+| 您帐户中的某些数据库实例架构不完善 | 已对您帐户中的所有 Microsoft SQL Server 实例进行了分析，以查找架构良好问题。此事件的描述给出了架构良好的实例和未优化实例的数量。从 Workload Factory 控制台的数据库清单中查看架构良好状态的发现结果和建议。 | 精心设计 | 建议 | 数据库 | Microsoft SQL Server 实例 
+
+
+| Microsoft SQL Server/PostgreSQL 服务器部署成功 | Microsoft SQL Server 或 PostgreSQL 主机部署成功。有关更多信息，请转到作业监控。 | 部署 | 成功 | 数据库 | FSx for ONTAP，数据库主机 
+
+
+| Microsoft SQL Server/PostgreSQL 服务器部署失败 | Microsoft SQL Server 或 PostgreSQL 主机部署失败。有关更多信息，请转到作业监控。 | 部署 | 错误 | 数据库 | FSx for ONTAP，数据库主机 
+
+
+| 复制关系创建失败 | SnapMirror 复制关系创建失败。有关详细信息，请转到 Tracker。 | 复制 | 关键 | 常规存储 | FSx for ONTAP 
+
+
+| FSx for ONTAP 创建失败 | FSx for ONTAP 文件系统创建过程已失败。有关详细信息，请转到 Tracker。 | FSx for ONTAP 文件系统操作 | 关键 | 常规存储 | FSx for ONTAP 
+
+
+| 自动 SSD 容量或 inode 增加成功 | 在最近的自动容量管理更新中，FSx for ONTAP 文件系统成功增加了 SSD 容量或卷 inode。有关详细信息，请转到 Tracker。 | 容量管理 | 成功 | 常规存储 | FSx for ONTAP 文件 
+
+
+| 自动 SSD 容量或 inode 增加故障 | 在最近的自动容量管理更新期间，FSx for ONTAP 文件系统未能增加 SSD 容量或卷 inode。有关详细信息，请转到 Tracker。 | 容量管理 | 关键 | 常规存储 | FSx for ONTAP 文件系统 
+
+
+| 检测到 FSx for ONTAP 问题 | 已对所有 FSx for ONTAP 文件系统进行了分析，以检查是否存在架构完善问题。扫描检测到一个或多个问题。有关更多信息，请在 Workload Factory 控制台的 Storage 仪表板中查看架构完善分析。 | 精心设计的分析 | 建议 | 常规存储 | FSx for ONTAP 文件系统 
+
+
+| FSx for ONTAP 自动容量管理事件 | FSx for ONTAP 文件系统的 SSD 性能层已达到警告阈值容量/总百分比。 | 容量管理 | 警告 | 常规存储 | FSx for ONTAP 文件系统 
+
+
+| FSx for ONTAP 的自动 inode 管理事件 | FSx for ONTAP 卷的 inode 计数已达到警告阈值计数/总百分比。 | 容量管理 | 警告 | 常规存储 | FSx for ONTAP 文件系统 
+
+
+| 在 FSx for ONTAP 文件系统中检测到可疑卷活动 | NetApp 使用 AI 的自主勒索软件保护 (ARP/AI) 检测到可疑的卷活动。 | 勒索软件防护 | 关键 | 常规存储 | FSx for ONTAP 文件系统 
+
+
+| 检测到延迟阈值违规 | FSx for ONTAP 集群中的一个或多个卷超过了延迟阈值。 | 性能监控 | 警告 | EDA | FSx for ONTAP 文件系统 
+
+
+| 每月成本报告 | 您的帐户的每月成本汇总，显示支出趋势、异常变化以及 FSx for ONTAP 文件系统的最佳节省机会。 | 成本报告 | 建议 | 常规存储 | FSx for ONTAP 文件系统 
+
+
+| 复制延迟 | 复制花费的时间比预期的要长。 | 复制 | 关键 | 常规存储 | FSx for ONTAP 文件系统 
+
+
+| 自定义仪表板创建成功 | 您的自定义仪表板已成功创建并可供查看。 | 自定义仪表板 | 成功 | 常规存储 | 工作负载工厂帐户 
+
+
+| 自定义仪表板创建失败 | Workload Factory 无法创建您的自定义仪表板。请尝试重新创建仪表板。 | 自定义仪表板 | 错误 | 常规存储 | 工作负载工厂帐户 
+|===

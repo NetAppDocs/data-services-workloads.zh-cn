@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/add-ha-pairs.html 
+keywords: add high-availability pairs, add HA pairs, add HA pair, add high-availability pair, scale out, file system, fsx for ontap 
+summary: 在 NetApp Workload Factory 中将高可用性对添加到文件系统中，以横向扩展文件系统。 
+---
+= 在 NetApp Workload Factory 中将 HA 对添加到文件系统中
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+添加高可用性（HA）对，以便在 NetApp Workload Factory 中横向扩展 FSx for ONTAP 第二代 Single-AZ 文件系统，从而提高性能和容量。此扩展为您提供了比第一代文件系统更高的性能可扩展性和灵活性。
+
+.关于此任务
+新的 HA 对将使用相同的 SKU 和每个 HA 对相同的容量进行添加。
+
+以下各项不支持添加 HA 对：
+
+* 多 AZ HA 部署或第一代 FSx for ONTAP 文件系统
+* 具有 5 个以上存储虚拟机的 FSx for ONTAP 文件系统
+* 具有 iSCSI LUN 的 FSx for ONTAP 文件系统
+* 具有最大或接近最大 SSD 容量或已达到 IO 分配限制的配置
+
+
+关于添加 HA 对，请考虑以下几点：
+
+* HA 对删除：HA 对添加到文件系统中后无法删除。
+* 操作时间和限制：添加 HA 对可能需要约 30 分钟。考虑在维护窗口或低活动期间添加 HA 对。此外，添加 HA 对会限制其他操作，例如添加更多 HA 对、调配 IOPS、增加 SSD 容量和更新吞吐量。
+* IO 分配：自动 IO 分配取决于总存储容量。用户配置的 IO 分配乘以添加的 HA 对数量。
+* NVMe 缓存：添加 HA 对时，默认情况下启用 NVME 缓存。对于繁重的工作负载，我们建议关闭 NVMe 缓存。
+* HA 对数量：我们建议您将文件系统扩展到偶数个 HA 对，以便在 HA 对之间实现平衡的数据分布。
+* LUN 创建：只有在添加 HA 对时文件系统上不存在 LUN 时，才能在第二代单 AZ 文件系统上创建 LUN。仅在具有 6 个或更少 HA 对的文件系统上支持创建 LUN。
+
+
+.开始之前
+在将 HA 对添加到文件系统之前，请执行以下操作：
+
+* 删除所有 iSCSI LUN 以横向扩展文件系统。
+* 确保文件系统不超过 5 个存储 VM。
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 FSx for ONTAP 页面中，选择*库存*。
+. 选择要添加 HA 对的文件系统。
+. 在*信息*下，选择 *HA 对* 旁边的铅笔图标。
+. 在 *添加 HA 对* 对话框中，选择要添加到文件系统的 HA 对数量。
+. 选择*添加*以确认添加 HA 对。
+
+
+.结果
+Workload Factory 启动将 HA 对添加到文件系统的过程。在添加 HA 对之前，文件系统不可用于其他操作，例如卷创建。您可以在 *Tracker* 中监控操作进度。

@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/split-cloned-volume.html 
+keywords: split clone volume, FlexVol volume 
+summary: 从其父卷中拆分克隆的 FlexVol 卷，使该克隆卷成为正常的读/写 FlexVol 卷。 
+---
+= 拆分 NetApp Workload Factory 中的已克隆卷
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 NetApp Workload Factory 中，将克隆的 FlexVol volume 从其父 volume 中拆分，使克隆成为普通的读/写 FlexVol volume。
+
+在拆分期间，可以在克隆和父级上访问数据。拆分过程仅更新元数据，只需要最少的 IO。未复制任何数据块。
+
+.关于此任务
+克隆拆分操作包括以下内容：
+
+* 在拆分操作期间无法创建 FlexClone 卷的新快照副本。
+* 如果 FlexClone 卷属于数据保护关系，则无法从父卷中拆分。
+* 如果在拆分过程中使 FlexClone 卷脱机，则拆分操作将暂停；当使 FlexClone 卷恢复联机时，拆分操作将恢复。
+* 拆分后，父 FlexVol volume 和克隆都需要由其卷保证确定的完整空间分配。
+* 将 FlexClone 卷从其父卷拆分后，两者将无法重新连接。
+
+
+.开始之前
+在拆分克隆卷之前，请考虑以下事项：
+
+* 要拆分克隆的卷，必须关联链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+* 拆分操作开始时，FlexClone 卷必须联机。
+* 父卷必须联机才能成功拆分。
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Volumes explorer*。
+. 选择要拆分的克隆卷所在卷的操作菜单。
+. 选择*数据保护操作*，然后选择*拆分克隆卷*。
+. 在 Split volume 对话框中，选择 *Delete*。
+
+
+.结果
+卷克隆已拆分，并显示在“Volumes”选项卡中。

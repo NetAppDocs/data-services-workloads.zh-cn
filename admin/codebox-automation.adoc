@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: admin/codebox-automation.html 
+keywords: codebox, automation 
+summary: Codebox 是一个基础架构即代码（IaC）智能助手，可帮助开发人员和 DevOps 生成执行 NetApp Workload Factory 支持的任何操作所需的代码。 
+---
+= 了解 NetApp Workload Factory 中的 Codebox 自动化
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Codebox 是一个基础架构即代码（IaC）副驾驶，可帮助开发人员和 DevOps 生成执行 NetApp Workload Factory 支持的任何操作所需的代码。Codebox 与 Workload Factory 权限策略保持一致，它为执行就绪性设置了明确的路径，并为未来的快速重用提供了自动化目录。
+
+
+
+[[codebox-capabilities]]
+== Codebox 功能
+
+Codebox 提供两个关键的 IaC 功能：
+
+* _Codebox Viewer_ 显示通过匹配图形向导或对话式聊天界面的条目和选择，由特定作业流操作生成的 IaC。虽然 Codebox Viewer 支持颜色编码以方便导航和分析，但它不允许编辑——只能复制代码或将代码保存到 Automation Catalog。
+* _Codebox Automation Catalog_ 显示所有已保存的 IaC 作业，让您可以轻松引用它们以供将来使用。自动化目录作业将保存为模板，并在适用资源的上下文中显示。
+
+
+此外，在设置 Workload Factory 凭据时，Codebox 会动态显示创建 IAM 策略所需的 AWS 权限。这些权限是为您计划使用的每个 Workload Factory 功能（数据库、AI、FSx for ONTAP 等）提供的，并且它们是可自定义的。您只需从 Codebox 复制权限，然后将其粘贴到 AWS 管理控制台中，以便 Workload Factory 具有管理工作负载的正确权限。
+
+
+
+[[supported-code-formats]]
+== 支持的代码格式
+
+支持的代码格式包括：
+
+* Workload Factory REST API
+* AWS CLI
+* AWS CloudFormation
+* Terraform
+
+
+
+
+[[related-information]]
+== 相关信息
+
+link:use-codebox.html["了解如何使用 Codebox"]。
+
+link:https://console.workloads.netapp.com/api-doc["Workload Factory REST API 文档"^]。

@@ -1,0 +1,434 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/create-replication.html 
+keywords: replication, replicate, data protection, disaster recovery, data loss, initialize, cut over, cutover, data transfer, sync, replicate, cascade, cascade replication, cascade deployment, data protection, volume replication, replicate data protection volume 
+summary: 使用复制来保护数据免受意外灾难导致的数据丢失，迁移数据，或在 Amazon FSx for NetApp ONTAP 文件系统中为数据保护卷级联复制 
+---
+= 在 NetApp Workload Factory 中将数据复制到 FSx for ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 NetApp Workload Factory 中复制数据，以便在数据所在区域发生灾难时防止数据丢失。FSx for ONTAP 文件系统与本地 ONTAP 系统或 Cloud Volumes ONTAP 之间支持数据复制。Workload Factory 还支持级联复制，以将数据保护扩展到第三级系统或迁移您的数据。
+
+在复制存储虚拟机数据和配置设置时，您必须首先创建和初始化复制关系，然后至少等待数据同步一次，然后才能完成切换操作。
+
+
+
+[[standard-replication]]
+== 标准复制
+
+如果灾难影响到您的区域，复制可保护您的数据；它也可用于迁移目的。
+
+复制包括创建和初始化复制关系。要设置复制，请创建复制关系。若要在源和目标存储系统之间传输数据，请初始化复制关系。迁移存储 VM 数据和配置设置时，还必须完成切换操作。
+
+目标文件系统中的复制卷是数据保护 (DP) 卷，并遵循以下命名格式： `{OriginalVolumeName}_copy`。
+
+如果使用不可变文件复制源卷，则目标卷和文件系统将保持锁定状态，直到源卷的保留期结束。当您 link:create-volume.html["创建卷"] FSx for ONTAP 文件系统时，不可变文件功能可用。
+
+[NOTE]
+====
+您可以复制一个源（读/写）卷或一个数据保护（DP）卷。支持级联复制，但不支持第三个跃点。详细了解link:https://docs.netapp.com/us-en/workload-fsx-ontap/cascade-replication.html["级联复制"]。
+
+====
+
+
+[[migration-use-cases]]
+=== 迁移使用案例
+
+对于迁移，您可以选择复制一个存储 VM 的存储 VM 数据和配置设置。如果同时迁移数据和配置设置，请确保卷的上次复制在过去 24 小时内完成。您必须选择同一存储 VM 中的所有卷才能使用此功能。所有卷的分层策略默认为源卷的分层策略，建议用于迁移使用情形。
+
+Workload Factory 支持以下存储系统之间的存储虚拟机的迁移复制。
+
+* 本地 ONTAP 系统和适用于 ONTAP 的 FSx 文件系统
+* Cloud Volumes ONTAP 和 FSx for ONTAP 文件系统
+* 适用于 ONTAP 和适用于 ONTAP 文件系统的 FSx
++
+** 第一代到第一代
+** 第二代到第二代
+
+
+
+
+要迁移存储 VM 数据和配置设置，必须完成三个操作。
+
+. <<步骤 1：创建复制关系,创建复制关系>>，选择 *Migration* 作为用例，然后选择 *Replicate storage VM configuration*。
+. <<步骤 2：初始化复制关系,初始化复制关系>> 将数据从源存储系统传输到目标存储系统。
+. <<步骤 3：为迁移用例切换复制,切换复制以用于迁移用例>> 将数据和配置设置从源文件系统永久迁移到目标 FSx for ONTAP 文件系统。
+
+
+
+
+[[step-1-create-the-replication-relationship]]
+== 步骤 1：创建复制关系
+
+在两个 FSx for ONTAP 文件系统之间、本地 ONTAP 系统和 FSx for ONTAP 文件系统之间，或者 Cloud Volumes ONTAP 和 FSx for ONTAP 文件系统之间复制数据。
+
+.开始之前
+在开始之前，请查看这些要求。
+
+* 确保有一个 FSx for ONTAP 文件系统可用于复制关系中的目标。
+* 打开 TCP 端口 11104 和 11105，以实现存储系统之间的安全数据传输和管理。ICMP 是可选的，但可以帮助进行网络检查和故障排除。
+* 用于复制关系的 FSx for ONTAP 文件系统必须具有相关联的链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。关联链接后，返回此操作。
+* 对于从本地 ONTAP 系统复制到 FSx for ONTAP 文件系统，请确保您已发现本地 ONTAP 系统。
+* 不支持对处于可用、已创建或配置错误以外的状态以及 ONTAP 版本不兼容的卷执行复制。
+* 对于迁移用例，请确保在使用存储 VM 数据和配置设置创建复制关系之前，卷的最后一次复制在过去 24 小时内完成。
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 FSx for ONTAP 页面中，选择包含要复制的卷的文件系统。
+. 复制文件系统中的所有卷或复制选定卷。
++
+** 复制文件系统中的所有卷：从文件系统概述中，选择*复制数据*。
+** 要复制所选卷：在文件系统概述中，选择*卷*选项卡。
++
+在卷表中，选择一个或多个卷，然后选择*复制数据*。
+
+
+
+. 在 Replicate data 页面的 Replication target 下，提供以下内容：
++
+.. *用例*：为复制选择以下用例之一。根据所选用例，Workload Factory 会根据最佳实践在表单中填写推荐值。在填写表单时，您可以接受推荐值或进行更改。
++
+*** 人工智能 (AI) 和机器学习 (ML)：将您的本地 ONTAP 数据复制到 FSx for ONTAP 并创建 S3 接入点以支持云中的 AI 和 ML 培训
+*** 迁移：将您的数据传输到目标 FSx for ONTAP 文件系统
++
+*复制存储虚拟机配置*：可选择复制单个存储虚拟机的存储虚拟机数据和配置设置。迁移数据和设置时，所有卷必须在过去 24 小时内完成复制，然后同时切换。
+
++
+所有卷的分层策略默认为源卷的分层策略，建议用于迁移使用情形。
+
++
+在迁移期间，客户端从源 ONTAP 文件系统访问数据。切换后，可通过目标 FSx for ONTAP 文件系统 IP 地址访问卷。更新仍使用旧 IP 地址的所有客户端或资源。
+
+*** 热灾难恢复：确保关键工作负载的高可用性和快速灾难恢复
+*** 冷或归档灾难恢复：
++
+**** 冷灾难恢复：使用更长的恢复时间目标（RTO）和恢复点对象（RPO）来降低成本
+**** 归档：复制数据以实现长期存储和合规性
+
+
+*** 其他
++
+此外，用例选择决定了复制策略或 SnapMirror 策略（ONTAP）。用于描述复制策略的术语来自 link:https://docs.netapp.com/us-en/ontap/data-protection/default-protection-policies-concept.html["ONTAP 9 文档"^]。
+
++
+**** 对于迁移及其他操作，复制策略称为 _MirrorAllSnapshots_。_MirrorAllSnapshots_ 是一种用于镜像所有快照和最新活动文件系统的异步策略。
+**** 对于热、冷或归档灾难恢复，复制策略称为 _MirrorAndVault_。_MirrorAndVault_ 是一种异步和保管库策略，用于镜像最新的活动文件系统以及每日和每周快照。
++
+对于所有用例，如果为长期保留启用快照，则默认复制策略为 _MirrorAndVault_。
+
+
+
+
+
+.. *FSx for ONTAP 文件系统*：为目标 FSx for ONTAP 文件系统选择凭据、区域和 FSx for ONTAP 文件系统名称。
+.. *Storage VM name*：选择 Storage VM。您选择的 Storage VM 是此复制关系中所有选定卷的目标。
++
+当源和目标存储虚拟机名称相同时，我们会为目标存储虚拟机名称创建一个文件系统别名，以避免对等冲突。
+
+.. *卷名*：目标卷名将按以下格式自动生成 `{OriginalVolumeName}_copy`。您可以使用自动生成的卷名或输入其他卷名。
+.. *分层策略*：为目标卷中存储的数据选择分层策略。分层策略默认为所选使用情形的建议分层策略。
++
+_平衡（自动）_ 是使用 Workload Factory 控制台创建卷时的默认分层策略。有关卷分层策略的详细信息，请参阅 AWS FSx for NetApp ONTAP 文档中的 link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["卷存储容量"^]。请注意，Workload Factory 在 Workload Factory 控制台中使用基于用例的名称作为分层策略名称，并在括号中包含 FSx for ONTAP 分层策略名称。
+
++
+如果选择了迁移使用情形，Workload Factory 会自动选择将源卷的分层策略复制至目标卷。您可以取消选择复制分层策略并选择适用于所选复制卷的分层策略。
+
+.. *最大传输速率*：选择*有限*并输入以 MB/s 为单位的最大传输限制。或者，选择*无限制*。
++
+如果没有限制，网络和应用程序性能可能会下降。或者，我们建议为 FSx for ONTAP 文件系统提供无限制的传输速率，以处理关键工作负载，例如主要用于灾难恢复的工作负载。
+
+
+
+. 在复制设置下，提供以下内容：
++
+.. *初始化复制关系*：选择在创建复制关系后立即初始化复制关系，或稍后再初始化。请注意，初始化可能很耗时，您可能希望在非高峰时段运行基线传输。
++
+要稍后手动初始化，请参阅 <<步骤 2：初始化复制关系,步骤 2：初始化复制关系>> 中的说明。
+
+.. *复制间隔*：选择快照从源卷传输至目标卷的频率。
+.. *长期保留*：（可选）启用快照以进行长期保留。长期保留使业务服务即使在整个站点发生故障时也能继续运行，从而支持应用程序使用辅助副本透明地进行故障切换。
++
+没有长期保留的复制使用 _MirrorAllSnapshots_ 策略。启用长期保留会将 _MirrorAndVault_ 策略分配给复制。
+
++
+如果启用了长期保留，请选择一个现有策略或创建一个新策略来定义要复制的快照和保留的数量。
+
++
+
+NOTE: 长期保留需要匹配的源标签和目标标签。如果需要，Workload Factory 可以为您创建缺少的标签。
+
++
+*** *Choose an existing policy*：选择现有策略。
+*** *创建新策略*：输入*策略名称*。
+
+
+.. *不可变快照*：可选。选择*启用不可变快照*以防止在保留期内删除通过此策略创建的快照。
++
+*** 以小时数、天数、月数或年数为单位设置*保留期*。
+*** *快照策略*：在表中，选择快照策略频率和要保留的副本数。您可以选择多个快照策略。
+
+
+.. *S3 access point*：可选择连接 S3 access point，通过 AWS S3 API 访问驻留在 NFS 或 SMB/CIFS 卷上的 FSx for ONTAP 文件系统数据。仅支持文件访问类型。提供以下详细信息：
++
+*** *S3 接入点名称*：输入 S3 接入点的名称。
+*** *User*：选择有权访问卷的现有用户或创建新用户。
+*** *用户类型*：选择 *UNIX* 或 *Windows* 作为用户类型。
+*** *网络配置*：选择*互联网*或*虚拟私有云 (VPC)*。您选择的网络类型决定了接入点是可从互联网访问还是仅限于特定的 VPC。
+*** *启用库存表*：在卷上启用库存表时，系统会为 S3 访问点可访问的所有对象生成元数据，并产生 AWS S3 请求成本。有关详细信息，请参见link:https://aws.amazon.com/s3/pricing/["Amazon S3 定价文档"^]。
+
+
+.. *S3 接入点标签*：您最多可以添加 50 个标签（可选）。
+
+
+
+
+. 选择 *Create*。
+
+
+.结果
+复制关系显示在目标 FSx for ONTAP 文件系统的*复制关系*选项卡中。
+
+如果您创建了用于迁移的复制关系，则必须切换所有卷及其关联的存储 VM，以完成将存储 VM 数据和配置设置迁移到目标 FSx for ONTAP 文件系统。
+
+
+
+[[step-2-initialize-the-replication-relationship]]
+== 步骤 2：初始化复制关系
+
+在 NetApp Workload Factory 中初始化源卷和目标卷之间的复制关系，以传输快照和所有数据块。
+
+初始化执行 _baseline_ 传输：生成源卷的快照，然后将快照及其引用的所有数据块传输至目标卷。
+
+.开始之前
+请考虑何时选择完成此操作。初始化可能很耗时。您可能希望在非高峰时段运行基线传输。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择要更新的文件系统的操作菜单，然后选择*管理*。
+. 从文件系统概述中，选择 *Replication relationships* 选项卡。
+. 在复制关系选项卡中，选择要初始化的复制关系的操作菜单。
+. 选择 *Initialize*。
+. 在初始化关系对话框中，选择 *Initialize*。
++
+当复制状态显示 *Idle* 时，数据传输完成。
+
+
+
+
+
+[[step-3-cut-over-replication-for-migration-use-cases]]
+== 步骤 3：为迁移用例切换复制
+
+为迁移用例创建复制关系后，必须切换复制，以完成将存储 VM 数据和配置设置迁移到目标 FSx for ONTAP 文件系统。切换复制将数据和存储 VM 配置设置从源文件系统永久迁移到目标 FSx for ONTAP 文件系统。在切换期间，数据会进行最后一次复制。切换开始时，源存储 VM 会脱机。
+
+
+
+[[plan-for-the-cutover-operation]]
+=== 规划切换操作
+
+在规划迁移用例的切换操作时，请考虑以下内容。
+
+* *复制版本支持*：源和目标存储系统必须具有相同的主要 ONTAP 版本。例如，如果源系统运行的是 ONTAP 版本 9.18.1，则目标系统也必须运行 9.18.1 版本。
+* *Storage VM 配置设置*：
++
+** 切换操作不会将所有存储虚拟机配置设置迁移到目标存储虚拟机。例如，iSCSI、广播域 MTU 和 DNS 设置不会迁移。切换后在目标存储虚拟机上手动更新这些设置。有关更多详细信息，请参阅 <<切换后更新配置设置,切换后更新配置设置>> 节。
+** 如果您的存储 VM 使用域隧道身份验证，请在开始迁移之前在目标文件系统上设置并启用域隧道。
+
+
+* *克隆*：克隆作为单个卷进行迁移，因此将占用目标 FSx for ONTAP 文件系统上的更多空间。考虑在切换之前删除克隆，以避免增加目标容量。
+* *缓存卷*：适用于 ONTAP FlexCache 9.17.x 或更低版本。包含缓存卷的源存储 VM 不支持切换。在切换之前删除 ONTAP FlexCache 关系，以避免迁移失败。
+* *AWS S3 接入点*：具有 S3 接入点的卷不支持迁移使用情形的切换复制。从源卷中删除 S3 接入点以避免迁移失败。
+* *ONTAP S3 配置*：具有 ONTAP S3 配置的 vserver 不支持迁移用例的切换复制。删除 ONTAP S3 配置，包括 vserver 上的对象存储服务器、存储桶、用户、组或策略，以避免迁移失败。
+* *LUN 序列号和 iSCSI 目标 IQN*：LUN 序列号和 iSCSI 目标 IQN 在切换期间发生变化。
+
+
+.开始之前
+在开始之前，请查看这些要求。
+
+* 在切换复制之前，请停止对 Storage VM 的任何客户端访问。
+* 在切换复制之前，请确保所有源卷均未提供任何数据。
+* 在切换复制之前，请确保数据在源卷和目标卷之间同步。
+* 用于复制关系的 FSx for ONTAP 文件系统必须具有相关联的链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。关联链接后，返回此操作。
++
+** 以下端口必须在与 FSx for ONTAP 文件系统关联的安全组中打开以实现链路连接：端口 443 (HTTPS) 和端口 22 (SSH)。
+
+
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择包含要复制的卷的文件系统。
+. 选择 *Replication relationships* 选项卡。
+. 在复制关系表中，选择要切换的复制关系，然后选择 *Cut over replication* 。
+. 查看"切换复制"对话框中的信息，然后键入 _cut over_ 确认。
+
+
+. 选择 *Cut over*。
+
+
+.结果
+启动切换后，源 Storage VM 脱机。
+
+
+
+[[update-configuration-settings-after-cutover]]
+=== 切换后更新配置设置
+
+切换迁移用例的复制后，在目标 Storage VM 上更新以下 Storage VM 配置设置。
+
+* 对于 iSCSI：
++
+** 重新创建 igroup
+** 更新 LUN 映射
+** 登录到每个 SAN 客户端并更新新目标的 iSCSI/MPIO 设置并删除旧的 vserver 目标 IP
+
+
+* 验证广播域 MTU 设置是否符合预期
+* 验证 DNS 设置是否符合预期
+* 如果源存储虚拟机中有缓存卷，则重新创建缓存关系（ONTAP FlexCache 关系）。
+
+
+如果需要，link:change-tiering-policy.html["修改分层策略"]用于切换后的目标卷。
+
+
+
+[[cascade-replication-for-data-protection-volumes]]
+== 数据保护卷的级联复制
+
+NetApp Workload Factory 支持复制数据保护卷，也称为_级联部署_。_级联部署_由一系列关系组成，其中源卷被镜像到二级卷（第一跳），二级卷被镜像到三级卷（第二跳）。如果二级卷不可用，则可以同步主卷和三级卷之间的关系，而无需执行新的基线传输。
+
+此功能支持具有 ONTAP 版本 9.6 及更高版本的 FSx for ONTAP 文件系统。请参阅 link:https://docs.netapp.com/us-en/ontap/data-protection/compatible-ontap-versions-snapmirror-concept.html#snapmirror-disaster-recovery-relationships["兼容 ONTAP 版本的 ONTAP 文档"^]。
+
+详细了解link:https://docs.netapp.com/us-en/ontap/data-protection/supported-deployment-config-concept.html#how-cascade-deployments-work["级联部署的工作原理"^]。
+
+.开始之前
+开始之前，请考虑以下事项：
+
+* 请注意，作为级联配置一部分的卷可能需要更长时间才能重新同步。
+* 如果关系的源卷是数据保护卷，并且是其他关系的目标卷，则不支持反向复制关系。
+* 支持数据保护卷的一个副本（或第二个跃点）。创建数据保护卷的第二个副本（或第三个跃点）不被视为最佳做法。
+* 打开 TCP 端口 11104 和 11105，以实现存储系统之间的安全数据传输和管理。ICMP 是可选的，但可以帮助进行网络检查和故障排除。
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择包含要复制的卷的文件系统的操作菜单，然后选择*管理*。
+. 从文件系统概述中，选择*卷*选项卡。
+. 在“卷”表中，选择一个或多个数据保护卷（DP/已复制卷），然后选择*复制数据*。
+. 在 Replicate data 页面的 Replication target 下，提供以下内容：
++
+.. *用例*：为复制选择以下用例之一。根据所选用例，Workload Factory 会根据最佳实践在表单中填写推荐值。在填写表单时，您可以接受推荐值或进行更改。
++
+*** 人工智能 (AI) 和机器学习 (ML)：将您的本地 ONTAP 数据复制到 FSx for ONTAP 并创建 S3 接入点以支持云中的 AI 和 ML 培训
+*** 迁移：将您的数据传输到目标 FSx for ONTAP 文件系统
++
+*复制存储虚拟机配置*：可选择复制单个存储虚拟机的存储虚拟机数据和配置设置。迁移数据和设置时，所有卷必须在过去 24 小时内完成复制，然后同时切换。
+
++
+所有卷的分层策略默认为源卷的分层策略，建议用于迁移使用情形。
+
++
+在迁移期间，客户端从源 ONTAP 文件系统访问数据。切换后，可通过目标 FSx for ONTAP 文件系统 IP 地址访问卷。更新仍使用旧 IP 地址的所有客户端或资源。
+
+*** 热灾难恢复：确保关键工作负载的高可用性和快速灾难恢复
+*** 冷或归档灾难恢复：
++
+**** 冷灾难恢复：使用更长的恢复时间目标（RTO）和恢复点对象（RPO）来降低成本
+**** 归档：复制数据以实现长期存储和合规性
+
+
+*** 其他
++
+此外，用例选择决定了复制策略或 SnapMirror 策略（ONTAP）。用于描述复制策略的术语来自 link:https://docs.netapp.com/us-en/ontap/data-protection/default-protection-policies-concept.html["ONTAP 9 文档"^]。
+
++
+**** 对于迁移及其他操作，复制策略称为 _MirrorAllSnapshots_。_MirrorAllSnapshots_ 是一种用于镜像所有快照和最新活动文件系统的异步策略。
+**** 对于热、冷或归档灾难恢复，复制策略称为 _MirrorAndVault_。_MirrorAndVault_ 是一种异步和保管库策略，用于镜像最新的活动文件系统以及每日和每周快照。
++
+对于所有用例，如果为长期保留启用快照，则默认复制策略为 _MirrorAndVault_。
+
+
+
+
+
+.. *FSx for ONTAP 文件系统*：为目标 FSx for ONTAP 文件系统选择凭据、区域和 FSx for ONTAP 文件系统名称。
+.. *Storage VM name*：选择 Storage VM。您选择的 Storage VM 是此复制关系中所有选定卷的目标。
++
+当源和目标存储虚拟机名称相同时，我们会为目标存储虚拟机名称创建一个文件系统别名，以避免对等冲突。
+
+.. *卷名*：目标卷名将按以下格式自动生成 `{OriginalVolumeName}_copy`。您可以使用自动生成的卷名或输入其他卷名。
+.. *分层策略*：为目标卷中存储的数据选择分层策略。分层策略默认为所选使用情形的建议分层策略。
++
+_平衡（自动）_ 是使用 Workload Factory 控制台创建卷时的默认分层策略。有关卷分层策略的详细信息，请参阅 AWS FSx for NetApp ONTAP 文档中的 link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["卷存储容量"^]。请注意，Workload Factory 在 Workload Factory 控制台中使用基于用例的名称作为分层策略名称，并在括号中包含 FSx for ONTAP 分层策略名称。
+
++
+如果选择了迁移使用情形，Workload Factory 会自动选择将源卷的分层策略复制至目标卷。您可以取消选择复制分层策略并选择适用于所选复制卷的分层策略。
+
+.. *最大传输速率*：选择*有限*并输入以 MB/s 为单位的最大传输限制。或者，选择*无限制*。
++
+如果没有限制，网络和应用程序性能可能会下降。或者，我们建议为 FSx for ONTAP 文件系统提供无限制的传输速率，以处理关键工作负载，例如主要用于灾难恢复的工作负载。
+
+
+
+. 在复制设置下，提供以下内容：
++
+.. *初始化复制关系*：选择在创建复制关系后立即初始化复制关系，或稍后再初始化。请注意，初始化可能很耗时，您可能希望在非高峰时段运行基线传输。
++
+要稍后手动初始化，请参阅 <<步骤 2：初始化复制关系,步骤 2：初始化复制关系>> 中的说明。
+
+.. *复制间隔*：选择快照从源卷传输至目标卷的频率。
+.. *长期保留*：（可选）启用快照以进行长期保留。长期保留使业务服务即使在整个站点发生故障时也能继续运行，从而支持应用程序使用辅助副本透明地进行故障切换。
++
+没有长期保留的复制使用 _MirrorAllSnapshots_ 策略。启用长期保留会将 _MirrorAndVault_ 策略分配给复制。
+
++
+如果启用了长期保留，请选择一个现有策略或创建一个新策略来定义要复制的快照和保留的数量。
+
++
+
+NOTE: 长期保留需要匹配的源标签和目标标签。如果需要，Workload Factory 可以为您创建缺少的标签。
+
++
+*** *Choose an existing policy*：选择现有策略。
+*** *创建新策略*：输入*策略名称*。
+
+
+.. *不可变快照*：可选。选择*启用不可变快照*以防止在保留期内删除通过此策略创建的快照。
++
+*** 以小时数、天数、月数或年数为单位设置*保留期*。
+*** *快照策略*：在表中，选择快照策略频率和要保留的副本数。您可以选择多个快照策略。
+
+
+.. *S3 access point*：可选择连接 S3 access point，通过 AWS S3 API 访问驻留在 NFS 或 SMB/CIFS 卷上的 FSx for ONTAP 文件系统数据。仅支持文件访问类型。提供以下详细信息：
++
+*** *S3 接入点名称*：输入 S3 接入点的名称。
+*** *User*：选择有权访问卷的现有用户或创建新用户。
+*** *用户类型*：选择 *UNIX* 或 *Windows* 作为用户类型。
+*** *网络配置*：选择*互联网*或*虚拟私有云 (VPC)*。您选择的网络类型决定了接入点是可从互联网访问还是仅限于特定的 VPC。
+*** *启用库存表*：在卷上启用库存表时，系统会为 S3 访问点可访问的所有对象生成元数据，并产生 AWS S3 请求成本。有关详细信息，请参见link:https://aws.amazon.com/s3/pricing/["Amazon S3 定价文档"^]。
+
+
+.. *S3 接入点标签*：您最多可以添加 50 个标签（可选）。
+
+
+. 选择 *Create*。
+
+
+.结果
+复制的卷将进行复制，并显示在目标 FSx for ONTAP 文件系统的 *复制关系* 选项卡中。
+
+
+
+[[related-information]]
+== 相关信息
+
+link:change-tiering-policy.html["修改分层策略"] 切换后的目标卷。

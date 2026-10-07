@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-configure-project-dashboard.html 
+keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, custom filters, project tags, team tags 
+summary: 为项目仪表板配置自定义筛选器，以按业务结构（如项目、团队或应用程序）组织指标。 
+---
+= 在 Workload Factory 中为 EDA 配置项目仪表板
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在项目仪表板上设置自定义筛选器，以符合业务运作方式的方式组织数据，例如按项目、团队或成本中心组织。这样可以更清楚地查看成本，发现哪些资源使用容量最多，并就预算和人员配置做出更好的决策。当筛选器与组织结构匹配时，您可以快速找到所需的数据，并更有效地管理容量、成本和性能。
+
+
+
+[[before-you-begin]]
+== 开始之前
+
+要使用自定义筛选器，请根据需要将 AWS 标记添加到 FSx for ONTAP 卷中，例如项目、团队或业务部门的标记。
+
+
+
+[[configure-custom-filters]]
+== 配置自定义筛选器
+
+
+NOTE: 只有打开项目仪表板的第一位管理员才能创建、更改或删除自定义筛选器。所有其他用户（包括其他管理员）只能查看筛选器。
+
+.关于此任务
+使用 AWS 标记最多可以配置五个自定义过滤器。每个筛选器都需要以下内容：筛选器标签、AWS 标记键和选择类型（单个或多个）。
+
+如果您未配置任何自定义筛选器，默认筛选器、文件系统、卷类型和时间范围仍将可用，因此您可以继续查看和使用仪表板。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *EDA*。
+. 选择 *Projects*。
++
+如果尚未配置仪表板，系统会自动提示您执行此操作。
+
+. 选择*添加筛选器*。
+. 对于要创建的每个自定义筛选器，请添加详细信息：
++
+** 筛选器标签名称（仪表板中的显示名称）
+** AWS 标记密钥名称（资源上使用的实际标记密钥）
+** 选择类型（单选或多选）
++
+
+NOTE: 筛选条件按您设置的顺序显示在控制面板上。将您最常使用的筛选条件放在顶部，以便更轻松地访问。
+
+
+
+. 选择*应用*。
++
+您可以通过选择自定义过滤器旁边的垃圾桶图标来删除该过滤器，然后再应用更改。
+
+. 要在应用任何标签或筛选器后查看更改，请选择仪表板上的刷新图标。
+. 要稍后编辑仪表板配置，请选择*配置*。
+
+
+.结果
+应用这些标签后，Workload Factory 将开始收集并显示相关 CloudWatch 指标。然后，控制面板可帮助您整理资源、跟踪成本并根据需求筛选项目。
+
+
+
+[[related-information]]
+== 相关信息
+
+* link:learn-project-dashboard.html["了解 Projects 仪表板"]
+* link:task-use-project-dashboard.html["使用项目仪表板"]
+

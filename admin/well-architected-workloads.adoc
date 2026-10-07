@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: admin/well-architected-workloads.html 
+keywords: well-architected, best practices, well-architected file system, Amazon FSx for NetApp ONTAP, FSx for ONTAP 
+summary: Workload Factory 扫描工作负载配置，确保可靠性、安全性、卓越运营、成本优化和性能效率，提供见解和建议，帮助您实现卓越运营。 
+---
+= NetApp Workload Factory 如何支持精心设计的工作负载
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Workload Factory 可帮助您维护和操作可靠、安全、高效且经济高效的工作负载配置，这些配置与云提供商的 Well-Architected Framework 保持一致。Workload Factory 提供对您的工作负载的日常分析、建议和自动修复，以促进健康的工作负载操作。通过自动化此流程，Workload Factory 可最大限度地减少人为错误，并确保工作负载管理的一致性。
+
+
+
+[[how-it-works]]
+== 工作原理
+
+Workload Factory 每天分析在支持的云存储系统部署上运行的工作负载。该分析提供架构完善的状态、见解和建议。
+
+每日分析完成后，配置在部署的 Well-architected 仪表板中显示为"已优化"或"未优化"。您将按类别找到配置问题以及配置问题和建议列表。您可以查看配置问题的建议。某些问题可以由 Workload Factory 自动修复，而其他问题则需要手动干预。在此情况下，Workload Factory 会提供详细说明，以帮助您实施建议的更改。
+
+您可以忽略不适用于您环境的配置分析。这样可以避免不必要的警报和不准确的优化结果。
+
+您还可以用简单的语言创建自定义规则，以根据组织的标准和 NetApp 最佳实践验证您的环境。通过试运行测试规则，然后安排它们在您的环境中运行。link:https://docs.netapp.com/us-en/console-well-architected/learn-custom-rules.html["详细了解自定义规则"^]。
+
+
+
+[[why-it-matters]]
+== 为什么很重要
+
+NetApp Workload Factory 通过将持续评估与建议见解和补救措施相结合，将最佳实践应用于大型存储、数据库和 VMware 环境。在 NetApp Console 中应用的自动修复可减少人为错误，确保统一管理，并保持整个工作负载基础架构的性能和可靠性。
+
+
+
+[[get-started-with-workload-factory-to-detect-and-fix-workload-misconfigurations]]
+== 开始使用 Workload Factory 检测和修复工作负载错误配置
+
+要开始使用 Workload Factory，请注册、添加凭据并建立连接，以便使用 Amazon FSx for NetApp ONTAP 管理 AWS 资源并优化工作负载。
+
+link:../fsx-storage/quick-start-fsx.html["快速入门"]
+
+.相关信息
+以下页面提供了有关在不同的 NetApp 存储解决方案中实施架构完善的配置的指导：
+
+* link:../fsx-storage/improve-configurations.html["为 ONTAP 文件系统实施架构良好的 FSx"]
+* link:../fsx-databases/optimize-configurations.html["实施精心设计的数据库配置"]
+* link:../fsx-vmware/view-evs-well-architected.html["实施精心设计的 EVS 配置"]
+* link:../gcnv/improve-configurations.html["实施架构良好的 NetApp 卷配置"]
+* link:https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/task-improve-configurations-cvo.html["在 Microsoft Azure 中实施架构良好的 Cloud Volumes ONTAP 系统配置"^]
+

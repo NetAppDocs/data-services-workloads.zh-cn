@@ -1,0 +1,255 @@
+---
+sidebar: sidebar 
+permalink: oci/create-link.html 
+keywords: connect, connection, link, associate link, create link, authenticate link, oci nss 
+summary: 您可以创建和关联链接，以在 NetApp Workload Factory 帐户和 Oracle Cloud Infrastructure NetApp Storage Service 存储系统之间提供信任关系和连接。 
+---
+= 通过链接连接到 Oracle Cloud Infrastructure NetApp Storage Service 存储系统
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要执行高级存储管理操作，请在您的 NetApp Workload Factory 帐户和 Oracle Cloud Infrastructure NetApp Storage Service (OCI NSS) 系统之间设置连接。此过程涉及创建链接并将其与您的存储系统关联。通过链接关联，您可以直接从 OCI NSS 系统监控和管理通过 OCI API 不可用的某些功能。
+
+link:../setup/links-overview.html["详细了解链接"]。
+
+
+
+[[about-this-task]]
+== 关于此任务
+
+Workload Factory 中的 _link_ 是租户中的 OCI Functions 应用程序。Workload Factory 使用它与 OCI NSS 存储池（HTTPS 443 和 SSH 22）上的 ONTAP 系统进行通信。
+
+链接使用 OCI Functions 执行代码以响应事件，并自动管理该代码所需的计算资源。您创建的链接是您的 NetApp 帐户的一部分，它们与 Oracle Cloud Infrastructure 帐户相关联。
+
+使用 Terraform 部署链接或函数，然后在 Workload Factory 中注册函数 OCID。
+
+此堆栈在您的租户中与您的 OCI 用户一起运行。这不是跨租户凭据策略。添加凭据时，该策略属于租户根目录；您无需再次创建它来创建链接。
+
+
+
+[[what-terraform-creates]]
+=== Terraform 创建的内容
+
+[cols="1,1"]
+|===
+| 资源 | 示例名称 
+
+
+| 函数应用程序 | `netapp-wf-app-<suffix>` 
+
+
+| 功能 | `netapp-wf-function-<suffix>` 
+
+
+| 日志组 + 函数调用日志 | `netapp-wf-link-logs-<suffix>` 
+
+
+| 动态组 + vault-read 策略 | 仅当您启用 *本地 OCI Vault 身份验证* (`netapp-functions-dg` 时，在租户中共享） 
+|===
+
+
+[[create-a-new-link]]
+== 创建新链接
+
+定义 OCI NSS 系统时，您可以在帐户中创建链接。您可以将该链接用于该存储系统，也可以将其用于其他 OCI NSS 系统。您也可以稍后为存储系统关联链接。
+
+链接需要身份验证。您可以使用存储在 Workload Factory 凭据服务中的凭据或使用存储在 OCI Vault 中的凭据对链接进行身份验证。每个链接只支持一种身份验证方法。例如，如果选择使用 OCI Vault 进行链接身份验证，则以后无法更改身份验证方法。
+
+
+NOTE: 使用控制台代理时不支持 OCI Vault。
+
+.开始之前
+* 您为租户添加了 Workload Factory 凭据。
+* 您可以登录到存储池所在租户和区域的 OCI 控制台。
+* 联网：
++
+** VCN 中可访问 ONTAP 管理 LIF 的 **专用子网**
+** 一个 **服务网关**，具有到 Oracle Services Network 中所有 \<Region\> 服务的路由（需要拉取函数映像）
+
+
+* 为将部署堆栈的组创建 IAM 策略。详细了解link:permissions-oci.html["OCI NSS 权限"]。
++
+授予组创建堆栈和函数的权限。将 `<deploy-group>`和 `<compartment-name>`替换为您的值。请使用已命名的组，而不是 `any-user`。
+
++
+[listing]
+----
+Allow group <deploy-group> to manage orm-stacks in compartment <compartment-name>
+Allow group <deploy-group> to manage orm-jobs in compartment <compartment-name>
+Allow group <deploy-group> to manage functions-family in compartment <compartment-name>
+Allow group <deploy-group> to manage log-groups in compartment <compartment-name>
+Allow group <deploy-group> to use virtual-network-family in compartment <compartment-name>
+----
++
+如果启用 **本地 OCI 保管库身份验证**，请添加：
+
++
+[listing]
+----
+Allow group <deploy-group> to manage dynamic-groups in tenancy
+Allow group <deploy-group> to manage policies in compartment <compartment-name>
+----
++
+然后，堆栈会创建（或重用）动态组 `netapp-functions-dg`，以便函数可以读取 Vault 密钥。匹配规则：
+
++
+[listing]
+----
+ALL {resource.type = 'fnfunc', resource.compartment.id = '<compartment-ocid>'}
+----
++
+函数和密钥所在区间中的保管库策略：
+
++
+[listing]
+----
+Allow dynamic-group netapp-functions-dg to read secret-bundles in compartment <compartment-name>
+Allow dynamic-group netapp-functions-dg to use keys in compartment <compartment-name>
+----
+
+
+.步骤
+使用 OCI CLI 或 OCI Terraform 在 Workload Factory 中创建和注册链接。
+
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*管理* > *链接*。
+. 在链接页面上，选择*创建和关联链接* > *OCI NetApp 存储服务*。
+. 在*详细信息*下的添加链接对话框中，提供以下内容：
++
+.. *Link name*：输入要用于此链接的名称。该名称在您的帐户中必须是唯一的。
+.. *OCI Vault*：可选。允许 Workload Factory 从您的 OCI Vault 安全地获取 ONTAP 访问凭据。
++
+链接部署堆栈将以下默认 OCI Vault 密钥 OCID 正则表达式添加到 OCI Functions 权限策略： `ocid1.vaultsecret.oc1.iad.<unique_id>.ONTAPSecret*`。
+
++
+您可以创建与默认正则表达式对齐的机密，也可以更新 Terraform 配置文件中的正则表达式以匹配您的机密 OCID。
+
+.. *标签*：您可以选择添加最多 50 个标签与此链接关联，以便更轻松地对资源进行分类。例如，您可以添加一个标签，以标识此链接由 OCI NSS 存储系统使用。
+.. *链接注册*：按照 Workload Factory 控制台中的说明注册链接。链接注册在您的 OCI Terraform 环境中进行。从 Codebox 中选择 OCI Terraform 以获取说明。
+.. *链接关联*：选择要与此链接关联的 OCI NSS 存储系统，并输入用户名和密码。
+.. *链接权限*：指定用户组创建链接所需的权限。
++
+.链接所需的权限
+[source, text]
+----
+Allow group to manage orm-stacks in compartment id
+Allow group to manage orm-jobs in compartment id
+Allow group to manage dynamic-groups in tenancy
+Allow group to manage policies in compartment id
+Allow group to manage functions-family in compartment id
+Allow group to manage log-groups in compartment id
+Allow group to use virtual-network-family in compartment id
+----
+
+
+. 在添加链接对话框中的 *位置* 下，提供以下内容：
++
+.. *OCI 租户*：输入 OCI 租户。
+.. *区间*：输入区间。
+.. *地区*：选择地区。
+.. *子网*：选择子网。
+.. *网络安全组*：输入安全组。
++
+Workload Factory 会根据选定的 OCI NSS 系统自动检索 OCI 帐户、位置和安全组。
+
+
+
+. 选择 *Add*。
++
+您可以在"事件"页面上监控链接创建状态。这应该不超过五分钟。
+
+. 返回到 Workload Factory 界面，您将看到该链接与 OCI NSS 存储系统相关联。
+
+
+
+
+[[deploy-the-terraform-stack-in-oci-resource-manager]]
+== 在 OCI Resource Manager 中部署 Terraform 堆栈
+
+.步骤
+. 在 Codebox 中，选择 *OCI Terraform*。
+. 选择 *Redirect to OCI Resource Manager*。
+. 在对话框中，选择*继续*。
+. 登录到包含此存储池的 OCI 租户。
+. 查看区间、区域和变量（由 Workload Factory 预先填充）。
+. 选择*创建*。等待应用作业成功。
+. 打开 Job *Output* 并复制 `function_ocid`。
+
+
+
+
+[[register-the-function-in-workload-factory]]
+== 在 Workload Factory 中注册函数
+
+.步骤
+. 返回*添加链接*页面。
+. 在*链接注册*下，粘贴函数 OCID (`ocid1.fnfunc.oc1...`）。
+. 选择 *Add*。
+
+
+
+
+[[other-ways-to-apply-the-same-template]]
+== 应用同一模板的其他方法
+
+仅当您不使用 Codebox 中的资源管理器时，才使用这些功能。
+
+**Terraform CLI**
+
+. 创建文件夹。
+. 从 Codebox (`main.tf`) 复制或下载 **OCI Terraform** 到该文件夹中。
+. 从文件夹：
++
+[listing]
+----
+terraform init
+terraform plan
+terraform apply
+----
+. 从 apply 输出中复制 `function_ocid`，然后继续执行 [注册函数](#3-register-the-function-in-workload-factory)。
+
+
+**OCI CLI**
+
+使用 Codebox 中的 **OCI CLI** 选项卡下载 zip 文件，创建资源管理器堆栈，然后运行计划并应用作业。
+
+.结果
+该链接将显示在您的*链接*列表中。
+
+要删除该函数，请删除 Workload Factory 中的链接，然后销毁资源管理器堆栈（或运行 `terraform destroy`）。
+
+.结果
+该链接将显示在您的*链接*列表中。
+
+要删除该函数，请删除 Workload Factory 中的链接，然后销毁资源管理器堆栈（或运行 `terraform destroy`）。
+
+
+
+[[associate-an-existing-link-with-an-oci-netapp-storage-service-system]]
+== 将现有链接与 OCI NetApp 存储服务系统关联
+
+创建链接后，将其与一个或多个 OCI NetApp 存储服务系统关联。
+
+.步骤
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage*。
+. 选择 *OCI NetApp 存储服务* > *清单*。
+. 选择要关联链接的存储池的操作菜单，然后选择*关联链接*。
+. 验证网络标识符（子网名称或 OCID 和 CIDR）。
+. 选择*关联现有链接*。
+. 选择链接名称。
+. 请选择身份验证方法：
++
+** *Workload Factory*：输入 ONTAP 管理员用户名和密码。
+** *OCI 密钥管理 - OCI Vault Key*：在部署具有 Vault 支持的链接功能时使用。输入 Vault 密钥 OCID。
+
+
+. 选择*应用*。
+
+
+.结果
+Workload Factory 将链接与 OCI NSS 系统关联。您可以执行高级 ONTAP 操作。
+
+.相关信息
+link:../setup/links-overview.html#when-a-link-is-required["详细了解链接"]。

@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: oci/learn-about-oci.html 
+keywords: Oracle Cloud Infrastructure NetApp Storage Service, OCI NetApp Storage Service, Oracle Cloud storage, storage, oci nss 
+summary: OCI NetApp 存储服务是一项完全托管的服务，允许客户在 Workload Factory 中创建和管理存储池，作为工作负载的存储后端。 
+---
+= 了解 NetApp Workload Factory 中的 OCI NetApp 存储服务
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Oracle Cloud Infrastructure NetApp Storage Service （OCI NSS）是一种完全托管的基于云的数据存储服务，可提供高级数据管理功能和高度可扩展的性能。OCI NSS 允许您在 NetApp Workload Factory 中创建和管理存储池，作为所有工作负载的存储后端。
+
+OCI NSS 提供与当今 NetApp 客户在本地使用的相同的功能、性能和管理功能，以及原生 Oracle Cloud 服务的简单性、敏捷性、安全性和可扩展性。
+
+OCI NSS 是 Workload Factory 中的 _Storage_ 组件。
+
+
+
+[[features]]
+== 功能
+
+OCI NSS 提供以下功能：
+
+* *完全托管服务*：提供与 Workload Factory 控制台集成的完全托管服务。
+* *高可用性*：为每个 OCI NSS 存储池提供高可用性，支持单个和多个可用区部署。
+* *自动快照*：通过自动化、高效的快照保护数据，这些快照几乎是存储池或卷的即时、空间高效的时间点只读副本。
+* *卷复制*：通过跨 Oracle Cloud Infrastructure 的跨区域复制提供灾难恢复。
+* *高效备份*：在紧急情况下，通过另一个区域的数据副本添加额外的保护层。
+* *快速克隆*：通过快速克隆加速应用程序开发。
+* *多协议支持*：支持网络文件系统（NFS）、服务器消息块（SMB）和互联网小型计算机系统接口（iSCSI）协议。
+* *高吞吐量*：提供高吞吐量性能，以确保在 OCI NSS 文件系统之上运行的工作负载的低延迟。
+* *内存缓存和 NVMe 缓存*：包括独特的内存缓存和 NVMe 缓存，可提高频繁访问的数据的性能。
+* *数十万次 IOPS*：通过 SSD 磁盘提供数十万次 IOPS，确保您的存储和工作负载及时获得结果。
+* *精简配置*：允许提前配置容量，在需要更多容量之前节省成本。
+* *重复数据删除和压缩*：删除重复数据并压缩数据，以减少 OCI NSS 文件系统所需的物理存储量，从而节省成本。
+* *数据分层*：通过将访问频率较低的数据从主高性能 SSD 存储层移动到辅助容量池存储层，从而降低存储成本。
+
+
+
+
+[[tools-to-use-netapp-workload-factory]]
+== 使用 NetApp Workload Factory 的工具
+
+您可以将 NetApp Workload Factory 与以下工具一起使用：
+
+* *NetApp Console*：NetApp Console 提供混合界面体验，因此您可以将 Workload Factory 与其他 NetApp 数据服务一起使用。
+* *Ask Me*：无需离开 Workload Factory 控制台，即可使用 Ask Me AI 助手提问并了解有关 Workload Factory 的更多信息。从 Workload Factory 用户界面访问 Ask Me。
+* *CloudShell CLI*：Workload Factory 包括一个 CloudShell CLI，用于通过单个基于浏览器的 CLI 管理和操作跨账户的 AWS 和 NetApp 环境。从 Workload Factory 控制台的顶部栏访问 CloudShell。
+* *REST API*：使用 Workload Factory REST API 部署和管理您的 OCI NSS 系统和资源。
+* *Oracle Cloud Infrastructure (OCI) Resource Manager*：使用 OCI Resource Manager 执行您在 Workload Factory 控制台中定义的操作，以从您的 OCI 帐户中的 Resource Manager 堆栈对 OCI 和第三方资源进行建模、配置和管理。
+* *NetApp Terraform 提供程序*：使用 Terraform 构建和管理在 Workload Factory 控制台中生成的基础设施工作流。
+
+
+
+
+[[getting-help]]
+== 获取帮助
+
+有关 Workload Factory 或 Workload Factory 应用程序和服务的一般性问题，请参阅 link:../get-help.html["获取适用于 Workload Factory 的 OCI NSS 的帮助"]。

@@ -1,0 +1,257 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/create-volume.html 
+keywords: create volume, FSx for ONTAP volume 
+summary: 设置 FSx for ONTAP 文件系统后，在 Workload Factory 中创建 FSx for ONTAP 卷。 
+---
+= 在 Workload Factory 中创建 FSx for ONTAP 卷
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+设置 FSx for ONTAP 文件系统后，在 Workload Factory 中创建 FSx for ONTAP 卷，作为用于对数据进行分组的虚拟资源。
+
+
+
+[[about-this-task]]
+== 关于此任务
+
+FSx for ONTAP 卷通过虚拟方式对数据进行分组，确定数据存储方式，并确定对数据的访问类型。卷不占用文件系统存储容量。存储在卷中的数据主要消耗 SSD 存储。根据卷的分层策略，数据也可能消耗容量池存储。您可以在创建卷时设置卷的大小，稍后可以更改其大小。
+
+您的卷可能使用以下协议：
+
+* SMB/CIFS：Windows 操作系统的文件存储协议
+* NFS：Unix 操作系统的文件存储协议
+* iSCSI：块存储协议
+
+
+S3 端点可以附加到 FSx for ONTAP 卷。使用 S3 访问点，您可以通过 AWS S3 API 访问驻留在 SMB/CIFS 或 NFS 卷上的文件数据。这使您可以将现有数据与支持 S3 访问点的 AWS 服务的 GenAI、ML 和分析相集成。
+
+
+
+[[details-for-volume-settings]]
+=== 卷设置的详细信息
+
+.不可变文件
+此功能（也称为 SnapLock）默认处于禁用状态。启用不可变文件可在设定的一段时间内防止数据被删除或覆盖。只能在创建卷时启用此功能。启用此功能后，将无法将其禁用。这是 FSx for ONTAP 的一项高级功能，需要额外收费。有关详细信息，请参见 Amazon FSx for NetApp ONTAP 文档中的 link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html["SnapLock 的工作原理"^]。
+
+* *保留模式*：您可以从两种保留模式中进行选择 - _企业_ 或 _合规_。
++
+** 在 _企业_ 模式下，不可变文件或 SnapLock 管理员可以在其保留期间删除文件。
+** 在 _Compliance_ 模式下，在 WORM 文件的保留期到期之前，无法删除该文件。同样，在卷中所有文件的保留期到期之前，无法删除不可变卷。
+
+
+* *保留期限*：保留期限有两个设置——_保留策略_和_保留期限_。_保留策略_定义在不可变 WORM 状态下保留文件的时长。您可以指定自己的保留策略，也可以使用默认保留策略（未指定），即 30 年。最小和最大_保留期限_定义了锁定文件所允许的时间范围。
++
+
+NOTE: 即使在保留期到期后，您也不能修改 WORM 文件。您只能将其删除或设置新的保留期以再次开启 WORM 保护。
+
+* *自动提交*：您可以选择启用自动提交功能。如果文件在自动提交周期持续时间内没有更改，则自动提交功能会将文件提交到 SnapLock 卷上的 WORM 状态。默认情况下，自动提交功能处于禁用状态。您必须确保要自动提交的文件驻留在 SnapLock 卷上。
+* *特权删除*：SnapLock 管理员可以在 SnapLock Enterprise 卷上开启特权删除，以便在文件的保留期到期之前删除文件。默认情况下，此功能处于禁用状态。
+* *卷追加模式*：您无法修改受 WORM 保护的文件中的现有数据。但是，不可变文件允许您使用 WORM 可追加文件来维护对现有数据的保护。例如，您可以生成日志文件或保留音频或视频流数据，同时以增量方式向它们写入数据。link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-append["详细了解卷追加模式"^] 在 Amazon FSx for NetApp ONTAP 文档中。
+
+
+
+
+[[before-you-begin]]
+== 开始之前
+
+在创建卷之前，请查看以下先决条件：
+
+* 您必须在 Workload Factory 控制台中拥有一个 FSx for ONTAP 文件系统。
+* 您必须具有存储 VM。
+* 对于协议访问，请完成以下操作：
++
+** 要配置对卷的访问权限，您必须关联链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"]。链接关联后，返回此操作。
+** 必须为您选择的协议配置访问权限，包括 SMB/CIFS、NFS 或 iSCSI。
+
+
+
+
+
+
+[[create-a-volume]]
+== 创建卷
+
+您可以使用 Codebox 中提供的以下工具创建卷：REST API、CloudFormation 和 Terraform。link:../admin/use-codebox.html#how-to-use-codebox["了解如何使用 Codebox 实现自动化"]。
+
+
+NOTE: 从 Codebox 使用 Terraform 时，您复制或下载的代码会隐藏 `fsxadmin`和 `vsadmin`密码。运行代码时，您需要重新输入密码。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Volumes explorer*。
+. 选择*创建卷*。
+. 在“创建卷”页面的“常规详细信息”下，提供以下详细信息：
++
+.. *Volume name*：输入此卷的名称。
+.. *Storage VM name*：输入 Storage VM 名称（可选）。
+.. *卷样式*：选择 *FlexVol* 或 *FlexGroup* 卷。
++
+*** _FlexVol volume_ 是 ONTAP 中的一种逻辑存储类型，允许您管理数据。FlexVol 卷可以在同一存储虚拟机 (SVM) 中的聚合或节点之间移动，而不会中断客户端访问。默认情况下会选择 FlexVol 卷样式。
+*** _FlexGroup_ 卷是一种横向扩展 NAS 容器，可提供高性能以及自动负载分配和可扩展性。它由几个成员卷（成分）组成，这些成员卷是透明地共享流量的基础 FlexVol 卷。
+
+
+.. *卷大小*：输入卷大小和单位。
++
+（可选）启用卷自动增长。当您选择 *文件访问* 作为卷访问类型时，此选项可用。
+
++
++ FlexGroup 卷大小取决于成分数量，每个成分需要 100 GiB。
+
+.. *卷自动增长*：可选，启用卷自动增长以自动扩展卷容量，直到卷达到最大大小。此功能可适应不断增加的数据使用量，确保操作不间断。
++
+指定最大卷增长大小和单位。您不能将最大增长大小设置为小于当前卷大小
+
+.. *标签*：（可选）您最多可以添加 50 个标签。
+
+
+. 在 Access（仅适用于具有关联链接的文件系统）下，提供以下详细信息：
++
+.. *访问类型*：选择*文件访问*或*块访问*。用于配置卷访问的附加字段会根据您的选择而有所不同。
++
+*** *文件访问*：允许多个授权用户和设备使用 SMB/CIFS、NFS 或双（SMB/NFS）协议访问卷。
++
+填写以下字段以设置对卷的文件访问权限。
+
+
+
+.. *NFS 导出策略*：提供以下详细信息以提供 NFS 访问权限：
++
+... *访问控制*：从下拉菜单中选择*自定义导出策略*、*现有导出策略*或*无法访问卷*。
+... *导出策略名称*：
++
+如果选择了自定义导出策略，请从下拉菜单中选择现有策略名称。
+
++
+如果选择了现有导出策略，请输入新策略名称。
+
+... *添加导出策略规则*：（可选）对于自定义导出策略，您可以将导出策略规则添加到策略中。
+
+
+.. *SMB/CIFS 共享*：提供以下内容：
++
+... *名称*：输入 SMB/CIFS 共享名称以提供访问权限。
+... *权限*：选择完全控制、读取/写入、读取或无访问权限，然后输入用分号（;）分隔的用户或组。用户或组区分大小写，必须使用“domain\username”格式包含用户的域。
+
+
+.. *安全样式*：对于双协议卷，选择 UNIX 或 NTFS 安全样式。UNIX 是双协议卷的默认安全样式。有关此上下文中用户映射的详细指导，请参见 AWS 博客文章 link:https://aws.amazon.com/blogs/storage/enabling-multiprotocol-workloads-with-amazon-fsx-for-netapp-ontap["使用 Amazon FSx for NetApp ONTAP 启用多协议工作负载"^]。
++
+*** *块访问*：允许运行关键业务应用程序的主机使用 iSCSI 协议访问卷。仅当文件系统横向扩展部署具有六个或更少的 HA 对时，块访问才可用。
++
+填写以下字段以设置对卷的块访问。
+
++
+.... *iSCSI 配置*：提供以下详细信息以配置 iSCSI，从而实现对卷的块访问。
++
+..... 选择*创建新启动程序组*或*映射现有启动程序组*。
+..... 从下拉菜单中选择 *主机操作系统*。
+..... 为新启动程序组输入*启动程序组名称*。
+..... 在主机启动器下，添加一个或多个 iSCSI 限定名称（IQN）主机启动器。
+
+
+
+
+
+
+.. *S3 access point*：可选择连接 S3 access point，通过 AWS S3 API 访问驻留在 NFS 或 SMB/CIFS 卷上的 FSx for ONTAP 文件系统数据。仅支持文件访问类型。提供以下详细信息：
++
+*** *S3 接入点名称*：输入 S3 接入点的名称。
+*** *User*：选择有权访问卷的现有用户或创建新用户。
+*** *用户类型*：选择 *UNIX* 或 *Windows* 作为用户类型。
+*** *网络配置*：选择*互联网*或*虚拟私有云 (VPC)*。您选择的网络类型决定了接入点是可从互联网访问还是仅限于特定的 VPC。
+*** *启用库存表*：在卷上启用库存表时，系统会为 S3 访问点可访问的所有对象生成元数据，并产生 AWS S3 请求成本。有关详细信息，请参见link:https://aws.amazon.com/s3/pricing/["Amazon S3 定价文档"^]。
+
+
+.. *S3 接入点标签*：您最多可以添加 50 个标签或删除标签。
+
+
+. 在“效率和保护”下，提供以下详细信息：
++
+.. *存储效率*：默认情况下启用。选择以禁用该功能。
++
+ONTAP 使用重复数据删除和压缩功能来实现存储效率。重复数据删除可消除重复的数据块。数据压缩会压缩数据块，以减少所需的物理存储量。
+
+.. *Snapshot 策略*：选择 Snapshot 策略以指定快照的频率和保留期限。
++
+以下是 AWS 的默认策略。要显示现有快照策略，您必须 link:create-link.html["关联链接"]。
+
++
+`default`:: 此策略会根据以下计划自动创建快照，并删除最旧的快照副本，以便为更新的副本腾出空间：
++
+--
+*** 最多六个每小时快照，在整点过 5 分钟时创建。
+*** 周一至周六午夜后 10 分钟最多创建两个每日快照。
+*** 最多两个每周快照，在每周日午夜后 15 分钟创建。
++
+
+NOTE: 快照时间基于文件系统的时区，默认为协调世界时 (UTC)。有关更改时区的信息，请参阅 NetApp 支持文档中的 link:https://library.netapp.com/ecmdocs/ECMP1155684/html/GUID-E26E4C94-DF74-4E31-A6E8-1D2D2287A9A1.html["显示和设置系统时区"^]。
+
+
+
+--
+`default-1weekly`:: 此策略的工作方式与  `default` 策略的工作方式相同，不同之处在于它仅保留每周计划中的一个快照。
+`none`:: 此策略不拍摄任何快照。您可以将此策略分配给卷以防止拍摄自动快照。
+
+
+.. *分层策略*：为卷中存储的数据选择分层策略。
++
+_平衡（自动）_ 是使用 Workload Factory 控制台创建卷时的默认分层策略。有关卷分层策略的详细信息，请参阅 AWS FSx for NetApp ONTAP 文档中的 link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["卷存储容量"^]。请注意，Workload Factory 在 Workload Factory 控制台中使用基于用例的名称作为分层策略名称，并在括号中包含 FSx for ONTAP 分层策略名称。
+
+.. *不可变文件*：启用不可变文件功能会永久将此卷中的文件提交到不可变 WORM（一次写入多次读取）状态。提供以下详细信息：
++
+... 选择以启用*由 SnapLock 提供支持的不可变文件*。
+... 选中此框以同意并继续。
+... 选择 *启用*。
+... *保留模式*：选择*企业*或*合规*模式。
+... *保留期限*：
++
+**** 选择保留策略：
++
+***** *未指定*：将保留策略设置为 30 年。
+***** *指定期限*：输入秒数、分钟数、小时数、天数、月数或年数，以设置您自己的保留策略。
+
+
+**** 选择最短保留期限和最长保留期限：
++
+***** *最小*：输入设置最小保留期限的秒数、分钟数、小时数、天数、月数或年数。
+***** *最大值*：输入设置最长保留期限的秒数、分钟数、小时数、天数、月数或年数。
+
+
+
+
+... *自动提交*：禁用或启用自动提交。如果启用自动提交，请设置自动提交周期。
+... *特权删除*：禁用或启用。如果启用特权删除，SnapLock 管理员可以在文件的保留期到期之前将其删除。
+... *卷追加模式*：禁用或启用。使您能够向 WORM 文件添加新内容。
+
+
+.. *ARP/AI*：当链接与文件系统关联时，默认启用带有 AI 的 NetApp 自治勒索软件防护 (ARP/AI)。link:ransomware-protection.html["详细了解 ARP/AI"]。接受声明以继续。
++
+如果此功能不可用，可能是因为以下原因之一：
+
++
+*** 链接未与文件系统关联。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+*** ARP/AI 不支持具有不可变文件的卷和具有 NVMe 协议的卷。从 ONTAP 9.17.1 开始支持 iSCSI 卷。
+*** 文件系统已具有 ARP/AI 策略。
+
+
+
+
+. 在高级配置下，输入以下详细信息。此部分下的字段因您选择的卷样式而异。
++
+.. *Junction path*：输入存储 VM 命名空间中挂载卷的位置。默认的接合路径为 `/<volume-name>`。
+.. *聚合名称*：仅适用于 FlexVol 卷。选择聚合来托管新卷。
+.. *聚合列表*：仅适用于 FlexGroup 卷。添加或删除聚合。聚合的最小数量为 1。
+.. *成分数量*：仅适用于 FlexGroup 卷。输入每个聚合的成分数量。每个成分需要 100 GiB。
+
+
+. 选择 *Create*。
+
+
+.相关信息
+* link:manage-volume-capacity.html["在 Workload Factory 中调整卷容量"]
+* link:change-tiering-policy.html["在 Workload Factory 中更改卷分层策略"]
+* link:manage-s3-access-points.html["在 Workload Factory 中管理 S3 接入点"]
+

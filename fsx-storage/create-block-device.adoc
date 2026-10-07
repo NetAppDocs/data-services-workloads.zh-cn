@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/create-block-device.html 
+keywords: create block device, create lun, iscsi protocol 
+summary: '创建块设备以支持您的业务线 (LOB) 应用程序要求。' 
+---
+= 在 NetApp Workload Factory 中为文件系统创建块设备
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+创建块设备以支持您的业务线 (LOB) 应用程序要求。您可以在现有卷中创建块设备，为新块设备创建新卷，也可以从快照为新块设备创建新卷。
+
+.关于此任务
+在 NetApp Workload Factory 中，块设备仅支持 FlexVol volume。您可以使用 iSCSI 协议创建块设备。
+
+块大小必须小于可用的 FlexVol volume 大小。
+
+.开始之前
+* 您必须关联链接才能创建块设备。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。关联链接后，返回此操作。
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 FSx for ONTAP 中，选择要为其创建块设备的文件系统，然后选择 *块设备* 选项卡。
+. 选择*创建块设备*。
+. 在*卷详细信息*下，执行以下操作：
++
+.. *卷名*：从以下选项中选择一项。
++
+*** 创建新卷并输入卷的名称。
+*** 选择现有卷。
+*** 从卷快照创建。选择源卷名称和快照名称。只有没有块设备的卷可用。
+
+
+.. *聚合名称*：选择聚合来托管新卷。
+.. *Storage VM*：选择 Storage VM。
+.. *卷样式*：默认卷样式为 *FlexVol*。
+.. *卷大小*：输入卷的大小并选择单位。每个 FlexVol volume 的最大大小为 100 TiB。
+.. *卷自动增长*：（可选）启用卷自动增长，以允许卷在达到容量时自动增加大小。最大增长大小为 300 TiB。
+.. *标签*：（可选）添加标签以帮助组织和分类您的块设备。
+
+
+. 在*块设备详细信息*下，执行以下操作：
++
+.. *块设备名称*：输入块设备的名称。
+.. *块设备大小*：输入块设备的大小并选择单位。块设备大小必须小于可用卷大小。
+
+
+. 在*访问权限*下，执行以下操作：
++
+.. *iSCSI 配置*：从以下选项中选择一项。
++
+*** *创建新的启动程序组*：提供主机操作系统、启动程序组名称，并添加一个或多个 iSCSI 限定名称（IQN）主机启动程序。
+*** *映射现有启动程序组*：选择现有启动程序组，提供主机操作系统，并选择一个或多个 iSCSI 限定名称（IQN）主机启动程序。
+
+
+
+
+. 在*效率和保护*下，执行以下操作：
++
+.. *存储效率*：默认情况下启用。选择以禁用该功能。
++
+ONTAP 使用重复数据删除和压缩功能来实现存储效率。重复数据删除可消除重复的数据块。数据压缩会压缩数据块，以减少所需的物理存储量。
+
+.. *Snapshot 策略*：选择 Snapshot 策略以指定快照的频率和保留期限。
++
+以下是 AWS 的默认策略。要显示现有快照策略，您必须 link:create-link.html["关联链接"^]。
+
++
+`default`:: 此策略会根据以下计划自动创建快照，并删除最旧的快照副本，以便为更新的副本腾出空间：
++
+--
+*** 最多六个每小时快照，在整点过 5 分钟时创建。
+*** 周一至周六午夜后 10 分钟最多创建两个每日快照。
+*** 最多两个每周快照，在每周日午夜后 15 分钟创建。
++
+
+NOTE: 快照时间基于文件系统的时区，默认为协调世界时 (UTC)。有关更改时区的信息，请参阅 NetApp 支持文档中的 link:https://library.netapp.com/ecmdocs/ECMP1155684/html/GUID-E26E4C94-DF74-4E31-A6E8-1D2D2287A9A1.html["显示和设置系统时区"^]。
+
+
+
+--
+`default-1weekly`:: 此策略的工作方式与  `default` 策略的工作方式相同，不同之处在于它仅保留每周计划中的一个快照。
+`none`:: 此策略不拍摄任何快照。您可以将此策略分配给卷以防止拍摄自动快照。
+
+
+.. *分层策略*：为卷中存储的数据选择分层策略。
++
+_平衡（自动）_ 是使用 Workload Factory 控制台创建卷时的默认分层策略。有关卷分层策略的详细信息，请参阅 AWS FSx for NetApp ONTAP 文档中的 link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["卷存储容量"^]。请注意，Workload Factory 在 Workload Factory 控制台中使用基于用例的名称作为分层策略名称，并在括号中包含 FSx for ONTAP 分层策略名称。
+
+.. *ARP/AI*：当链接与文件系统关联时，默认启用带有 AI 的 NetApp 自治勒索软件防护 (ARP/AI)。link:ransomware-protection.html["详细了解 ARP/AI"]。接受声明以继续。
++
+如果此功能不可用，可能是因为以下原因之一：
+
++
+*** 链接未与文件系统关联。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+*** ARP/AI 不支持具有不可变文件的卷和具有 NVMe 协议的卷。
+*** 文件系统已具有 ARP/AI 策略。
+
+
+
+
+. 选择 *Create*。
+
+
+.相关信息
+link:manage-block-storage.html["管理 FSx for ONTAP 文件系统的块存储"]

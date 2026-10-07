@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-nfs-export-policy.html 
+keywords: NFS, nfs, export policy, change export policy, update export policy, modify export policy 
+summary: 在 NetApp Workload Factory 中管理使用 NFSv3 或 NFSv4.1 协议类型的卷的 NFS 导出策略。 
+---
+= 管理 NetApp Workload Factory 中卷的 NFS 导出策略
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 NetApp Workload Factory 中管理使用 NFSv3 或 NFSv4.1 协议类型的卷的 NFS 导出策略。
+
+.关于此任务
+管理卷的导出策略涉及添加详细说明客户端规范、访问控制、超级用户访问和 NFS 版本的导出策略规则。您可以添加多个导出策略并对其进行优先级排序。
+
+.开始之前
+确定导出策略规则的客户端规范。客户端规范的有效值如下：
+
+* IP 地址
+* 带子网掩码的 IP 地址
+* 带网络掩码的 IP 地址
+* 前面带有“@”字符的网络组名称
+* 前面带有句号“.”的域名
+* 主机名
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Volumes explorer*。
+. 选择要更改其 NFS 导出策略的卷的操作菜单。
+. 选择*高级操作*，然后选择*编辑 NFS 导出策略*。
+. 在编辑 NFS 导出策略页面上，提供以下内容：
++
+.. *访问控制*：选择*自定义导出策略*或*现有导出策略*。
++
+或者，您可以选择*无法访问卷*。
+
+.. *导出策略名称*：输入导出策略的名称（可选）。
+.. *添加导出策略规则*：提供以下详细信息，并以 #1 作为优先级规则对策略进行排名：
++
+... *客户端规格*：用逗号分隔多个值。
+... *访问控制*：从下拉菜单中选择*读/写*、*只读*或*无访问权限*。
+... *超级用户访问权限*：选择*是*或*否*。
+... *NFS 版本*：选择 *所有*、*NFSv3* 或 *NFSv4*。
+
+
+
+
+. 选择*应用*。
+

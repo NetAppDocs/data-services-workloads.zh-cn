@@ -1,0 +1,98 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/configuration-analysis.html 
+keywords: evs, well-architected, configuration analysis, best practices, recommendations 
+summary: 了解 Workload Factory 如何分析 Amazon Elastic VMware Service 配置以识别问题并提供最佳实践建议。 
+---
+= EVS 配置的配置分析
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Workload Factory 定期分析 Amazon Elastic VMware Service (EVS) 配置，以确定与最佳实践的不一致之处。使用结果来提高性能、成本效率和合规性。
+
+主要功能包括：
+
+* 每日配置分析
+* 自动最佳实践验证
+* 主动可观察性
+* 从见解到行动
+
+
+
+
+[[how-it-works]]
+== 工作原理
+
+Workload Factory 每天分析在支持的云存储系统部署上运行的工作负载。该分析提供架构完善的状态、见解和建议。
+
+每日分析完成后，配置在部署的 Well-architected 仪表板中显示为"已优化"或"未优化"。您将按类别找到配置问题以及配置问题和建议列表。您可以查看配置问题的建议。某些问题可以由 Workload Factory 自动修复，而其他问题则需要手动干预。在此情况下，Workload Factory 会提供详细说明，以帮助您实施建议的更改。
+
+您可以忽略不适用于您环境的配置分析。这样可以避免不必要的警报和不准确的优化结果。
+
+您还可以用简单的语言创建自定义规则，以根据组织的标准和 NetApp 最佳实践验证您的环境。通过试运行测试规则，然后安排它们在您的环境中运行。link:https://docs.netapp.com/us-en/console-well-architected/learn-custom-rules.html["详细了解自定义规则"^]。
+
+
+
+[[why-it-matters]]
+== 为什么很重要
+
+NetApp Workload Factory 通过将持续评估与建议见解和补救措施相结合，将最佳实践应用于大型存储、数据库和 VMware 环境。在 NetApp Console 中应用的自动修复可减少人为错误，确保统一管理，并保持整个工作负载基础架构的性能和可靠性。
+
+
+
+[[analysis-requirements]]
+== 分析要求
+
+要进行完整的配置分析，必须执行以下操作：
+
+* 关联链接。链接连接允许 Workload Factory 分析所有文件系统配置，如数据保护和性能。
++
+link:../fsx-storage/create-link.html["了解如何关联现有链接或创建和关联新链接"]。
+
+* 为 VMware 工作负载授予查看、规划和分析权限。
++
+link:../fsx-storage/add-credentials.html["了解如何向 AWS 帐户授予权限"^]
+
+* 您的 AWS 帐户中必须至少有一个已发现的 Amazon Elastic VMware Service 环境。
+
+
+
+
+[[best-practices-and-recommendations-for-evs-workloads]]
+== EVS 工作负载的最佳实践和建议
+
+Workload Factory 为运行架构良好的 Amazon Elastic VMware Service (EVS) 工作负载提供了最佳实践和建议。精心设计的分析评估 EVS 配置，以帮助确保您的 VMware 环境在可靠性、安全性、卓越运营、成本优化和性能效率方面得到优化。在 VMware 中精心设计的状态选项卡中，您可以找到见解和建议，以帮助为您的 EVS 环境实施精心设计的最佳实践。
+
+精心设计的分析将配置分类到框架的以下支柱中：_可靠性_ 和 _安全性_。
+
+
+
+[[reliability]]
+=== 可靠性
+
+可靠性可确保工作负载正确、一致地执行其预期功能，即使在发生中断时也是如此。
+
+* *EVS 环境弹性*
++
+确保您的 EVS 群集节点正确分布在分区放置组中。所有节点都应是配置有四个或更多分区的单个分区放置组的成员。正确的分区放置可确保您的 EVS 群集节点分布在 AWS 可用区内的多个故障隔离硬件分区中。如果分区发生故障，错位可能会导致处理能力的严重损失或停机。
+
+
+
+
+
+[[security]]
+=== 安全性
+
+安全强调通过风险评估和缓解策略保护数据、系统和资产。
+
+* *集群节点管理*
++
+确保您的 EVS 集群节点配置了适当的 EC2 停止和终止保护。EVS ESXi 节点应仅使用 vCenter 或其他 VMware 级管理工具进行管理。如果没有适当的 EC2 级保护，节点可能会意外停止或从 EC2 控制台终止，从而可能导致虚拟机数据不可用或数据丢失。
+
+
+
+.下一步
+link:view-evs-well-architected.html["实施精心设计的配置"]

@@ -1,0 +1,149 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/analyze-events.html 
+keywords: analyze events, events, FSx for ONTAP events, EMS, troubleshoot FSx for ONTAP, latency 
+summary: 分析 NetApp Workload Factory for FSx for ONTAP 中的事件。 
+---
+= 在 NetApp Workload Factory 中分析 FSx for ONTAP 事件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用 NetApp Workload Factory 中的智能事件分析器快速识别并解决 FSx for ONTAP 文件系统问题。事件分析器利用 Agentic AI 与 Amazon Bedrock 集成，自动提取和分析 FSx for ONTAP Event Management System (EMS) 和延迟事件。
+
+
+
+[[about-this-task]]
+== 关于此任务
+
+存储管理员通常仅在客户投诉后或通过维护自定义脚本和警报来响应 FSx for ONTAP 事件。这种被动响应方式会降低效率、延迟问题解决并增加停机时间。
+
+事件分析器会自动从 FSx for ONTAP 文件系统中提取以下事件类型：
+
+* *EMS 事件*：来自 ONTAP 事件管理系统的错误、警报和紧急事件。
+* *延迟事件*：读取和写入延迟事件。可以在没有链接连接的情况下查看延迟事件。
+
+
+借助 Amazon Bedrock 集成，Workload Factory 使用人工智能来分析事件并提供可操作的见解，以维护 FSx for ONTAP 文件系统的运行状况和性能。
+
+主要优势包括：
+
+* 高级故障排除：AI 自动识别、分析并提供见解，以修复 FSx for ONTAP EMS 和延迟事件，减少手动调查时间。
+* 最佳实践修正：事件分析器提供清晰、可操作的步骤来解决 FSx for ONTAP EMS 和延迟事件。
+
+
+使用事件分析器时，您可以完全控制您的环境，同时受益于高级 AI 分析。
+
+要允许 Workload Factory 分析事件，必须激活 Amazon Bedrock，选择 Workload Factory 使用的模型，创建专用端点以连接到 Amazon Bedrock，添加权限并创建企业许可证。
+
+link:https://aws.amazon.com/bedrock/pricing/["Amazon Bedrock 定价"^]
+
+
+NOTE: 如果您的账号管理员已关闭 AI 功能，您将看到一条消息，无法使用 AI 分析功能。请联系您的管理员或link:../admin/manage-genai-features.html["了解人工智能管理"^]。
+
+
+
+[[data-privacy-and-security]]
+=== 数据隐私和安全
+
+您的数据隐私和安全通过以下方式得到保护：
+
+* *数据主权*：所有数据和聚合都保留在您的 AWS 账户内，并通过私有 VPC 端点（Amazon Bedrock）进行通信，没有公共互联网暴露。
+* *无 AI 训练*：客户数据不用于训练或改进模型。Amazon Bedrock 实时处理事件，但不根据您的数据进行训练。结果仅存储在您的环境中。
+
+
+有关更多详细信息，请参阅link:https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html["Amazon Bedrock 数据保护文档"^]。
+
+
+
+[[before-you-begin]]
+== 开始之前
+
+要查看延迟事件，必须执行以下操作：
+
+* link:add-credentials.html["授予 _查看、规划和分析_ 权限"^]在您的 AWS 帐户中。
+* link:create-link.html["使用链接连接到文件系统"^]。
+
+
+要分析 EMS 和延迟事件并接收 AI 驱动的见解和建议，请确保以下内容：
+
+* 您的 AWS 账户中有 link:add-credentials.html["_operations and remediation_ 权限"^]。
+* 您有 link:create-link.html["使用链接连接到文件系统"^]。
+* 端口 22 (SSH) 在与 FSx for ONTAP 文件系统关联的安全组中打开。
+
+
+其他要求（系统将在事件分析过程中提示您）：
+
+* *Amazon Bedrock 激活*
++
+为每个 AWS 账户配置 Amazon Bedrock API。Amazon Bedrock API 用于为 FSx for ONTAP 事件提供见解。
+
++
+推荐模型： `anthropic.claude-sonnet-4-20250514-v1:0`。提供所选区域的 Inference 配置文件 ARN。
+
+* *Workload Factory 链接*
++
+创建链接并将其与 FSx for ONTAP 文件系统关联，以启用 AI 支持的事件分析。链接在 Workload Factory 与一个或多个 FSx for ONTAP 文件系统之间建立信任关系，并利用 AWS Lambda。
+
++
+link:create-link.html["了解如何关联现有链接或创建和关联新链接"]。链接关联后，返回此操作。
+
+* *AWS IAM 权限*
++
+向 Workload Factory IAM 角色关联策略添加以下权限。
+
++
+** `bedrock:InvokeModel`
+** `bedrock:InvokeModelWithResponseStream`
++
+这些权限允许 Workload Factory 调用 Bedrock 模型进行错误调查和补救指导。此配置文件还可确保安全的 AI 访问，以获得量身定制的见解。
+
++
+还为与 Workload Factory 关联的 AWS 凭据添加以下权限：
+
+** `bedrock:GetInferenceProfile`
+** `bedrock:ListInferenceProfiles`
++
+这些权限验证模型可用性。
+
+
+
+
+
+
+
+[[view-and-analyze-events-for-fsx-for-ontap]]
+== 查看和分析 FSx for ONTAP 的事件
+
+使用 Workload Factory 控制台查看和分析 FSx for ONTAP 文件系统的 EMS 和延迟事件。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在“存储”菜单中，选择*分析*。
+. 从分析屏幕中，选择包含要查看的 FSx for ONTAP 文件系统的 AWS 账户、凭据和区域。
++
+仅显示具有事件的 FSx for ONTAP 文件系统。
+
+. 选择要查看的 FSx for ONTAP 文件系统。
++
+事件表显示该文件系统的所有事件。
+
+. 查看表中的事件详细信息。
+. 要分析事件，请执行以下操作之一：
++
+** 要分析多个事件，请选中事件旁边的复选框，然后在表中选择 *Analyze*。
+** 要在侧面板中分析某个事件并查看分析结果，请选择事件名称，然后在面板中选择*分析*。见解和建议会显示在面板中。
+** 要从表中分析一个事件，请在事件行中选择*Analyze*，然后选择事件名称以查看见解和建议。
++
+如果需要，请按照屏幕上的提示完成 AI 分析设置要求，以满足任何缺少的先决条件。
+
+
+
+
+
+.相关信息
+* link:set-volume-latency-thresholds.html["在 Workload Factory 中设置卷延迟阈值"]
+

@@ -1,0 +1,135 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-use-project-dashboard.html 
+keywords: dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, volume details, top volumes, capacity utilization, throughput utilization, IOPS utilization, filter dashboard 
+summary: 使用 Projects 仪表板监控存储使用情况，按项目或团队过滤数据，并分析卷性能以优化资源分配。 
+---
+= 使用 Workload Factory 中的 Projects 仪表板进行 EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用 Projects 仪表板跟踪 FSx for ONTAP 文件系统和卷的存储使用情况。按项目、团队或应用程序筛选数据。查看整体和每个卷的性能，以帮助规划容量并更有效地利用资源。
+
+
+
+[[before-you-begin]]
+== 开始之前
+
+您应该拥有 link:task-configure-project-dashboard.html["已配置的自定义过滤器"] 来访问 Projects 仪表板。如果您尚未配置自定义筛选器，您仍然可以使用默认筛选器（文件系统、卷类型和时间范围）。
+
+
+
+[[filter-the-dashboard]]
+== 筛选仪表板
+
+筛选使您可以专注于特定的存储资源组。这样可以更轻松地发现趋势、发现问题并为利益相关者创建报告。通过同时使用多个过滤器，您可以回答有针对性的问题，例如："ASIC 项目团队使用了多少存储空间？"或"美国西部地区哪些卷的 IOPS 最高？"
+
+.关于此任务
+您可以使用默认筛选器和您配置的任何自定义筛选器的组合来筛选仪表板上显示的信息。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *EDA*。
+. 选择 *Projects*。
+. 从可用选项中选择要应用的筛选器：
++
+** 默认筛选器（文件系统、卷类型、时间范围）
+** 您配置的任何自定义筛选器
+
+
+. 选择刷新图标以根据筛选器选择更新仪表板信息。
+. 有关卡上显示的信息的说明，请选择该卡的信息图标。
+
+
+
+
+[[view-volume-details]]
+== 查看卷详细信息
+
+查看总卷性能和单个卷有助于规划容量和提高性能。"总计"视图显示总体趋势。"卷"视图可帮助您查找可能需要注意、调整或更多资源的特定卷。
+
+
+
+[[view-aggregated-volume-metrics]]
+=== 查看聚合卷指标
+
+"总计"视图显示与筛选器匹配的所有卷的综合指标。
+
+.步骤
+. 打开 **项目** 选项卡，并确保选择了 **总计** 选项卡。这是默认视图。
+. 查看显示的指标：
++
+** 跨所有卷的总容量
+** 聚合 IOPS
+** 聚合吞吐量
+
+
+. 使用此视图可查看趋势并计划未来需要多少容量。
+
+
+
+
+[[view-individual-volume-performance]]
+=== 查看单个卷性能
+
+卷视图显示每个卷在一段时间内的性能表现。它突出显示每个指标的前 10 个卷。
+
+.步骤
+. 在 **项目** 选项卡中，选择 **卷** 选项卡。
+. 查看卷指标：
++
+** *卷已用容量*：显示当前已用容量最高的卷
+** *IOPS*：显示选定时间段内平均 IOPS 最高的卷
+** *吞吐量*：显示所选时间段内平均吞吐量最高的卷
++
+
+NOTE: 如果您的卷数超过 10 个，则其余部分将不会显示在详细视图中。
+
+
+
+. 将鼠标悬停在图形中的任何卷线上以查看详细信息：
++
+** *卷已用容量*：卷名称、该时间点的已用容量和已分配容量
+** *IOPS*：卷名称、时间范围内的平均 IOPS 和时间范围内的最大 IOPS
+** *吞吐量*：卷名称、时间范围内的平均吞吐量和时间范围内的最大吞吐量
+
+
+. 使用图例标识每个卷。相同的卷在所有指标中使用相同的颜色，因此您可以轻松跟踪它们。
+
+
+.结果
+将此数据用于：
+
+* 分析使用模式
+* 发现可能的瓶颈
+* 查找可能需要调整大小的卷
+* 查看哪些项目或工作负载使用的资源最多
+
+
+
+
+[[best-practices]]
+== 最佳实践
+
+使用项目仪表板时，请考虑以下建议：
+
+* 定期检查仪表板，在出现问题之前发现规律。
+* 同时使用多个过滤器来回答有关资源使用方式的具体问题。
+* 查看两种视图：使用 Total 来规划容量，使用 Volume 来查找和解决问题。
+* 更改时间范围以查看变化是正常的还是增长趋势的一部分。
+* 记录正常性能水平，以便日后更容易发现异常行为。
+* 在工作负载受到影响之前，使用从数据中获得的信息来调整资源、调整卷大小或提高性能。
+
+
+
+
+[[related-information]]
+== 相关信息
+
+* link:learn-project-dashboard.html["了解 Projects 仪表板"]
+* link:task-configure-project-dashboard.html["配置项目仪表板"]
+* link:learn-latency-monitoring.html["了解延迟监控"]
+

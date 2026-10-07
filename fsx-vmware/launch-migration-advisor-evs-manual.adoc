@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/launch-migration-advisor-evs-manual.html 
+keywords: overview, concepts, features, use case, workloads, how Workload Factory works, migration, manual, specification, deploy, deployment, plan 
+summary: 登录到 NetApp Workload Factory 以访问 VMware 规划中心。您可以手动创建 EVS 的部署计划。 
+---
+= 手动创建 Amazon EVS 的部署计划
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+登录到 NetApp Workload Factory 以访问 VMware 规划中心。从那里，您可以手动为 Amazon EVS 创建根据您的需求定制的部署计划或迁移计划。
+
+您可以在 Amazon Elastic VMware Service 中手动指定对虚拟机的要求，并将自定义的 Amazon FSx for NetApp ONTAP 文件系统用作外部数据存储。
+
+
+
+[[requirements]]
+== 要求
+
+* 您必须拥有用户名和密码才能访问 Workload Factory。如果您没有访问权限，请立即创建账号。查看说明 link:quick-start-vmware.html["此处"]。
+* 您必须具有 Amazon Elastic VMware Service 订阅。
+
+
+
+
+[[steps]]
+== 步骤
+
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *VMware*。
++
+此时将显示规划中心。
+
+. 选择*手动创建 EVS 计划*。
+. 输入您的 VM 环境的要求。
++
+[NOTE]
+====
+请记住以下 VM 迁移性能要求和建议：
+
+** 出于性能原因，建议 VM 清单的最低存储容量为 10TiB。
+** Amazon Elastic VMware Service 数据存储区需要最低吞吐量，具体取决于您为此部署指定的所需 IOPS 数量。
+** 根据 FSx for ONTAP 文件系统配置，Amazon Elastic VMware Service 环境需要最少数量的外部数据存储才能达到最佳性能。
+
+
+====
+. 准备就绪后，选择*审核计划*以审核迁移计划。
+. 查看计划。展开每个部分以查看计划详细信息。
++
+默认情况下，Workload Factory 将迁移计划保存到规划中心。您可以在页面顶部附近取消选择此选项。
+
+. 您可以选择将迁移计划导出为 PDF 或 CSV 文件，方法是选择页面右上角的 *管理计划*，然后选择 *下载报告（.pdf）* 或 *下载虚拟机存储部署（.csv）*。
++
+.csv 文件创建了迁移计划中包含的所有虚拟机及其分配的存储卷的映射。
+
+. 准备好配置部署计划后，选择*配置*。
+
+
+link:deploy-fsx-file-system-evs.html["部署 VMware 工作负载推荐的 FSx for ONTAP 文件系统"]。

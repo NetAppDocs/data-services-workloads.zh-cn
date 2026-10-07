@@ -1,0 +1,141 @@
+---
+sidebar: sidebar 
+permalink: setup/learn-about-workload-factory.html 
+keywords: overview, concepts, features, use case, workloads, how Workload Factory works, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, Oracle Cloud Infrastructure NetApp Storage Service 
+summary: NetApp Workload Factory 是一个功能强大的生命周期管理平台，旨在帮助您使用 Amazon FSx for NetApp ONTAP、Google Cloud NetApp Volumes 和 Oracle Cloud Infrastructure NetApp Storage Service 来优化工作负载。 
+---
+= 了解 NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory 是一个功能强大的生命周期管理平台，旨在帮助您使用 Amazon FSx for NetApp ONTAP、Google Cloud NetApp Volumes 和 Oracle Cloud Infrastructure NetApp Storage Service 来优化工作负载。
+
+_工作负载_包括旨在服务于业务目标的资源、代码以及服务或应用程序的组合。这可以是从面向客户的应用程序到后端流程的任何内容。工作负载可能涉及单个 AWS 帐户内的资源子集，或者跨越多个帐户。
+
+
+
+[[features]]
+== 功能
+
+Workload Factory 平台可提供以下主要功能。
+
+灵活、低成本的存储:: 在云中发现、部署和管理存储系统。您的云存储提供商将 ONTAP 的全部功能引入原生托管服务，从而提供一致的混合云体验。
+将本地 vSphere 环境迁移到 VMware Cloud on AWS:: 借助 VMware Cloud on AWS 迁移顾问，您可以分析本地 vSphere 环境中的当前虚拟机配置，生成将推荐的虚拟机布局部署到 VMware Cloud on AWS 的计划，并将定制的 Amazon FSx for NetApp ONTAP 文件系统用作外部数据存储。
+数据库生命周期管理:: 使用 Amazon FSx for NetApp ONTAP 发现数据库工作负载并分析成本节约；在将 SQL server 数据库迁移到 FSx for ONTAP 存储时利用存储和应用程序优势；部署实施供应商最佳实践的 SQL 服务器、数据库和数据库克隆；使用基础架构即代码副驾驶来自动化操作；并持续监控和优化 SQL server 资产，以提高性能、可用性、保护和成本效益。
+
+
+Ask Me AI助手:: 向 AI 助手询问有关管理和操作存储系统的问题。使用模型上下文协议（MCP），Ask Me 可以安全地与外部环境交互，并查询 API 工具，以提供针对特定存储环境的响应。
+
+
+
+NOTE: 账号管理员可以开启或关闭 AI 功能。如果管理员将其关闭，则 Ask Me AI 助手将不可用。link:../admin/manage-genai-features.html["了解如何管理 AI 功能"]。
+
+
+
+[[supported-cloud-providers]]
+== 支持的云提供商
+
+Workload Factory 使您能够在 Amazon FSx for NetApp ONTAP、Google Cloud NetApp Volumes 和 Oracle Cloud Infrastructure NetApp Storage Service（OCI NSS）中管理云存储并使用工作负载功能。
+
+
+
+[[security]]
+== 安全性
+
+NetApp Workload Factory 的安全性是 NetApp 的首要任务。NetApp Workload Factory 已获得 link:https://trust.netapp.com/["SOC2 类型 1 合规性、SOC2 类型 2 合规性和 HIPAA 合规性"^]。
+
+
+
+[[cost]]
+== 成本
+
+Workload Factory 可免费使用。您向云提供商支付的费用取决于您计划部署的存储和工作负载服务。这包括存储系统、基础设施、服务等的成本。
+
+
+
+[[how-workload-factory-works]]
+== Workload Factory 的工作原理
+
+Workload Factory 包括通过 SaaS 层提供的基于 Web 的控制台、帐户、控制对云资产访问的权限策略、Workload Factory 与云帐户之间的连接等。
+
+
+
+[[software-as-a-service]]
+=== 软件即服务
+
+可通过 link:https://console.netapp.com["NetApp Console"^] 访问 Workload Factory。此 SaaS 体验使您能够在最新功能发布时自动访问这些功能，并在 Workload Factory 帐户和链接之间轻松切换。
+
+
+
+[[sign-up-and-access-management]]
+=== 注册和访问管理
+
+要使用 NetApp Console，您需要使用 NetApp 支持站点凭据注册，或创建 NetApp Console 登录。第一个用户将成为组织管理员并管理用户帐户和权限。您可以稍后更新角色并添加更多管理员。
+
+* link:sign-up-and-log-in.html["了解如何注册并登录 NetApp Console"]
+* link:https://docs.netapp.com/us-en/console-setup-admin/concept-identity-and-access-management.html["了解 NetApp Console 身份访问管理"^]
+
+
+
+
+[[permissions]]
+=== 权限
+
+Workload Factory 提供灵活的权限策略，使您能够仔细控制对云资产的访问，并根据您的 IT 策略将增量信任分配给 Workload Factory。
+
+link:learn-about-permissions.html["详细了解 Workload Factory 权限策略"]
+
+
+
+[[codebox-automation]]
+=== Codebox 自动化
+
+Codebox 是一个基础架构即代码（IaC）助手，可帮助开发人员和 DevOps 工程师生成执行 Workload Factory 支持的任何操作所需的代码。代码格式包括 Workload Factory REST API、云提供商 CLI、Terraform 等。
+
+Codebox 为执行就绪设定了清晰的路径，并提供了自动化目录以便未来快速重用。
+
+Codebox 窗格显示由特定作业流操作生成的 IaC，并与图形向导或对话聊天界面匹配。虽然 Codebox 支持颜色编码和搜索以方便导航和分析，但它不允许编辑。您只能复制或保存到自动化目录。
+
+link:../admin/codebox-automation.html["详细了解 Codebox"]
+
+
+
+[[well-architected-workloads]]
+=== 精心设计的工作负载
+
+Workload Factory 可帮助您维护和操作与 AWS Well-Architected Framework 一致的可靠、安全、高效且经济高效的存储和数据库配置。Workload Factory 每天扫描 FSx for ONTAP 文件系统、SQL Server 和 Oracle 数据库部署，以提供对潜在错误配置的见解，并建议采取手动或自动操作来修复问题。
+
+link:../admin/well-architected-workloads.html["详细了解精心设计的工作负载"]
+
+
+
+[[tools-to-use-netapp-workload-factory]]
+== 使用 NetApp Workload Factory 的工具
+
+您可以将 NetApp Workload Factory 与以下工具一起使用：
+
+* *NetApp Console*：NetApp Console 提供混合界面体验，因此您可以将 Workload Factory 与其他 NetApp 数据服务一起使用。
+* *询问我*：无需离开 NetApp Console，即可使用 Ask Me AI 助手提问并了解有关 Workload Factory 的更多信息。
+* *CloudShell CLI*：Workload Factory 包含一个 CloudShell CLI，用于通过单个基于浏览器的 CLI 跨账户管理和操作 AWS 和 NetApp 环境。
+* *REST API*：使用 Workload Factory REST API 部署和管理您的存储系统和其他资源。
+* *NetApp Terraform 提供程序*：使用 Terraform 构建并管理在 NetApp Console for Workload Factory 中生成的基础设施工作流。
+
+
+
+
+[[rest-apis]]
+=== REST API
+
+Workload Factory 使您能够针对特定工作负载优化、自动化和操作云存储系统。每个工作负载都会公开关联的 REST API。总的来说，这些工作负载和 API 构成了一个灵活且可扩展的开发平台，可用于管理存储系统。
+
+使用 Workload Factory REST API 有以下几个好处：
+
+* API 是根据 REST 技术和当前最佳实践设计的。核心技术包括 HTTP 和 JSON。
+* Workload Factory 身份验证基于 OAuth2 标准。NetApp 依赖于 Auth0 服务实现。
+* Workload Factory 基于 Web 的控制台使用相同的核心 REST API，因此两个访问路径之间保持一致。
+
+
+link:https://console.workloads.netapp.com/api-doc["查看 Workload Factory REST API 文档"^]

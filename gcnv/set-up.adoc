@@ -1,0 +1,115 @@
+---
+sidebar: sidebar 
+permalink: gcnv/set-up.html 
+keywords: setup, set up, api, service account, requirements, permissions, google cloud netapp volumes, gcnv, bluexp, netapp console 
+summary: NetApp Console 需要通过 Google Cloud 服务帐户访问 Google Cloud NetApp Volumes API 并获得正确的权限。 
+---
+= 设置 Google Cloud NetApp Volumes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Console 需要通过 Google Cloud 服务帐户获得正确的权限。
+
+完成以下任务，以便 NetApp Console 可以访问您的 Google Cloud 项目。
+
+
+NOTE: 您可以使用 Google Cloud 控制台或 gcloud CLI 执行这些任务。要使用 gcloud CLI，您必须先link:https://cloud.google.com/sdk/docs/install-sdk["已安装 Google Cloud CLI"^]。
+
+* 如果您还没有现有服务帐户，请创建一个新帐户。
+* 授予模拟访问权限。
+* 授予共享项目中的 IAM 角色。
+
+
+
+
+[[set-up-a-service-account]]
+== 设置服务帐户
+
+
+NOTE: Google Cloud 项目权限更改可能需要几分钟才能生效。
+
+. 在 Google Cloud 控制台中， https://console.cloud.google.com/iam-admin/serviceaccounts["转到“服务帐户”页面"^]。
+. 单击*选择一个项目*，选择您的项目，然后单击*打开*。
+. 要创建服务帐户，请执行以下操作：
++
+.. 单击*创建服务帐户*。
+.. 输入服务帐户名称（友好显示名称）和说明。
++
+Google Cloud Console 将根据此名称生成服务帐户 ID。如有必要，请编辑 ID - 您以后无法更改该 ID。
+
+.. 单击*创建并继续*。
+.. 在角色列表中，选择 *Google Cloud NetApp Volumes Admin* 或 *Google Cloud NetApp Volumes Viewer* 角色。
+.. 选择*继续*。
++
+或者，您可以使用 gcloud CLI 分配角色：
+
++
+[source, cli]
+----
+gcloud projects add-iam-policy-binding <YOUR_PROJECT_ID> --member="serviceAccount:<YOUR_SA_EMAIL>" --role="roles/netapp.admin"
+----
+.. 授予对此服务帐户的模拟访问权限：credentials-sa@wf-production-netapp.iam.gserviceaccount.com。有关详细信息，请参见 https://cloud.google.com/iam/docs/create-short-lived-credentials-direct#sa-credentials-jwt["创建自签名 JSON Web 令牌（JWT）"^]。
++
+由 NetApp 拥有的服务帐户用于请求短期访问令牌，该令牌允许您充当该服务帐户，而无需访问其私钥。
+
++
+或者，您可以使用 gcloud CLI 授予模拟访问权限：
+
++
+[source, cli]
+----
+gcloud iam service-accounts add-iam-policy-binding <YOUR_SA_EMAIL> --member="serviceAccount:credentials-sa@wf-production-netapp.iam.gserviceaccount.com" --role="roles/iam.serviceAccountTokenCreator" --project=<YOUR_PROJECT_ID>
+----
+.. 点击页面底部的*完成*，然后继续下一步。
+
+
+
+
+
+
+[[shared-vpc]]
+== 共享 VPC
+
+在将使用服务帐户的每个其他 Google Cloud 项目中，请执行以下操作：
+
+. 在 _IAM 页面_ 中，从项目下拉菜单中选择共享 VPC 主机项目。
+. 单击*添加主体*。
+. 在“新主体”字段中，输入服务帐户的电子邮件地址。
+. 从选择角色下拉列表中，选择 *Google Cloud NetApp Volumes 管理员* 角色。
+. 单击 *Save*。
++
+或者，您可以使用 gcloud CLI 添加 IAM 策略绑定：
+
++
+[source, cli]
+----
+gcloud projects add-iam-policy-binding <SHARED_VPC_HOST_PROJECT_ID> --member="serviceAccount:<YOUR_SA_EMAIL>" --role="roles/netapp.admin"
+----
+
+
+有关详细步骤，请参阅 Google Cloud 文档：
+
+* link:https://cloud.google.com/iam/docs/creating-managing-service-accounts["创建和管理服务帐户"^]
+* link:https://cloud.google.com/iam/docs/roles-permissions/netapp["Google Cloud NetApp Volumes 角色和权限"^]
+* link:https://cloud.google.com/iam/docs/granting-changing-revoking-access["授予、更改和撤销对资源的访问权限"^]
+
+
+
+
+[[troubleshooting]]
+== 故障排除
+
+如果遇到错误，则可能强制执行了 *iam.disableCrossProjectServiceAccountUsage* 策略。要解决此问题，请执行以下操作：
+
+. 在 Google Cloud 控制台中，转到 https://console.cloud.google.com/iam-admin/orgpolicies["组织策略页面"^]。
+. 找到*禁用跨项目服务帐户使用*策略并禁用它。
+
+
+.下一步是什么？
+link:add-roles.html["分配 Google Cloud NetApp Volumes 角色"]。

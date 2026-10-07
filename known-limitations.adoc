@@ -1,0 +1,321 @@
+---
+sidebar: sidebar 
+permalink: known-limitations.html 
+keywords: limitations, fsx, ontap 
+summary: 已知限制指出本产品版本不支持的平台、设备或功能，或与其无法正常互操作的平台、设备或功能。 
+---
+= NetApp Workload Factory 中 FSx for ONTAP 工作负载的已知限制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+已知限制指出本产品版本不支持的平台、设备或功能，或与其无法正常互操作的平台、设备或功能。以下限制仅适用于 Amazon FSx for NetApp ONTAP 在 NetApp Workload Factory 中的使用。请仔细查看这些限制。
+
+
+
+[[known-limitations-of-fsx-for-ontap-storage-workloads]]
+== FSx for ONTAP 存储工作负载的已知限制
+
+
+
+[[region-support]]
+=== 地区支持
+
+以下 AWS 区域不受支持：
+
+* 中国地区
+* 机密云
+* 绝密云
+
+
+
+
+[[adding-ha-pairs-limitations]]
+=== 添加 HA 对限制
+
+* 此操作可能需要约 30 分钟才能完成。
+* 添加 HA 对限制了以下操作：添加更多 HA 对、调配 IOPS、增加 SSD 容量和更新吞吐量容量。
+
+
+
+
+[[throughput-capacity-region-support]]
+=== 吞吐量容量区域支持
+
+
+
+==== 纵向扩展部署
+
+所有地区均支持高达 2 GB/s 的纵向扩展配置。以下地区支持高达 4 GB/s 的最大吞吐量容量进行纵向扩展部署：美国东部（俄亥俄州）地区、美国东部（弗吉尼亚州北部）地区、美国西部（俄勒冈州）地区和欧洲（爱尔兰）。
+
+
+
+==== 横向扩展部署
+
+以下地区为横向扩展部署支持高达 6 GB/s 的最大吞吐量：美国东部（弗吉尼亚州北部和俄亥俄州）、美国西部（加利福尼亚州北部和俄勒冈州）、欧洲（法兰克福、爱尔兰和斯德哥尔摩）以及亚太地区（新加坡和悉尼）。
+
+
+
+[[capacity-management]]
+=== 容量管理
+
+* iSCSI 协议当前不支持卷自动增长功能。
+* 当自动容量管理功能运行时，不允许手动增加容量。
+* 只有使用用于启用自动容量管理功能的相同权限，才能禁用自动容量管理功能。
+* 启用自动容量管理时，需要链接以确保卷 inode 随着存储容量的增加而增加。
+
+
+
+
+[[storage-vms]]
+=== Storage VM
+
+每个 SKU 的存储虚拟机数量是有限的。Workload Factory 不支持创建超出限制的存储虚拟机。^1^
+
+有关每个文件系统的最大 SVM 数量，请参阅 AWS 文档中的 link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html#max-svms["管理 FSx for ONTAP Storage Virtual Machine"^]。
+
+
+
+[[iscsi-protocol-support]]
+=== iSCSI 协议支持
+
+* iSCSI 协议仅适用于 FlexVol 卷。^1^
+* iSCSI 卷不支持减小卷大小。
+
+
+
+
+[[data-protection]]
+=== 数据保护
+
+* 无法删除 Snapshots。
+* 复制文件系统时，文件系统中的所有卷都使用相同的复制策略。
+* 对于长期保留复制关系，只有最后一个快照可用于还原。
+* 不可变快照不支持以下功能：
++
+** 一致性组
+** FabricPool
+** FlexCache 卷
+** SMTape
+** SnapMirror 活动同步
+** 使用 -schedule 参数的 SnapMirror 策略规则
+** SnapMirror 同步
+** SVM 数据移动性（用于将 SVM 从源集群迁移或重新定位到目标集群）
+
+
+
+
+
+
+[[storage-savings-calculator]]
+=== 存储节省计算器
+
+存储节省计算器不计算以下配置的成本节省：
+
+* FSx for Windows File Server：HDD 存储类型
+* Elastic Block Store (EBS)：st1、sc1 和标准卷类型
+* Elastic File System (EFS)：突发吞吐量模式
+
+
+
+
+[[aws-secrets-manager-support]]
+=== AWS Secrets Manager 支持
+
+使用 Console 代理时不支持 AWS Secrets Manager。
+
+
+
+[[amazon-s3-access-points-limitation]]
+=== Amazon S3 接入点限制
+
+每个存储虚拟机的 S3 接入点数量限制为 4,000 个。
+
+
+
+[[limitations-for-storage-vm-migration-replication]]
+=== Storage VM 迁移复制的限制
+
+* Workload Factory 不支持在第一代和第二代 FSx for ONTAP 文件系统之间对存储 VM 进行迁移复制。
+* 具有 S3 访问点或 ONTAP S3 配置（包括 vserver 上的对象存储服务器、存储区、用户、组或策略）的卷不支持切换复制。
+
+
+注:
+
+. 适用于 Amazon FSx for NetApp ONTAP
+
+
+
+
+[[known-limitations-of-fsx-for-ontap-database-workloads]]
+== FSx for ONTAP 数据库工作负载的已知限制
+
+
+
+[[instance-detection-support]]
+=== 实例检测支持
+
+Workload Factory 支持检测仅在 Amazon Linux 操作系统上运行的 PostgreSQL 实例和仅在 Red Hat Enterprise Linux 上运行的 Oracle 实例。
+
+
+
+[[ami-image-version-support]]
+=== AMI 镜像版本支持
+
+对于每个 SQL 版本，我们最多只显示四个最新版本或修订版本的 AMI 映像。我们不允许从早于最新四个版本的 AMI 映像进行安装。
+
+
+
+[[custom-ami]]
+=== 自定义 AMI
+
+使用自定义 AMI 进行部署时，会假定映像中存在安装介质。由于以下原因，FCI 配置需要这样做：
+
+* 卸载并重新配置以形成 FCI 集群
+* 在为独立部署选择映像中设置的排序规则以外的排序规则时
+
+
+作为部署的一部分，Workload Factory 不会安装具有多个 Microsoft SQL Server 实例的自定义 AMI。作为部署的一部分，仅选择并配置默认的 Microsoft SQL Server 实例。
+
+
+
+[[roll-back-and-retry-for-failed-deployments]]
+=== 回滚并重试失败的部署
+
+Workload Factory 不支持回滚和重试失败的部署。您可以从 AWS 中的 CloudFormation 控制台回滚或重试失败的堆栈。
+
+
+
+[[active-directory-and-dns-resource-rollback]]
+=== Active Directory 和 DNS 资源回滚
+
+当您从 AWS 中的 CloudFormation 控制台回滚测试或失败的部署时，不会从 Active Directory 和 DNS 中删除以下 DNS 资源：
+
+* SQL部署的每个节点到其管理IP地址
+* 在 FCI 的情况下，将 Windows 集群名称分配给 EC2 实例的保留辅助 IP 地址
+* 将 SQL FCI 名称映射到 FCI 中两个 EC2 实例的两个保留 IP 地址
+
+
+您需要手动清理这些内容，或等待域清除过时的条目。
+
+
+
+[[always-on-availability-groups-configuration-support]]
+=== Always On 可用性组配置支持
+
+Workload Factory 不支持管理 Always On 可用性组配置。
+
+
+
+[[custom-encryption-keys]]
+=== 自定义加密密钥
+
+FSx for ONTAP 的自定义加密密钥未根据服务适用性列出。您必须选择适当的密钥。AWS 托管密钥根据服务的适用性进行过滤。
+
+
+
+[[cloudformation-template]]
+=== CloudFormation 模板
+
+下载或复制的 Codebox 生成的 CloudFormation 模板（YAML 文件）的保留期限为七天。
+
+
+
+[[sandbox-support]]
+=== 沙盒支持
+
+可从数据库服务器创建的沙盒克隆数上限为 90 个。
+
+
+
+[[microsoft-sql-server-detection-and-management]]
+=== Microsoft SQL Server 检测和管理
+
+Microsoft SQL Server 检测未保存。每次访问 Workload Factory 中的数据库时，Microsoft SQL Server 检测都会再次运行，以识别该区域中的 SQL 安装。
+
+
+
+[[explore-savings]]
+=== 查看优惠
+
+在“清单”选项卡中，为每个 Microsoft SQL 实例显示的估算成本是在 FSx for ONTAP 文件系统级别计算的，而不是针对托管 SQL 实例的卷计算的。
+
+
+
+[[multiple-fsx-for-ontap-file-systems]]
+=== 多个 FSx for ONTAP 文件系统
+
+Workload Factory 不支持为具有多个 FSx for ONTAP 文件系统的 Microsoft SQL Server 创建或保存配置。仅支持部署一个 FSx for ONTAP 文件系统配置。
+
+
+
+[[optimization-limitations]]
+=== 优化限制
+
+
+
+==== 计算规模调整优化
+
+当更改为某些实例类型时，网络配置可能会被重置，这可能会在优化过程中导致节点连接失败并导致作业失败。可能需要手动干预来检查和更新 DNS 设置和 iSCSI 会话。有关 EC2 调整大小限制的更多信息，请参阅 link:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resize-limitations.html["Amazon Elastic Compute Cloud 文档"^]。
+
+
+
+==== ONTAP 和 OS 配置优化
+
+ONTAP 配置和操作系统配置不支持对多个 SQL Server 实例进行批量优化。
+
+
+
+==== 用于优化的操作系统补丁评估
+
+出于优化目的而进行的操作系统补丁评估可能在专用网络中不起作用。评估依赖于 AWS Patch Manager。要了解如何在专用网络中修补 Windows EC2 实例，请参阅 AWS 云运营博客 link:https://aws.amazon.com/blogs/mt/how-to-patch-windows-ec2-instances-in-private-subnets-using-aws-systems-manager/["如何使用 AWS Systems Manager 修补专用子网中的 Windows EC2 实例"^]。
+
+
+
+==== 跨区域复制评估
+
+* 当目标 FSx for ONTAP 文件系统位于不同的 AWS 帐户中时，优化评估无法确定是否正在使用跨区域复制（CRR）。
+* Workload Factory 仅评估源 FSx for ONTAP 文件系统的 CRR 配置。
+
+
+
+
+[[on-premises-savings-calculation]]
+=== 本地节省的计算
+
+不考虑 Microsoft SQL Server 本地存储的卷大小的成本和节省百分比计算。
+
+
+
+[[database-host-authentication-when-exploring-savings]]
+=== 探索节省时的数据库主机身份验证
+
+在某些权限受限的情况下，身份验证成功后，浏览优惠页面不会加载数据。
+
+
+
+[[integration-with-netapp-backup-and-recovery]]
+=== 与 NetApp Backup and Recovery 集成
+
+将主机添加到 NetApp Backup and Recovery 进行保护后，数据库发现有时会失败。
+
+
+
+[[registering-oracle-on-suse-linux-enterprise-server-12]]
+=== 在 SUSE Linux Enterprise Server 12 上注册 Oracle
+
+在 SUSE Linux Enterprise Server 12 上注册 Oracle Database 时，Workload Factory 不会安装 Python 依赖项。您必须手动配置所需的 Python 版本。Workload Factory 要求最低版本为 3.6；但是，我们建议使用 3.11 版本。
+
+
+
+[[known-limitations-for-eda-workloads]]
+== EDA 工作负载的已知限制
+
+
+
+[[operator-permissions-required]]
+=== 需要操作员权限
+
+NetApp Workload Factory for EDA 需要操作员权限才能正常运行。

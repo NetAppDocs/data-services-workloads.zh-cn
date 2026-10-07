@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: whats-new.html 
+keywords: 'what"s new, features, new, release notes, enhancements, fixes' 
+summary: 了解 NetApp Console 中 Workload Factory 的新增功能，如工作负载管理、服务管理、存储功能、权限等的更新和增强功能。 
+---
+= NetApp Console 中 Workload Factory 的新增功能
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+了解 NetApp Console 中 Workload Factory 的新增功能，如工作负载管理、服务管理、存储功能、权限等的更新和增强功能。
+
+
+
+[[30-september-2026]]
+== 2026年9月30日
+
+
+
+[[initial-release-of-oracle-cloud-infrastructure-netapp-storage-service-for-workload-factory]]
+=== 适用于 Workload Factory 的 Oracle 云基础架构 NetApp 存储服务的初始版本
+
+适用于 Workload Factory 的 OCI NetApp 存储服务 (OCI NSS) 的初始版本提供入门、系统发现、凭据管理以及链接创建和关联。要请求访问 OCI NSS，请向 Oracle 提交支持工单。
+
+
+
+[[workload-factory-documentation-for-netapp-console-users]]
+=== 面向 NetApp Console 用户的 Workload Factory 文档
+
+您可以在 NetApp Console 中找到 Workload Factory 的详细文档，包括入门指南、系统发现、凭据管理以及链接创建和关联。

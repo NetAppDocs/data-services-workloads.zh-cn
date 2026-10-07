@@ -1,0 +1,231 @@
+---
+sidebar: sidebar 
+permalink: admin/use-cloudshell.html 
+keywords: cloudshell, command line, aws cli, ontap cli, NetApp Workload Factory, Workload Factory 
+summary: 您可以在 CloudShell NetApp Workload Factory 用户界面的任意位置使用 CloudShell 发出 AWS 或 ONTAP CLI 命令。 
+---
+= 在 NetApp Workload Factory 中使用 CloudShell
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+打开 CloudShell 以从 NetApp Workload Factory 控制台中的任何位置执行 AWS 或 ONTAP CLI 命令。
+
+
+
+[[about-this-task]]
+== 关于此任务
+
+CloudShell 允许您从 Workload Factory 控制台在类似 shell 的环境中执行 AWS CLI 命令或 ONTAP CLI 命令。它在浏览器中模拟终端会话，提供终端功能并通过 Workload Factory 的后端代理消息。它允许您使用在 NetApp 帐户中提供的 AWS 凭据和 ONTAP 凭据。
+
+CloudShell 功能包括：
+
+* 多个 CloudShell 会话：一次部署多个 CloudShell 会话，并行发出多个命令序列，
+* 多视图：拆分 CloudShell 选项卡会话，以便您可以同时水平或垂直查看两个或多个选项卡
+* 会话重命名：根据需要重命名会话
+* 上次会话内容持久化：如果不慎关闭，可重新打开上次会话
+* 设置首选项：更改字体大小和输出类型
+* 针对 ONTAP CLI 命令的 AI 生成的错误响应
+* 自动完成支持：开始键入命令并使用 *Tab* 键查看可用选项
+
+
+
+NOTE: 如果您的账号管理员已关闭 AI 功能，则无法使用 AI 生成的错误响应。link:manage-genai-features.html["了解如何管理 AI 功能"]。
+
+
+
+[[cloudshell-commands]]
+== CloudShell 命令
+
+在 CloudShell GUI 界面中，您可以输入 `help`来查看可用的 CloudShell 命令。发出 `help`命令后，将显示以下参考信息。
+
+.问题描述
+NetApp CloudShell 是内置于 NetApp Workload Factory 的 GUI 界面，使您能够在类似 shell 的环境中执行 AWS CLI 命令或 ONTAP CLI 命令。它在浏览器中模拟终端会话，提供终端功能并通过 Workload Factory 中的后端代理消息。它使您能够使用在您的 NetApp 帐户中提供的 AWS 凭据和 ONTAP 凭据。
+
+.可用命令
+* `clear`
+* `help`
+* `[--fsx <fsxId>] <ontap-command> [parameters]`
+* `aws <aws-command> <aws-sub-command> [parameters]`
+
+
+.背景
+每个终端会话都在特定的上下文中运行：凭据、区域和可选的 FSx for ONTAP 文件系统。
+
++ 所有 AWS 命令都在提供的上下文中执行。仅当提供的凭据在指定区域中具有权限时，AWS 命令才会成功。
+
++ 您可以使用可选的 `fsxId`指定 ONTAP 命令。如果您在提供单个 ONTAP 命令时提供 `fsxId`，则此 ID 将覆盖上下文中的 ID。如果终端会话没有 FSx for ONTAP 文件系统 ID 上下文，则必须为每个 ONTAP 命令提供 `fsxId`。
+
++ 要更新不同的上下文细节，请执行以下操作： * 要更改凭据："using credentials <credentialId>" * 要更改区域："using region <regionCode>" * 要更改 FSx for ONTAP 文件系统："using fsx <fileSystemId>"
+
+.显示项目
+* 要显示可用凭据："show credentials"
+* 要显示可用区域："show regions"
+* 显示命令历史记录："show history"
+
+
+.变量
+以下是设置和使用变量的示例。如果变量值包含空格，则应将其设置在引号内。
+
++ * 要设置变量：$<variable> = <value> * 要使用变量：$<variable> * 设置变量的示例：$svm1 = svm123 * 使用变量的示例：--fsx FileSystem-1 volumes show --vserver $svm1 * 设置具有字符串值的变量的示例 $comment1 = "带空格的注释"
+
+.运算符
+不支持 Shell 操作符，例如管道 `|`、后台执行 `&`和重定向 `>`。如果包含这些操作符，命令执行将失败。
+
+
+
+[[before-you-begin]]
+== 开始之前
+
+CloudShell 在您的 AWS 凭据环境中工作。要使用 CloudShell，您必须至少提供一个 AWS 凭据。
+
+
+NOTE: CloudShell 可供您执行任何 AWS 或 ONTAP CLI 命令。但是，如果要在 FSx for ONTAP 文件系统的上下文中工作，请确保发出以下命令： `using fsx <file-system-name>`。
+
+
+
+[[deploy-cloudshell]]
+== 部署 CloudShell
+
+您可以将 CloudShell 从 NetApp Workload Factory 控制台中的任何位置进行部署。您也可以将 CloudShell 从 NetApp Console 进行部署。
+
+[role="tabbed-block"]
+====
+.从 Workload Factory 控制台部署
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 从 NetApp Console 菜单中，选择 *工作负载* > *管理* > *CloudShell*。
+. 在 CloudShell 窗口中，选择 CloudShell 会话的凭据和区域，然后选择箭头以继续。
++
+image:screenshot-deploy-cloudshell-session.png["显示新的 CloudShell 会话的屏幕截图。"]
+
+. 输入 `help`以查看可用<<CloudShell 命令,CloudShell 命令>>和说明，或参阅以下 CLI 参考文档以获取可用命令：
++
+** link:https://docs.aws.amazon.com/cli/latest/reference/["AWS CLI 参考"^]：对于与 FSx for ONTAP 相关的命令，请选择 *fsx*。
+** link:https://docs.netapp.com/us-en/ontap-cli/["ONTAP CLI 参考"^]
+
+
+. 在 CloudShell 会话中发出命令。
++
+如果在发出 ONTAP CLI 命令后发生错误，请选择灯泡图标以获得简短的 AI 生成的错误响应，其中包含对故障的描述、故障的原因以及详细的解决方案。选择 *阅读更多* 以了解更多详细信息。
+
+
+
+--
+.从 NetApp Console 部署
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 从 NetApp Console 菜单中，选择 *工作负载* > *管理* > *CloudShell*。
+. 在 CloudShell 窗口中，选择 CloudShell 会话的凭据和区域，然后选择箭头以继续。
++
+image:screenshot-deploy-cloudshell-session.png["显示新的 CloudShell 会话的屏幕截图。"]
+
+. 输入 `help`以查看可用的 CloudShell 命令和说明，或参阅以下 CLI 参考文档以了解可用的命令：
++
+** link:https://docs.aws.amazon.com/cli/latest/reference/["AWS CLI 参考"^]：对于与 FSx for ONTAP 相关的命令，请选择 *fsx*。
+** link:https://docs.netapp.com/us-en/ontap-cli/["ONTAP CLI 参考"^]
+
+
+. 在 CloudShell 会话中发出命令。
++
+如果在发出 ONTAP CLI 命令后发生错误，请选择灯泡图标以获得简短的 AI 生成的错误响应，其中包含对故障的描述、故障的原因以及详细的解决方案。选择 *阅读更多* 以了解更多详细信息。
+
+
+
+--
+====
+可以通过选择打开的 CloudShell 会话选项卡的操作菜单来完成此屏幕截图中显示的 CloudShell 任务。每项任务的说明如下。
+
+image:screenshot-cloudshell-tab-menu.png["屏幕截图显示 CloudShell 选项卡操作菜单，包括重命名、复制、关闭其他选项卡以及关闭全部等选项。"]
+
+
+
+[[rename-a-cloudshell-session-tab]]
+== 重命名 CloudShell 会话选项卡
+
+您可以重命名 CloudShell 会话选项卡以帮助您识别会话。
+
+.步骤
+. 选择 CloudShell 会话选项卡的操作菜单。
+. 选择*重命名*。
+. 请为会话选项卡输入一个新名称，然后单击选项卡名称外部以设置新名称。
+
+
+.结果
+新名称将显示在 CloudShell 会话选项卡中。
+
+
+
+[[duplicate-cloudshell-session-tab]]
+== 复制 CloudShell 会话选项卡
+
+您可以复制 CloudShell 会话选项卡以创建具有相同名称、凭据和区域的新会话。原始选项卡中的代码不会复制到复制的选项卡中。
+
+.步骤
+. 选择 CloudShell 会话选项卡的操作菜单。
+. 选择*复制*。
+
+
+.结果
+新选项卡将与原选项卡同名。
+
+
+
+[[close-cloudshell-session-tabs]]
+== 关闭 CloudShell 会话选项卡
+
+您可以一次关闭一个 CloudShell 选项卡，关闭您未在使用的其他选项卡，或者一次关闭所有选项卡。
+
+.步骤
+. 选择 CloudShell 会话选项卡的操作菜单。
+. 选择以下选项之一：
++
+** 在 CloudShell 选项卡窗口中选择“X”，一次关闭一个选项卡。
+** 选择*关闭其他选项卡*以关闭除您正在处理的选项卡之外的所有其他打开的选项卡。
+** 选择*关闭所有标签页*以关闭所有标签页。
+
+
+
+
+.结果
+选定的 CloudShell 会话选项卡关闭。
+
+
+
+[[split-cloudshell-session-tabs]]
+== 拆分 CloudShell 会话标签页
+
+您可以拆分 CloudShell 会话选项卡以同时查看两个或多个选项卡。
+
+.步骤
+将 CloudShell 会话选项卡拖放到 CloudShell 窗口的顶部、底部、左侧或右侧可拆分视图。
+
+image:screenshot-cloudshell-split-view.png["显示两个 CloudShell 选项卡水平拆分的屏幕截图。选项卡并排显示。"]
+
+
+
+[[update-settings-for-a-cloudshell-session]]
+== 更新 CloudShell 会话设置
+
+您可以更新 CloudShell 会话的字体和输出类型设置。
+
+.步骤
+. 部署 CloudShell 会话。
+. 在 CloudShell 选项卡中，选择设置图标。
++
+此时将显示设置对话框。
+
+. 根据需要更新字体大小和输出类型。
++
+
+NOTE: 丰富的输出适用于 JSON 对象和表格格式。所有其他输出都以纯文本形式显示。
+
+. 选择*应用*。
+
+
+.结果
+已更新 CloudShell 设置。

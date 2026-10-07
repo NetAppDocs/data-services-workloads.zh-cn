@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/discover-cache-volumes.html 
+keywords: discover cache volume, FlexCache technology, ONTAP FlexCache, FSx for ONTAP volume 
+summary: 无需离开 NetApp Workload Factory 控制台，即可发现和查看与缓存关系相关联的缓存卷。 
+---
+= 在 NetApp Workload Factory 中发现缓存卷
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+无需离开 NetApp Workload Factory 控制台，即可发现和查看与缓存关系关联的 _cache_ 卷。缓存关系也称为 ONTAP FlexCache 关系。Workload Factory 使用 FlexCache 技术发现现有的缓存关系，这是 NetApp ONTAP 的远程缓存功能，可加速数据访问，降低读取密集型工作负载的 WAN 延迟、带宽和成本，尤其是在客户端需要重复访问相同数据的情况下。
+
+link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/using-flexcache.html["详细了解如何使用 FlexCache 复制数据。"^]
+
+.关于此任务
+要发现缓存关系，需要链接关联。
+
+两个 ONTAP 系统上的卷之间可以存在缓存关系，例如一个 FSx for ONTAP 文件系统和一个 Cloud Volumes ONTAP 系统。在单个 FSx for ONTAP 文件系统中也可以存在缓存关系，即从一个卷到另一个卷。
+
+.开始之前
+在开始之前，请考虑以下内容。
+
+* 您必须关联链接才能发现文件系统上的缓存关系。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+* 您必须具有现有的缓存关系。
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择 *缓存关系* 选项卡。
+. 您的缓存卷显示在表格中。该表包含有关每个缓存卷的以下信息：
++
+** *起源集群*：FlexCache 关系的起源或源集群。
+** *原始卷*：FlexCache 关系的原始卷或源卷。
+** *源存储 VM*：卷的初始或源存储 VM。
+** *缓存卷*：FlexCache 关系的缓存或目标卷。
+** *缓存存储 VM*：卷的缓存或目标存储 VM。
+** *状态*：FlexCache 关系状态。
+** *缓存上的可用存储*：缓存卷上的可用存储量。
+** *缓存文件系统*：缓存卷的文件系统。
+** *写入模式*：FlexCache 关系的写入模式。
+** *DR 缓存*：指示该 FlexCache 关系是否为灾难恢复（DR）缓存。
+** *导出策略*：缓存卷的导出策略。
+
+
+
+
+.相关信息
+link:manage-cache-volumes.html["管理缓存卷"^]

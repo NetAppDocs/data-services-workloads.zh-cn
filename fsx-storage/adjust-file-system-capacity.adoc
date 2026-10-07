@@ -1,0 +1,169 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/adjust-file-system-capacity.html 
+keywords: adjust capacity, elastic file system capacity, increase file system capacity, increase FSx capacity, decrease file system capacity, decrease FSx capacity 
+summary: 手动调整 FSx for ONTAP 文件系统的 SSD 存储容量，以满足具有不同活动工作集的基于项目的工作负载的需求。 
+---
+= 在 NetApp Workload Factory 中调整文件系统容量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 NetApp Workload Factory 中调整 FSx for ONTAP 文件系统的固态驱动器 (SSD) 存储容量，以匹配具有不同活动工作集的工作负载需求。当使用量超过阈值时，手动增加容量；或者当您不使用工作集时，减少容量以节省资金。或者，启用自动容量管理，以便 Workload Factory 根据需求随时间变化添加增量存储，从而消除手动监控的负担。
+
+
+NOTE: 只有第二代文件系统才支持降低 SSD 存储容量。
+
+
+
+[[adjust-file-system-capacity-manually]]
+== 手动调整文件系统容量
+
+借助弹性文件系统容量，您可以动态调整文件系统的容量，以满足工作负载的需要。
+
+.关于此任务
+更改文件系统容量会影响 FSx for ONTAP 文件系统的 IOPS。
+
+当您自动为文件系统link:provision-iops.html["预配 IOPS"]时，SSD 容量每增加或减少 1 GiB，IOPS 就会增加或减少 3 IOPS。
+
+当您手动 link:provision-iops.html["预配 IOPS"] 时，您可能需要增加 IOPS 分配以支持增加的文件系统容量。
+
+有关 SSD 存储容量限制，请参见 AWS FSx for NetApp ONTAP 文档中的 link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/limits.html["配额"^]。
+
+.开始之前
+要调整文件系统的容量，必须首先<<启用自动容量和 inode 管理,禁用自动容量管理>>。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage*。
+. 在控制面板中，选择 *调整 SSD 容量*。
+. 选择要调整容量的文件系统，然后选择*继续*。
+. 在“调整 SSD 容量”对话框中，为 *已配置容量* 输入一个数值。
+. 为配置的容量选择单位。
+. 选择*应用*。
+
+
+
+
+[[enable-automatic-capacity-and-inode-management]]
+== 启用自动容量和 inode 管理
+
+启用容量和 inode 管理，使 NetApp Workload Factory 能够在容量需求随时间变化时，自动将适用于 ONTAP 文件系统的 FSx 的增量存储和 inode（文件）添加到卷中。这些功能无需手动监控容量和 inode。
+
+只有一个账号可以管理这些功能。
+
+
+
+[[enable-automatic-capacity-management-and-capacity-notifications]]
+=== 启用自动容量管理和容量通知
+
+启用自动容量管理，以自动添加增量存储，直至达到 FSx for ONTAP 文件系统的最大大小限制。设置通知，以便在文件系统达到特定容量阈值时收到警报。
+
+.关于此任务
+Workload Factory 每 30 分钟扫描一次 FSx for ONTAP 文件系统，以检查是否需要添加增量存储。
+
+所有 FSx for ONTAP 文件系统的最大 SSD 存储容量为 524,288 GiB。要请求增加配额，请参阅 AWS FSx for NetApp ONTAP 文档中的link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/limits.html["配额"^]。
+
+.开始之前
+开始之前，请考虑以下事项：
+
+* 必须link:add-credentials.html["使用 _view, planning, and analysis_ 权限策略授予凭据"^]在 Workload Factory 中才能完成此任务。
+* 为了确保卷 inode 随着存储容量的增加而增加，您必须关联一个链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+* 您不应在数据迁移期间启用此功能，因为 AWS 在 SSD 容量增加之间强制实施至少六小时的冷却时间。此限制可能会延迟调整，因此请做出相应的计划。
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage*。
+. 从 Storage 菜单中，选择 *Inventory*。
+. 从*清单*中，选择要启用自动容量的文件系统。
++
+找到*弹性*图表，该图表同时显示选定文件系统的吞吐量和 SSD 容量。
+
+. 选择 *SSD*，然后选择*管理*。
+. 选择容量管理方法。选项是增量模式和自适应模式。
++
+** *增量*：在阈值处将容量增加固定数量。
++
+*** *阈值*：设置低于增量增加的阈值以触发来自 Workload Factory 通知服务的通知。默认值为 70%。
++
+只有在您 link:https://docs.netapp.com/us-en/workload-setup-admin/configure-notifications.html["已启用 Workload Factory 通知服务"^] 时，阈值设置才可用。
+
+*** *增量增加*：输入 FSx for ONTAP 文件系统的最大百分比增加。默认值为 80%。
++
+这是 Workload Factory 触发作业以增加容量的阈值。例如，如果文件系统达到 80% 的容量，则 Workload Factory 会增加容量。
+
+
+
+** *Adaptive*：根据历史数据预测和更改容量。
++
+*** *Look-back*：以小时为单位设置分析周期，以确定容量预测需要考虑多少历史数据。默认时间为 120 小时。
+*** *提前计划*：以小时为单位设置缓冲时间，以确保在实际需要之前增加容量。默认时间为 48 小时。
+
+
+
+
+. 选择 *Enable automatic capacity management* 和凭据 _view, planning, and analysis_ 权限。
++
+或者，禁用该功能。如果需要增加文件系统容量，必须首先禁用自动容量管理。
+
+. 选择 *启用容量通知* 可在容量达到您设置的阈值时以及每当 Workload Factory 执行自动容量增加时打开通知。默认值为 70%。
++
+仅当您 link:https://docs.netapp.com/us-en/workload-setup-admin/configure-notifications.html["已启用 Workload Factory 通知服务"^] 和启用了自动容量管理时，容量通知设置才可用。
+
+. 选择*应用*。
+
+
+.结果
+每 30 分钟进行一次文件系统扫描，以确定其是否需要额外容量。
+
+
+
+[[enable-automatic-inode-management-for-a-file-system]]
+=== 启用文件系统的自动 inode 管理
+
+启用自动 inode 管理，以将每个卷的 inode（文件）数量增加到允许的限制。
+
+.关于此任务
+Workload Factory 每 30 分钟扫描一次 FSx for ONTAP 文件系统，以验证可用的卷 inode，并检查是否需要添加增量 inode。计数根据自动 inode 管理阈值增加。
+
+
+NOTE: *Terraform 用户*：Terraform 有一个限制，要求所有操作都在 Terraform 内完成。Terraform 不支持 Inode 管理，但您可以在 Workload Factory 控制台中启用自动 Inode 管理。
+
+.开始之前
+开始之前，请考虑以下事项：
+
+* 要自动管理卷信息节点，您必须关联一个链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+* 可以使用_警告阈值_设置自动 inode 管理，该阈值会触发 Workload Factory 通知服务的通知。要使用此功能，您必须先link:../admin/configure-notifications.html["启用 Workload Factory 通知服务"^]。
+* 必须link:add-credentials.html["使用 _view, planning, and analysis_ 权限策略授予凭据"^]在 Workload Factory 中才能完成此任务。
+
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 FSx for ONTAP 页面中，选择*库存*。
+. 在*清单*中，选择要为其启用自动 inode 管理的文件系统的操作菜单。
+. 选择*管理*。
+. 在信息下，选择 *自动 inode 管理* 旁边的铅笔图标。当鼠标悬停在 *自动 inode 管理* 行上时，铅笔图标会出现在下拉箭头旁边。
+. 在 *自动 inode 管理* 对话框中，提供以下内容：
++
+.. *凭据*：从下拉菜单中选择具有 _Automate_ 权限的凭据。
+.. 选择启用按钮以*启用自动 inode 管理*。
++
+或者，禁用该功能。如果需要增加索引节点的数量，必须首先禁用自动索引节点管理。
+
+.. *警告阈值*：设置低于阈值增加的警告阈值，以触发来自 Workload Factory 通知服务的通知。默认值为 70%。
++
+警告阈值设置仅在您 link:https://docs.netapp.com/us-en/workload-setup-admin/configure-notifications.html["已启用 Workload Factory 通知服务"^] 时可用。
+
+.. *阈值增加*：输入每个卷的 inode（文件）数量的最大增加百分比。默认值为 80%。
+.. *增量增加*：输入要增量增加 inode（文件）数量的百分比。默认值为 10%。
+
+
+. 选择*应用*。
+
+
+.结果
+每 30 分钟进行一次文件系统扫描，以确定卷是否需要每个卷额外的 inode（文件）。

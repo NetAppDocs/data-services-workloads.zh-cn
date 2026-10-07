@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: setup/links-overview.html 
+keywords: links, accounts, connectivity, 
+summary: Workload Factory 链接在 Workload Factory 帐户和一个或多个云存储系统之间创建信任关系和连接。 
+---
+= 了解 NetApp Workload Factory 链接
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory 链接在 Workload Factory 帐户和一个或多个云存储系统之间创建信任关系和连接。这允许您直接通过云提供商 API 无法使用的 ONTAP REST API 调用来监控和管理某些存储系统功能。
+
+您不需要链接即可开始使用 Workload Factory，但在某些情况下，您需要创建链接以解锁所有 Workload Factory 功能和工作负载功能。
+
+
+
+[[why-links-are-beneficial]]
+== 链接为何有益
+
+链接是有益的，因为它们允许 Workload Factory 执行通过云提供商的 API 本机不可用的操作。链接可实现高级 ONTAP 功能和自动化，从而增强对云存储系统的管理。
+
+以下是使用链接的一些好处：
+
+* 该链接使 NetApp Console 能够将 ONTAP 命令直接发送到您的云存储系统，从而带来超出云提供商原生提供的高级 ONTAP 功能。
+* 链接利用远程无服务器函数来执行代码以响应事件。这种无服务器方法消除了 VPC 中运行的实例的依赖性。
+
+
+
+
+[[how-links-work]]
+== 链接的运作方式
+
+链接利用远程无服务器计算服务，例如 AWS Lambda 和 Oracle Cloud Infrastructure Functions。这些服务响应事件执行代码，并自动管理该代码所需的计算资源。您创建的链接是您的 NetApp 帐户的一部分，它们与相应的云提供商帐户相关联。
+
+创建链接后，您可以将其与一个或多个云存储系统相关联。每个云存储系统只能与同一 NetApp 帐户中的一个链接相关联。如果您有多个 NetApp 帐户，则可以将单个云存储系统与不同 NetApp 帐户下的其他链接相关联。
+
+您可以从 NetApp Console 中的“链接”页面为您的云存储系统创建并关联链接。
+
+可以使用 Workload Factory 凭据服务中存储的凭据或使用云提供商的凭据服务对链接进行身份验证。Workload Factory 不支持更改身份验证模式。
+
+
+
+[[costs]]
+== 费用
+
+云提供商的无服务器计算服务执行的每笔交易都会产生费用。由于它充当两个系统之间的代理，因此当服务将请求发送到文件系统上的 ONTAP REST API 时，以及将响应发送回 Workload Factory 时，都会产生费用。
+
+* link:https://aws.amazon.com/lambda/pricing/["详细了解与使用 AWS Lambda 相关的成本"^]
+* link:https://www.oracle.com/cloud/cloud-native/functions/["详细了解与使用 Oracle Cloud Infrastructure Functions 相关的成本"^]
+
+
+
+
+[[when-a-link-is-required]]
+== 需要链接时
+
+Workload Factory 需要一个链接来显示一些信息和执行一些任务。如果您尝试执行需要链接的操作，但尚未将链接与云存储系统关联，则 Workload Factory 会通知您该操作需要链接。
+
+需要链接的功能包括：
+
+* 云存储系统配置的良好架构状态，以实现主动维护、可靠性和成本效益优化
+* ONTAP EMS 事件监视和警报
+* NetApp 自主勒索软件防护（ARP/AI）
+* 增强跨云存储系统的整体容量可观测性
+* 卷和存储 VM 数据复制、管理和监控
+* SMB/CIFS 共享和 NFS 导出策略配置和管理
+* 管理云存储系统上的 iSCSI 卷
+* 为自定义保护 SLA 创建和管理快照策略
+* 用于自动容量管理的 Inode 管理增强功能
+* 用于弹性扩展的卷自动增长
+* 克隆创建和管理，用于即时、就地数据克隆
+* 直接从云存储系统显示其他指标，例如系统版本
+* 显示Storage VM和集群LIF详细信息，包括角色、端点、节点、IP地址和状态
+
+
+
+
+[[related-information]]
+== 相关信息
+
+了解如何为以下内容创建和关联链接：
+
+* link:../fsx-storage/create-link.html["Amazon FSx for NetApp ONTAP"]
+* link:../oci/create-link.html["OCI NetApp 存储服务"]
+

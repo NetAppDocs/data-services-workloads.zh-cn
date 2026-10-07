@@ -1,0 +1,132 @@
+---
+sidebar: sidebar 
+permalink: gcnv/improve-configurations.html 
+keywords: improve configurations, optimize configurations, implement best practices, well-architected storage pool, Google Cloud NetApp Volumes, GCNV 
+summary: Workload Factory 扫描 Google Cloud NetApp Volumes 配置，提供见解和建议，帮助您实现卓越运营。 
+---
+= 实施精心设计的 Google Cloud NetApp Volumes 配置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+利用配置分析见解和建议，借助 NetApp 为运行在 Google Cloud 存储上的 Google Cloud NetApp Volumes 存储池实施最佳实践。您可以轻松查看架构完善状态，了解配置问题，并获取针对未在可靠性、安全性、性能和成本方面进行优化的存储池的架构改进建议。
+
+link:configuration-analysis.html["了解配置分析和架构良好的状态。"]
+
+
+
+[[about-this-task]]
+== 关于此任务
+
+NetApp 每天分析 Google Cloud 中的 Google Cloud NetApp Volumes 存储池部署。每日分析提供架构完善状态、见解和建议，帮助您了解配置问题，从而使您的存储池符合最佳实践。
+
+日常分析完成后，仪表板将显示架构良好的资源总数、处于关键状态的资源数以及处于警告状态的资源数。配置按照架构完善的框架的支柱进行分类：可靠性、卓越运营、成本优化、性能效率和安全性。仪表板还包括一个表，其中列出了所有配置、这些配置的良好架构状态、严重性、类别、资源类型（卷或存储池）、受影响的资源，以及在配置未优化时查看建议的选项。
+
+
+
+[[before-you-begin]]
+== 开始之前
+
+* 您必须link:https://console.netapp.com/add-working-environment/choose-type["添加 Google Cloud NetApp Volumes 存储池"]登录 NetApp Console，才能查看配置问题的良好架构状态和建议。
+
+
+
+
+[[view-recommendations-for-configuration-issues]]
+== 查看有关配置问题的建议
+
+您可以在每日分析完成后查看配置问题的建议。建议解释了未优化配置的最佳实践和潜在风险。您还可以下载建议的 CSV 文件。
+
+.步骤
+. 登录到 link:https://console.netapp.com/home["NetApp Console"^]。
+. 从 NetApp Console 菜单中，选择 *Workloads*，然后选择 *Well-architected*。
+. 在 Well-Architected 信息板中，为任意配置选择*查看*。
++
+（可选）下载所有配置建议的 CSV 文件。
+
+. 请查看此建议。
+
+
+
+
+[[dismiss-a-configuration-analysis]]
+== 忽略配置分析
+
+停止对 Google Cloud NetApp Volumes 存储池或选定卷的配置分析。您可以在需要时重新启动分析。
+
+[role="tabbed-block"]
+====
+.取消存储池的配置分析
+--
+.步骤
+. 登录到 link:https://console.netapp.com/home["NetApp Console"^]。
+. 从 NetApp Console 菜单中，选择 *Workloads*，然后选择 *Well-architected*。
+. 在 Well-Architected 信息板中，为任意配置选择*查看*。
+. 在"配置"下，确定不适用于您的环境的配置，然后选择 *关闭*。
+. 在 Dismiss configuration 对话框中，选择 *Dismiss* 停止配置分析。
+
+
+--
+.取消卷的配置分析
+--
+.步骤
+. 登录到 link:https://console.netapp.com/home["NetApp Console"^]。
+. 从 NetApp Console 菜单中，选择 *Workloads*，然后选择 *Well-architected*。
+. 在 Well-Architected 信息板中，为任意配置选择*查看*。
+. 在"配置"下，确定要为所选卷解除的配置，然后选择 *View*。
+. 确定要从配置分析中排除的卷。
++
+** 对于一个卷：选择操作菜单，然后选择 *关闭卷*。
+** 对于多个卷：选择卷，然后选择 *Dismiss* 旁边的 *Bulk action*。
+
+
+. 选择*Dismiss*以停止对配置的分析。
+. 在"关闭卷"对话框中，选择 *Dismiss* 确认。
+
+
+--
+====
+.结果
+存储池或选定卷的配置分析停止。
+
+您可以随时重新激活分析。
+
+
+
+[[reactivate-a-dismissed-configuration-analysis]]
+== 重新激活已解除的配置分析
+
+随时重新激活已关闭的配置分析。您可以选择一个或多个要重新激活的配置。
+
+[role="tabbed-block"]
+====
+.重新激活存储池的配置分析
+--
+.步骤
+. 登录到 link:https://console.netapp.com/home["NetApp Console"^]。
+. 从 NetApp Console 菜单中，选择 *Workloads*，然后选择 *Well-architected*。
+. 选择 *Dismissed configurations*。
+. 确定要重新激活的配置，然后选择*重新激活*。
+
+
+--
+.重新激活卷的配置分析
+--
+.步骤
+. 登录到 link:https://console.netapp.com/home["NetApp Console"^]。
+. 从 NetApp Console 菜单中，选择 *Workloads*，然后选择 *Well-architected*。
+. 选择 *Dismissed configurations*。
+. 通过配置分析确定要重新激活的卷。
++
+** 对于一个卷：选择操作菜单，然后选择 *重新激活卷*。
+** 对于多个卷：选择卷，然后选择"批量操作"旁边的 *Reactivate*。
+
+
+
+
+--
+====
+.结果
+系统重新激活配置分析。每天都会进行新的分析。

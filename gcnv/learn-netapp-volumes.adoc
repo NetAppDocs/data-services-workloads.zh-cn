@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: gcnv/learn-netapp-volumes.html 
+keywords: google cloud netapp volumes, cost, price, features, google cloud netapp volumes features, gcnv, supported regions, google regions, google cloud netapp volumes regions 
+summary: Google Cloud NetApp Volumes 使企业能够在 Google 中迁移和运行其性能密集型和延迟敏感的核心业务关键型应用程序，而无需针对云进行重构。 
+---
+= 了解 Google Cloud NetApp Volumes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Google Cloud NetApp Volumes 是一种完全托管的基于云的数据存储服务，可提供高级数据管理功能和高度可扩展的性能。
+
+NetApp Volumes 有助于加快部署时间、管理工作负载和应用程序，并将工作负载迁移到云，同时保持本地存储的性能和功能。
+
+
+
+[[features]]
+== 功能
+
+* 更快速、更高效地运行企业应用程序。
+* 将云存储成本降低高达 90%。
+* 满足正常运行时间、可用性和安全性的要求。
+* 支持 NFS、SMB 和多协议环境。
+
+
+
+
+[[cost]]
+== 成本
+
+由 Google Cloud NetApp Volumes 创建的卷将从您的服务订阅中收费，而不是通过 NetApp Console 收费。
+
+无需支付任何费用即可从 NetApp Console 发现 Google Cloud NetApp Volumes 区域或卷。
+
+
+
+[[supported-regions]]
+== 支持的区域
+
+https://cloud.google.com/netapp/volumes/docs/discover/service-levels#supported_regions["查看支持的 Google Cloud NetApp Volumes 区域"^]
+
+
+
+[[getting-help]]
+== 获取帮助
+
+如需技术支持，请通过 Google Cloud 门户网站提交请求。选择您的 Google Cloud 订阅以及 *Storage* 下的 *Google Cloud NetApp Volumes* 服务。填写所需信息。
+
+有关 Google Cloud NetApp Volumes 的一般性问题，请发送电子邮件至 NetApp 的 Google Cloud 团队：gcinfo@netapp.com。
+
+对于与云卷相关的技术问题，您可以从 Google Cloud Console 创建技术支持案例。有关详细信息，请参阅 link:https://cloud.google.com/netapp/volumes/docs/support["获得支持"^]。
+
+
+
+[[related-links]]
+== 相关链接
+
+* https://cloud.google.com/netapp/volumes/docs/discover/overview["Google Cloud NetApp Volumes 文档"^]
+* https://docs.netapp.com/us-en/data-services-copy-sync/index.html["NetApp Console 复制和同步文档"^]
+

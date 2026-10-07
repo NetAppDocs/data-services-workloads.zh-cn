@@ -1,0 +1,90 @@
+---
+sidebar: sidebar 
+permalink: admin/manage-custom-dashboards-fsx.html 
+keywords: manage dashboards, delete dashboard, refresh dashboard, dashboard catalog 
+summary: 访问仪表板目录，在 Workload Factory 中查看、刷新和删除自定义仪表板。 
+---
+= 在 NetApp Workload Factory 中管理自定义仪表板
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+从控制面板目录管理您的自定义控制面板。您可以在此查看详细信息、共享控制面板、刷新数据或删除不再需要的控制面板。
+
+.关于此任务
+您可以从仪表板目录中查看和管理自定义仪表板。私有仪表板仅对您可见，而您的 Workload Factory 帐户中的所有用户都可以看到公共仪表板。每个仪表板都会显示基本详细信息，例如创建者的姓名、创建日期和可见性标签（私有或公开）。
+
+自定义仪表板为只读。它们无法更改您的存储或工作负载设置。
+
+.开始之前
+您的 Workload Factory 帐户中必须至少有一个自定义仪表板。
+
+
+
+[[access-the-dashboard-catalog]]
+== 访问仪表板目录
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 从 NetApp Console 菜单中，选择 *Workloads* > *Workloads Overview* > *Custom dashboards*。
++
+仪表板目录显示 Workload Factory 帐户中的所有自定义仪表板。
+
+. 查看控制面板列表。
+
+
+
+
+[[change-dashboard-visibility]]
+== 更改仪表板可见性
+
+将控制面板设为公开，以便与您的团队分享。将其设为私密，以停止分享。
+
+.步骤
+. 在*自定义仪表板*页面中，找到要更新的仪表板。
+. 从该仪表板的 *Actions* 下拉菜单 image:icon-action.png["打开操作菜单的三点图标"] 中，选择以下选项之一：
++
+** *Share dashboard* - 使 Workload Factory 帐户中的所有用户都可以看到仪表板
+** *Change to private dashboard* - 仅您能看到控制面板
+
+
+
+
+.结果
+控制面板立即更新。控制面板卡上的可见性标签显示当前状态。
+
+
+
+[[refresh-dashboard-data]]
+== 刷新仪表板数据
+
+打开仪表板时会加载仪表板数据。您可以刷新它以查看最新信息。
+
+控制面板从您的工作负载重新加载数据。上次更新时间更改为显示数据刷新的时间。
+
+
+
+[[delete-a-dashboard]]
+== 删除仪表板
+
+删除不再需要的控制面板。此操作为永久操作，无法撤消。
+
+.步骤
+. 在*自定义仪表板*页面中，找到要删除的仪表板。
+. 从该仪表板的*操作*下拉菜单中，选择*删除*。
+. 确认删除。
+
+
+.结果
+仪表板已从您的 Workload Factory 帐户中永久删除，所有用户都将失去对其的访问权限。
+
+
+
+[[related-information]]
+== 相关信息
+
+* link:create-custom-dashboard-fsx.html["创建其他自定义仪表板"]
+* link:troubleshoot-custom-dashboards-fsx.html["对自定义信息板进行故障排除"]
+

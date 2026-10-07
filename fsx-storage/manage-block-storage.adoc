@@ -1,0 +1,221 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-block-storage.html 
+keywords: block storage, manage block storage, igroups, block devices, view details, clone, client access, delete block device 
+summary: 在 NetApp Workload Factory 中管理 FSx for ONTAP 文件系统的块存储。 
+---
+= 在 NetApp Workload Factory 中管理文件系统的块存储
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用 NetApp Workload Factory 简化块存储资源（包括 igroup 和块设备）的管理，并控制 FSx for ONTAP 块设备的客户端访问，以提供最佳性能并最大限度地降低成本。
+
+.关于此任务
+从 Workload Factory 控制台，您可以管理启动程序组 (igroup) 以控制客户端对块设备的访问。您还可以查看块设备详细信息、增加容量、制作克隆、管理客户端访问、存档非活动块设备的数据以及删除块设备。
+
+检查块存储图以检查以下内容：
+
+* 客户端连接
+* 块设备状态
+* 节点-客户端关系
+* 可能不正确的客户端连接
+
+
+.开始之前
+* 您必须关联链接才能管理 igroups。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。关联链接后，返回此操作。
+* 您必须具有现有的 igroup 或 block 设备才能查看和管理。
+
+
+
+
+[[manage-igroups]]
+== 管理 igroup
+
+您可以查看 igroup 详细信息、管理客户端访问权限和删除 igroup。
+
+
+
+[[manage-client-access-for-an-igroup]]
+=== 管理 igroup 的客户端访问
+
+随时管理现有 igroup 的客户端访问。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择 *Block devices* 选项卡。
+. 选择资源类型 *Initiator groups (igroups)* 以查看现有 igroups。
+. 转到块设备的操作菜单，然后选择 *管理客户端访问权限*。
+. 查看为 igroup 显示的客户端访问详细信息。
+. 要更改客户端访问权限，请选择 *Edit client access*。
+. 在 *编辑客户端访问权限* 对话框中，您可以编辑以下内容：
++
+** *igroup name*
+** *igroup 描述*
+** *Storage VM 名称*
+** *块设备名称*
+** *操作系统类型*
+** *主机启动器*
+
+
+. 选择*应用*。
+
+
+
+
+[[delete-an-igroup]]
+=== 删除 igroup
+
+不再需要时删除 igroup。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择 *Block devices* 选项卡。
+. 选择资源类型 *Initiator groups (igroups)* 以查看现有 igroups。
+. 转到块设备的操作菜单，然后选择 *删除启动器组*。
+. 在 Delete initiator group (igroup) 对话框中，键入"delete"以确认要删除该 igroup，然后选择 *Delete*。
+
+
+
+
+[[manage-block-devices-for-an-igroup]]
+== 管理 igroup 的块设备
+
+块设备或 LUN（逻辑单元编号）是 SAN 环境中具有文件系统的卷，可供主机通过网络访问。
+
+您可以管理使用 iSCSI 协议的 FSx for ONTAP 文件系统的块设备。
+
+
+
+[[view-block-device-details]]
+=== 查看块设备详细信息
+
+随时查看现有块设备的详细信息。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择 *Block devices* 选项卡。
+. 导航到块设备的操作菜单，然后选择*查看详细信息*。
++
+此时将显示块设备的一般详细信息、消耗、访问和保护信息。
+
+
+
+
+
+[[manage-client-access-for-a-block-device]]
+=== 管理块设备的客户端访问
+
+您可以通过创建 igroup 以及添加或删除块设备和主机启动器来随时管理现有块设备的客户端访问。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择 *Block devices* 选项卡。
+. 导航到块设备的操作菜单，然后选择*管理客户端访问权限*。
+. 如果不存在 igroup，请通过选择 *Map igroup > Create igroup* 创建一个新的 igroup，然后执行以下操作：
++
+.. *块设备名称*：输入块设备名称。您可以选择多个块设备与 igroup 关联。
+.. *操作系统类型*：选择操作系统类型。
+.. *igroup name*：输入 igroup 名称。
+.. *igroup description*：（可选）输入 igroup 描述。
+.. *主机启动器*：输入一个或多个主机启动器。这些启动器必须遵循 iSCSI 限定（IQN）格式。
+.. 选择 *Create*。
+
+
+. 如果已存在 igroup，请选择 *映射 igroup > 映射现有 igroup* 以从 igroup 中添加或删除块设备和主机启动器，然后选择 *映射*。
+
+
+
+
+[[increase-the-capacity-of-a-block-device]]
+=== 增加块设备的容量
+
+随时增加现有块设备的容量。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择 *Block devices* 选项卡。
+. 导航到块设备的操作菜单，然后选择*增加容量*。
+. 输入块设备的新容量，然后选择单位。
+. 选择*增加*以应用更改。
+
+
+
+NOTE: 增加块设备大小后，请按照主机操作系统提供的步骤来发现新大小并扩展文件系统。
+
+
+
+[[clone-a-block-device]]
+=== 克隆块设备
+
+您可以随时创建现有块设备的克隆。块设备克隆是原始块设备的可写副本，在对原始设备或克隆进行更改之前，它们共享相同的数据块。克隆块设备是一种快速高效的方法，可以在不消耗额外存储容量的情况下创建数据的可重用副本。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择 *Block devices* 选项卡。
+. 导航到块设备的操作菜单，然后选择 *Clone block device*。
+. 在"克隆数据块设备"对话框中，输入克隆的数据块设备的名称。
+. 可选地，启用自动删除，以便在卷空间不足时自动删除克隆的块设备。
+. *iSCSI 配置*：可选。要将块设备克隆连接到主机启动程序，请创建新启动程序组或将其映射到现有启动程序组。
++
+** *创建新的启动程序组*：选择此选项可为块设备克隆创建新的启动程序组。输入以下详细信息：
++
+... *主机操作系统*：选择主机操作系统类型。
+... *启动程序组名称*：输入 igroup 名称。
+... *主机启动器*：输入一个或多个主机启动器。这些启动器必须遵循 iSCSI 限定（IQN）格式。
+
+
+** *映射到现有启动程序组*：选择此选项可将块设备克隆映射到现有启动程序组。选择要将块设备映射到的一个或多个启动程序组。
+
+
+. 选择 *Clone* 以创建块设备克隆。
+
+
+
+
+[[archive-the-data-of-an-inactive-block-device]]
+=== 存档非活动块设备的数据
+
+不再映射到客户端或连续七天未使用的块设备被归类为非活动块设备。您可以将非活动块设备的数据存档到容量池层以回收 SSD 容量。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择 *Block devices* 选项卡。
+. 在孤立设备下，选择*查看和回收容量*。
+. 在“回收未使用的块设备的空间”屏幕上，选择一个或多个块设备来存档数据并回收容量。
+. 选择 *Archive*。
+
+
+
+
+[[delete-a-block-device]]
+=== 删除块设备
+
+未映射到客户端或七天未使用的块设备是非活动的块设备。此操作取消映射并删除选定的块设备。如果主机 FlexVol 卷不包含任何块设备，Workload Factory 将删除它。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择 *Block devices* 选项卡。
+. 在孤立设备下，选择*查看和回收容量*。
+. 在“回收未使用的块设备的空间”屏幕上，选择一个或多个块设备来存档数据并回收容量。
+. 选择 *Delete*。
+
+
+
+
+[[related-information]]
+== 相关信息
+
+* link:create-igroup.html["为 FSx for ONTAP 文件系统创建 igroup"]
+* link:create-block-device.html["为 FSx for ONTAP 文件系统创建块设备"]
+

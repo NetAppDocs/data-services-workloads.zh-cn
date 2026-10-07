@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/quick-start-gcve.html 
+keywords: quick start, gcve, google cloud vmware engine, gcnv, google cloud netapp volumes 
+summary: 开始使用 VMware 迁移顾问，将您当前的基础架构迁移到使用 Google Cloud NetApp Volumes 作为外部 NFS 数据存储的 Google Cloud VMware Engine。 
+---
+= 使用 VMware 工作负载迁移顾问迁移到 Google Cloud VMware Engine 的快速入门
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+开始使用 VMware 迁移顾问，将您当前的基础架构迁移到使用 Google Cloud NetApp Volumes 作为外部 NFS 数据存储的 Google Cloud VMware Engine。
+
+在开始之前，您应该了解 link:../fsx-storage/permissions-reference-fsx.html["适用于 NetApp Workload Factory 的 FSx for ONTAP 权限"^]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"] 登录 Workload Factory
+[role="quick-margin-para"]
+您需要 link:../setup/sign-up-and-log-in.html["在 Workload Factory 中设置帐户"^] 并登录到 NetApp Console。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"] 添加凭据和权限
+[role="quick-margin-para"]
+选择link:../fsx-storage/permissions-reference-fsx.html["权限策略"]以满足您的需求。
+
+[role="quick-margin-para"]
+如果选择不授予权限，则可以开始使用 Workload Factory for VMware 复制部分完成的代码示例。
+
+[role="quick-margin-para"]
+如果您选择授予权限，则需要link:../fsx-storage/add-credentials.html["手动向帐户添加凭据"]，其中包括提供具有查看和管理 Google Cloud NetApp Volumes 资源、VPC 配置和 Google Cloud VMware Engine 数据存储连接所需权限的 GCP 服务帐户。
+
+[role="quick-margin-para"]
+link:../fsx-storage/add-credentials.html["了解如何添加凭据和权限"^]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"] 上传虚拟机清单数据
+[role="quick-margin-para"]
+您可以使用规划中心上传当前虚拟机环境的清单详细信息。使用数据收集器脚本、RVTools 或 NetApp Data Infrastructure Insights 捕获当前虚拟机配置并将数据上传到规划中心。
+
+[role="quick-margin-para"]
+link:upload-vm-inventory.html["了解如何上传 VM 清单数据"^]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"] 使用 VMware 迁移顾问创建部署计划
+[role="quick-margin-para"]
+启动 VMware 迁移顾问，并使用 Google Cloud NetApp Volumes 作为外部 NFS 数据存储配置要在 Google Cloud VMware Engine 基础架构上创建的虚拟机环境。
+
+[role="quick-margin-para"]
+link:launch-migration-advisor-gcve.html["了解如何使用 VMware 迁移顾问创建部署计划"]。

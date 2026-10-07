@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: setup/quick-start.html 
+keywords: quick start 
+summary: 开始使用 Workload Factory，方法是在 NetApp Console 中注册并创建帐户，并添加云提供商凭据，以便 Workload Factory 可以直接管理您的资源并优化您的工作负载。 
+---
+= NetApp Workload Factory 快速入门
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+用户可以作为云数据服务从 NetApp Console 访问 NetApp Workload Factory。通过在 NetApp Console 中注册并创建帐户，以及添加云提供商凭据，开始使用 Workload Factory，以便 Workload Factory 可以直接管理您的资源并优化您的工作负载。
+
+在开始之前，您应该了解 link:learn-about-workload-factory.html["Workload Factory"]。
+
+
+
+[[sign-up-and-log-in-to-workload-factory-from-netapp-console]]
+== 从 NetApp Console 注册并登录到 Workload Factory
+
+link:sign-up-and-log-in.html["从 NetApp Console 注册并登录到 Workload Factory"]
+
+接下来，请选择云提供商的*快速入门*链接以开始使用。
+
+
+
+[[get-started-with-amazon-fsx-for-netapp-ontap]]
+== 开始使用 Amazon FSx for NetApp ONTAP
+
+link:../fsx-storage/quick-start-fsx.html["Amazon FSx for NetApp ONTAP 快速入门"]
+
+
+
+[[get-started-with-oci-netapp-storage-service]]
+== 开始使用 OCI NetApp 存储服务
+
+link:../oci/quick-start-oci.html["OCI NetApp 存储服务快速入门"]
+
+
+
+[[get-started-with-google-cloud-netapp-volumes]]
+== 开始使用 Google Cloud NetApp Volumes
+
+link:../gcnv/quick-start-gcnv.html["Google Cloud NetApp Volumes 快速入门"]

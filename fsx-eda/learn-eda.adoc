@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/learn-eda.html 
+keywords: software builders, development, benefits, eda, electronic design automation 
+summary: NetApp Workload Factory for EDA 可帮助您优化 FSx for ONTAP 的使用性能。 
+---
+= 了解 Workload Factory for EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Workload Factory for EDA 可帮助您跨多个文件系统管理 Amazon FSx for ONTAP。它通过自动调整存储设置、发现延迟问题以及为您的 EDA 项目提供见解来提高性能并降低成本。
+
+它旨在与您的基础架构即代码（IaC）框架集成。
+
+Workload Factory for EDA 提供仪表板、自动化工具和实用程序，帮助您管理多个 FSx for ONTAP 文件系统。
+
+它提供以下内容：
+
+* link:learn-overview-dashboard.html["概览信息板"]：提供 FSx for ONTAP 集群的单一视图，以便您可以监控运行状况、容量和吞吐量。使用它来决定新卷的放置位置，规划何时增加容量或吞吐量，并获取自动容量建议或启用自动扩展。您还可以查看过去的决策，以了解系统建议随时间推移发生了哪些变化。
+* link:learn-latency-monitoring.html["监控卷延迟"]：监控卷读取和写入延迟，并允许您设置警告和关键阈值。当超过阈值时，系统会通过电子邮件或 SNS 发送通知。包括使用 ONTAP QoS 延迟中心指标的自动基本分析，以及针对需要更深入识别根本原因的复杂问题的可选 AI 分析。
+* link:task-analyze-latency-trends.html["分析延迟趋势"]：使用同步的延迟、IOPS 和吞吐量性能图表来查看这些指标随时间的变化情况。这有助于您发现规律，确定问题是否重复出现或仅发生一次，并就修复措施做出明智的决策。
+* link:learn-project-dashboard.html["项目仪表板"]：在一个地方显示所有 FSx for ONTAP 文件系统的存储使用情况，帮助您规划容量、估算成本并查看每个项目如何使用存储。
+* link:learn-eda-workloads.html["CI/CD"]：通过快速克隆 FSx for ONTAP 卷来加快软件构建速度。
+

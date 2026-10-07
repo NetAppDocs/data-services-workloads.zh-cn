@@ -1,0 +1,154 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/improve-configurations.html 
+keywords: implement best practices, well-architected file system, Amazon FSx for NetApp ONTAP, FSx for ONTAP 
+summary: Workload Factory 扫描 Amazon FSx for NetApp ONTAP 配置，提供见解和建议，帮助您实现卓越运营。 
+---
+= 实施架构良好的 FSx for ONTAP 文件系统配置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用 Workload Factory 为您的 FSx for ONTAP 文件系统实施最佳实践。您可以轻松查看架构完善的状态，了解配置问题，并修复问题以改进任何未在可靠性、安全性、效率、性能和成本方面进行优化的系统的体系结构。
+
+link:configuration-analysis.html["了解配置分析和架构良好的状态。"]
+
+
+
+[[about-this-task]]
+== 关于此任务
+
+Workload Factory 每天分析 Amazon FSx for NetApp ONTAP 文件系统部署配置。
+
+由于存储配置的要求各不相同，因此您可以忽略不适用于存储环境的特定配置的分析。
+
+链接连接允许 Workload Factory 扫描性能、数据保护和配置问题。link:create-link.html["使用链接连接到 FSx for ONTAP 文件系统"]以对文件系统资源进行最全面的分析。
+
+.分析的内容
+Workload Factory 分析 FSx for ONTAP 文件系统以下配置的良好架构状态：
+
+* 可靠性：卷备份、快照策略、跨区域复制、SSD 容量余量、复制策略标签和文件对象容量
+* 安全性：勒索软件防护 (ARP/AI) 和未经授权的 iSCSI 卷访问
+* 卓越运营：自动容量管理、卷文件容量余量、FlexCache 写入模式、FlexCache 副本大小、主机可见容量报告、操作系统类型、块设备空间管理和精简配置
+* 成本优化：冷数据分层、存储效率、备份到期、快照到期、非活动块设备、过度配置的 SSD 容量和非活动 NAS 卷
+* 性能效率：FlexGroup 卷重新平衡和 FlexVol 卷重新平衡
+
+
+
+
+[[before-you-begin]]
+== 开始之前
+
+* 您必须在 AWS 帐户中link:add-credentials.html["授予 _operations and remediation_ 权限"]。
+* link:create-link.html["使用链接连接到 FSx for ONTAP 文件系统"]以对文件系统资源进行最全面的分析。
+
+
+
+
+[[fix-a-configuration-issue]]
+== 修复配置问题
+
+您可以修复 FSx for ONTAP 文件系统或文件系统中选定卷的配置问题。您可以选择一个或多个要修复的配置。
+
+修复操作可能导致实例停机或服务中断。在修复配置问题之前，请仔细阅读每个建议。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Well-architected* > *FSx for ONTAP*。
+. 为任何配置选择*查看和修复*。请务必仔细审查建议。
++
+该建议解释了未优化配置的最佳实践和潜在缺陷。
+
+. 选择资源，然后选择*修复*。
++
+某些修复操作仅适用于特定操作，并不总是适用于多个资源。例如，您可以修复单个卷的配置，但不能修复多个卷的配置。
+
+. 查看操作项目，了解此修复的后果，例如实例停机或服务中断。
+. 如果您希望 Workload Factory 应用建议的更改，请选择*修复*。
+
+
+.结果
+修复过程开始。选择帐户设置菜单，然后选择 *Tracker* 以查看操作状态。
+
+
+
+[[dismiss-a-configuration-analysis]]
+== 忽略配置分析
+
+无限期停止一个或多个资源的配置分析。您可以在需要时重新启动分析。
+
+关闭以停止对一个或多个 FSx for ONTAP 文件系统或卷的配置分析。您可以随时重新启动分析。
+
+[role="tabbed-block"]
+====
+.忽略配置的配置分析
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Well-architected* > *FSx for ONTAP*。
+. 在"配置"下，确定不适用于您的环境的配置。
+. 选择 image:icon-action.png["操作菜单图标"]，然后选择 *Dismiss*。
+. 在 Dismiss configuration 对话框中，选择 *Dismiss* 停止配置分析。
+
+
+--
+.忽略资源的配置分析
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Well-architected* > *FSx for ONTAP*。
+. 在 FSx for ONTAP 架构完善的仪表板中，在"配置"下，选择不适用于您的环境的配置。
+. 在配置页面上，选择要从配置分析中排除的资源。
++
+** 对于一种资源：选择 image:icon-action.png["操作菜单图标"] ，然后选择 *Dismiss*。
+** 对于多个资源：选择资源，然后选择"批量操作"旁边的 *Dismiss*。
+
+
+. 在"关闭资源"对话框中，选择 *Dismiss* 以停止分析。
+
+
+--
+====
+.结果
+Workload Factory 停止对选定配置的配置分析。
+
+
+
+[[reactivate-a-dismissed-configuration-analysis]]
+== 重新激活已解除的配置分析
+
+随时重新激活已关闭的配置分析。您可以选择一个或多个要重新激活的配置或资源。
+
+[role="tabbed-block"]
+====
+.重新激活配置的配置分析
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Well-architected* > *FSx for ONTAP*。
+. 选择 *Dismissed configurations*。
+. 确定要重新激活的配置，然后选择*Reactivate*。
+
+
+--
+.重新激活资源的配置分析
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Well-architected* > *FSx for ONTAP*。
+. 在 FSx for ONTAP 架构完善的仪表板中，在"配置"下，选择不适用于您的环境的配置。
+. 在配置页面上，选择*已关闭的配置*。
+. 选择要重新激活的资源。
++
+** 对于一种资源：选择 image:icon-action.png["操作菜单图标"]，然后选择 *Reactivate*。
+** 对于多个资源：选择资源，然后选择"批量操作"旁边的 *Reactivate*。
+
+
+
+
+--
+====
+.结果
+Workload Factory 每天重新激活配置分析并运行新的分析。

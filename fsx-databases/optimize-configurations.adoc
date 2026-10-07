@@ -1,0 +1,238 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/optimize-configurations.html 
+keywords: optimize, configuration, storage, compute, application, resiliency assessment, scan, optimization, Microsoft SQL Server, host, instance, FSx for ONTAP 
+summary: NetApp Workload Factory for Databases 扫描 Microsoft SQL Server 配置，提供见解和建议，以帮助您实现卓越运营。 
+---
+= 在 NetApp Workload Factory 中实施架构完善的数据库配置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用配置分析见解和建议，利用 NetApp Workload Factory 为使用 Microsoft SQL Server 和 Oracle 的数据库配置实施最佳实践。您可以轻松查看精心设计的状态，了解数据库配置的问题，并修复未针对可靠性、安全性、效率、性能和成本进行优化的配置。
+
+您还可以忽略不适用于您的环境的配置分析，以避免额外的警报和不准确的结果。
+
+link:optimize-overview.html["了解 Workload Factory 中的配置分析和良好架构状态。"]
+
+
+
+[[about-this-task]]
+== 关于此任务
+
+Workload Factory 每天分析数据库配置。每日分析提供精心设计的状态、见解和建议。
+
+当您向 AWS 账户授予 _view、planning 和 analysis_ 权限时，许多建议都可用。如果您授予 _operations and remediation_ 权限，则所有建议都可用，您可以自动修复配置问题以满足最佳实践。
+
+您可以从 Workload Factory 控制台中的数据库清单或精心设计的仪表板查看和修复问题。由于数据库配置的要求各不相同，您可以忽略不适用于数据库环境的特定配置的分析。这有助于您避免不必要的警报和不准确的优化结果。
+
+或者，您可以执行一次性评估，查看数据库配置的最佳实践，而无需存储凭据或注册资源。
+
+您还可以用简单的语言创建自定义规则，以根据组织的标准和 NetApp 最佳实践验证您的环境。通过试运行测试规则，然后安排它们在您的环境中运行。 link:../fsx-storage/learn-custom-rules.html["详细了解自定义规则。"^]
+
+.分析的内容
+Workload Factory 分析以下配置的良好架构状态：
+
+对于 Microsoft SQL Server 实例：
+
+* 存储规模：包括存储层、文件系统余量、日志驱动器大小和 TempDB 驱动器大小
+* 存储布局：包括用户数据文件放置、日志文件放置和 TempDB 放置
+* 存储配置：包括容量管理、精简配置、分层策略、快照、Microsoft 多路径 I/O (MPIO) 状态和 MPIO 超时设置
+* 计算：包括规模调整、操作系统补丁和网络适配器设置，如接收端缩放（RSS）、TCP 卸载和 MTU 对齐
+* 应用程序：包括 Microsoft SQL Server 许可证、Microsoft SQL Server 修补程序和 MAXDOP 设置
+* 弹性：包括本地快照、备份配置、跨区域复制 (CRR)、Microsoft SQL High Availability 和克隆清理
+* 克隆：包括刷新和删除克隆（沙箱）的选项，这些克隆是在 Workload Factory 内部或外部创建的，且创建时间已超过 60 天
+
+
+对于 Oracle 数据库：
+
+* 存储规模：包括交换空间分配和文件系统余量
+* 存储配置：包括容量管理、精简配置、分层策略、快照、存储效率和使用 NFS 或 iSCSI 进行部署的操作系统配置，包括或不包括 Automatic Storage Management (ASM)，包括 Microsoft Multipath I/O (MPIO) 状态和设置，以及以下 dNFS 设置：dNFS 启用、dNFS 一致 IP 解析、dNFS 配置文件和 dNFS `nosharecache`
+* 存储布局：包括重做日志放置、临时表空间放置、数据文件放置、归档日志放置、控制文件放置和二进制文件放置、ASM 磁盘组 LUN 计数
+* 计算：包括操作系统补丁
+* 应用程序：包括 Oracle 关键补丁更新
+* 弹性：包括跨区域复制 (CRR)、应用程序一致性快照、备份配置和克隆清理
+
+
+当配置依赖于其他配置时，Oracle 的架构完善分析会通知您，并列出优化链接配置的操作。
+
+
+
+[[perform-a-one-time-assessment-of-your-configurations]]
+== 对您的配置执行一次性评估
+
+执行一次性评估以找出 Microsoft SQL Server 实例或 Oracle 数据库的良好架构状态，而无需存储凭据或注册资源。
+
+您可以多次运行脚本并上传结果。Workload Factory 会在每次上传时更新架构完善的状态和见解。
+
+对于每个配置，您可以查看当前值和建议值。
+
+[role="tabbed-block"]
+====
+.Microsoft SQL Server 实例
+--
+.步骤
+. 使用其中一个 link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["控制台体验"^] 登录。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到存储、EDA、AI、数据库、VMware 和管理等工作负载。"] 然后选择 *Databases*。
+. 在*清单*中，选择 *SQL Server* 作为引擎类型。
+. 选择*一次性评估* > *了解评估*。查看有关一次性评估的信息。
+. 选择 *Download script*。
++
+.. 将脚本复制到 Microsoft SQL Server 主机。
+.. 在 PowerShell 中运行脚本。一个脚本从所有实例收集元数据。
+
+
+. 选择 *One-time assessment* > *Upload*。找到文件并将其上传到 Workload Factory 控制台。
+. 查看任何配置的建议。如果未优化配置，Workload Factory 将在建议中包含最佳实践和潜在问题。
+
+
+--
+.Oracle 数据库
+--
+.步骤
+. 使用其中一个 link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["控制台体验"^] 登录。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到存储、EDA、AI、数据库、VMware 和管理等工作负载。"] 然后选择 *Databases*。
+. 在*库存*中，选择 *Oracle* 作为引擎类型。
+. 选择*一次性评估* > *了解评估*。查看有关一次性评估的信息。
+. 选择 *Download script*。
++
+.. 将 Python 脚本复制到 Oracle 数据库主机。
+.. 在相应的 shell 中运行脚本。一个脚本从所有数据库收集元数据。
+
+
+. 选择 *One-time assessment* > *Upload*。找到文件并将其上传到 Workload Factory 控制台。
+. 查看任何配置的建议。如果未优化配置，Workload Factory 将在建议中包含最佳实践和潜在问题。
+
+
+--
+====
+
+
+[[perform-an-on-demand-assessment]]
+== 执行按需评估
+
+如果您在 AWS 帐户中授予 _operations and remediation_ 权限，则可以对 Oracle 数据库执行按需评估。您无需注册资源即可运行此评估。
+
+.步骤
+. 使用其中一个 link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["控制台体验"^] 登录。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到存储、EDA、AI、数据库、VMware 和管理等工作负载。"] 然后选择 *Databases*。
+. 在*库存*中，选择 *Oracle* 作为引擎类型。
+. 选择*查看和修复*。
+. 在 Well-architected 状态选项卡中，选择*立即分析*。
+. 查看任何配置的建议。如果未优化配置，Workload Factory 将在建议中包含最佳实践和潜在问题。
+
+
+
+
+[[before-you-begin-fixing-dismissing-and-re-activating-configurations]]
+== 在开始修复、关闭和重新激活配置之前
+
+以下要求是持续评估数据库环境和自动修复配置问题所必需的。一次性评估不需要这些要求。
+
+* 您必须在 AWS 帐户中link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["授予 _operations and remediation_ 权限"^]。
+* 您必须在 Workload Factory 中注册资源，且存储类型必须为 FSx for ONTAP。 link:register-instance.html["了解如何注册资源。"]
+* 在修复设置或配置之前，请查看每个建议。对于 RSS 和 MAXDOP，请在更改生产环境之前测试建议的设置以检查性能。
+
+
+
+
+[[fix-a-configuration-issue]]
+== 修复配置问题
+
+修复在 FSx for ONTAP 存储上运行的 SQL Server 或 Oracle 环境的配置问题。
+
+
+NOTE: 修复配置可能会导致停机或服务中断。在选择修复配置之前，请务必仔细阅读建议。
+
+.步骤
+. 使用其中一个 link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["控制台体验"^] 登录。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到存储、EDA、AI、数据库、VMware 和管理等工作负载。"] 然后选择 *Databases*。
+. 在*清单*中，选择引擎类型：Microsoft SQL Server 或 Oracle。
+. 选择要为特定配置修复的资源。
++
+** 如果选择了 Microsoft SQL Server，请选择*实例*选项卡。
+** 如果您选择了 Oracle，请选择 *Databases* 选项卡。
+
+
+. 选择*查看并修复*以查看实例的配置问题。
+. 在实例的良好架构状态页面上，查看分析结果。
++
+您可以按类别、子类别、状态、严重程度和标签筛选配置问题。
+
++
+选择 *Export PDF* 以下载调查结果报告。
+
+. 选择下拉箭头以查看任何配置的建议。建议包括最佳实践、未优化配置的潜在缺陷以及重要注意事项。请务必仔细阅读该建议。
+. 当选项可用时，选择*查看并修复*配置问题。
++
+默认为*全选*，但您可以选择要修复的特定资源。
+
++
+.. 对于除克隆清理之外的所有配置，请查看建议详细信息，以了解修复此问题的影响。某些补救操作可能会导致停机或服务中断。
+.. 对于克隆清理，选择要刷新或删除的克隆数据库（沙盒）。
++
+*** 刷新克隆会将其与其源数据库同步。刷新仅适用于在 Workload Factory 中创建的克隆。
+*** 删除克隆会永久删除它，释放存储空间并降低成本。您可以删除在 Workload Factory 内外创建的克隆。
+
+
+
+
+. 选择*继续*以修复配置问题。
+
+
+.结果
+Workload Factory 开始修复问题。选择 *作业监控* 选项卡以查看操作状态。
+
+
+
+[[dismiss-the-analysis-of-database-configurations]]
+== 忽略对数据库配置的分析
+
+忽略不适用于数据库环境的特定数据库配置的分析，以避免不必要的警报和不准确的优化结果。您可以随时重新激活已忽略的配置分析。
+
+.步骤
+. 使用其中一个 link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["控制台体验"^] 登录。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到存储、EDA、AI、数据库、VMware 和管理等工作负载。"] 然后选择 *Databases*。
+. 从“数据库”菜单中，选择 *清单*。
+. 在清单中，选择数据库引擎类型：*Microsoft SQL Server* 或 *Oracle*。
+. 导航到具有要推迟的配置的 SQL Server 实例或 Oracle 数据库，选择操作菜单，然后选择 *Well-architected*。
+. 在 Well-architected 分析页面上，向下滚动到要推迟的配置，选择操作菜单，然后选择 *关闭*。
+. 在“忽略配置”对话框中，选择 *忽略* 选项，然后选择 *忽略* 以确认忽略。
+
+
+.结果
+Workload Factory 停止配置分析。
+
+您可以随时重新激活分析。配置不再包含在总优化分数中。
+
+
+
+[[reactivate-a-dismissed-configuration-analysis]]
+== 重新激活已解除的配置分析
+
+随时重新激活已关闭的配置分析。您可以选择一个或多个要重新激活的配置。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Databases*。
+. 从“数据库”菜单中，选择 *清单*。
+. 在清单中，选择数据库引擎类型：*Microsoft SQL Server* 或 *Oracle*。
+. 导航到具有要推迟的配置的 SQL Server 实例或 Oracle 数据库，选择操作菜单，然后选择 *Well-architected*。
+. 在 Well-architected 分析页面上，选择 *已忽略的配置* 以仅显示已忽略的配置。
+. 选择*重新激活*以重新启动已推迟或已解除配置的配置分析。
+
+
+.结果
+Workload Factory 重新激活配置分析并从现在开始每天运行。
+
+
+
+[[related-information]]
+== 相关信息
+
+* link:optimize-overview.html["了解 Workload Factory 中数据库资源的配置分析和架构良好的状态"]
+* link:../fsx-storage/create-link.html["使用链接连接到 FSx for ONTAP 文件系统"^]
+* link:../fsx-storage/learn-custom-rules.html["了解自定义规则"^]
+

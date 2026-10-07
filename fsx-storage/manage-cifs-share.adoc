@@ -1,0 +1,103 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-cifs-share.html 
+keywords: cifs, smb, SMB, CIFS, cifs share, change, update, modify, delete, create 
+summary: 在 Workload Factory 中管理卷的 SMB 或 CIFS 共享包括创建、确定用户和组访问权限以及删除。 
+---
+= 在 NetApp Workload Factory 中管理卷的 SMB/CIFS 共享
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 Workload Factory 中管理卷的 SMB/CIFS 共享包括创建 SMB/CIFS 共享、确定要授予访问权限的用户和组以及授予其的权限级别，以及删除 SMB/CIFS 共享。
+
+.开始之前
+在开始之前，请执行以下操作：
+
+* 要管理 SMB/CIFS 共享，您必须关联链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+* 确定要授予访问权限的用户或组以及授予他们的权限级别。
+
+
+
+
+[[create-an-smbcifs-share-for-a-volume]]
+== 为卷创建 SMB/CIFS 共享
+
+按照步骤为卷创建 SMB/CIFS 共享。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Volumes explorer*。
+. 选择要更改其 SMB 共享的卷的操作菜单。
+. 选择*高级操作*，然后选择*管理 SMB/CIFS 共享*。
+. 在管理 SMB/CIFS 共享页面上，选择 *创建 SMB/CIFS 共享*。
+. 在“创建 SMB/CIFS 共享”对话框中，提供以下内容：
++
+.. *名称*：输入 SMB/CIFS 共享的名称。
+.. *路径*：使用默认卷名定义路径，或者提供指向内部目录的共享。
++
+卷名的有效路径输入，例如 "avocado"，如下所示：
+
++
+*** /avocado
+*** /avocado/folder
+*** /avocado/folder/subfolder
+*** /avocado/file-name
++
+共享名的有效路径输入，例如“Server”，如下所示：
+
+*** \\服务器
+*** \\Server\Projects
+*** \\Server\Projects\共享资源
+
+
+.. *权限*：选择完全控制、读取/写入、读取或无访问权限，然后输入用分号（;）分隔的用户或组。用户或组区分大小写，必须使用“domain\username”格式包含用户的域。
+
+
+. 选择 *Create*。
+
+
+
+
+[[change-an-smbcifs-share-for-a-volume]]
+== 更改卷的 SMB/CIFS 共享
+
+按照步骤更改卷的 SMB/CIFS 共享设置。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 *FSx for ONTAP* 选项卡中，选择包含要更新的卷的文件系统的操作菜单，然后选择 *管理*。
+. 从文件系统概述中，选择*卷*选项卡。
+. 从“卷”选项卡中，选择要更改其 SMB 共享的卷的操作菜单。
+. 选择*高级操作*，然后选择*管理 SMB/CIFS 共享*。
+. 在管理 SMB/CIFS 共享页面上，选择*查看和编辑*。
+. 更改 SMB/CIFS 访问权限，或要授予权限的用户或组。
++
+更改可能会导致当前用户或组无法访问 SMB/CIFS 共享。
+
+. 选择 *Apply* 以保存更改。
+
+
+
+
+[[delete-an-smbcifs-share-for-a-volume]]
+== 删除卷的 SMB/CIFS 共享
+
+按照步骤删除卷的 SMB/CIFS 共享。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 *FSx for ONTAP* 选项卡中，选择包含要更新的卷的文件系统的操作菜单，然后选择 *管理*。
+. 从文件系统概述中，选择*卷*选项卡。
+. 从“卷”选项卡中，选择要更改其 SMB 共享的卷的操作菜单。
+. 选择*高级操作*，然后选择*管理 SMB/CIFS 共享*。
+. 在管理 SMB/CIFS 共享页面上，选择 SMB/CIFS 共享的操作菜单，然后选择 *删除*。
++
+删除 SMB/CIFS 共享会使其不可用，并且任何想要挂载它的用户都无法访问它。
+
+. 在删除 SMB/CIFS 共享对话框中，选择 *删除* 以确认删除。
+

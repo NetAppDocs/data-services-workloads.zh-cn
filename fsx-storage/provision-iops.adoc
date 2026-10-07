@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/provision-iops.html 
+keywords: iops, SSD, provision, allocate 
+summary: 自动或手动为 FSx for ONTAP 文件系统配置 SSD IOPS。 
+---
+= 为 FSx for ONTAP 文件系统配置 SSD IOPS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 NetApp Workload Factory 中为 FSx for ONTAP 文件系统自动调配或手动调配 SSD IOPS。
+
+.关于此任务
+您可以为 FSx 文件系统启用自动 SSD IOPS 调配或手动调配 IOPS。
+
+自动调配的 IOPS 按每 GiB 三个 IOPS 计算。
+
+如果您手动配置 IOPS，则可能需要在 link:adjust-file-system-capacity.html["增加文件系统容量"] 之前增加 IOPS。
+
+有关 IOPS 限制的信息，请参见 AWS FSx for NetApp ONTAP 文档中的 link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/limits.html["配额"^]。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择要为其配置 IOPS 的文件系统的操作菜单，然后选择*管理*。
+. 在信息下，当鼠标悬停在 *IOPS 分配* 行上时，选择下拉箭头旁边显示的铅笔图标。
+. 在 Provisioned IOPS 对话框中，选择 *Automatic* 或 *User provisioned*。
+. 如果选择*用户设置*，请输入所需的*IOPS 值*。
+. 选择*应用*。
+

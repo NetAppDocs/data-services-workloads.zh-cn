@@ -1,0 +1,215 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/explore-savings.html 
+keywords: cost, savings, compare costs, EBS, EFS, FSx for Windows file servers FSx for ONTAP 
+summary: '探索您的存储工作负载在 Amazon Elastic Block Store (EBS) 存储、Elastic File System (EFS) 和 FSx for Windows File Servers 中与 AWS FSx for NetApp ONTAP 相比所能节省的成本。' 
+---
+= 在 NetApp Workload Factory 中探索使用 FSx for ONTAP 节省的成本
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+探索您的存储工作负载使用 Amazon Elastic Block Store （EBS）、Elastic File System （EFS） 和 FSx for Windows File Server 与 FSx for NetApp ONTAP 相比可节省的成本。
+
+NetApp Workload Factory 包含一个存储节省计算器，用于将 Amazon 存储环境与 FSx for ONTAP 进行比较。您可以在提供或不提供 AWS 凭据的情况下探索节省费用，并为您的存储环境自定义配置设置。例如，当您提供 AWS 凭据时，您可以选择 Amazon Elastic Block Store 的一个或多个实例，并让 Workload Factory 自动进行比较。无论是手动还是自动，计算器都可以确定哪种存储服务为您的存储需求提供最低的成本。
+
+如果存储计算器确定最具成本效益的存储是 FSx for ONTAP，您可以创建或保存 FSx for ONTAP 配置，并使用 Codebox 生成基础架构即代码模板，无论您授予 Workload Factory 什么权限。
+
+
+
+[[calculator-options]]
+== 计算器选项
+
+有两个计算器选项可用于在您的系统与 FSx for ONTAP 之间进行成本比较——针对您的 Amazon 存储环境的自定义和自动检测。
+
+通过自定义探索节省：您可以提供存储环境的配置设置，包括使用案例、区域、卷或文件系统的数量、存储量、快照频率、每个快照的更改量、配置的 IOPS、吞吐量等。
+
+探索检测到的存储环境的节省：Workload Factory 链接到您现有的 AWS 存储环境，并将详细信息提取到计算器以进行自动比较。您需要授予自动化权限才能使用自动模式。您可以更改用例，但所有其他详细信息将在计算中自动确定。
+
+此外，您可以link:add-credentials.html["添加 AWS 凭据"^]来提高计算器分析的准确性。选择 *根据现有资源计算节省金额*。您将被重定向到“添加凭据”页面。添加凭据后，选择要与 FSx for ONTAP 进行比较的现有资源，然后选择 *探索节省金额*。
+
+
+
+[[explore-savings-via-customization]]
+== 通过自定义功能查看优惠
+
+根据您选择的存储，按照相应选项卡下的步骤进行操作。
+
+[role="tabbed-block"]
+====
+.Amazon Elastic Block Store (EBS)
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 *FSx for ONTAP* 中，选择 *探索节省*，然后选择 *Amazon Elastic Block Store (EBS)* 选项卡。
+. 在存储节省计算器中，提供以下详细信息：
++
+.. *用例*：必需。从下拉菜单中选择一个用例。所选用例决定了用于比较的 FSx for ONTAP 文件系统特征。
+.. *区域*：可选。从下拉菜单中选择 EBS 配置的区域。
+.. *选择 EBS 卷类型*：可选。选择用于配置的 EBS 卷类型。
+.. *卷数*：可选。在 EBS 配置中输入卷数。
+.. *每卷存储量 (TiB)*：可选。输入每个卷的存储量（以 TiB 为单位）。
+.. *快照频率*：可选。选择 EBS 配置的快照频率。
+.. *每个快照的更改量（GiB）*：可选。仅适用于快照存储。输入每个快照的更改量（以 GiB 为单位）。
+.. *每个卷调配的 IOPS*：可选。对于 gp3、io1 和 io2 卷。输入每个卷的调配 IOPS。
+.. *吞吐量 (MiB/s)*：可选。仅适用于 gp3 卷。输入每个卷的吞吐量，单位为 MiB/s。
+
+
+
+
+--
+.Amazon FSx for Windows File Server
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 *FSx for ONTAP* 中，选择 *探索节省*，然后选择 *Amazon Elastic Block Store (EBS)* 选项卡。
+. 在存储节省计算器中，提供以下详细信息：
++
+.. *用例*：必需。从下拉菜单中选择一个用例。所选用例决定了用于比较的 FSx for ONTAP 文件系统特征。
+.. *区域*：可选。从下拉菜单中选择您的 FSx for Windows File Server 配置的区域。
+.. *部署类型*：可选。选择*单个可用区*或*多个可用区*。
+.. *存储类型*：默认情况下选择 SSD 存储类型。
+.. *存储容量 (TiB)*：可选。输入配置的存储容量。
+.. *重复数据删除节省（%）*：可选。输入您期望从重复数据删除中获得的容量节省百分比。
+.. *快照频率*：可选。选择配置的快照频率。
+.. *每个快照的更改量（GiB）*：可选。仅适用于快照存储。输入每个快照的更改量（以 GiB 为单位）。
+.. *已配置 SSD IOPS*：可选。输入已配置的 SSD IOPS。
+.. *吞吐量（MiB/s）*：可选。输入以 MiB/s 为单位的吞吐量。
+
+
+
+
+--
+.Amazon Elastic File System (EFS)
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 *FSx for ONTAP* 中，选择 *探索节省*，然后选择 *Amazon Elastic Block Store (EBS)* 选项卡。
+. 在存储节省计算器中，提供以下详细信息：
++
+.. *用例*：必需。从下拉菜单中选择一个用例。所选用例决定了用于比较的 FSx for ONTAP 文件系统特征。
+.. *区域*：可选。从下拉菜单中选择您的 FSx for Windows File Server 配置的区域。
+.. *文件系统类型*：可选。选择*区域*或*单可用区*。
+.. *存储容量（TiB）*：可选。输入 EFS 配置的存储容量。
+.. *经常访问的数据（%）*：可选。输入频繁访问的数据百分比。
+.. *吞吐量模式*：可选。选择*预配吞吐量*或*弹性吞吐量*。
+.. *吞吐量 (MiB/s)*：可选。输入以 MiB/s 为单位的吞吐量。
+
+
+
+
+--
+====
+提供存储系统配置的详细信息后，请查看页面上提供的计算和建议。
+
+此外，向下滚动到页面底部，通过选择以下选项之一查看报告：
+
+* *导出 PDF*
+* *通过电子邮件发送*
+* *查看计算*
+
+
+要切换到 FSx for ONTAP，请按照说明进行操作 <<部署 FSx for ONTAP 文件系统,部署 FSx for ONTAP 文件系统>>。
+
+
+
+[[explore-savings-for-detected-storage-environments]]
+== 探索检测到的存储环境的节省
+
+.开始之前
+为了让 Workload Factory 能够在您的 AWS 帐户中检测 Amazon Elastic Block Store（EBS）、Elastic File System（EFS）和 FSx for Windows File Server 存储环境，请确保您在 AWS 帐户中link:add-credentials.html["授予 _查看、规划和分析_ 权限"^]。
+
+
+NOTE: 此计算器选项不支持 EBS 快照和 FSx for Windows File Server 卷影副本的计算。通过自定义探索节省金额时，您可以提供 EBS 和 FSx for Windows File Server 快照详细信息。
+
+根据您选择的存储，按照相应选项卡下的步骤进行操作。
+
+[role="tabbed-block"]
+====
+.Amazon Elastic Block Store (EBS)
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 *FSx for ONTAP* 中，选择 *探索节省*，然后选择 *Amazon Elastic Block Store (EBS)* 选项卡。
+. 在 *Elastic Block Store (EBS)* 选项卡中，选择要与 FSx for ONTAP 进行比较的实例，然后选择 *Explore savings*。
+. 此时将显示存储节省计算器。已根据您选择的实例预填充了以下存储系统特性：
++
+.. *用例*：配置的用例。如有需要，您可以更改用例。
+.. *选定卷*：EBS 配置中的卷数
+.. *总存储量（TiB）*：每个卷的存储量（以 TiB 为单位）
+.. *调配的总 IOPS*：用于 gp3、io1 和 io2 卷
+.. *总吞吐量（MiB/s）*：仅适用于 gp3 卷
+
+
+
+
+--
+.Amazon FSx for Windows File Server
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 *FSx for ONTAP* 中，选择 *浏览优惠*，然后选择 *Amazon FSx for Windows File Server* 选项卡。
+. 在 *Amazon FSx for Windows File Server* 选项卡中，选择要与 FSx for ONTAP 进行比较的实例，然后选择 *浏览节省金额*。
+. 此时将显示存储节省计算器。将根据您选择的实例的部署类型预先填写以下存储系统特征：
++
+.. *用例*：配置的用例。如有需要，您可以更改用例。
+.. *选定的文件系统*
+.. *总存储量（TiB）*
+.. *已调配 SSD IOPS*
+.. *吞吐量（MiB/s）*
+
+
+
+
+--
+.Amazon Elastic File System (EFS)
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 *FSx for ONTAP* 中，选择*探索节省*，然后选择 *Amazon Elastic File System (EFS)* 选项卡。
+. 在 *弹性文件系统（EFS）* 选项卡中，选择要与 FSx for ONTAP 进行比较的实例，然后选择 *浏览节省金额*。
+. 此时将显示存储节省计算器。已根据您选择的实例预填充了以下存储系统特性：
++
+.. *用例*：配置的用例。如有需要，您可以更改用例。
+.. *文件系统总数*
+.. *总存储量（TiB）*
+.. *已调配总吞吐量（MiB/s）*
+.. *总弹性吞吐量 - 读取（GiB）*
+.. *总弹性吞吐量 - 写入（GiB）*
+
+
+
+
+--
+====
+提供存储系统配置的详细信息后，请查看页面上提供的计算和建议。
+
+此外，向下滚动到页面底部，通过选择以下选项之一查看报告：
+
+* *导出 PDF*
+* *通过电子邮件发送*
+* *查看计算*
+
+
+
+
+[[deploy-fsx-for-ontap-file-systems]]
+== 部署 FSx for ONTAP 文件系统
+
+如果您想切换到 FSx for ONTAP 以节省成本，请选择 *Create* 直接从 Create an FSx for ONTAP file system 向导创建文件系统，或选择 *Save* 保存建议的配置以供日后使用。
+
+部署方法:: 使用_文件系统创建_权限，您可以直接从 Workload Factory 部署 FSx for ONTAP 文件系统。您还可以从 Codebox 窗口复制内容，并使用其中一种 Codebox 方法部署系统。
++
+--
+拥有_查看、规划和分析_权限，您可以从 Codebox 窗口复制内容，并使用其中一种 Codebox 方法部署 FSx for ONTAP 文件系统。
+
+--
+

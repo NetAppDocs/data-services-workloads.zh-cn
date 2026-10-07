@@ -1,0 +1,96 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/learn-fsx-ontap.html 
+keywords: Amazon FSx for NetApp ONTAP, FSx, storage, aws 
+summary: Amazon FSx for NetApp ONTAP 是一项完全托管的服务，允许客户在 Workload Factory 中启动和运行文件系统作为工作负载的存储后端。 
+---
+= 了解 NetApp Workload Factory 中的 Amazon FSx for NetApp ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Amazon FSx for NetApp ONTAP 是一种完全托管的基于云的数据存储服务，可提供高级数据管理功能和高度可扩展的性能。FSx for ONTAP 允许您在 NetApp Workload Factory 中创建和管理文件系统作为所有工作负载的存储后端。
+
+FSx for ONTAP 提供了与当今 NetApp 客户在本地使用的相同的功能、性能和管理功能，以及原生 AWS 服务的简单性、敏捷性、安全性和可扩展性。
+
+FSx for ONTAP 是 Workload Factory 中的 _Storage_ 组件。
+
+
+
+[[features]]
+== 功能
+
+FSx for ONTAP 提供以下功能：
+
+* *完全托管服务*：提供与 Workload Factory 控制台集成的完全托管服务。
+* *高可用性*：为每个 FSx for ONTAP 文件系统提供高可用性，支持单可用区和多可用区部署。
+* *自动快照*：通过自动化、高效的快照保护数据，这些快照几乎是文件系统或卷的即时、空间高效的时间点只读副本。
+* *卷复制*：通过跨 Amazon Web Services 的跨区域复制提供灾难恢复。
+* *高效备份*：在紧急情况下，通过另一个区域的数据副本添加额外的保护层。
+* *快速克隆*：通过快速克隆加速应用程序开发。
+* *多协议支持*：支持网络文件系统（NFS）、服务器消息块（SMB）和互联网小型计算机系统接口（iSCSI）协议。
+* *高吞吐量*：提供高吞吐量性能，以确保在 FSx for ONTAP 文件系统之上运行的工作负载的低延迟。
+* *内存缓存和 NVMe 缓存*：包括独特的内存缓存和 NVMe 缓存，可提高频繁访问的数据的性能。
+* *数十万次 IOPS*：通过 SSD 磁盘提供数十万次 IOPS，确保您的存储和工作负载及时获得结果。
+* *精简配置*：允许提前配置容量，在需要更多容量之前节省成本。
+* *重复数据删除和压缩*：删除重复数据并压缩数据，以减少 FSx for ONTAP 文件系统所需的物理存储量，从而节省成本。
+* *数据分层*：通过将访问频率较低的数据从主高性能 SSD 存储层移动到辅助容量池存储层，从而降低存储成本。
+
+
+
+
+[[additional-features-in-workload-factory]]
+== Workload Factory 中的其他功能
+
+* *存储成本比较计算器*：将您的 Amazon Elastic Block Store（EBS）、Elastic File System（EFS）和 FSx for Windows File Server 存储成本与 FSx for ONTAP 进行比较。通过该计算器，您可以查看 FSx for ONTAP 存储配置如何提供潜在的成本节省，并计划向 FSx for ONTAP 存储的迁移。
+* *Workload Factory 用户界面*：提供 _快速创建_ 和 _高级创建_ 部署模式选项。快速创建包括 AWS、NetApp 和行业标准的存储配置最佳实践。
+* *Codebox*：为开发人员提供用于 FSx for ONTAP 操作的代码查看器、用于复制和下载的代码模板以及用于代码重用的自动化目录。
+
+
+
+
+[[tools-to-use-netapp-workload-factory]]
+== 使用 NetApp Workload Factory 的工具
+
+您可以将 NetApp Workload Factory 与以下工具一起使用：
+
+* *Workload Factory 控制台*：Workload Factory 控制台提供应用程序和项目的可视化整体视图。
+* *NetApp Console*：NetApp Console 提供混合界面体验，以便您可以将 Workload Factory 与其他 NetApp 数据服务一起使用。
+* *Ask me*：无需离开 Workload Factory 控制台，即可使用 Ask me AI 助手提问并了解有关 Workload Factory 的更多信息。从 Workload Factory 帮助菜单访问 Ask me。
+* *CloudShell CLI*：Workload Factory 包括一个 CloudShell CLI，用于通过单个基于浏览器的 CLI 管理和操作跨账户的 AWS 和 NetApp 环境。从 Workload Factory 控制台的顶部栏访问 CloudShell。
+* *REST API*：使用 Workload Factory REST API 部署和管理您的 FSx for ONTAP 文件系统和其他 AWS 资源。
+* *CloudFormation*：使用 AWS CloudFormation 代码执行您在 Workload Factory 控制台中定义的操作，以从 AWS 帐户中的 CloudFormation 堆栈对 AWS 和第三方资源进行建模、配置和管理。
+* *NetApp Terraform 提供程序*：使用 Terraform 构建和管理在 Workload Factory 控制台中生成的基础设施工作流。
+
+
+
+
+[[cost]]
+== 成本
+
+AWS 维护您的 FSx for ONTAP 帐户，而不是 Workload Factory。请参阅 link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html#pricing-for-fsx-ontap["Amazon FSx for NetApp ONTAP 的定价"^]。
+
+
+
+[[regions]]
+== 地区
+
+在所有支持 FSx for ONTAP 的商业区域均支持 Workload factory。 link:https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/["查看支持的 Amazon 区域。"^]
+
+不支持以下 AWS 区域：
+
+* 中国地区
+* 机密云
+* 绝密云
+
+
+
+
+[[getting-help]]
+== 获取帮助
+
+Amazon FSx for NetApp ONTAP 是 AWS 的第一方解决方案。对于与 FSx for ONTAP 文件系统、基础架构或使用此服务的任何解决方案相关的问题或技术支持问题，请使用 AWS 管理控制台中的支持中心打开 AWS 支持案例。选择“FSx for ONTAP”服务和相应类别。提供创建 AWS 支持案例所需的剩余信息。
+
+对于有关 Workload Factory 或 Workload Factory 应用程序和服务的一般性问题，请参阅 link:../get-help.html["获取 FSx for ONTAP for Workload Factory 的帮助"]。

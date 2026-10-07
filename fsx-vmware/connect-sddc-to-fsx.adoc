@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/connect-sddc-to-fsx.html 
+keywords: vm workloads, fsx for ontap, sddc, vmware cloud on aws 
+summary: 部署 FSx for ONTAP 文件系统后，您需要将该系统连接到您的 VMware Cloud on AWS 基础架构。您的 SDDC 提供了连接到 FSx for ONTAP 文件系统的网络选项，方法是使用 VPC 对等功能将网络连接扩展到外部 NFS 存储卷。 
+---
+= 将 FSx for ONTAP 文件系统连接到 VMware Cloud on AWS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+部署 FSx for ONTAP 文件系统后，您需要将该系统连接到您的 VMware Cloud on AWS 基础架构。您的软件定义数据中心（SDDC）提供了网络选项，通过使用 VPC 对等功能将网络连接扩展到外部 NFS 存储卷，从而连接到 FSx for ONTAP 文件系统。
+
+https://vmc.techzone.vmware.com/fsx-guide?check_logged_in=1#amazon-vpc-peering["查看 Amazon VPC 对等文档以了解详细信息"^]
+
+下图显示了如何使用 VPC 对等连接将单可用区（AZ）SDDC 集群连接到 FSx for ONTAP 单 AZ 部署。
+
+image:diagram-vpc-connect-vmware-fsx.png["显示如何使用 VPC 对等连接将单 AZ SDDC 集群连接到 FSx for ONTAP 单 AZ 部署的图表。"]

@@ -1,0 +1,158 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-configure-latency-monitoring.html 
+keywords: latency analysis, configure thresholds, CloudWatch alarms, latency monitoring, FSx for ONTAP, warning events, critical events, latency notifications, email notifications, SNS notifications, latency configuration 
+summary: 配置延迟监控阈值和通知设置，以检测和响应 FSx for ONTAP 卷的性能问题。 
+---
+= 在 Workload Factory 中为 EDA 配置延迟监控
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+为读取和写入延迟设置警告和关键限制，以跟踪 FSx for ONTAP 卷性能。您还可以启用电子邮件或 Amazon SNS 警报，以便在出现延迟问题时获得实时通知。
+
+
+
+[[before-you-begin]]
+== 开始之前
+
+在配置延迟监控之前，请确保满足下列要求。
+
+
+
+[[aws-credentials-and-permissions]]
+=== AWS 凭据和权限
+
+您必须将 AWS 凭据添加到具有读/写权限的 Workload Factory。延迟监控功能需要访问与您的 AWS 凭据关联的所有 FSx for ONTAP 卷的 CloudWatch 指标。
+
+延迟监控不支持 _View, planning, and analysis_ 权限。
+
+如果您尚未配置 AWS 凭据，请参阅 link:../fsx-storage/add-credentials.html["添加 AWS 凭据"^]。
+
+
+
+[[fsx-for-ontap-file-system]]
+=== FSx for ONTAP 文件系统
+
+您需要在 AWS 环境中至少部署一个带有卷的 FSx for ONTAP 文件系统。
+
+
+
+[[link-to-fsx-for-ontap]]
+=== 链接到 FSx for ONTAP
+
+要查看基本分析中的组件细分，必须将链接与 FSx for ONTAP 文件系统相关联。如果没有链接，您仍然可以查看延迟、IOPS 和吞吐量图表。如果尚未关联任何链接，请在 EDA 中选择*关联链接*，选择是否创建新链接或关联现有链接，然后选择*继续*以自动转到 Storage workloads 中的链接创建页面。
+
+要查看创建和关联链接的说明，请参阅 link:../fsx-storage/create-link.html["创建链接"^]。
+
+
+
+[[turn-on-ai-settings]]
+=== 开启 AI 设置
+
+如果您的账号管理员已关闭 AI 功能，您将看到一条消息，无法使用 AI 分析功能。请联系管理员或参阅 link:../admin/manage-genai-features.html["了解人工智能管理"^]。
+
+
+
+[[notification-configuration-optional]]
+=== 通知配置（可选）
+
+要在检测到延迟事件时接收电子邮件或 Amazon SNS 通知，请在 Workload Factory 设置中配置通知首选项。详情请参阅<<配置延迟通知>>。
+
+
+
+[[configure-latency-thresholds]]
+== 配置延迟阈值
+
+设置读取和写入的警告和临界限制。系统会持续检查这些限制，并在达到限制时发送警报。
+
+
+NOTE: 将关键事件阈值设置为高于警告阈值。否则，无法保存配置。
+
+
+NOTE: 您在 EDA 中设置的延迟阈值默认应用于您的整个帐户。您还可以在 General Storage 工作负载中设置单个卷延迟阈值，这些卷设置对该卷具有优先级。在 EDA 中更新帐户级别阈值不会更改任何卷级别设置。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *EDA*。
+. 选择 *Latency* 选项卡。
+. 在 EDA 延迟配置页面中，为以下内容配置阈值：
++
+** 读取延迟（警告和严重）
+** 写入延迟（警告和严重）
+** 每个的 IOPS 阈值
+** 评估的时间范围
+
+
+. 选择 *Apply* 以保存配置。
+
+
+.结果
+Workload Factory 收集链接到您的 AWS 凭据的所有 FSx for ONTAP 卷的延迟指标。超出设置阈值的卷将显示在延迟事件表中。
+
+
+
+[[configure-latency-notifications]]
+== 配置延迟通知
+
+设置电子邮件或 Amazon SNS 通知，以便在检测到高延迟时收到警报。您可以通过两个选项控制通知频率：
+
+* *每天提醒我（推荐）*：在任何文件系统中发生新的违规行为时收到通知。发送文件系统通知后，等待 24 小时后再发送相同文件系统的通知。
+* *通知任何延迟违规（每 20 分钟）*：检测到违规时，最多每 20 分钟收到一次通知。
+
+
+延迟通知是根据每个文件系统发送的。当文件系统中的一个或多个卷违反延迟阈值时，您会收到列出所有受影响卷的单个通知。
+
+
+NOTE: 如果受影响的卷超过 10 个，电子邮件将显示前 10 个卷，并显示受影响的其他卷的数量。您可以在 Workload Factory 控制台中查看所有受影响的卷。
+
+通知渠道：
+
+* *电子邮件*：发送到 Workload Factory 通知设置中配置的电子邮件地址
+* *Amazon SNS*：发布到您配置的 SNS 主题，以便与其他系统集成
+
+
+要启用通知，请参阅 link:../admin/configure-notifications.html#wf-console-email-notifications["配置通知设置"]。
+
+
+
+[[manage-latency-configuration]]
+== 管理延迟配置
+
+设置后，您可以随时更改阈值。
+
+.步骤
+. 在 *Latency* 页面中，选择 *Edit*。
+. 根据需要修改任何阈值。
++
+
+NOTE: 将临界阈值设置为高于警告阈值。如果将临界阈值设置为较低，则系统会显示错误。
+
+. 选择 *Apply* 以保存所做更改。
+
+
+
+
+[[best-practices]]
+== 最佳实践
+
+在配置延迟监控时，请考虑以下建议：
+
+* *设置实际阈值*：设置阈值以匹配您的工作负载。默认值是一个起点，但您可能需要根据您的环境进行调整。
+* *从警告阈值开始*：首先查看警告警报以了解正常性能，然后设置临界限制。
+* *仔细考虑时间范围*：短时间范围（5-10 分钟）可以更快地捕获问题，但可能会触发更多警报。较长的范围（15-20 分钟）可减少误报，但可能会较晚检测到问题。
+* *协调 IOPS 和延迟阈值*：必须满足这两个条件。如果设置的 IOPS 限制太高，则即使延迟较高，系统也可能不会发送警报。
+* *审查被驳回的事件*：定期审查事件被驳回的原因，以确定是否应调整阈值或改进系统。
+
+
+
+
+[[related-information]]
+== 相关信息
+
+* link:learn-latency-monitoring.html["了解延迟监控"]
+* link:task-analyze-latency-issues.html["分析延迟问题"]
+* link:task-analyze-latency-trends.html["分析延迟趋势"]
+

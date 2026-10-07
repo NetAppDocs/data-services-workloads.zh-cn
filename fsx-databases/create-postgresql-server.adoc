@@ -1,0 +1,284 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/create-postgresql-server.html 
+keywords: create, server, PostgreSQL, deploy, host, deploy a database host, database host 
+summary: 在 NetApp Workload Factory for Databases 中创建新的 PostgreSQL SQL 服务器。 
+---
+= 在 NetApp Workload Factory for Databases 中创建 PostgreSQL 服务器
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 NetApp Workload Factory for Databases 中创建新的 PostgreSQL 服务器或数据库主机，需要 FSx for ONTAP 文件系统部署和 Active Directory 资源。
+
+
+
+[[about-this-task]]
+== 关于此任务
+
+在从 Workload Factory 创建 PostgreSQL 服务器之前，请了解数据库主机配置的可用存储部署类型、Workload Factory 操作模式以及完成此操作的要求。
+
+.FSx for ONTAP 文件系统部署
+创建新的 PostgreSQL 服务器需要 FSx for ONTAP 文件系统作为存储后端。您可以使用现有的 FSx for ONTAP 文件系统或创建新的文件系统。如果您选择现有的 FSx for ONTAP 文件系统作为数据库服务器存储后端，我们将为 PostgreSQL 工作负载创建一个新的存储虚拟机。
+
++ FSx for ONTAP 文件系统有两种 PostgreSQL 服务器部署模型：_高可用性（HA）_或_单实例_。根据您选择的 FSx for ONTAP 部署模型，将为 FSx for ONTAP 文件系统创建不同的资源。
+
+* *高可用性 (HA) 部署*：当选择新的 FSx for ONTAP 文件系统进行 HA 部署时，将部署多可用区 FSx for NetApp ONTAP 文件系统。将为 HA 部署的数据、日志和 tempdb 文件创建单独的卷和 LUN。将为 Windows 集群的 Quorum 或见证磁盘创建额外的卷和 LUN。HA 部署配置主 PostgreSQL 服务器和辅助 PostgreSQL 服务器之间的流式复制。
+* *单实例部署*：创建新的 PostgreSQL 服务器时，将创建一个单可用区 FSx for ONTAP 文件系统。此外，还会为数据、日志和 tempdb 文件创建单独的卷和 LUN。
+
+
+
+
+[[before-you-begin]]
+== 开始之前
+
+您必须在 AWS 帐户中具有 link:../fsx-storage/add-credentials.html["授予 _数据库主机创建_ 权限"^] 才能在 workload factory 中创建新的数据库主机。
+
+
+
+[[create-a-postgresql-server]]
+== 创建 PostgreSQL 服务器
+
+您可以使用_快速创建_或_高级创建_部署模式在具有_自动_模式权限的 workload factory 中完成此任务。您还可以使用 Codebox 中提供的以下工具：REST API、AWS CLI、AWS CloudFormation 和 Terraform。link:../admin/use-codebox.html#how-to-use-codebox["了解如何使用 Codebox 实现自动化"^]。
+
+
+NOTE: 从 Codebox 使用 Terraform 时，您复制或下载的代码会隐藏 `fsxadmin`和 `vsadmin`密码。运行代码时，您需要重新输入密码。除了 _Automate_ 模式权限外，您还需要为用户帐户添加以下权限： `iam:TagRole`和 `iam:TagInstanceProfile`。link:../admin/use-codebox.html#use-terraform-from-codebox["了解如何从 Codebox 使用 Terraform"^]。
+
+[role="tabbed-block"]
+====
+.快速创建
+--
+
+NOTE: 在_快速创建_中，HA 为默认部署模型，Windows 2016 为默认 Windows 版本，SQL 2019 Standard Edition 为默认 SQL 版本。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Databases*。
+. 从“数据库概述”中，选择 *部署主机*，然后从菜单中选择 *PostgreSQL Server*。
+. 选择*快速创建*。
+. 在*着陆区*下，提供以下信息：
++
+.. *AWS 凭据*：选择具有自动化权限的 AWS 凭据以部署新的数据库主机。
++
+具有 _数据库主机创建_ 权限的 AWS 凭据允许 Workload Factory 在 Workload Factory 内从您的 AWS 帐户部署和管理新的数据库主机。
+
++
+具有 _view, planning, and analysis_ 权限的 AWS 凭据可让 Workload Factory 生成一个 CloudFormation 模板，供您在 AWS CloudFormation 控制台中使用。
+
++
+如果您在 Workload Factory 中没有关联的 AWS 凭据，并且希望在 Workload Factory 中创建新服务器，请按照 *选项 1* 转到凭据页面。手动添加数据库工作负载所需的凭据和 _数据库主机创建_ 权限。
+
++
+如果要在 Workload Factory 中完成创建新服务器表单，以便下载用于在 AWS CloudFormation 中部署的完整 YAML 文件模板，请按照 *选项 2* 进行操作，以确保您具有在 AWS CloudFormation 中创建新服务器所需的权限。手动添加数据库工作负载所需的凭据以及 _视图、规划和分析_ 权限。
+
++
+或者，您可以从 Codebox 下载部分完成的 YAML 文件模板，以在 Workload Factory 之外创建堆栈，而无需任何凭据或权限。从 Codebox 的下拉列表中选择 *CloudFormation* 以下载 YAML 文件。
+
+.. *地区和 VPC*：选择一个地区和 VPC 网络。
++
+确保现有接口端点的安全组允许访问选定子网的 HTTPS (443) 协议。
+
++
+如果未找到 AWS 服务接口端点（SQS、FSx、EC2、CloudWatch、CloudFormation、SSM）和 S3 网关端点，则会在部署期间创建它们。
+
++
+如果 VPC DNS 属性 `EnableDnsSupport`和 `EnableDnsHostnames`尚未设置为 `true`，则会对其进行修改以启用端点地址解析。
+
+.. *可用区*：选择可用区和子网。
++
+
+NOTE: 仅在多可用区（MAZ）FSx for ONTAP 配置上支持 HA 部署。
+
++
+子网不应共享相同的路由表以实现高可用性。
+
++
+... 在 *集群配置 - 节点 1* 字段中，从 *可用区* 下拉菜单中选择 MAZ FSx for ONTAP 配置的主要可用区，并从 *子网* 下拉菜单中选择主要可用区的子网。
+... 在 *集群配置 - 节点 2* 字段中，从 *可用区* 下拉菜单中选择 MAZ FSx for ONTAP 配置的辅助可用区，并从 *子网* 下拉菜单中选择辅助可用区的子网。
+
+
+
+
+. 在*应用程序设置*下，输入*数据库凭据*的用户名和密码。
+. 在*连接*下，选择一个密钥对以安全地连接到您的实例。
+. 在*基础架构设置*下，提供以下内容：
++
+.. *FSx for ONTAP system*：创建一个新的 FSx for ONTAP 文件系统或使用现有的 FSx for ONTAP 文件系统。
++
+... *创建新的 FSx for ONTAP*：输入用户名和密码。
++
+对于 GovCloud 账户，请按以下格式输入 FSx for ONTAP 凭据的 AWS SSM Parameter ARN 值： `{fsx:{"username":"fsxadmin","password":"pass"}}`。AWS SSM 参数类型必须为"Secure String"，名称格式为 `/netapp/wlmdb/<anyname>`。了解有关从link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud 文档"^]检索 SSM 参数的更多信息。
+
++
+新的 FSx for ONTAP 文件系统可能会增加 30 分钟或更长的安装时间。
+
+... *选择现有的 FSx for ONTAP*：从下拉菜单中选择 FSx for ONTAP 名称，并输入文件系统的用户名和密码。
++
+对于现有的 FSx for ONTAP 文件系统，请确保以下内容：
+
++
+**** 附加到 FSx for ONTAP 的路由组允许将通往子网的路由用于部署。
+**** 安全组允许来自用于部署的子网的流量，特别是 HTTPS (443) 和 iSCSI (3260) TCP 端口。
+
+
+
+
+.. *数据驱动器大小*：输入数据驱动器容量并选择容量单位。
+
+
+. 摘要：
++
+.. *预览默认值*：查看通过快速创建设置的默认配置。
+.. *估计费用*：提供部署所示资源时可能产生的费用估算。
+
+
+. 单击 *Create*。
++
+或者，如果要立即更改任何这些默认设置，请使用“高级创建”创建数据库服务器。
+
++
+您也可以选择*保存配置*以稍后部署主机。
+
+
+
+--
+.高级创建
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Databases*。
+. 从“数据库概述”中，选择 *部署主机*，然后从菜单中选择 *PostgreSQL Server*。
+. 选择*高级创建*。
+. 在*部署模型*下，选择*独立实例*或*高可用性（HA）*。
+. 在*着陆区*下，提供以下信息：
++
+.. *AWS 凭据*：选择具有自动化权限的 AWS 凭据以部署新的数据库主机。
++
+具有 _数据库主机创建_ 权限的 AWS 凭据允许 Workload Factory 在 Workload Factory 内从您的 AWS 帐户部署和管理新的数据库主机。
+
++
+具有 _view, planning, and analysis_ 权限的 AWS 凭据可让 Workload Factory 生成一个 CloudFormation 模板，供您在 AWS CloudFormation 控制台中使用。
+
++
+如果您在 Workload Factory 中没有关联的 AWS 凭据，并且希望在 Workload Factory 中创建新服务器，请按照 *选项 1* 转到凭据页面。手动添加数据库工作负载所需的凭据和 _数据库主机创建_ 权限。
+
++
+如果要在 Workload Factory 中完成创建新服务器表单，以便下载用于在 AWS CloudFormation 中部署的完整 YAML 文件模板，请按照 *选项 2* 进行操作，以确保您具有在 AWS CloudFormation 中创建新服务器所需的权限。手动添加数据库工作负载所需的凭据以及 _视图、规划和分析_ 权限。
+
++
+或者，您可以从 Codebox 下载部分完成的 YAML 文件模板，以在 Workload Factory 之外创建堆栈，而无需任何凭据或权限。从 Codebox 的下拉列表中选择 *CloudFormation* 以下载 YAML 文件。
+
+.. *地区和 VPC*：选择一个地区和 VPC 网络。
++
+确保现有接口端点的安全组允许访问选定子网的 HTTPS (443) 协议。
+
++
+如果未找到 AWS 服务接口端点（SQS、FSx、EC2、CloudWatch、Cloud Formation、SSM）和 S3 网关端点，则会在部署期间创建。
+
++
+VPC DNS 属性 `EnableDnsSupport`和 `EnableDnsHostnames`经过修改，以启用解析端点地址解析（如果尚未设置为 `true`）。
+
+.. *可用区*：选择可用区和子网。
++
+*针对单实例部署*
+
++
+在*集群配置 - 节点 1*字段中，从*可用区*下拉菜单中选择一个可用区，从*子网*下拉菜单中选择一个子网。
+
++
+*用于 HA 部署*
+
++
+... 在 *集群配置 - 节点 1* 字段中，从 *可用区* 下拉菜单中选择 MAZ FSx for ONTAP 配置的主要可用区，并从 *子网* 下拉菜单中选择主要可用区的子网。
+... 在 *集群配置 - 节点 2* 字段中，从 *可用区* 下拉菜单中选择 MAZ FSx for ONTAP 配置的辅助可用区，并从 *子网* 下拉菜单中选择辅助可用区的子网。
+
+
+.. *安全组*：创建工作负载安全组以允许 PostgreSQL 所需的端口和协议。此外，您可以选择一个或多个安全组。
+
+
+. 在*应用程序设置*下，提供以下内容：
++
+.. 从下拉菜单中选择*操作系统*。
+.. 从下拉菜单中选择 *PostgreSQL 版本*。
+.. *数据库服务器名称*：输入数据库集群名称。
+.. *数据库凭据*：输入新服务帐户的用户名和密码，或使用 Active Directory 中的现有服务帐户凭据。
++
+对于 GovCloud 帐户，请按以下格式输入凭据的 AWS SSM 参数 ARN 值： `{fsx:{"username":"fsxadmin","password":"pass"}}`。AWS SSM 参数类型必须为"Secure String"，名称格式为 `/netapp/wlmdb/<anyname>`。了解有关从link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud 文档"^]检索 SSM 参数的更多信息。
+
+
+
+. 在*连接*下，选择一个密钥对以安全地连接到您的实例。
+. 在*基础架构设置*下，提供以下内容：
++
+.. *数据库实例类型*：从下拉菜单中选择数据库实例类型。
+.. *FSx for ONTAP system*：创建一个新的 FSx for ONTAP 文件系统或使用现有的 FSx for ONTAP 文件系统。
++
+... *创建新的 FSx for ONTAP*：输入用户名和密码。
++
+对于 GovCloud 账户，请按以下格式输入 FSx for ONTAP 凭据的 AWS SSM Parameter ARN 值： `{fsx:{"username":"fsxadmin","password":"pass"}}`。AWS SSM 参数类型必须为"Secure String"，名称格式为 `/netapp/wlmdb/<anyname>`。了解有关从link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud 文档"^]检索 SSM 参数的更多信息。
+
++
+新的 FSx for ONTAP 文件系统可能会增加 30 分钟或更长的安装时间。
+
+... *选择现有的 FSx for ONTAP*：从下拉菜单中选择 FSx for ONTAP 名称，并输入文件系统的用户名和密码。
++
+对于现有的 FSx for ONTAP 文件系统，请确保以下内容：
+
++
+**** 附加到 FSx for ONTAP 的路由组允许将通往子网的路由用于部署。
+**** 安全组允许来自用于部署的子网的流量，特别是 HTTPS (443) 和 iSCSI (3260) TCP 端口。
+
+
+
+
+.. *Snapshot 策略*：默认情况下启用。每天创建快照，保留期为 7 天。
++
+快照分配给为 PostgreSQL 工作负载创建的卷。
+
+.. *数据驱动器大小*：输入数据驱动器容量并选择容量单位。
+.. *预配 IOPS*：选择*自动*或*用户预配*。如果选择*用户预配*，请输入 IOPS 值。
+.. *吞吐量*：从下拉菜单中选择吞吐量。
++
+在某些地区，您可以选择 4 GBps 吞吐量容量。要配置 4 GBps 的吞吐量容量，您的 FSx for ONTAP 文件系统必须配置至少 5,120 GiB 的 SSD 存储容量和 160,000 SSD IOPS。
+
+.. *加密*：从您的帐户中选择一个密钥，或从另一个帐户中选择一个密钥。您必须输入其他帐户的加密密钥 ARN。
++
+FSx for ONTAP 自定义加密密钥未根据服务适用性列出。请选择适当的 FSx 加密密钥。非 FSx 加密密钥将导致服务器创建失败。
+
++
+AWS 管理的密钥会根据服务适用性进行过滤。
+
+.. *标签*：（可选）您最多可以添加 40 个标签。
+.. *Simple Notification Service*：您也可以从下拉菜单中选择 PostgreSQL 的 SNS 主题，为此配置启用 Simple Notification Service (SNS)。
++
+... 启用 Simple Notification Service。
+... 从下拉菜单中选择一个 ARN。
+
+
+.. *CloudWatch 监控*：您可以选择启用 CloudWatch 监控。
++
+我们建议启用 CloudWatch 以便在出现故障时进行调试。AWS CloudFormation 控制台中显示的事件是高级别事件，未指定根本原因。所有详细日志均保存在 EC2 实例的 `C:\cfn\logs` 文件夹中。
+
++
+在 CloudWatch 中，将使用堆栈的名称创建一个日志组。每个验证节点和 SQL 节点的日志流将显示在该日志组下。CloudWatch 显示脚本进度并提供信息，以帮助您了解部署是否失败以及何时失败。
+
+.. *资源回滚*：此功能当前不受支持。
+
+
+. 摘要
++
+.. *估计费用*：提供部署所示资源时可能产生的费用估算。
+
+
+. 单击*创建*以部署新数据库主机。
++
+或者，您可以保存配置。
+
+
+
+--
+====
+.下一步
+您可以在部署的 PostgreSQL 服务器上手动配置用户、远程访问和数据库。

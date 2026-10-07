@@ -1,0 +1,182 @@
+---
+sidebar: sidebar 
+permalink: admin/manage-links.html 
+keywords: links, accounts, lambda, creating, associating, disassociating, deleting, editing 
+summary: 您可以在 NetApp Workload Factory 中查看与您的帐户关联的链接、更新链接身份验证的密码以及删除链接。 
+---
+= 管理 NetApp Workload Factory 链接
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+管理您与 Workload Factory 帐户关联的链接。您可以查看与 FSx for ONTAP 文件系统或 OCI NetApp 存储服务（OCI NSS）系统关联的链接，提供用于链接身份验证的密码，并从 NetApp Console 删除链接。
+
+link:../setup/links-overview.html[""]
+
+
+
+[[view-the-links-associated-with-your-account]]
+== 查看与账号关联的链接
+
+您可以查看当前与您的帐户相关联的链接。
+
+.步骤
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*管理* > *链接*。
++
+现有链接将显示在链接页面上。
+
+. 要查看与链接关联的存储系统，请选择关联资源部分中的*查看*按钮。
+. 如果您需要链接的 Amazon 资源名称 (ARN)，您可以选择 ARN 字段旁边的 _copy_ 图标。
+
+
+
+
+[[edit-a-link]]
+== 编辑链接
+
+您无法从 NetApp Console 编辑链接。如果需要更改链接，则需要创建新链接，然后将该链接关联到存储系统。
+
+
+NOTE: 您可以使用云提供商的控制台编辑 AWS Lambda 或 Oracle Cloud Functions 网络配置（例如 VPC、子网和安全组），所做的更改将反映在链接或函数管理 UI 中；但是，这些更改可能会导致 AWS Lambda 或 Oracle Cloud Functions 与 ONTAP 之间的连接问题，因此不建议这样做。
+
+
+
+[[authenticate-a-link]]
+== 验证链接
+
+通过为 Workload Factory 凭据提供管理用户密码，或使用 AWS Secrets Manager 或 Oracle Vault 中的机密对链接进行身份验证。
+
+* 对于 AWS Secrets Manager，请提供密钥名称或 AWS Secrets Manager 密钥 ARN，以将链接连接到 FSx for ONTAP 文件系统。
++
+
+NOTE: 使用 Console 代理时不支持 AWS Secrets Manager。
+
+* 对于 Oracle Vault，提供 Vault 密钥 OCID 以将链接连接到 OCI NetAApp 存储服务系统。
+
+
+
+NOTE: 每个链接只支持一种身份验证方法。例如，如果选择使用 AWS Secrets Manager 进行链接身份验证，则以后无法更改身份验证方法。
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择要关联链接的文件系统的操作菜单，然后选择 *Manage*。
+. 在文件系统概述中，选择*Authenticate the link*。
+. 在验证链接页面中，选择验证模式：
++
+** *Workload Factory*：输入密码两次。
+** *AWS Secrets Manager*：输入密钥 ARN。
+
+
+. 选择*应用*。
+
+
+--
+.OCI NetApp 存储服务
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *OCI NetApp Storage Service*。
+. 从 *OCI NetApp 存储服务* 中，选择要关联链接的存储池的操作菜单，然后选择 *管理*。
+. 在存储池概览中，选择*验证链接*。
+. 在验证链接页面中，选择验证模式：
++
+** *Workload Factory*：输入密码两次。
+** *OCI Vault*：输入机密 OCID。
+
+
+. 选择*应用*。
+
+
+--
+====
+.结果
+链接已通过身份验证，您可以执行高级 ONTAP 操作
+
+
+
+[[update-the-password-for-link-authentication]]
+== 更新链接验证密码
+
+当管理密码无效时，请更新密码以将链接连接到您的存储系统。
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 从 *FSx for ONTAP* 中，选择要关联链接的文件系统的操作菜单，然后选择 *Manage*。
+. 在文件系统概述中，选择*更新密码*。
+. 在"验证链接"页面中，输入两次新密码。
+. 选择*应用*。
+
+
+--
+.OCI NetApp 存储服务
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *OCI NetApp Storage Service*。
+. 从 *OCI NetApp 存储服务* 中，选择要关联链接的存储池的操作菜单，然后选择 *管理*。
+. 在存储池概述中，选择*更新密码*。
+. 在"验证链接"页面中，输入两次新密码。
+. 选择*应用*。
+
+
+--
+====
+.结果
+密码已更新，链接现已连接到存储系统。
+
+
+
+[[remove-a-link]]
+== 删除链接
+
+您可以删除环境中不再使用的链接。删除链接后，任何使用该链接的存储系统或其他资源都将无法使用某些功能。
+
+请注意，该链接仅从 Workload Factory 中删除，不会从您的 AWS 或 Oracle 环境中删除。
+
+* 对于 FSx for ONTAP，在 Workload Factory 中删除链接后，您必须从 AWS 帐户中删除 Lambda 函数。
+* 对于 OCI NetApp 存储服务，在 Workload Factory 中删除链接后，您必须从 OCI 帐户中删除 Function 实例。
+
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*管理* > *链接*。
++
+现有链接将显示在链接页面上。
+
+. 在链接页面中，选择要删除的链接的操作菜单，然后选择*Remove*。
+. 如果确定，请再次选择*Remove*。
+
+
+请参阅 AWS 文档以 link:https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html#with-userapp-walkthrough-custom-events-delete-function["删除 Lambda 函数"]。
+
+--
+.OCI NetApp 存储服务
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*管理* > *链接*。
++
+现有链接将显示在链接页面上。
+
+. 在链接页面中，选择要删除的链接的操作菜单，然后选择*Remove*。
+. 如果确定，请再次选择*Remove*。
+
+
+--
+====

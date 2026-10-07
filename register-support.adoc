@@ -1,0 +1,185 @@
+---
+sidebar: sidebar 
+permalink: register-support.html 
+keywords: support registration, register for support, support, nss account, add nss account, NetApp Console 
+summary: 在通过 NetApp 技术支持开立支持案例之前，您需要将 NetApp 支持站点帐户添加到 NetApp Console，然后注册以获取支持。 
+---
+= 注册以获得 NetApp Console 支持
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+要获得特定于 NetApp Console 及其存储解决方案和数据服务的技术支持，需要进行支持注册。此外，还需要进行支持注册才能为 Cloud Volumes ONTAP 系统启用关键工作流程。
+
+注册支持不会为云提供商文件服务启用 NetApp 支持。有关云提供商文件服务、其基础架构或使用该服务的任何解决方案的技术支持，请参阅该产品文档中的"获取帮助"。
+
+* link:https://docs.netapp.com/us-en/storage-management-fsx-ontap/start/concept-fsx-aws.html#getting-help["Amazon FSx for ONTAP"^]
+* link:https://docs.netapp.com/us-en/storage-management-azure-netapp-files/concept-azure-netapp-files.html#getting-help["Azure NetApp Files"^]
+* link:https://docs.netapp.com/us-en/storage-management-google-cloud-netapp-volumes/concept-gcnv.html#getting-help["Google Cloud NetApp Volumes"^]
+
+
+
+
+[[support-registration-overview]]
+== 支持注册概述
+
+激活支持权限有两种注册形式：
+
+* 注册您的 NetApp Console 帐户序列号（您的 20 位 960xxxxxxxxx 序列号位于 Console 的"支持资源"页面）。
++
+这可作为控制台内任何服务的单个支持订阅 ID。每个 Console 帐户都必须注册。
+
+* 在云提供商的市场中注册与订阅关联的 Cloud Volumes ONTAP 序列号（这些是 20 位 909201xxxxxxxx 序列号）。
++
+这些序列号通常称为 _PAYGO 序列号_，在 Cloud Volumes ONTAP 部署时由 NetApp Console 生成。
+
+
+
+注册这两种类型的序列号可以启用打开支持工单和自动生成案例等功能。通过将 NetApp 支持站点 (NSS) 帐户添加到 Console 来完成注册，如下所述。
+
+
+
+[[register-netapp-console-for-netapp-support]]
+== 注册 NetApp Console 以获得 NetApp 支持
+
+要注册支持并激活支持授权，您的 NetApp Console 帐户中的一个用户必须将 NetApp Support Site 帐户与其 Console 登录相关联。如何注册 NetApp 支持取决于您是否已经拥有 NetApp Support Site (NSS) 帐户。
+
+
+
+[[existing-customer-with-an-nss-account]]
+=== 拥有 NSS 账号的现有客户
+
+如果您是拥有 NSS 帐户的 NetApp 客户，只需通过 Console 注册即可获得支持。
+
+.步骤
+. 选择*管理* > *凭据*。
+. 选择*用户凭据*。
+. 选择*添加 NSS 凭据*，然后按照 NetApp 支持站点 (NSS) 身份验证提示操作。
+. 要确认注册过程是否成功，请选择"帮助"图标，然后选择 *Support*。
++
+*资源*页面应显示您的 Console 帐户已注册以获得支持。
+
++
+请注意，如果其他 Console 用户未将 NetApp 支持站点帐户与其登录名关联，则不会看到相同的支持注册状态。但是，这并不意味着您的帐户未注册支持。只要组织中有一个用户执行了这些步骤，您的帐户即已注册。
+
+
+
+
+
+[[existing-customer-but-no-nss-account]]
+=== 现有客户，但没有 NSS 帐户
+
+如果您是拥有现有许可证和序列号但_no_ NSS 帐户的现有 NetApp 客户，则需要创建 NSS 帐户并将其与 Console 登录相关联。
+
+.步骤
+. 通过完成以下步骤创建 NetApp 支持站点帐户： https://mysupport.netapp.com/site/user/registration["NetApp 支持站点用户注册表单"^]
++
+.. 请务必选择适当的用户级别，通常为 *NetApp 客户/最终用户*。
+.. 请务必复制上面用于序列号字段的 Console 帐户序列号 (960xxxx)。这将加快账号处理速度。
+
+
+. 完成 <<拥有 NSS 账号的现有客户>> 下的步骤，将您的新 NSS 帐户与 Console 登录相关联。
+
+
+
+
+[[brand-new-to-netapp]]
+=== 全新接触 NetApp
+
+如果您是首次接触 NetApp 且没有 NSS 帐户，请按照以下步骤操作。
+
+.步骤
+. 在控制台右上角，选择帮助图标，然后选择*支持*。
+. 从支持注册页面找到您的帐户 ID 序列号。
++
+image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-serial-number.png["\"帮助\"菜单的屏幕截图，其中\"支持\"是列出的第一个选项"]
+
+. 导航到 https://register.netapp.com["NetApp 的支持注册站点"^]并选择 *我不是注册 NetApp 客户*。
+. 填写必填字段（带红色星号的字段）。
+. 在*产品线*字段中，选择 *Cloud Manager*，然后选择适用的计费提供商。
+. 复制上述第 2 步中的账号序列号，完成安全检查，然后确认您已阅读 NetApp 的《全球数据隐私政策》。
++
+电子邮件将立即发送到所提供的邮箱，以完成此安全交易。如果验证电子邮件未在几分钟内到达，请务必检查垃圾邮件文件夹。
+
+. 从电子邮件中确认操作。
++
+确认将您的请求提交到 NetApp，并建议您创建 NetApp 支持站点帐户。
+
+. 通过完成以下步骤创建 NetApp 支持站点帐户： https://mysupport.netapp.com/site/user/registration["NetApp 支持站点用户注册表单"^]
++
+.. 请务必选择适当的用户级别，通常为 *NetApp 客户/最终用户*。
+.. 请务必复制上面用于序列号字段的帐户序列号（960xxxx）。这样可以加快处理速度。
+
+
+
+
+.完成后
+NetApp 应在此过程中与您联系。这是针对新用户的一次性引导练习。
+
+拥有 NetApp 支持站点帐户后，请完成 <<拥有 NSS 账号的现有客户>> 下的步骤，将该帐户与您的 Console 登录相关联。
+
+
+
+[[associate-nss-credentials-for-cloud-volumes-ontap-support]]
+== 将 NSS 凭据关联到 Cloud Volumes ONTAP 支持
+
+将 NetApp 支持站点凭据与您的 Console 账户相关联，是启用以下 Cloud Volumes ONTAP 关键工作流所必需的：
+
+* 注册按需付费的 Cloud Volumes ONTAP 系统以获得支持
++
+要激活对系统的支持并获得 NetApp 技术支持资源，需要提供您的 NSS 帐户。
+
+* 自带许可证 (BYOL) 时部署 Cloud Volumes ONTAP
++
+需要提供您的 NSS 帐户，以便 Console 可以上传您的许可证密钥并启用您购买期限的订阅。这包括定期续订的自动更新。
+
+* 将 Cloud Volumes ONTAP 软件升级到最新版本
+
+
+将 NSS 凭据与您的 NetApp Console 帐户关联不同于与 Console 用户登录关联的 NSS 帐户。
+
+这些 NSS 凭据与您的特定 Console 帐户 ID 相关联。属于 Console 组织的用户可以从*支持 > NSS 管理*访问这些凭据。
+
+* 如果您有客户级别的帐户，则可以添加一个或多个 NSS 帐户。
+* 如果您有合作伙伴或经销商帐户，则可以添加一个或多个 NSS 帐户，但不能将其与客户级别的帐户一起添加。
+
+
+.步骤
+. 在控制台右上角，选择帮助图标，然后选择*支持*。
++
+image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-help-support.png["\"帮助\"菜单的屏幕截图，其中\"支持\"是列出的第一个选项"]
+
+. 选择 *NSS Management > Add NSS Account*。
+. 出现提示时，选择*继续*将重定向至 Microsoft 登录页面。
++
+NetApp 使用 Microsoft Entra ID 作为特定于支持和许可的身份验证服务的身份提供程序。
+
+. 在登录页面，提供您的 NetApp 支持站点注册的电子邮件地址和密码以执行身份验证过程。
++
+这些操作使 Console 能够使用您的 NSS 帐户进行许可证下载、软件升级验证和未来的支持注册。
+
++
+请注意以下事项：
+
++
+** NSS 账号必须为客户级账号（非访客或临时账号）。您可以拥有多个客户级别的 NSS 帐户。
+** 如果 NSS 账号是合作伙伴级别的账号，则只能有一个该账号。如果您尝试添加客户级别的 NSS 账号，并且存在合作伙伴级别的账号，则会收到以下错误消息：
++
+"此帐户不允许使用 NSS 客户类型，因为已存在不同类型的 NSS 用户。"
+
++
+如果您已有客户级别的 NSS 帐户，并尝试添加合作伙伴级别的帐户，情况也是如此。
+
+** 登录成功后，NetApp 将存储 NSS 用户名。
++
+这是一个系统生成的 ID，映射到您的电子邮件。在 *NSS Management* 页面上，您可以从 image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-nss-menu.png["三个水平点的图标"] 菜单中显示您的电子邮件。
+
+** 如果您需要刷新登录凭据令牌，image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-nss-menu.png["三个水平点的图标"] 菜单中还有 *Update Credentials* 选项。
++
+使用此选项会提示您重新登录。请注意，这些帐户的令牌将在 90 天后过期。系统将发布通知以提醒您注意此事。
+
+
+
+

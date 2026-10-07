@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/create-sql-database.html 
+keywords: create, database, creation, Microsoft SQL 
+summary: 使用 NetApp Workload Factory for Databases 创建 Microsoft SQL 数据库。 
+---
+= 在 NetApp Workload Factory for Databases 中创建 Microsoft SQL 数据库
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+通过创建新的 Microsoft SQL 数据库，可以在 NetApp Workload Factory for Databases 中管理资源。
+
+.关于此任务
+在创建数据库时，将在 FSx for ONTAP 文件系统中创建两个新卷，这些卷由独立的 LUN 组成，用于托管数据库的数据和日志文件。新数据库中的数据库文件是精简配置的，仅占用为新数据库分配的总大小的几 MB。
+
+如果要为数据库隔离存储，可以通过使用_虚拟挂载点_来实现。虚拟挂载点允许您将数据库整合到主机上的几个公共驱动器中。
+
+在 workload factory 中创建数据库需要 _view, planning, and analysis_ 权限。或者，您可以复制或下载部分完成的代码模板，以在 workload factory 之外完成操作。link:../fsx-storage/permissions-reference-fsx.html["了解 Workload Factory 权限"^] 以决定您要使用的模式。
+
+
+NOTE: 使用 SMB 协议的 Microsoft SQL Server 不支持创建数据库。
+
+.开始之前
+在创建新数据库之前，请先完成以下先决条件。
+
+* *凭据和权限*：您必须拥有 link:../fsx-storage/add-credentials.html["AWS 帐户凭据和_操作和补救_权限"^] 才能在 Workload Factory 中创建新数据库。
++
+或者，您可以使用 Codebox 复制模板，以便使用 REST API 在 workload factory 外部部署数据库。link:../admin/codebox-automation.html["详细了解 Codebox 自动化"^]。
+
+* *Windows 主机*：如果使用_快速创建_模式，则 Microsoft SQL Server 上必须有足够的可用驱动器号，以便为新数据库创建新驱动器。
+* *Microsoft SQL Server*：您必须在用于数据库的工作负载工厂中拥有一个托管的 Microsoft SQL Server，以托管新数据库。
+* *AWS Systems Manager*：确保通过 AWS Systems Manager 在 Microsoft SQL 主机中启用 `NT Authority\SYSTEM`用户权限。
+
+
+
+
+[[create-a-database]]
+== 创建数据库
+
+您可以使用_快速创建_或_高级创建_部署模式在 Workload Factory 中完成此任务。
+
+[role="tabbed-block"]
+====
+.快速创建
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Databases*。
+. 从“数据库”菜单中，选择 *清单*。
+. 在清单中，选择 *Microsoft SQL Server* 作为数据库引擎类型。
+. 选择具有托管 SQL Server 实例的数据库服务器以在其中创建数据库。
+. 单击托管实例的操作菜单，然后选择*创建用户数据库*。
+. 在“创建用户数据库”页面上的“数据库信息”下，提供以下内容：
++
+.. *数据库名称*：输入数据库的名称。
+.. *排序规则*：为数据库选择一个排序规则。选择了 Microsoft SQL Server 上的默认排序规则 SQL_Latin1_General_CP1_CI_AS"。
+
+
+. 在文件设置下，提供以下内容：
++
+.. *文件设置模式*：选择*快速创建*。
+.. *文件名和路径*：
++
+*** *数据文件名*：输入数据文件名。
+*** *日志文件名称*：输入日志文件名称。
+
+
+.. *文件大小*：输入数据库的数据大小和日志大小。
+
+
+. 单击 *Create*。
++
+或者，如果要立即更改任何这些默认设置，请将*文件设置模式*更改为*高级创建*。
+
+
+
+--
+.高级创建
+--
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Databases*。
+. 从“数据库”菜单中，选择 *清单*。
+. 在清单中，选择 *Microsoft SQL Server* 作为数据库引擎类型。
+. 选择具有托管 SQL Server 实例的数据库服务器以在其中创建数据库。
+. 单击托管实例的操作菜单，然后选择*创建用户数据库*。
+. 选择*创建用户数据库*。
+. 在“创建用户数据库”页面上的“数据库信息”下，提供以下内容：
++
+.. *数据库名称*：输入数据库的名称。
+.. *排序规则*：选择数据库的排序规则。已选择 Microsoft SQL Server 上的默认排序规则 SQL_Latin1_General_CP1_CI_AS"。
+
+
+. 在文件设置下，提供以下内容：
++
+.. *文件设置模式*：选择*高级创建*。
+.. *文件名和路径*：
++
+... *数据文件*：选择驱动器号并输入数据文件名称。
++
+（可选）单击 *虚拟挂载点* 框。
+
+... *日志文件*：选择驱动器盘符并输入日志文件名称。
++
+（可选）单击 *虚拟挂载点* 框。
+
+
+
+.. *文件大小*：输入数据库的数据大小和日志大小。
+
+
+. 单击 *Create*。
+
+
+--
+====
+如果您创建了数据库主机，则可以在*作业监控*选项卡中检查作业的进度。

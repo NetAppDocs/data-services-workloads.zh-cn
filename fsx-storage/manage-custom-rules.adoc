@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-custom-rules.html 
+keywords: manage custom rules, disable rules, delete rules, rule catalog, byor 
+summary: 从规则目录中查看、启用、禁用和删除自定义体系结构规则。 
+---
+= 管理 NetApp Workload Factory 的自定义规则
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+规则目录是管理所有自定义规则的一个位置。您可以查看每个规则的详细信息，检查其结果，并打开或关闭它。
+
+
+
+[[view-the-rules-catalog]]
+== 查看规则目录
+
+规则目录显示您创建的所有规则、其状态、计划和最新结果。
+
+.步骤
+. 使用其中一个 link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["控制台体验"^] 登录。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标"] ，然后选择*规则生成器*。
+. 单击*查看您的规则*以打开规则目录。
+
+
+
+
+[[view-rule-results]]
+== 查看规则结果
+
+结果显示哪些资源遵循您的规则，哪些不遵循。
+
+.步骤
+. 在规则目录中，单击要查看的规则。
+. 选择*所有运行结果*选项卡。
+. 选择**查看详细信息**以查看每次运行的结果。
+
+
+如果检查某些项目失败，请阅读错误消息以了解原因。常见原因包括连接问题、缺少权限或尚未设置的链接。
+
+
+
+[[edit-a-custom-rule]]
+== 编辑自定义规则
+
+您可以随时更改规则的逻辑、时间表或其他设置。编辑规则时，规则生成器将打开并显示规则的当前设置。
+
+.步骤
+. 在规则目录中，单击要编辑的规则。
+. 单击 *Edit*。
++
+规则切换到草稿模式，规则生成器打开。
+
+. 编辑规则提示或使用对话来改进此规则。
+. 请查看 AI 的更新解释和规则定义。
++
+系统显示从当前规则更改的内容，包括任何 API 调用或逻辑。
+
+. 根据所做的更改，请执行以下操作之一：
++
+** 如果进行了轻微更改，请单击*保存*以更新规则。
+** 如果进行了重大更改，请单击*验证规则*以测试更改，然后单击*计划*以保存并计划该规则，或单击*另存为草稿*以保存而不进行计划。
+** 要放弃更改，请单击*恢复到以前的版本*。规则返回其原始定义并退出编辑模式。
+
+
+

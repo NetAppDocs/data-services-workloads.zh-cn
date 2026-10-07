@@ -1,0 +1,153 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/upload-vm-inventory.html 
+keywords: vm workloads, capture vm details 
+summary: 您可以使用规划中心上传有关当前 VMware 环境的信息。 
+---
+= 将虚拟机清单数据上传到 NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在创建迁移计划之前，您需要上传 VM 清单数据。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *VMware*。
++
+此时将显示规划中心。在规划中心，您可以上传虚拟机清单数据，查看以前的清单数据上传，并使用任何虚拟机清单数据集规划迁移。
+
+. 选择*上传虚拟机清单*。
+. 选择要使用的数据收集方法：
+
+
+[role="tabbed-block"]
+====
+.使用 RVTools（快速评估）
+--
+RVTools 是一个 Windows 应用程序，可与 VCenter 和 ESX 服务器（5.x 至 8.0）交互以捕获有关 VMware 虚拟环境的信息。它收集有关虚拟机、CPU、内存、磁盘、群集、ESX 主机、数据存储等信息。您可以将此信息导出到 xlsx 文件以用于迁移顾问。
+
+link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["详细了解 RVTools"^]
+
+.步骤
+. 选择 *RVTools* 图块，然后选择 *下一步*。
++
+此时将显示 *准备 AWS 云入门* 页面。
+
+. 输入要创建的 VM 清单数据集的名称。
+. 从 link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["RVTools 网站"^] 下载并安装 RVTools 4.4.2 或更高版本
+. 启动 RVTools 并登录到目标 VCenter Server。
++
+这将捕获有关该 VCenter Server 的信息。
+
+. 将您的 VMware 信息导出到 xlsx 或 xls 文件。
++
+有关详细信息，请参见 link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["位于“资源”部分的 RVTools 文档"^] 中的“命令行参数”一章。
+
+. 选择image:button-upload-file.png["上传按钮"]并选择您导出的 RVTools 文件。
+. 选择*上传*。
+. 选择 *Finish*。
+
+
+--
+.使用数据收集器（详细规划）
+--
+NetApp 迁移顾问虚拟机收集器脚本从您的 vCenter 收集虚拟机配置信息，类似于 RVTools 收集的信息，但它会捕获当前虚拟机性能数据，以提供实际的读写 IOPS 和吞吐量统计信息。您可以通过以下两种模式之一使用该脚本：
+
+* 每小时数据收集
+* 每日数据收集
+
+
+您需要启动 Migration advisor，以便从 Codebox 窗口复制 Migration advisor VM 收集器脚本。
+
+.开始之前
+运行收集器脚本的系统必须满足以下要求：
+
+* 必须安装 Microsoft PowerShell 7.0 或更高版本。如果需要安装 PowerShell，请参阅 https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4["Microsoft PowerShell 文档"^]。
+* 必须安装 VMware PowerCLI。如果需要安装 PowerCLI，请参阅 https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.esxi.install.doc/GUID-F02D0C2D-B226-4908-9E5C-2E783D41FE2D.html["VMware PowerCLI 文档"^]。
+* 必须禁用 SSL 证书检查。
+* PowerShell 必须允许运行未签名的脚本。
+
+
+请注意，如果您计划从虚拟机捕获长期统计数据（每日统计数据），则必须在 vSphere 管理控制台（VMware 管理环境）中激活统计数据级别 3 或更高级别。
+
+.步骤
+. 选择*数据收集器*图块，然后选择*下一步*。
++
+Codebox 窗口显示在页面右侧。
+
+. 在 Codebox 窗口中，选择 image:button-download-codebox.png["“下载”按钮"] 将 Migration advisor 数据收集器脚本（名为“list-vms.ps1”）保存到目标系统，或者选择 image:button-copy-codebox.png["“复制”按钮"] 复制该脚本，以便将其粘贴到相应的系统上。
+. 按照下面的步骤捕获当前虚拟机的配置：
++
+.. 登录到您下载了数据收集器且已安装 PowerShell 和 PowerCLI 的系统。
+.. 通过运行以下命令连接到 VMware vCenter 服务器：
++
+[source, console]
+----
+Connect-VIServer -server <server_IP>
+----
++
+将 <server_IP> 替换为您 VMware 服务器的 IP 地址或主机名。
+
+.. 运行您下载的数据收集器脚本，并为“每小时”或“每日”虚拟机统计信息指定数据收集选项。
++
+[source, console]
+----
+./list-vms.ps1 -PerformanceStatisticsTimePeriod <LastHour | LastDay>
+----
++
+其中：
+
++
+*** *LastHour* 以 20 秒的间隔收集过去 1 小时的 IOPS 和吞吐量数据。
+*** *LastDay* 以 5 分钟为间隔收集过去 24 小时的 IOPS 和吞吐量数据。
+
+
+
+
++
+或者，您可以在不指定任何选项的情况下运行数据收集器脚本；这使您可以从交互式菜单中选择数据收集周期。
+
++
++ 该脚本在当前工作目录中输出一个名称中带有时间戳的压缩文件。该 .zip 文件包含所有 VM 及其属性的列表，以及它们的 IOPS 和吞吐量数据。
+
+. 选择*上传*。
+
+
+--
+.使用 NetApp Data Infrastructure Insights（详细规划）
+--
+NetApp Data Infrastructure Insights 是一款云基础架构监控工具，可让您全面了解您的基础架构。您需要在迁移顾问和 Data Infrastructure Insights 之间启用临时 API 通信，以便迁移顾问可以收集有关您的 VMware 基础架构的信息。
+
+https://docs.netapp.com/us-en/data-infrastructure-insights/["详细了解 Data Infrastructure Insights"^]
+
+.步骤
+. 选择 *Data Infrastructure Insights* 图块，然后选择 *下一步*。
++
+此时将显示 *准备 AWS 云入门* 页面。
+
+. 输入要创建的 VM 清单数据集的名称。
+. 输入 Data Infrastructure Insights 的租户端点。
++
+这应该是您用于访问 Data Infrastructure Insights 的 URL。
+
+. 如果您尚未为 Data Infrastructure Insights 生成 API 访问令牌，请按照页面上的说明创建一个。否则，请将您的 API 访问令牌粘贴到 *输入 API 访问令牌* 文本框中。
+. 选择*上传*。
++
+Workload Factory 从 Data Infrastructure Insights 收集信息。
+
+
+
+--
+====
+.下一步是什么？
+从规划中心管理您上传的虚拟机清单数据，或创建部署计划。
+
+* link:explore-planning-center.html["浏览 VMware 工作负载规划中心"]
+* link:launch-onboarding-advisor.html["创建 Amazon VMware Cloud 部署计划"]
+* link:launch-migration-advisor-evs.html["创建 Amazon Elastic VMware Service 部署计划"]
+* link:launch-onboarding-advisor-native.html["创建 Amazon EC2 部署计划"]
+* link:launch-migration-advisor-gcve.html["创建 Google Cloud VMware Engine 部署计划"]
+

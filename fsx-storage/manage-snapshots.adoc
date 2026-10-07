@@ -1,0 +1,101 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-snapshots.html 
+keywords: snapshot, snapshots, manage snapshots, edit snapshots, access snapshots, delete snapshots, remove snapshots 
+summary: 编辑快照设置、启用目录访问和删除快照，以便在 Workload Factory 中管理快照和数据保护。 
+---
+= 管理 FSx for ONTAP 卷的快照
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+编辑快照设置、启用目录访问和删除快照，以便在 Workload Factory 中管理快照和数据保护。
+
+
+
+[[edit-a-snapshot]]
+== 编辑 Snapshot
+
+编辑快照的名称、标签和保留期。如果快照尚未不可变，则可以使快照不可变。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Volumes explorer*。
+. 选择要编辑快照的卷的操作菜单。
+. 选择*数据保护操作*，然后选择*管理快照*。
+. 从“管理快照”页面中，选择要编辑的快照的操作菜单，然后选择 *编辑*。
+. 在“编辑快照”对话框中，可以编辑以下内容：
++
+.. 更改名称。
+.. 更改标签。
+.. 更改保留期。
+.. 可选：*使此快照不可变*，以防止在保留期间删除快照。
++
+如果快照已不可变，则无法编辑此设置。
+
++
+接受有关不可变快照的声明。
+
+
+
+. 选择*应用*。
+
+
+
+
+[[access-a-snapshot]]
+== 访问快照
+
+启用快照目录访问，使用户能够自主访问快照。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Volumes explorer*。
+. 选择具有要访问的快照的卷的操作菜单。
+. 选择*数据保护操作*，然后选择*管理快照*。
+. 从“管理快照”页面中，选择要访问的快照的“操作”菜单，然后选择 *访问*。
+. 在“访问快照”对话框中，选择*启用快照目录访问*以访问此卷快照和卷的所有快照。
++
+** 对于 NFS 卷：选择 *NFS 访问路径* 以查看快照的 NFS 路径。
+** 对于 SMB/CIFS 卷：选择 *SMB 访问路径* 以查看快照的 SMB 路径。
+
+
+. 复制访问路径。
+. 选择*应用*。
+
+
+
+
+[[restore-data-from-a-snapshot]]
+== 从快照还原数据
+
+您可以选择将数据从快照恢复到现有卷或新卷。
+
+link:use-snapshots.html["从 Snapshot 还原卷"]
+
+
+
+[[delete-a-snapshot]]
+== 删除快照
+
+删除快照以释放空间。
+
+在保留期结束之前，无法删除不可变快照。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Volumes explorer*。
+. 选择要删除快照的卷的操作菜单。
+. 选择*数据保护操作*，然后选择*管理快照*。
+. 从管理快照页面中，选择要删除的快照的操作菜单，然后选择 *删除*。
+. 在“删除快照”对话框中，键入 "delete"。
+. 选择*删除*确认删除。
+
+
+.相关信息
+* link:use-snapshots.html["创建快照"]
+* link:use-snapshots.html["创建 Snapshot 策略"]
+* link:use-snapshots.html["从 Snapshot 还原卷"]
+

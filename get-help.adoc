@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: get-help.html 
+keywords: help, ticket, open support case, support, netapp support, technical support, call support, phone number, open ticket, web ticket, open an issue, NetApp Console 
+summary: 'NetApp 以多种方式为 NetApp Console 提供支持。全天候提供广泛的免费自助支持选项，例如知识库 (KB) 文章和社区论坛。您的支持注册包括通过 Web 票务系统获得远程技术支持。' 
+---
+= 获取有关 NetApp Console 云服务的帮助
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp 以多种方式为 NetApp Console 及其云服务提供支持。全天候 24x7 提供广泛的免费自助服务选项，例如知识库 (KB) 文章和社区论坛。您的支持注册包括通过 Web 票务系统获得远程技术支持。
+
+
+
+[[get-support-for-a-cloud-provider-file-service]]
+== 获取对云提供商文件服务的支持
+
+有关云提供商文件服务、其基础架构或使用该服务的任何解决方案的技术支持，请参见该产品的文档。
+
+* link:https://docs.netapp.com/us-en/storage-management-fsx-ontap/start/concept-fsx-aws.html#getting-help["Amazon FSx for ONTAP"^]
+* link:https://docs.netapp.com/us-en/storage-management-azure-netapp-files/concept-azure-netapp-files.html#getting-help["Azure NetApp Files"^]
+* link:https://docs.netapp.com/us-en/storage-management-google-cloud-netapp-volumes/concept-gcnv.html#getting-help["Google Cloud NetApp Volumes"^]
+
+
+要获得特定于 NetApp 及其存储解决方案和数据服务的技术支持，请使用下面描述的支持选项。
+
+
+
+[[use-self-support-options]]
+== 使用自助服务选项
+
+这些选项每周7天、每天24小时免费提供：
+
+* 文档
++
+当前正在查看的 NetApp Console 文档。
+
+* https://kb.netapp.com/Cloud/BlueXP["知识库"^]
++
+搜索 NetApp 知识库，查找解决问题的有用文章。
+
+* http://community.netapp.com/["社区"^]
++
+加入 NetApp Console 社区，关注正在进行的讨论或创建新的讨论。
+
+
+
+
+
+[[create-a-case-with-netapp-support]]
+== 创建 NetApp 支持案例
+
+除了上述自助服务选项之外，您还可以在激活支持后与 NetApp 支持专家合作解决任何问题。
+
+.在开始之前
+* 要使用 *创建案例* 功能，您必须首先将您的 NetApp Support Site 凭据与您的 Console 登录相关联 https://docs.netapp.com/us-en/bluexp-setup-admin/task-manage-user-credentials.html["了解如何管理与 Console 登录关联的凭据"^]。
+* 如果您要为具有序列号的 ONTAP 系统创建案例，则您的 NSS 帐户必须与该系统的序列号关联。
+
+
+.步骤
+. 在 NetApp Console 中，选择*帮助 > 支持*。
+. 在*资源*页面上，在"技术支持"下选择一个可用选项：
++
+.. 如果您想与他人通话，请选择*致电我们*。您将被引导到 netapp.com/cn 上的一个页面，其中列出了您可以拨打的电话号码。
+.. 选择 *创建个案* 以向 NetApp 支持专员提交工单：
++
+*** *服务*：选择问题关联的服务。例如，当特定于 Console 内工作流程或功能的技术支持问题时，请使用 *NetApp Console*。
+*** *系统*：如果适用于存储，请选择 *Cloud Volumes ONTAP* 或 *On-Prem*，然后选择相关的工作环境。
++
+系统列表在 Console 组织的范围内，以及您在顶部横幅中选择的 Console 代理。
+
+*** *Case Priority*：选择案例的优先级，可以是低、中、高或严重。
++
+要了解有关这些优先级的更多详细信息，请将鼠标悬停在字段名称旁边的信息图标上。
+
+*** *问题描述*：请详细说明您的问题，包括任何适用的错误消息或您执行的故障排除步骤。
+*** *Additional Email Addresses*：如果您想告知其他人此问题，请输入其他电子邮件地址。
+*** *附件（可选）*：上传最多五个附件，一次一个。
++
+每个文件的附件限制为 25 MB。支持以下文件扩展名：txt、log、pdf、jpg/jpeg、rtf、doc/docx、xls/xlsx 和 csv。
+
+
+
+
+
++
+image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-create-case.png["可使用\"创建案例\"表单创建 NetApp Support 案例的屏幕截图。"]
+
+
+
+.完成后
+此时会弹出一个窗口，其中包含您的支持案例编号。NetApp 支持专家将审查您的案例并尽快与您联系。
+
+有关支持案例的历史记录，您可以选择*设置 > 时间轴*并查找名为"创建支持案例"的操作。通过最右侧的按钮，您可以展开操作以查看详细信息。
+
+尝试创建个案时，您可能会遇到以下错误消息：
+
+"您无权针对所选服务创建案例"
+
+此错误可能意味着 NSS 帐户及其关联的记录公司与 NetApp Console 帐户序列号（即960xxxx）或工作环境序列号的记录公司不同。您可以使用以下选项之一寻求帮助：
+
+* 在 https://mysupport.netapp.com/site/help[]提交非技术案例
+
+
+
+
+[[manage-your-support-cases]]
+== 管理您的支持案例
+
+您可以直接从 Console 查看和管理进行中和已解决的支持个案。您可以管理与您的 NSS 帐户和公司相关的个案。
+
+请注意以下事项：
+
+* 页面顶端的个案管理控制面板提供两种视图：
++
+** 左侧视图显示了您提供的用户 NSS 帐户在过去 3 个月内打开的案例总数。
+** 右侧视图根据您的用户 NSS 帐户显示了贵公司在过去 3 个月内打开的案例总数。
+
+
++
+表格中的结果反映了与所选视图相关的案例。
+
+* 您可以添加或删除感兴趣的列，也可以筛选优先级和状态等列的内容。其他列仅提供排序功能。
++
+有关更多信息，请查看以下步骤。
+
+* 在个案级别，我们提供更新个案备注或关闭尚未处于"已关闭"或"待关闭"状态的个案的功能。
+
+
+.步骤
+. 在 NetApp Console 中，选择*帮助 > 支持*。
+. 选择 *Case Management*，如果出现提示，请将您的 NSS 账户添加到 Console。
++
+*个案管理*页面显示与您的 Console 用户账号关联的 NSS 账号相关的未结个案。这与 *NSS 管理*页面顶部显示的 NSS 账号相同。
+
+. （可选）修改此表中显示的信息：
++
+** 在*组织的案例*下，选择*查看*以查看与贵公司相关的所有案例。
+** 通过选择确切的日期范围或选择其他时间范围来修改日期范围。
+** 筛选列的内容。
+** 通过选择 image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-columns.png["表格中显示的加号图标"] 然后选择要显示的列来更改表格中显示的列。
+
+
+. 通过选择 image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-action.png["带有三个点的图标，显示在表格的最后一列"] 并选择一个可用选项来管理现有个案：
++
+** *查看个案*：查看有关特定个案的完整详细信息。
+** *更新案例备注*：提供有关您问题的其他详细信息，或选择*上传文件*以附加最多五个文件。
++
+每个文件的附件限制为 25 MB。支持以下文件扩展名：txt、log、pdf、jpg/jpeg、rtf、doc/docx、xls/xlsx 和 csv。
+
+** *关闭个案*：请详细说明您关闭个案的原因，然后选择*关闭个案*。
+
+
+

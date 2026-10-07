@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/quick-start-fsx.html 
+keywords: Amazon FSx for NetApp ONTAP, fsx, netapp, quick, get started, install, deploy, setup, launch, requirements, prerequisites, credentials, permissions, policy 
+summary: 只需几个步骤，即可在 NetApp Workload Factory 中开始使用 FSx for ONTAP。 
+---
+= NetApp Workload Factory 中的 Amazon FSx for NetApp ONTAP 快速入门
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+通过添加凭据和权限、创建链接（如果需要）以及创建或发现存储系统，开始使用 Amazon FSx for NetApp ONTAP。
+
+按照下面的步骤开始。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"] 添加凭据和权限
+[role="quick-margin-para"]
+link:add-credentials.html["手动向帐户添加凭据"^] 其中包括选择工作负载功能，例如数据库和 EDA，以及为所需权限创建 IAM 策略。
+
+[role="quick-margin-para"]
+选择link:permissions-reference-fsx.html["权限策略"^]以满足您的需求。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"] 可选：创建控制台代理或链接
+[role="quick-margin-para"]
+要从 NetApp Console 执行某些管理任务，您需要 Console 代理或 NetApp Workload Factory 链接。_Console 代理_ 是您在 VPC 中部署的虚拟机，用于管理 FSx for ONTAP 文件系统。_链接_ 利用 AWS Lambda 创建信任关系并连接到您的 FSx for ONTAP 文件系统。
+
+[role="quick-margin-list"]
+* link:../setup/links-overview.html["了解 FSx for ONTAP 管理何时需要控制台代理或链接"]
+* https://docs.netapp.com/us-en/console-setup-admin/concept-install-options-aws.html["了解如何在 AWS 中创建控制台代理"^]
+* https://docs.netapp.com/us-en/console-setup-admin/task-install-connector-on-prem.html["了解如何在本地创建控制台代理"^]
+* link:create-link.html["了解如何创建链接"^]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"] 创建文件系统
+[role="quick-margin-para"]
+直接从 NetApp Console 创建 FSx for ONTAP 文件系统，或发现已在 AWS 环境中创建的文件系统。 link:create-discover-systems.html["了解如何创建文件系统或发现现有文件系统。"]
+
+[role="quick-margin-para"]
+您还可以从存储节省计算器开始，将 Amazon Elastic Block Store、Elastic File System 和 FSx for Windows File Server 存储环境的成本与 FSx for ONTAP 的成本进行比较。 link:explore-savings.html["使用存储空间节省计算器，了解如何节省费用。"]
+
+.下一步
+有了存储清单中的文件系统，您可以link:create-volume.html["创建卷"]，管理您的 FSx for ONTAP 文件系统，并为您的资源设置数据保护。

@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: oci/create-discover-systems.html 
+keywords: Amazon FSx for NetApp ONTAP, fsx, volumes, create system, delete system, access key, secret key, region, availability zones, discover, storage capacity, iops, throughput, security group, security, NetApp Console, Oracle Cloud Infrastructure NetApp Storage Service 
+summary: 创建或发现云存储系统，以便从 NetApp Console 添加和管理卷及其他数据服务。 
+---
+= 在 NetApp Console 中创建或发现 Oracle Cloud Infrastructure NetApp Storage Service 系统
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+发现 Oracle Cloud Infrastructure NetApp Storage Service （OCI NSS） 系统，并从 NetApp Console 管理卷和其他数据服务。
+
+
+
+[[discover-an-existing-cloud-storage-system]]
+== 发现现有云存储系统
+
+从 Discoverable systems 页面发现您的存储系统。
+
+.开始之前
+在 Workload Factory 中提供您的 OCI NSS 环境的凭据。
+
+.关于此任务
+您在一个帐户中只能发现一次云存储系统，并将其附加到一个工作区。稍后可以移除该存储系统并将其重新关联到其他工作区。
+
+.步骤
+. 在 NetApp Console 菜单中，依次选择 *Storage*、*Management* 和 *Discoverable systems*。
+. 将显示已发现的云存储系统的计数。选择*发现*。
+. 选择一个或多个存储系统，然后选择*发现*将其添加到系统页面。
+
+
+[NOTE]
+====
+* 如果选择未命名的存储系统，您将收到输入系统名称的提示。
+* 如果选择的存储系统没有从控制台管理它所需的凭据，您将收到提示，要求您选择具有所需权限的凭据。
+
+
+====
+.结果
+控制台在“系统”页面上显示您发现的系统。您可以通过多种方式管理存储系统，例如从 NetApp Console 中的工作负载，以及使用 ONTAP System Manager 或使用云提供商的存储管理工具。

@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: gcnv/configuration-analysis.html 
+keywords: configuration issues, issues, improve, analyze, storage configuration, recommendation, recommendations 
+summary: NetApp Console 会定期分析存储系统配置，以确定是否存在任何配置问题。 
+---
+= Google Cloud NetApp Volumes 的配置分析
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Console 中架构良好的控制面板定期分析存储系统配置，以确定是否存在任何配置问题。发现问题时，控制面板会向您显示问题所在，并解释需要更改的内容，以确保您的存储系统实现最佳性能、成本效益和符合最佳实践。
+
+主要功能包括：
+
+* 每日配置分析
+* 针对 NetApp ONTAP 存储系统和合作伙伴存储提供商的自动最佳实践验证
+* 主动可观察性
+* 从见解到行动
+
+
+
+
+[[analysis-requirements]]
+== 分析要求
+
+要进行完整的存储池分析，必须执行以下操作：
+
+* link:create-discover-systems.html["将您的 Google Cloud NetApp Volumes 系统添加到 NetApp Console"^]。
+* 在您的 Google Cloud 帐户中授予_查看、规划和分析_权限。
++
+link:add-credentials.html["了解如何向 Google Cloud 帐户授予权限"^]
+
+
+
+
+
+[[best-practices-and-recommendations-for-storage-workloads]]
+== 存储工作负载的最佳实践和建议
+
+Workload Factory 根据存储和 ONTAP 最佳实践以及 Google Cloud Well-Architected Framework 评估存储配置。评估还提出了改进建议。
+
+精心设计的分析将配置归类为框架的以下支柱：_可靠性_和_卓越运营_。
+
+
+
+[[reliability]]
+=== 可靠性
+
+可靠性可确保工作负载正确、一致地执行其预期功能，即使在发生中断时也是如此。
+
+* *Snapshot 策略*
++
+安排本地快照以实现高效备份和快速恢复。快照是卷的即时时间点映像。
+
+* *SSD 容量余量*
++
+Workload Factory 建议将 SSD 层使用率保持在 80% 或更低。某些工作负载可能需要额外的容量空间和更低的利用率目标。当使用率超过建议的余量时，性能下降和服务问题的风险就会增加，尤其是在容量未能及时扩展的情况下。您可以针对一个或多个存储池关闭此提示，并在需要时重新激活。
+
+
+
+
+
+[[operational-excellence]]
+=== 卓越运营
+
+卓越运营侧重于提供最佳架构和业务价值。
+
+* *卷容量余量*
++
+Workload Factory 建议将卷使用率保持在 80% 以下，以降低空间用尽的风险。如果卷的增长速度快于预期，则可能需要快速扩展它。这可能会增加应用程序受影响的风险，尤其是在突然或急剧增长的情况下。使用精简配置和自动容量管理时，此风险较低。您可以为一个或多个卷关闭它，然后在需要时重新激活它。
+
+
+
+.下一步
+link:improve-configurations.html["实施精心设计的 Google Cloud NetApp Volumes 配置"]

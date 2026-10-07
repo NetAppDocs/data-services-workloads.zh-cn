@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/change-tiering-policy.html 
+keywords: tiering policy, change tier, change tiers, tier policy update 
+summary: 更改 NetApp Workload Factory 中的分层策略，将数据从高性能主存储层重新分配到辅助容量池存储层。 
+---
+= 更改 NetApp Workload Factory 中卷的分层策略
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 NetApp Workload Factory 中，您可以更改分层策略，以自动将数据从高性能主存储层重新分配到辅助容量池存储层。
+
+.关于此任务
+您可以随时更改卷的分层策略。分层策略是按卷定义的。
+
+决定将数据存储在何处会对您的成本节省产生影响。
+
+FSx for ONTAP 有两层用于存储卷数据：
+
+* *SSD 存储层*：此主存储层用于您最常访问的数据，也称为_热_数据。将数据存储在主存储层中的成本高于辅助存储层中的成本。
+* *容量池存储层*：此辅助存储层用于存档数据或不常访问的数据，也称为_冷_数据。
+
+
+有关存储层的详细信息，请参见 AWS 中的 FSx for NetApp ONTAP 文档中的 link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html#storage-tiers["管理存储容量"^]。
+
+.开始之前
+更改分层策略之前，请查看可用的分层策略。
+
+* *平衡（自动）*：使用用户界面创建卷时的默认分层策略。将频繁访问的数据保留在 SSD 存储层中，并在冷却期结束后将不频繁访问的数据和快照分层到容量池存储层。推荐用于一般主要工作负载。
+* *成本优化（全部）*：将所有快照和数据分层到容量池存储层。推荐用于次要目标。
+* *性能优化（仅限快照）*：仅将快照数据分层到容量池存储层。推荐用于任务关键型数据库等低延迟工作负载。
+* *无*：将卷数据保留在 SSD 存储层中，防止将其移动到容量池存储层。
+
+
+请注意，某些分层策略具有关联的最小冷却期，该冷却期设置了卷中的用户数据必须保持非活动状态的时间或_冷却天数_，以便将数据视为“冷”并移动到容量池存储层。当数据写入磁盘时，冷却期开始。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Volumes explorer* > *FSx for ONTAP*。
+. 选择要更改其分层策略的卷的操作菜单。
+. 选择*高级操作*，然后选择*更改分层策略*。
+. 在更改分层策略页面上，选择复制源卷的分层策略，或选择以下分层策略之一：
++
+** *平衡（自动）*：输入冷却天数。
+** *成本优化（全部）*
+** *性能优化（仅限快照）*：输入冷却天数。
+** *无*
+
+
+. 选择*应用*。
+

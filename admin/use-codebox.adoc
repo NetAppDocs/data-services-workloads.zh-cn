@@ -1,0 +1,136 @@
+---
+sidebar: sidebar 
+permalink: admin/use-codebox.html 
+keywords: codebox, automation, cloudformation, rest api, aws cli, permissions 
+summary: 您可以使用 Codebox 生成执行 NetApp Workload Factory 支持的任何操作所需的代码。 
+---
+= 在 NetApp Workload Factory 中使用 Codebox 实现自动化
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用 Codebox 生成执行 NetApp Workload Factory 支持的任何操作所需的代码。您可以生成可通过 Workload Factory REST API、AWS CLI 和 AWS CloudFormation 使用和运行的代码。
+
+Codebox 根据 Workload Factory 帐户中为每个用户提供的 AWS 权限，在代码中填充适当的数据，从而与 Workload Factory 权限策略保持一致。代码可以像模板一样使用，您可以在运行代码之前填写缺少的信息（例如凭据）或自定义某些数据。
+
+
+
+[[how-to-use-codebox]]
+== 如何使用 Codebox
+
+当您在 NetApp Console 的用户界面向导中输入值时，您可以在填写每个字段时在 Codebox 中看到数据更新。完成向导后，在选择页面底部的 *创建* 按钮之前，请选择 image:button-copy-codebox.png["“复制”按钮"] 在 Codebox 中进行复制，以捕获构建配置所需的代码。例如，此创建新 Microsoft SQL Server 的屏幕截图显示了 VPC 和可用区的向导条目，以及 Codebox 中用于 REST API 实现的等效条目。
+
+image:screenshot-codebox-example1.png["显示如何在 UI 中创建 Microsoft SQL Server 以及 Codebox 中 VPC 和可用区的相应条目的屏幕截图。"]
+
+对于某些代码格式，您还可以选择下载按钮，将代码保存在可以带到其他系统的文件中。如果需要，您可以在下载代码后对其进行编辑，以便将其调整为其他 AWS 帐户。
+
+
+
+[[use-cloudformation-code-from-codebox]]
+== 使用来自 Codebox 的 CloudFormation 代码
+
+您可以复制从 Codebox 生成的 CloudFormation 代码，然后在 AWS 帐户中启动 Amazon Web Services CloudFormation 堆栈。CloudFormation 将执行您在 Workload Factory UI 中定义的操作。
+
+使用 CloudFormation 代码的步骤可能会有所不同，具体取决于您是部署 FSx for ONTAP 文件系统、创建帐户凭据还是执行其他 Workload Factory 操作。
+
+请注意，出于安全原因，CloudFormation 生成的 YAML 文件中的代码会在 7 天后过期。
+
+.开始之前
+* 您需要有凭据才能登录到您的 AWS 帐户。
+* 您需要具有以下用户权限才能使用 CloudFormation 堆栈：
++
+[%collapsible]
+====
+[source, json]
+----
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudformation:CreateStack",
+                "cloudformation:UpdateStack",
+                "cloudformation:DeleteStack",
+                "cloudformation:DescribeStacks",
+                "cloudformation:DescribeStackEvents",
+                "cloudformation:DescribeChangeSet",
+                "cloudformation:ExecuteChangeSet",
+                "cloudformation:ListStacks",
+                "cloudformation:ListStackResources",
+                "cloudformation:GetTemplate",
+                "cloudformation:ValidateTemplate",
+                "lambda:InvokeFunction",
+                "iam:PassRole",
+                "iam:CreateRole",
+                "iam:UpdateAssumeRolePolicy",
+                "iam:AttachRolePolicy",
+                "iam:CreateServiceLinkedRole"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+----
+====
+
+
+.步骤
+. 使用 NetApp Console 定义要执行的操作后，复制 Codebox 中的代码。
+. 选择 *重定向到 CloudFormation*，将显示重定向到 CloudFormation 页面。
+. 打开另一个浏览器窗口并登录到 AWS 管理控制台。
+. 从重定向到 CloudFormation 页面中选择 *继续*。
+. 登录到应运行代码的 AWS 帐户。
+. 在“快速创建堆栈”页面上的“功能”下，选择 *我确认 AWS CloudFormation 可能会……*。
+. 选择*创建堆栈*。
+. 从 AWS 或 Workload Factory 监控进度。
+
+
+
+
+[[use-rest-api-code-from-codebox]]
+== 使用 Codebox 中的 REST API 代码
+
+您可以使用从 Codebox 生成的 Workload Factory REST API 来部署和管理您的 FSx for ONTAP 文件系统和其他 AWS 资源。
+
+您可以从支持 curl 并具有互联网连接的任何主机运行 API。
+
+请注意，身份验证令牌隐藏在 Codebox 中，但在复制和粘贴 API 调用时会填充它们。
+
+.步骤
+. 使用 NetApp Console 定义要执行的操作后，请复制 Codebox 中的 API 代码。
+. 请粘贴代码并在您的主机系统上运行。
+
+
+
+
+[[use-aws-cli-code-from-codebox]]
+== 使用 Codebox 中的 AWS CLI 代码
+
+您可以使用从 Codebox 生成的 Amazon Web Services CLI 来部署和管理您的 FSx for ONTAP 文件系统和其他 AWS 资源。
+
+.步骤
+. 使用 NetApp Console 定义要执行的操作后，在 Codebox 中复制 AWS CLI。
+. 打开另一个浏览器窗口并登录到 AWS 管理控制台。
+. 粘贴代码并运行。
+
+
+
+
+[[use-terraform-from-codebox]]
+== 从 Codebox 使用 Terraform
+
+您可以使用 Terraform 部署和管理您的 FSx for ONTAP 文件系统和其他 AWS 资源。
+
+.开始之前
+* 您需要一个安装了 Terraform 的系统（Windows/Mac/Linux）。
+* 您需要有凭据才能登录到您的 AWS 帐户。
+
+
+.步骤
+. 在使用 NetApp Console 定义要执行的操作后，请从 Codebox 下载 Terraform 代码。
+. 将下载的脚本存档复制到安装了 Terraform 的系统。
+. 解压缩 ZIP 文件，然后按照 README.md 文件中的步骤进行操作。
+

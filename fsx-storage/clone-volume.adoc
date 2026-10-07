@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/clone-volume.html 
+keywords: clone volume, clone, clone data 
+summary: 在 NetApp Workload Factory 中克隆卷，以生成用于测试的原始卷的读/写卷。 
+---
+= 在 NetApp Workload Factory 中克隆卷
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 NetApp Workload Factory 中克隆卷，以生成用于测试的原始卷的读/写卷。
+
+克隆反映数据的当前时间点状态。您还可以使用克隆授予其他用户对数据的访问权限，而无需授予他们对生产数据的访问权限。
+
+.关于此任务
+卷克隆仅支持 FlexClone 卷。
+
+当克隆卷时，将创建一个可写卷，其中引用来自父卷的快照。克隆创建在几秒钟内完成。克隆的数据不驻留在卷克隆上，而是驻留在父卷上。克隆创建后写入到卷的任何新数据都驻留在克隆上。
+
+要使克隆卷包含父卷中的所有数据以及创建后添加到克隆中的任何新数据，您需要从父卷link:split-cloned-volume.html["拆分克隆"]。此外，如果父卷具有克隆，则无法删除该父卷。必须先拆分克隆，然后才能删除父卷。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Volumes explorer*。
+. 选择要克隆的卷的操作菜单。
+. 选择*数据保护操作*，然后选择*克隆卷*。
+. 在“克隆卷”对话框中，输入此卷克隆的名称。
+. 选择 *Clone*。
+
