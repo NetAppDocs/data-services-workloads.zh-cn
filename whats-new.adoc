@@ -31,3 +31,5 @@ summary: 了解 NetApp Console 中 Workload Factory 的新增功能，如工作�
 === 面向 NetApp Console 用户的 Workload Factory 文档
 
 您可以在 NetApp Console 中找到 Workload Factory 的详细文档，包括入门指南、系统发现、凭据管理以及链接创建和关联。
+
+link:https://docs.netapp.com/us-en/data-services-workloads/index.html["面向 NetApp Console 的 Workload Factory 文档"]

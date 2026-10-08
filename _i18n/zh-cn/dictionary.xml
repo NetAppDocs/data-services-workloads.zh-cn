@@ -6812,4 +6812,6 @@
   <block id="53c306e93da69caff455d3eaa34a6b5c" category="list-text">要按 AWS 分配标记过滤，请验证您的 FSx for ONTAP 文件系统是否已分配标记。</block>
   <block id="22818134e299296b864b78dc4cca4c88" category="paragraph">CSV 报告已生成，可以下载。</block>
   <block id="9a90fd93ba397d5f48de07251acc1808" category="list-text">延迟事件的组件细分</block>
+  <block id="1df7d27de080cb3c4560fbfcb9b950a2" category="inline-link-macro">面向 NetApp Console 的 Workload Factory 文档</block>
+  <block id="865cb26d81d670b59ffd115deff750d1" category="paragraph"><block ref="865cb26d81d670b59ffd115deff750d1" category="inline-link-macro-rx"></block></block>
 </blocks>
