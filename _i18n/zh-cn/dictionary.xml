@@ -6811,4 +6811,5 @@
   <block id="e291c5603b49506d01779471f77ce7c8" category="paragraph">请验证您是否符合以下要求：</block>
   <block id="53c306e93da69caff455d3eaa34a6b5c" category="list-text">要按 AWS 分配标记过滤，请验证您的 FSx for ONTAP 文件系统是否已分配标记。</block>
   <block id="22818134e299296b864b78dc4cca4c88" category="paragraph">CSV 报告已生成，可以下载。</block>
+  <block id="9a90fd93ba397d5f48de07251acc1808" category="list-text">延迟事件的组件细分</block>
 </blocks>
