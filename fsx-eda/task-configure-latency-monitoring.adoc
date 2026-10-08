@@ -114,7 +114,7 @@ NOTE: 如果受影响的卷超过 10 个，电子邮件将显示前 10 个卷，
 * *Amazon SNS*：发布到您配置的 SNS 主题，以便与其他系统集成
 
 
-要启用通知，请参阅 link:../admin/configure-notifications.html#wf-console-email-notifications["配置通知设置"]。
+要启用通知，请参阅 link:../admin/configure-notifications.html["配置通知设置"]。
 
 
 

@@ -15,6 +15,8 @@ summary: 您可以在 NetApp Workload Factory 中查看与您的帐户关联的�
 
 link:../setup/links-overview.html[""]
 
+当有更新的链接版本可用时，用户界面会自动通知您，并提供升级说明。
+
 
 
 [[view-the-links-associated-with-your-account]]

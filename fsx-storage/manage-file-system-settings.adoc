@@ -11,7 +11,7 @@ summary: 随时为文件系统添加、更新或删除 FSx for ONTAP 文件系�
 
 
 [role="lead"]
-在 NetApp Workload Factory 中管理 FSx for ONTAP 文件系统的设置。您可以管理文件系统的标签，必要时重置 fsxadmin 密码，并根据需要更新吞吐量容量。
+在 NetApp Workload Factory 中管理 FSx for ONTAP 文件系统的设置，以保持文件系统的有序性、安全性以及适合您工作负载的规模。您可以随时添加或编辑标记、管理 ONTAP 凭据、重置 fsxadmin 密码以及更新吞吐量容量。
 
 
 
@@ -34,6 +34,44 @@ summary: 随时为文件系统添加、更新或删除 FSx for ONTAP 文件系�
 
 
 
+[[manage-ontap-credentials]]
+== 管理 ONTAP 凭据
+
+在 NetApp Workload Factory 中管理 FSx for ONTAP 文件系统的 ONTAP 凭据。Workload Factory 有两种类型的凭据：主凭据和受限凭据。默认情况下，文件系统使用主 ONTAP 凭据。受限凭据仅用于 AI 操作 （AIOps），例如 Ask Me、Rule builder 和 Custom dashboards。您可以选择添加受限凭据集，也可以随时更新任一凭据集。
+
+您可以执行以下任务：
+
+* 选择加入以添加受限凭据集，使用用户名和密码或机密 ARN。
+* 更改现有凭据，包括用户名和密码、仅密码或机密 ARN。
+
+
+Workload Factory 支持在 Workload Factory 凭据服务（用户名和密码）和 AWS Secrets Manager 之间进行转换。
+
+Workload Factory 按以下方式处理受限凭据：
+
+* 如果您没有为文件系统提供受限凭据，然后创建自定义规则或仪表板或询问 Ask Me 问题，Workload Factory 将创建只读 ONTAP 凭据以用作受限凭据集。
+* 如果您已经为文件系统提供了受限凭据，则这些凭据将用于 AIOps。
+
+
+.开始之前
+您必须关联链接以管理 ONTAP 凭据。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 FSx for ONTAP 菜单中，选择 *Inventory*。
+. 在*库存*中，选择要管理其凭据的文件系统的操作菜单，然后选择*管理*。
+. 从文件系统概述中，选择操作菜单。
++
+image:screenshot-manage-ontap-credentials.png["文件系统“概述”选项卡中操作菜单的屏幕截图。"]
+
+. 选择*管理 ONTAP 凭据*。
+. 更新主 ONTAP 或受限 ONTAP 凭据。
+. 选择*应用*。
+
+
+
+
 [[reset-the-fsxadmin-password-of-an-fsx-for-ontap-file-system]]
 == 重置 FSx for ONTAP 文件系统的 fsxadmin 密码
 
@@ -43,8 +81,8 @@ summary: 随时为文件系统添加、更新或删除 FSx for ONTAP 文件系�
 
 .步骤
 . 登录到 link:https://console.netapp.com["NetApp Console"^]。
-. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage*。
-. 从 Storage 菜单中，选择 *Inventory*。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
+. 在 FSx for ONTAP 菜单中，选择 *Inventory*。
 . 在*清单*中，选择要为其重置 fsxadmin 密码的文件系统的操作菜单，然后选择*管理*。
 . 从文件系统概述中，选择操作菜单。
 +

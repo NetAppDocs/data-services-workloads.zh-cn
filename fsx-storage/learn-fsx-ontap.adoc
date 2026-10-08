@@ -45,7 +45,7 @@ FSx for ONTAP 提供以下功能：
 == Workload Factory 中的其他功能
 
 * *存储成本比较计算器*：将您的 Amazon Elastic Block Store（EBS）、Elastic File System（EFS）和 FSx for Windows File Server 存储成本与 FSx for ONTAP 进行比较。通过该计算器，您可以查看 FSx for ONTAP 存储配置如何提供潜在的成本节省，并计划向 FSx for ONTAP 存储的迁移。
-* *Workload Factory 用户界面*：提供 _快速创建_ 和 _高级创建_ 部署模式选项。快速创建包括 AWS、NetApp 和行业标准的存储配置最佳实践。
+* *控制台用户界面*：提供_快速创建_和_高级创建_部署模式选项。快速创建包括 AWS、NetApp 以及行业标准的存储配置最佳实践。该界面还显示 SSD 存储容量和吞吐量使用趋势、工作负载摘要以及您可以展开的详细配置设置。
 * *Codebox*：为开发人员提供用于 FSx for ONTAP 操作的代码查看器、用于复制和下载的代码模板以及用于代码重用的自动化目录。
 
 
