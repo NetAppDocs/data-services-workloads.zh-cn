@@ -21,7 +21,7 @@ summary: 使用人工智能引导的提示创建自定义仪表板，以监控�
 请记住，自定义仪表板按设计为只读，无法更改存储或工作负载配置。
 
 
-NOTE: 如果您的账号管理员已关闭AI功能，您将看到一条消息，无法创建控制面板。请联系您的管理员或link:manage-genai-features.html["了解人工智能管理"]。
+NOTE: 如果您的账号管理员已关闭AI功能，您将看到一条消息，无法创建控制面板。请联系您的管理员或 link:../admin/manage-genai-features.html["了解人工智能管理"]。
 
 
 
@@ -30,7 +30,7 @@ NOTE: 如果您的账号管理员已关闭AI功能，您将看到一条消息，
 
 .步骤
 . 登录到 link:https://console.netapp.com["NetApp Console"^]。
-. 从 NetApp Console 菜单中，选择 *Workloads* > *Workloads Overview* > *Custom dashboards*。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到存储、EDA、AI、数据库、VMware 和管理等工作负载。"] ，然后选择 *Workloads Overview* > *Custom dashboards*。
 +
 如果这是您的第一个控制面板，您将看到一个空白屏幕，其中包含帮助您开始操作的示例提示。您可以选择 *Copy prompt* 将示例提示复制到 AI 对话框文本框中。
 
@@ -50,15 +50,16 @@ NOTE: 如果您的账号管理员已关闭AI功能，您将看到一条消息，
 正在创建您的控制面板。这可能需要一点时间。
 
 .结果
-您的自定义仪表板已创建并添加到仪表板目录中。默认情况下，仪表板是私密的，只有您可以看到。如果要与 Workload Factory 帐户中的其他用户共享，可以将可见性更改为公开。link:manage-custom-dashboards-fsx.html#change-dashboard-visibility["了解如何更改控制面板可见性"]。
+您的自定义仪表板已创建并添加到仪表板目录中。默认情况下，仪表板是私密的，只有您可以看到。如果要与 Workload Factory 帐户中的其他用户共享，可以将可见性更改为公开。link:../admin/manage-custom-dashboards-fsx.html#change-dashboard-visibility["了解如何更改控制面板可见性"]。
 
-控制面板准备就绪后，您会收到通知。如果无法创建，您将收到包含重试链接的通知。link:configure-notifications.html["了解如何配置通知"]。
+控制面板准备就绪后，您会收到通知。如果无法创建，您将收到包含重试链接的通知。link:../admin/configure-notifications.html["了解如何配置通知"]。
 
 .下一步
 创建后，您可以：
 
 * 更改控制面板的可见性，以便与您的团队共享
 * 刷新仪表板数据以查看最新信息
+* 编辑仪表板以更改其显示内容，包括指标、图表和时间范围
 * 删除不再需要的仪表板
 * 查看控制面板详细信息，包括创建者和上次更新时间
 
@@ -68,6 +69,6 @@ NOTE: 如果您的账号管理员已关闭AI功能，您将看到一条消息，
 [[related-information]]
 == 相关信息
 
-* link:manage-custom-dashboards-fsx.html["管理自定义控制面板"]
-* link:troubleshoot-custom-dashboards-fsx.html["对自定义信息板进行故障排除"]
+* link:../admin/manage-custom-dashboards-fsx.html["管理自定义控制面板"]
+* link:../admin/troubleshoot-custom-dashboards-fsx.html["对自定义信息板进行故障排除"]
 

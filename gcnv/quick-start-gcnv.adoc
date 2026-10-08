@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: gcnv/quick-start-gcnv.html 
 keywords: set up google cloud netapp volumes, quick start,system 
-summary: 通过设置 Google Cloud，然后创建系统，开始使用 Google Cloud NetApp Volumes。 
+summary: 通过分配 NetApp Console 角色、添加凭据和发现系统，开始使用 Google Cloud NetApp Volumes。 
 ---
 = Google Cloud NetApp Volumes 快速入门
 :hardbreaks:
@@ -14,22 +14,16 @@ summary: 通过设置 Google Cloud，然后创建系统，开始使用 Google Cl
 
 
 [role="lead"]
-通过设置 Google Cloud，然后创建系统，开始使用 Google Cloud NetApp Volumes。
+通过分配 NetApp Console 角色、添加凭据和发现系统，开始使用 Google Cloud NetApp Volumes。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"] link:set-up.html["设置 Google Cloud NetApp Volumes"]
-[role="quick-margin-para"]
-从 Google 创建服务帐户。
-
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"] link:add-roles.html["分配角色"]
-[role="quick-margin-para"]
-要开始使用 Google Cloud NetApp Volumes，您必须具有相应的权限，并被分配 Google Cloud NetApp Volumes 管理员或 Google Cloud NetApp 查看者角色。
-
-[role="quick-margin-para"]
-image:role_gcnv.png["Google Cloud NetApp Volumes 角色的屏幕截图。"]
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"] link:../gcnv/add-roles.html["分配角色"]
 [role="quick-margin-para"]
 在 NetApp Console 中，为成员分配正确的角色。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"] link:create-discover-systems.html["添加系统"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"] link:https://docs.netapp.com/us-en/data-services-workloads/gcnv/add-credentials.html["添加凭据"]
 [role="quick-margin-para"]
-在 NetApp Console 中，单击 *添加系统*，然后单击 *Google Cloud Platform*，然后单击 *Google Cloud NetApp Volumes*，然后单击 *Discover*。提供有关服务帐户和 Google Cloud 项目的详细信息。
+在 NetApp Console 中，添加 Google Cloud NetApp Volumes 凭据。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"] link:../gcnv/create-discover-systems.html["添加系统"]
+[role="quick-margin-para"]
+在 NetApp Console 中，使用凭据、Google Cloud 项目和支持的区域发现系统。

@@ -60,8 +60,8 @@ Workload Factory 开始收集链接到您的 AWS 凭据的所有 FSx for ONTAP �
 
 激活控制面板后，您可以：
 
-* link:task-use-overview-dashboard.html["使用 Overview 控制面板"] 监控集群运行状况和容量
-* link:task-use-overview-dashboard.html#change-ssd-management-mode["启用并配置 SSD 容量管理模式"] （推荐、自动化或无）
-* link:task-use-overview-dashboard.html#change-throughput-management-mode["启用并配置吞吐量管理模式"] （推荐、自动化或无）
+* link:../fsx-eda/task-use-overview-dashboard.html["使用 Overview 控制面板"] 监控集群运行状况和容量
+* link:../fsx-eda/task-use-overview-dashboard.html#change-ssd-management-mode["启用并配置 SSD 容量管理模式"] （推荐、自动化或无）
+* link:../fsx-eda/task-use-overview-dashboard.html#change-throughput-management-mode["启用并配置吞吐量管理模式"] （推荐、自动化或无）
 * 设置筛选器以专注于特定区域或 AWS 帐户
 

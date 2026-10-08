@@ -339,6 +339,12 @@ sidebar:
       url: "/admin/manage-links.html"
     - title: 管理 FSx for ONTAP 的 AI 功能
       url: "/admin/manage-genai-features.html"
+    - title: Workload Factory AIOps
+      entries:
+      - title: 了解 AI 代理
+        url: "/admin/learn-agent.html"
+      - title: 管理 AI 代理设置
+        url: "/admin/manage-agent-settings.html"
     - title: 适用于 FSx for ONTAP 的自定义仪表板
       entries:
       - title: 了解适用于 FSx for ONTAP 的自定义仪表板

@@ -25,7 +25,7 @@ summary: 修复自定义仪表板的常见问题，包括设置失败、数据�
 **解决方案：** 尝试以下操作：
 
 * 请使用更清晰的详细信息重写您的请求，说明您要监控的内容。
-* 从 link:create-custom-dashboard-fsx.html["创建自定义仪表板"] 中的一个示例提示开始。
+* 从 link:../admin/create-custom-dashboard-fsx.html["创建自定义仪表板"] 中的一个示例提示开始。
 * 将复杂的监控需求分解为几个更简单的仪表板。
 * 指定要跟踪的工作负载、指标、时间范围或维度。
 
@@ -41,8 +41,8 @@ summary: 修复自定义仪表板的常见问题，包括设置失败、数据�
 
 **解决方案：**
 
-* **检查权限：** 确保您的 Workload Factory 帐户具有对仪表板使用的工作负载和资源的读取权限。查看 link:learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["AWS 凭据和权限"] 中的权限要求。
-* **验证凭据：** 确认您的 AWS 凭据有效且未过期。详情请参阅link:../fsx-storage/add-credentials.html["添加 AWS 凭据"]。
+* **检查权限：** 确保您的 Workload Factory 帐户具有对仪表板使用的工作负载和资源的读取权限。查看 link:../admin/learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["权限要求"]。
+* **验证凭据：** 确认您的 AWS 凭据有效且未过期。有关详细信息，请参阅 link:../fsx-storage/add-credentials.html["添加 AWS 凭据"]。
 
 
 
