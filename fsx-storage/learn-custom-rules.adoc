@@ -24,7 +24,7 @@ summary: 了解如何定义和管理您自己的架构规则，以在实施组�
 规则生成器允许您使用简单语言创建自定义规则。这些规则会在您的所有资源中进行检查。自定义规则可帮助您执行默认规则可能无法涵盖的组织标准、风险限制和运营要求。
 
 
-NOTE: 如果您的账号管理员已关闭 AI 功能，您将无法创建新规则或编辑现有规则。任何已计划的规则都将继续运行。link:../admin/manage-genai-features.html.["了解如何管理 AI 功能"^]。
+NOTE: 如果您的账号管理员已关闭 AI 功能，您将无法创建新规则或编辑现有规则。任何已计划的规则都将继续运行。link:../admin/manage-genai-features.html["了解如何管理 AI 功能"]。
 
 
 
@@ -46,9 +46,9 @@ NOTE: 如果您的账号管理员已关闭 AI 功能，您将无法创建新规�
 
 在创建和运行自定义规则之前，请确保具备以下条件：
 
-AWS 凭据:: 对 AWS 环境的只读访问。自定义规则需要只读权限作为安全边界。link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["将 AWS 凭据添加到 Workload Factory"^]。
+AWS 凭据:: 对 AWS 环境的只读访问。自定义规则需要只读权限作为安全边界。link:add-credentials.html["将 AWS 凭据添加到 Workload Factory"]。
 ONTAP 凭据:: 具有只读权限的 FSx 查看器用户。如果尚不存在，Workload Factory 会在每个 FSx for ONTAP 文件系统上创建一个只读用户，以便其执行评估。
-链接或代理:: 仅适用于必须直接连接到 ONTAP 以检查 AWS API 无法访问的设置的规则link:https://docs.netapp.com/us-en/workload-fsx-ontap/create-link.html["通过链接连接到 FSx for ONTAP 文件系统"^]。
+链接或代理:: 仅适用于必须直接连接到 ONTAP 以检查 AWS API 无法访问的设置的规则link:create-link.html["通过链接连接到 FSx for ONTAP 文件系统"]。
 
 
 
@@ -110,4 +110,4 @@ ONTAP 凭据:: 具有只读权限的 FSx 查看器用户。如果尚不存在，
 [[what-to-do-next]]
 == 接下来该怎么做
 
-link:../fsx-storage/create-custom-rule.html["创建自定义规则"] link:../fsx-storage/manage-custom-rules.html["管理自定义规则"]
+link:create-custom-rule.html["创建自定义规则"] link:manage-custom-rules.html["管理自定义规则"]

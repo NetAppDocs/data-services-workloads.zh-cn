@@ -2816,7 +2816,6 @@
   <block id="0be251ac51e901583999154779926c3b" category="paragraph">在块设备未使用七天后，归档块设备数据或删除未使用的块设备以降低成本。</block>
   <block id="8611faa768b220ecb3795c6fda54fdaa" category="list-text">*过度配置的 SSD 容量*</block>
   <block id="934fd3399568391e103ee0d773bf954d" category="list-text">*非活动 NAS 卷*</block>
-  <block id="72d8d7f27cf31b02bb7df1a01b23ab49" category="paragraph">配置分析可识别未主动使用的 NAS 卷，并建议删除或归档卷以降低成本。</block>
   <block id="8722112d28d6eea0aff9478fb61c5de7" category="section-title">性能效率</block>
   <block id="62d0d3849cddbcf3cccae74f05719854" category="paragraph">性能效率可帮助您确保存储资源得到有效利用，并确保工作负载以最佳方式运行。</block>
   <block id="fbb48f4d1a3f9488b40b10d1cb8a50bd" category="list-text">*FlexGroup 卷重新平衡*</block>
@@ -3108,7 +3107,6 @@
   <block id="0abde7f01f46e5ae295493bf4b280687" category="list-text">切换操作不会将所有存储虚拟机配置设置迁移到目标存储虚拟机。例如，iSCSI、广播域 MTU 和 DNS 设置不会迁移。切换后在目标存储虚拟机上手动更新这些设置。有关更多详细信息，请参阅 <block ref="af05d35e02c20d22f4e6b1df9b57e0a2" category="inline-xref-macro-rx"></block> 节。</block>
   <block id="893700039eb02078c7602e997d7f9922" category="list-text">如果您的存储 VM 使用域隧道身份验证，请在开始迁移之前在目标文件系统上设置并启用域隧道。</block>
   <block id="dddf91d5ccee3135470e6089b62618ba" category="list-text">*克隆*：克隆作为单个卷进行迁移，因此将占用目标 FSx for ONTAP 文件系统上的更多空间。考虑在切换之前删除克隆，以避免增加目标容量。</block>
-  <block id="233115f3ed74b7b4516b8f0a1efbaedf" category="list-text">*缓存卷*：适用于 ONTAP FlexCache 9.17.x 或更低版本。包含缓存卷的源存储 VM 不支持切换。在切换之前删除 ONTAP FlexCache 关系，以避免迁移失败。</block>
   <block id="03c85e91696d00a533c3da3b08434532" category="list-text">*AWS S3 接入点*：具有 S3 接入点的卷不支持迁移使用情形的切换复制。从源卷中删除 S3 接入点以避免迁移失败。</block>
   <block id="849ee629a3b8f33b04a9b242a47e3d59" category="list-text">*ONTAP S3 配置*：具有 ONTAP S3 配置的 vserver 不支持迁移用例的切换复制。删除 ONTAP S3 配置，包括 vserver 上的对象存储服务器、存储桶、用户、组或策略，以避免迁移失败。</block>
   <block id="ab3171de62100468c23112d3fda9227b" category="list-text">*LUN 序列号和 iSCSI 目标 IQN*：LUN 序列号和 iSCSI 目标 IQN 在切换期间发生变化。</block>
@@ -6830,18 +6828,15 @@
   <block id="8bc0878ae35d7f3c225b4bac0e907504" category="paragraph"><block ref="8bc0878ae35d7f3c225b4bac0e907504" category="inline-link-macro-rx"></block></block>
   <block id="0ef70b60892b97d12c2eebf7686872ca" category="paragraph">自定义规则可让您在架构完善的仪表板中设置、检查和执行您自己的架构标准以及 NetApp 最佳实践。</block>
   <block id="91b90f08c0d07c5aa66b502a1d12c868" category="paragraph">规则生成器允许您使用简单语言创建自定义规则。这些规则会在您的所有资源中进行检查。自定义规则可帮助您执行默认规则可能无法涵盖的组织标准、风险限制和运营要求。</block>
-  <block id="60a625f073158b990bcf2ad232af27aa" category="admonition">如果您的账号管理员已关闭 AI 功能，您将无法创建新规则或编辑现有规则。任何已计划的规则都将继续运行。<block ref="fb4375aa776b206d4ba3c7bbae1bcfb2" category="inline-link-macro-rx"></block>。</block>
   <block id="4edc72502b9f9929e41bae938a7490c1" category="paragraph">自定义规则使用 AI 将自然语言指令转化为清晰、结构化的规则。AI 会翻译您的请求，提供规则建议，解释其如何理解您的指令，并在保存或计划规则之前请求批准。此流程有助于确保：</block>
   <block id="0465277e228b6cf7f37c1fab3872f9cd" category="list-text">规则已明确定义并检查错误</block>
   <block id="f2b92cb195f44b1f57205f66b9c1c992" category="list-text">未执行任何自定义代码</block>
   <block id="f6b50ace5a7da2eb893c9a1a1c3971be" category="list-text">在批准规则之前，您可以准确查看将要评估的内容</block>
   <block id="110a917dc178ad706edce62d767a4196" category="list-text">每个自定义规则包括要评估的资源类型、条件逻辑、严重性、评估计划和补救指南。</block>
-  <block id="5eb43201405d6bbeac74bcd01d61e2e1" category="list-text">对 AWS 环境的只读访问。自定义规则需要只读权限作为安全边界。<block ref="1db25aada4bff8233b24c1d7b39230cd" category="inline-link-macro-rx"></block>。</block>
   <block id="823a6e1d7fe661be55dd3af05f972b11" category="list-text">ONTAP 凭据</block>
   <block id="559e5220d6130b1d9f3af60fa24ff138" category="list-text">具有只读权限的 FSx 查看器用户。如果尚不存在，Workload Factory 会在每个 FSx for ONTAP 文件系统上创建一个只读用户，以便其执行评估。</block>
   <block id="04d1424a4b58f665f6537d166f4f9750" category="list-text">链接或代理</block>
   <block id="b68341d527b58582cc7cb537c3230cd8" category="inline-link-macro">通过链接连接到 FSx for ONTAP 文件系统</block>
-  <block id="d358f748048c3fa0487b8cd6d6410fb2" category="list-text">仅适用于必须直接连接到 ONTAP 以检查 AWS API 无法访问的设置的规则<block ref="4c7cc50e5133efc728aaa88011208eda" category="inline-link-macro-rx"></block>。</block>
   <block id="00d54cb4ae79a42990f001ca7b1eafd2" category="list-text">规则无法自动解决问题。您必须使用提供的指南自行更正不合规的资源。</block>
   <block id="e0ff3e32dbc4b668a800d5b59c47613b" category="list-text">每个规则只检查一种类型的资源，但它可以应用于各种资源。例如，一个规则可以评估多个区域、所有区域或多个帐户的卷。要评估不同的资源类型，请创建单独的规则。</block>
   <block id="3f84490332db2de49bed3d46ab452bb0" category="list-text">规则最多每小时运行一次，以防止过度扫描。</block>
@@ -6863,7 +6858,6 @@
   <block id="cc36425e424f4c30e5d1dd8b4cf78a69" category="list-text">生产卷保护</block>
   <block id="9beacae88b6d84f519d92cf003a30d57" category="list-text">归档卷分层</block>
   <block id="ccf414cfce06645c55d0bcfd5f41608b" category="list-text">文件系统命名标准</block>
-  <block id="9b4ad9b41b7f7f63bf3258fc3894691a" category="paragraph"><block ref="a9a97108e6fef351f8c6a7a2af6f4937" category="inline-link-macro-rx"></block> <block ref="8bc0878ae35d7f3c225b4bac0e907504" category="inline-link-macro-rx"></block></block>
   <block id="71d671c8e1cf2aa5cf976dd7ff9d340b" category="summary">从规则目录中查看、编辑、启用、禁用和删除自定义体系结构规则。</block>
   <block id="1cf051440b9604c5c57c4c6cab344202" category="doc">在 NetApp Console 中管理 Workload Factory 的自定义规则</block>
   <block id="8ef292d4be46fbc351d35b26b3ce8720" category="paragraph">规则目录是管理所有自定义规则的一个位置。您可以查看规则详细信息、编辑规则、检查结果以及控制规则是否按计划运行。</block>
@@ -6913,4 +6907,10 @@
   <block id="64f2f595f7dd037774e1dbd99cb2ab7b" category="sidebar">管理 AI 代理设置</block>
   <block id="3fba0171e458258e875a2f8013e395b8" category="cell">SQL Server 2025</block>
   <block id="9e5f96378bed43aac0d5d94368775263" category="cell">Windows Server 2025</block>
+  <block id="084b022f1511ba8dda542f70832d22e4" category="paragraph">在 NAS 卷未使用 31 天后，归档或删除未使用的 NAS 卷以降低成本。</block>
+  <block id="6d4d9f3d79904b627f6aca8246717bca" category="list-text">*缓存卷*：包含缓存卷的源存储虚拟机不支持切换。在切换之前删除 ONTAP FlexCache 关系，以避免迁移失败。</block>
+  <block id="179ab629584266b78c7a691ade72de63" category="admonition">如果您的账号管理员已关闭 AI 功能，您将无法创建新规则或编辑现有规则。任何已计划的规则都将继续运行。<block ref="646cadbb9cfc9d23560c447c51098225" category="inline-link-macro-rx"></block>。</block>
+  <block id="22941004ec8c49f5d8a764461a973801" category="list-text">对 AWS 环境的只读访问。自定义规则需要只读权限作为安全边界。<block ref="8e1e3c879b9dae9bf3456eb51959b906" category="inline-link-macro-rx"></block>。</block>
+  <block id="8af9128504255d95219d06192a7427f2" category="list-text">仅适用于必须直接连接到 ONTAP 以检查 AWS API 无法访问的设置的规则<block ref="c8334f2cb013f0b691325d2b949f8312" category="inline-link-macro-rx"></block>。</block>
+  <block id="ef517711d9a5dee55f2bb56046d3fd70" category="paragraph"><block ref="385442535e80145b437f6d2ceb94114a" category="inline-link-macro-rx"></block> <block ref="f571cd95e32f7c421382198bc0dd0eae" category="inline-link-macro-rx"></block></block>
 </blocks>
