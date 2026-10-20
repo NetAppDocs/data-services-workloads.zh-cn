@@ -186,6 +186,12 @@ NOTE: 增加块设备大小后，请按照主机操作系统提供的步骤来�
 
 不再映射到客户端或连续七天未使用的块设备被归类为非活动块设备。您可以将非活动块设备的数据存档到容量池层以回收 SSD 容量。
 
+
+NOTE: 在删除所有子克隆或将其分成独立的卷之前，无法删除具有子克隆的卷。
+
+.开始之前
+在归档数据之前，请确保同一卷上的所有块设备（LUN）均处于非活动状态。
+
 .步骤
 . 登录到 link:https://console.netapp.com["NetApp Console"^]。
 . 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
@@ -207,7 +213,7 @@ NOTE: 增加块设备大小后，请按照主机操作系统提供的步骤来�
 . 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Storage* > *FSx for ONTAP*。
 . 从 *FSx for ONTAP* 中，选择 *Block devices* 选项卡。
 . 在孤立设备下，选择*查看和回收容量*。
-. 在“回收未使用的块设备的空间”屏幕上，选择一个或多个块设备来存档数据并回收容量。
+. 在“回收未使用的块设备的空间”屏幕上，选择一个或多个块设备以回收容量。
 . 选择 *Delete*。
 
 

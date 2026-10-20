@@ -17,8 +17,6 @@ indexpage:
       url: "/setup/learn-about-workload-factory.html"
     - title: 快速入门
       url: "/setup/quick-start.html"
-    - title: 注册并登录
-      url: "/setup/sign-up-and-log-in.html"
   - title: 权限
     links:
     - title: Amazon FSx for NetApp ONTAP 权限

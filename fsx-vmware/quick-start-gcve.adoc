@@ -17,7 +17,7 @@ summary: 开始使用 VMware 迁移顾问，将您当前的基础架构迁移到
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"] 登录 Workload Factory
 [role="quick-margin-para"]
-您需要 link:../setup/sign-up-and-log-in.html["在 Workload Factory 中设置帐户"^] 并登录到 NetApp Console。
+您需要link:https://console.netapp.com["登录到 NetApp Console"^]。如果您没有帐户，请先link:https://docs.netapp.com/us-en/console-setup-admin/task-sign-up-saas.html["注册"^]进入 NetApp Console，然后登录。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"] 添加凭据和权限
 [role="quick-margin-para"]
