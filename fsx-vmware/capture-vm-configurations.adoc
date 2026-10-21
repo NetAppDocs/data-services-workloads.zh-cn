@@ -4,7 +4,7 @@ permalink: fsx-vmware/capture-vm-configurations.html
 keywords: vm workloads, capture vm details 
 summary: 您可以使用迁移顾问虚拟机收集器脚本或 RVTools 捕获当前虚拟机配置。我们建议您使用迁移顾问虚拟机收集器脚本，因为它会收集虚拟机配置和性能数据，以制定最准确的计划。 
 ---
-= 在迁移到 VMware Cloud with VMware 工作负载之前捕获 VM 配置
+= 捕获适用于 VMware Cloud on AWS 的虚拟机配置
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

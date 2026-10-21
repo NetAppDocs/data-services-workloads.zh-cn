@@ -4,7 +4,7 @@ permalink: fsx-vmware/quick-start-vmware.html
 keywords: quick start 
 summary: 开始使用 VMware 迁移顾问，使用 Amazon FSx for ONTAP 作为外部 NFS 数据存储，将您当前的基础架构迁移到 VMware Cloud on AWS。 
 ---
-= 使用 VMware 工作负载迁移顾问迁移到 VMware Cloud on AWS 的快速入门
+= VMware Cloud on AWS 迁移快速入门
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

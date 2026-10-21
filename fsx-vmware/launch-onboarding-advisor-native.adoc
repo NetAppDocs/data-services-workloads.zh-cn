@@ -4,7 +4,7 @@ permalink: fsx-vmware/launch-onboarding-advisor-native.html
 keywords: overview, concepts, features, use case, workloads, how Workload Factory works 
 summary: 登录到 NetApp Workload Factory 以访问 VMware 迁移顾问。您将按照向导中的步骤创建根据您的需求定制的部署计划或迁移计划。 
 ---
-= 使用 VMware 工作负载迁移顾问为 Amazon EC2 创建部署计划
+= 创建 Amazon EC2 部署计划
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

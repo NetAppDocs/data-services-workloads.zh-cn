@@ -4968,7 +4968,6 @@
   <block id="dfb1565e1ec2734dcbcb24e6b43c9919" category="paragraph">在*已还原的卷名称*字段中，输入要还原的卷的唯一名称。</block>
   <block id="2321232f7bb400db057064cec47f4904" category="list-text">将数据从快照还原到现有卷。此操作将永久删除在快照创建时间后修改的任何数据。</block>
   <block id="89737fdc47d2ffa6f11712bb340e2a19" category="summary">计算通过将 Amazon EVS 与 FSx for ONTAP 结合使用可以节省多少成本。</block>
-  <block id="122a56eb4649431a7f2dbb8886f047cc" category="doc">借助 NetApp Workload Factory 探索 Amazon Elastic VMware Service 的节省成本</block>
   <block id="c99c39a5824ae2c9be487d0de19febcd" category="paragraph">探索将 VMware 工作负载迁移到 Amazon Elastic VMware Service （EVS） 的潜在节省。通过计算器，您可以比较使用 Amazon EVS 与不使用 Amazon FSx for NetApp ONTAP 作为存储的成本。</block>
   <block id="85f9ebcaf90aa1d0aea8e19f23446085" category="paragraph">如果节省计算器确定最具成本效益的存储是 FSx for ONTAP，您可以创建一个详细的评估，其中提供了一个迁移计划，您可以在使用之前查看该计划。然后，您可以使用 Codebox 生成基础架构即代码模板。</block>
   <block id="b23b05aa1d44c04b2da76aa4c7408d6c" category="section-title">探索 EVS 环境的节省</block>
@@ -4988,7 +4987,6 @@
   <block id="74ce259d0d76a9e0cd46f6300bcc2371" category="list-text">要使用迁移顾问为 Amazon EVS 环境<block ref="9c54a102b37172c71de5c1a9f4ba94d1" category="inline-link-macro-rx"></block>，请选择*规划 EVS 迁移*。</block>
   <block id="27cecac020f0eb3b6379d7eaa39d9edb" category="list-text">选择*关闭*以关闭 TCO 计算器。</block>
   <block id="495f22292688acea8c30ad6ad16b09d3" category="summary">您可以使用迁移顾问虚拟机收集器脚本或 RVTools 捕获当前虚拟机配置。我们建议您使用迁移顾问虚拟机收集器脚本，因为它会收集虚拟机配置和性能数据，以制定最准确的计划。</block>
-  <block id="f292a76e9c79b833f21da297f0ad751c" category="doc">在将 VMware 工作负载迁移到 Amazon EC2 之前捕获 VM 配置</block>
   <block id="f8e901b31808cd5fdd45bae1bb1b5200" category="paragraph">您可以使用迁移顾问虚拟机数据收集器脚本、RVTools 或 NetApp Data Infrastructure Insights 来捕获当前虚拟机配置。我们建议您使用迁移顾问虚拟机收集器脚本或 Data Infrastructure Insights，因为这些选项会同时收集虚拟机配置和性能数据，从而制定最准确的计划。</block>
   <block id="22a28a767d70781d263ac5d0d07edaf6" category="open-title">使用 RVTools（快速评估）</block>
   <block id="18498b95c15ee1034dbf55a71b7c7b9d" category="paragraph">RVTools 是一个 Windows 应用程序，可与 VCenter 和 ESX 服务器（5.x 至 8.0）交互以捕获有关 VMware 虚拟环境的信息。它收集有关虚拟机、CPU、内存、磁盘、群集、ESX 主机、数据存储等信息。您可以将此信息导出到 xlsx 文件以用于迁移顾问。</block>
@@ -5053,7 +5051,6 @@
   <block id="d5db9fed5445fd6da0101158bde40fad" category="list-text">保存此令牌以准备用于 Workload Factory 迁移顾问。</block>
   <block id="bf9f27fc21322ff6302a870d86e2e722" category="inline-link-macro">使用迁移顾问创建 Amazon EC2 部署计划</block>
   <block id="414196819b55791be7e7314c3ef3e1cb" category="paragraph"><block ref="256f57bc6446332fd4641ea86650235a" category="inline-link-macro-rx"></block>。</block>
-  <block id="3a23349f8d161f7653f1e95b602af0f5" category="doc">在迁移到 VMware Cloud with VMware 工作负载之前捕获 VM 配置</block>
   <block id="c423127be094663f098066c3efa8a37a" category="open-title">使用 Migration advisor VM 收集器脚本</block>
   <block id="e7bc9976408bfbd315fb5cead8d7c4e2" category="paragraph">NetApp 迁移顾问虚拟机收集器脚本从您的 vCenter 收集虚拟机配置信息，类似于 RVTools 收集的信息，但是，它会捕获当前虚拟机性能数据，以提供实际的读取和写入 IOPS 和吞吐量统计信息。</block>
   <block id="45f41cadcd45c9728fa28d6a1cb8d206" category="list-text">在 VMware 菜单中，选择 *评估和计划*，然后选择 *迁移到 VMware Cloud on AWS*。</block>
@@ -5093,7 +5090,6 @@
   <block id="a409bb04787a5ddb8911b653d035c75e" category="summary">部署 FSx for ONTAP 文件系统后，您需要将该系统连接到您的 VMware Cloud on AWS 基础架构。您的 SDDC 提供了连接到 FSx for ONTAP 文件系统的网络选项，方法是使用 VPC 对等功能将网络连接扩展到外部 NFS 存储卷。</block>
   <block id="07413029412abf4b07d59a7418a48d98" category="doc">将 FSx for ONTAP 文件系统连接到 VMware Cloud on AWS</block>
   <block id="ff8452c1f30c7c23563874f41490c4aa" category="paragraph">部署 FSx for ONTAP 文件系统后，您需要将该系统连接到您的 VMware Cloud on AWS 基础架构。您的软件定义数据中心（SDDC）提供了网络选项，通过使用 VPC 对等功能将网络连接扩展到外部 NFS 存储卷，从而连接到 FSx for ONTAP 文件系统。</block>
-  <block id="36789903991e7a805b64dce62ee3cb41" category="inline-link">查看 Amazon VPC 对等文档以了解详细信息</block>
   <block id="35e4dc1372c9892d7d45c118016255bf" category="paragraph">下图显示了如何使用 VPC 对等连接将单可用区（AZ）SDDC 集群连接到 FSx for ONTAP 单 AZ 部署。</block>
   <block id="40c5156ee08f8bf4b4ba3c18de0844d9" category="inline-image-macro">显示如何使用 VPC 对等连接将单 AZ SDDC 集群连接到 FSx for ONTAP 单 AZ 部署的图表。</block>
   <block id="9d06593ee15f520ce9a945a1bbad4daf" category="paragraph"><block ref="9d06593ee15f520ce9a945a1bbad4daf" category="inline-image-macro-rx" type="image"></block></block>
@@ -5273,7 +5269,6 @@
   <block id="7bf67785b343875942142dd8baf52a33" category="paragraph">默认情况下，迁移计划会自动保存在规划中心的计划列表中。</block>
   <block id="ac9813d9f42d076342006c3cf93e8674" category="list-text">当您准备好继续计划时，选择 *Provision* 以开始部署推荐的 Amazon FSx for NetApp ONTAP 文件系统。</block>
   <block id="7f23e40eb3340fde04d9926b7462c830" category="summary">从 VMware 规划中心，您可以启动 Google Cloud VMware Engine 迁移顾问，以帮助创建根据您的需求定制的迁移计划。</block>
-  <block id="5e50f9be4f1e626bb755e71b6ef9feec" category="doc">使用迁移顾问为 Google Cloud VMware Engine 创建部署计划</block>
   <block id="bdef3354bb4b315740e7e8854254495b" category="paragraph">您可以创建部署计划，将虚拟机迁移到 Google Cloud VMware Engine，并将自定义的 Google Cloud NetApp Volumes 用作外部 NFS 数据存储区。迁移顾问中的选项可能因用于收集虚拟机清单数据的工具而异。</block>
   <block id="1ce5704c4651f821ecc5d74310e8a79c" category="inline-link-macro">已上传 VM 清单</block>
   <block id="f9f0670df28d68f5721b685831be446f" category="list-text">您必须拥有 <block ref="07dde87656a21cbf828fade241eb2346" category="inline-link-macro-rx"></block>。</block>
@@ -5402,7 +5397,6 @@
   <block id="4c9e1a6d5098db9ed0d8724f69b55509" category="paragraph">代码框显示生成的 Terraform 代码。您可以将此代码复制到剪贴板，也可以将其作为文件下载，以便在自己的 Terraform 环境中执行。</block>
   <block id="98eb3550d72a811f20fc4046f149ca3c" category="list-text">选择 *创建* 以创建 Google Cloud NetApp Volumes NFS 数据存储库。</block>
   <block id="2559e4d6b9e2e602a91b8df995b458c8" category="summary">登录到 NetApp Workload Factory 以访问 VMware 迁移顾问。您将按照向导中的步骤创建根据您的需求定制的部署计划或迁移计划。</block>
-  <block id="d426ad1d2770909e76d9ec998753048e" category="doc">使用 VMware 工作负载迁移顾问为 Amazon EC2 创建部署计划</block>
   <block id="3980b900d127875dc01add3ae6aa636c" category="paragraph">请注意，您必须拥有用户名和密码才能访问 Workload Factory。如果您没有访问权限，请立即创建账号。查看说明 <block ref="20e355b0b2171a42f3631b73a7284e27" category="inline-link-macro-rx"></block>。</block>
   <block id="8209a613eadf680eb0da074479c79a0b" category="section-title">基于本地 vSphere 环境创建部署计划</block>
   <block id="12108488b525984a76d1a39aeb4948cb" category="paragraph">您可以将本地 vSphere 环境中的当前虚拟机配置迁移到 Amazon EC2 中的虚拟机，并将定制的 Amazon FSx for NetApp ONTAP 文件系统用作外部数据存储。</block>
@@ -5424,7 +5418,6 @@
   <block id="6f5daac1f5bc785aa2a651e3d291c894" category="list-text">选择 *下载计划 &gt; 下载报告* 以下载 .pdf 格式的部署计划，以便分发计划以供审核。</block>
   <block id="a3c29e0a60c7e00d242210d6b449287f" category="list-text">选择*下载计划 &gt; 下载实例存储部署*以下载 .csv 格式的外部数据存储部署计划，以便您可以使用它来创建新的基于云的智能数据基础架构。</block>
   <block id="1c541639432de5d11ef7e76941c43a49" category="list-text">选择 *Provision* 开始部署推荐的 Amazon FSx for NetApp ONTAP 文件系统。</block>
-  <block id="9aed60fda8e95affae05b540b6cbe03a" category="doc">使用 VMware 工作负载迁移顾问创建 VMware Cloud on AWS 部署计划</block>
   <block id="1e884770040a1369dfb00ff9fba06330" category="paragraph">迁移到 VMware Cloud 时，您可以使用迁移顾问将当前本地 vSphere 环境迁移到 VMWare cloud。</block>
   <block id="c9ff8945d5f4f913ea03f4ded22549da" category="paragraph">您可以将本地 vSphere 环境中的当前虚拟机配置迁移到 VMware Cloud on AWS 中的虚拟机，并将定制的 Amazon FSx for NetApp ONTAP 文件系统用作外部数据存储。</block>
   <block id="b315d9d256afa359134156c4a3ba121a" category="list-text">您必须已使用迁移顾问 VM 收集器（.csv 文件）或使用 RVTools（.xlsx 文件）从现有系统创建了清单文件。</block>
@@ -5513,7 +5506,6 @@
   <block id="63f2f07c0a027b7cde1cfd93d37fcb19" category="paragraph">无需从 NetApp 获取特殊许可证即可使用 Workload Factory for VMware。</block>
   <block id="df3078cbf2344fdc96564c4276d42b3a" category="paragraph">在所有支持 FSx for ONTAP 的商业区域均支持 Workload Factory。<block ref="54b85ac4e794c565ea8c7aad421e6e67" category="inline-link-rx"></block></block>
   <block id="2281d47edbe43f0701ce273bb95a9f2f" category="summary">使用 VMware Hybrid Cloud Extension 等工具将数据从旧虚拟机存储移动到连接到新虚拟机的 FSx for NetApp ONTAP 卷。VMware HCX 核心功能使您能够将工作负载从本地数据中心透明地迁移到 SDDC。</block>
-  <block id="734e5b74e7595424d4721589d572eda7" category="doc">使用 NetApp Workload Factory for VMware 将数据迁移到新的基础架构</block>
   <block id="63796ed0675a30eed387ff515fb4109d" category="paragraph">使用 VMware 混合云扩展（HCX）等工具将数据从旧虚拟机存储移动到连接到新虚拟机的 FSx for NetApp ONTAP 卷。VMware HCX 核心功能使您能够透明地将工作负载从本地数据中心迁移到软件定义数据中心（SDDC）。</block>
   <block id="5cf77a6cd1a6546f96141615c376acb2" category="inline-link-macro">请查看 VMware HCX 文档</block>
   <block id="317f09ce19b2835b1bdf12dc348b13e6" category="paragraph"><block ref="d8d3c9bf824a50b78a380a9590ebdc5e" category="inline-link-macro-rx"></block> 以了解详细信息。</block>
@@ -5521,7 +5513,6 @@
   <block id="cc788b7e72b2a734dd0985bd1e0e9fe3" category="inline-link-macro">Amazon FSx for NetApp ONTAP 文档</block>
   <block id="2dca7322750e45308224cf132177438c" category="paragraph">有关管理 FSx for ONTAP 文件系统的信息，请转到 <block ref="6a6b306e3cf90244d491bc0b8984c080" category="inline-link-macro-rx"></block> 查看您可以使用的备份和保护功能。</block>
   <block id="c0c3ffedc4190adc07720bcef4541cf4" category="summary">开始使用 VMware 迁移顾问，使用 Amazon FSx for ONTAP 作为外部 NFS 数据存储将当前基础架构迁移到 Amazon EVS。</block>
-  <block id="97735cf08bc8cd1817cf2dbadd06154d" category="doc">使用 VMware 工作负载迁移顾问迁移到 Amazon EVS 的快速入门</block>
   <block id="546393155194873f3731142e84a340fd" category="inline-link-macro">NetApp Workload Factory 的权限</block>
   <block id="3c32ee37a43b7a6669516fbe2facf360" category="paragraph">在开始之前，您应该了解 <block ref="eacf1b6c3c9c77b3898392ba00c514e5" category="inline-link-macro-rx"></block>。</block>
   <block id="27c19be9febabd1e2fb82d7a39784f2d" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> 添加凭据和权限</block>
@@ -5548,7 +5539,6 @@
   <block id="849b694f18d5f2f0d81dfe44c89029ea" category="inline-link-macro">了解如何实施精心设计的配置</block>
   <block id="5dc782d436d94215ab9c41482cff8c02" category="paragraph"><block ref="f09015d4a26b2878c118305ce478ca5f" category="inline-link-macro-rx"></block>。</block>
   <block id="2556da08e11585b605626929beefd4ce" category="summary">开始使用 VMware 迁移顾问，将您当前的基础架构迁移到使用 Google Cloud NetApp Volumes 作为外部 NFS 数据存储的 Google Cloud VMware Engine。</block>
-  <block id="9e8284342c75f48a25dde90d2f2d0588" category="doc">使用 VMware 工作负载迁移顾问迁移到 Google Cloud VMware Engine 的快速入门</block>
   <block id="5dd6304d07a3d3656cc0cb1da35717c6" category="inline-link-macro">适用于 NetApp Workload Factory 的 FSx for ONTAP 权限</block>
   <block id="fc9a3e0a22cf9ed4293cf5b83f0be069" category="paragraph">在开始之前，您应该了解 <block ref="0530b59db9b2bb40a8cf989b1aecc30a" category="inline-link-macro-rx"></block>。</block>
   <block id="b53d94934411cf1f04ae399b5c11817c" category="paragraph">如果选择不授予权限，则可以开始使用 Workload Factory for VMware 复制部分完成的代码示例。</block>
@@ -5556,14 +5546,12 @@
   <block id="175be206f8668945b45511179609ebe3" category="paragraph">启动 VMware 迁移顾问，并使用 Google Cloud NetApp Volumes 作为外部 NFS 数据存储配置要在 Google Cloud VMware Engine 基础架构上创建的虚拟机环境。</block>
   <block id="020b682c9f65d6f17439d2cb0cf964bf" category="paragraph"><block ref="e3624573fd74cf60ac70575f2c86dc70" category="inline-link-macro-rx"></block>。</block>
   <block id="e893ba46613a19a9294b7b151c4df83e" category="summary">开始使用 VMware 迁移顾问，使用 Amazon FSx for ONTAP 作为外部 NFS 数据存储将当前基础架构迁移到 Amazon EC2。</block>
-  <block id="09bf5c9e5640bf75b6e024bb49783cc9" category="doc">使用 VMware 工作负载迁移顾问迁移到 Amazon EC2 的快速入门</block>
   <block id="611dad37557a2cb5ae289c5e019aed4c" category="paragraph">如果选择不授予权限，则可以开始使用 Workload Factory for Databases 复制部分完成的代码示例。</block>
   <block id="d5238004bed35bc175e904048ad83ece" category="paragraph">如果选择授予权限，您需要 <block ref="1019599d15b10a8952c651273f27ed8e" category="inline-link-macro-rx"></block> ，其中包括选择工作负载功能（如数据库和 AI）以及为所需权限创建 IAM 策略。</block>
   <block id="d645e6b9cc715485914696dcaeed7e40" category="paragraph">启动 VMware 迁移顾问，并选择要使用 Amazon FSx for ONTAP 文件系统作为外部 NFS 数据存储迁移到 Amazon EC2 基础架构的 VM。您可以在保存计划之前进行一些修改。</block>
   <block id="362f02ec410356642b41d807749588d9" category="paragraph"><block ref="d6918f6a6163624fe27be3a8b64bdb49" category="inline-link-macro-rx"></block>。</block>
   <block id="65b67cfacaf9f942b7e72202ad4253cf" category="paragraph"><block ref="f440c867abbb2e895fda5fc4c7c4b4d3" category="inline-link-macro-rx"></block>。</block>
   <block id="b7c19b7e4e8df7fa64586112497c63f5" category="summary">开始使用 VMware 迁移顾问，使用 Amazon FSx for ONTAP 作为外部 NFS 数据存储，将您当前的基础架构迁移到 VMware Cloud on AWS。</block>
-  <block id="ecdd552e8f9e5da2a61e6db8b8030056" category="doc">使用 VMware 工作负载迁移顾问迁移到 VMware Cloud on AWS 的快速入门</block>
   <block id="14f4f353ef5e3c4a3673476c525c538d" category="paragraph">启动 VMware 迁移顾问，并选择要使用 Amazon FSx for ONTAP 文件系统作为外部 NFS 数据存储迁移到新的 VMware Cloud on AWS 基础架构的虚拟机。您可以在保存计划之前进行一些修改。</block>
   <block id="8d7795534dfe29f84396c92c8d0a4dcd" category="paragraph"><block ref="a837f3781560502a9640d7db10536ff7" category="inline-link-macro-rx"></block>。</block>
   <block id="f52c9ba96cd69f0216a683d029eb830e" category="paragraph">部署新的 FSx for ONTAP 文件系统，该系统将为您的 VMware Cloud on AWS 基础架构中的虚拟机提供数据存储。</block>
@@ -5577,7 +5565,6 @@
   <block id="03f4cd7af088de0b86d1c9f3c79648d1" category="inline-link-macro">详细了解有关迁移数据的信息</block>
   <block id="ed2864ba6212a6975c8039c89029a916" category="paragraph"><block ref="19e3683b716b5e111f0f1f9ccf094dd2" category="inline-link-macro-rx"></block>。</block>
   <block id="01e556e9ed381ddad48f5f248ea8c853" category="summary">您可以使用规划中心上传有关当前 VMware 环境的信息。</block>
-  <block id="549db19de828407c882fab2f54c0d91b" category="doc">将虚拟机清单数据上传到 NetApp Workload Factory</block>
   <block id="549d0e83e0f77a058ecb115d751ef72a" category="paragraph">在创建迁移计划之前，您需要上传 VM 清单数据。</block>
   <block id="034ce347094f8e8ed94fd4499edd6a02" category="paragraph">此时将显示规划中心。在规划中心，您可以上传虚拟机清单数据，查看以前的清单数据上传，并使用任何虚拟机清单数据集规划迁移。</block>
   <block id="6c2c52acb8ece2370c8022ea7c978cb0" category="list-text">选择*上传虚拟机清单*。</block>
@@ -6507,10 +6494,6 @@
   <block id="585b016fb4d762098f713d093667d688" category="sidebar">使用 Perforce 集成</block>
   <block id="38929f60770d1a358e1351986015fff6" category="sidebar">了解 Perforce 集成</block>
   <block id="94f08ecfe6af387606dd2dac771208c5" category="sidebar">将 FSx for ONTAP 用于 VMware 工作负载</block>
-  <block id="e4358de2a09588cec13214adc031a6e1" category="sidebar">迁移到 Amazon EVS 的快速入门</block>
-  <block id="8ca85249d2f6a1036c376d3281e10cd7" category="sidebar">迁移到 Amazon EC2 的快速入门</block>
-  <block id="aaa94acfa678f349154ecc14f4c48e40" category="sidebar">迁移到 VMware Cloud on AWS 的快速入门</block>
-  <block id="ef1fc06261bcd9214fd9546ba1a3d6f6" category="sidebar">迁移到 Google Cloud VMware Engine 的快速入门</block>
   <block id="93ba13882942e9f41461a4867481e012" category="sidebar">使用 VMware 规划中心</block>
   <block id="b217f7353b9ad5ed58a9d5b9ee531f78" category="sidebar">迁移到 Amazon Elastic VMware Service</block>
   <block id="cd7f9479e1a150985f71ae0c23d536b2" category="sidebar">手动创建部署计划</block>
@@ -6880,7 +6863,6 @@
   <block id="ca232c88bdf38a766c6b82ced2c60df3" category="list-text">选择*验证配置*。</block>
   <block id="5a79cccf92e71cd2b96cbbe67a02e898" category="paragraph">Workload Factory 显示指示连接成功或失败的通知</block>
   <block id="43d91f7086bfc8e0d64b9a83a049c1f0" category="list-text">*GenAI 功能关闭*：关闭所有 AI 功能。</block>
-  <block id="5853c70be1c7abb4619f6f0a6696316e" category="paragraph"><block ref="5853c70be1c7abb4619f6f0a6696316e" category="inline-link-rx"></block></block>
   <block id="f0ae5dab2d6ea2ffbd20c9563519edf2" category="paragraph">使用 NetApp Workload Factory for Databases，无需任何权限即可立即开始。如果您想使用 Workload Factory 来发现主机、管理资源等，只需几个步骤即可开始。</block>
   <block id="e8fa42224c1549b42b010324f9a01216" category="inline-link-macro">登录到 NetApp Console</block>
   <block id="d230a33ac93525f8dedc1d4d45abbfab" category="paragraph">您需要<block ref="534b2604f29302955349bba67822cd62" category="inline-link-macro-rx"></block>。如果您没有帐户，请先<block ref="65487489906fbce15e307f471fda380c" category="inline-link-macro-rx"></block>进入 NetApp Console，然后登录。</block>
@@ -6892,4 +6874,21 @@
   <block id="bbd3bc24a9cc71ad8a2822b80bf70ff9" category="paragraph">在开始之前，您应了解<block ref="64c9dffcd52d81154557ee623279261c" category="inline-link-macro-rx"></block>。您还应该<block ref="65487489906fbce15e307f471fda380c" category="inline-link-macro-rx"></block>进入 NetApp Console。</block>
   <block id="80655929466b53d4ebd339eb11bdf59d" category="section-title">从 NetApp Console 登录到 Workload Factory</block>
   <block id="12f44e4fd5c579fdafc7776b94e934d6" category="list-text">登录到<block ref="9fa63571706fcef6edc9d423212e6d10" category="inline-link-rx"></block>。</block>
+  <block id="07f5c2034d44eea983ae24e8a3e62629" category="doc">借助适用于 VMware 的 Workload Factory 探索 Amazon EVS 节省</block>
+  <block id="e1b7641d7064a40c5bbdee2b40540b74" category="doc">捕获 Amazon EC2 的虚拟机配置</block>
+  <block id="7b3bc3990d7543aaf66980f87335767a" category="doc">捕获适用于 VMware Cloud on AWS 的虚拟机配置</block>
+  <block id="b1980e2ec22c1bd0d98ba755ec8c6e01" category="inline-link">阅读 Amazon FSx for NetApp ONTAP 与 VMware Cloud on AWS 的 VPC 对等连接</block>
+  <block id="0ced83efbc83d6325bf854e3d9ff902a" category="paragraph"><block ref="0ced83efbc83d6325bf854e3d9ff902a" category="inline-link-rx"></block></block>
+  <block id="3f8584ff413956319742ef138ff950bf" category="doc">部署 FSx for ONTAP for Amazon EVS</block>
+  <block id="2fbb7c9787ea3032a156a07d1f132418" category="doc">部署 FSx for ONTAP for Amazon EC2</block>
+  <block id="a559ec50a8770c8e1d80a75962409463" category="doc">部署 FSx for ONTAP for VMware Cloud on AWS</block>
+  <block id="4adccbbed5a316b4a1a113e8e0d5ba4b" category="doc">为 Google Cloud VMware Engine 创建部署计划</block>
+  <block id="138dc8298502101ab4b1dab76473550a" category="doc">创建 Amazon EC2 部署计划</block>
+  <block id="098db62d0eacef295355b49bfd3f685d" category="doc">创建 VMware Cloud on AWS 部署计划</block>
+  <block id="e139e2a548f33074a05788b33d073ed1" category="doc">将虚拟机数据迁移至 VMware Cloud on AWS</block>
+  <block id="7f2dbecda0f9bd37e40d03689b14c2fa" category="doc">Amazon EVS 迁移快速入门</block>
+  <block id="0fcf95e364a521f58f982192fa0a45e6" category="doc">Google Cloud VMware Engine 迁移快速入门</block>
+  <block id="ea627ccca5e145e4ce43781ebdf2e6f4" category="doc">Amazon EC2 迁移快速入门</block>
+  <block id="38641132a022c702ed8584dd18675ff9" category="doc">VMware Cloud on AWS 迁移快速入门</block>
+  <block id="53d93e9fac55ddfe7c501887d49a96ea" category="doc">将 VM 清单数据上传到 Workload Factory for VMware</block>
 </blocks>
