@@ -130,7 +130,7 @@ sidebar:
           - title: 创建并连接 S3 接入点
             url: "/fsx-storage/create-s3-access-points.html"
           - title: 管理 S3 接入点
-            url: "/fsx-storage/manage-s3-access-points.html"
+            url: "/fsx-storage/edit-s3-access-points.html"
           - title: 设置日志表基础架构
             url: "/fsx-storage/setup-journal-table.html"
         - title: 拆分已克隆卷

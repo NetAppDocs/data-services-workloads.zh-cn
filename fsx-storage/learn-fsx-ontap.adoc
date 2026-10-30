@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/learn-fsx-ontap.html 
 keywords: Amazon FSx for NetApp ONTAP, FSx, storage, aws 
-summary: Amazon FSx for NetApp ONTAP 是一项完全托管的服务，允许客户在 Workload Factory 中启动和运行文件系统作为工作负载的存储后端。 
+summary: 了解 Amazon FSx for NetApp ONTAP，这是一项完全托管的服务，可让您启动和运行文件系统，将其作为 Workload Factory 中工作负载的存储后端。 
 ---
 = 了解 NetApp Workload Factory 中的 Amazon FSx for NetApp ONTAP
 :allow-uri-read: 
@@ -26,7 +26,7 @@ FSx for ONTAP 提供以下功能：
 
 * *完全托管服务*：提供与 Workload Factory 控制台集成的完全托管服务。
 * *高可用性*：为每个 FSx for ONTAP 文件系统提供高可用性，支持单可用区和多可用区部署。
-* *自动快照*：通过自动化、高效的快照保护数据，这些快照几乎是文件系统或卷的即时、空间高效的时间点只读副本。
+* *自动快照*：通过自动化、高效的快照保护数据，这些快照是文件系统或卷的近乎即时、节省空间的时间点只读副本。
 * *卷复制*：通过跨 Amazon Web Services 的跨区域复制提供灾难恢复。
 * *高效备份*：在紧急情况下，通过另一个区域的数据副本添加额外的保护层。
 * *快速克隆*：通过快速克隆加速应用程序开发。
@@ -77,7 +77,7 @@ AWS 维护您的 FSx for ONTAP 帐户，而不是 Workload Factory。请参阅 l
 [[regions]]
 == 地区
 
-在所有支持 FSx for ONTAP 的商业区域均支持 Workload factory。 link:https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/["查看支持的 Amazon 区域。"^]
+在所有支持 FSx for ONTAP 的商业区域均支持 Workload Factory。 link:https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/["查看支持的 Amazon 区域。"^]
 
 不支持以下 AWS 区域：
 

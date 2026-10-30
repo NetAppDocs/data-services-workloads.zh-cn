@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/edit-s3-access-points.html 
+keywords: S3, s3, access points, manage access points, change access points, update access points, modify access points 
+summary: 更新 S3 访问点详细信息，管理标签，并启用或禁用 FSx for ONTAP 中卷的清单表。 
+---
+= 在 NetApp Console 中编辑 FSx for ONTAP 卷的 S3 访问点
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+在 NetApp Console 中更新 FSx for ONTAP 卷的 S3 访问点详细信息并管理标签。
+
+您还可以启用或禁用接入点的*库存表*。库存表会为 S3 接入点可访问的所有对象生成元数据，并产生 AWS S3 请求成本。有关详细信息，请参见link:https://aws.amazon.com/s3/pricing/["Amazon S3 定价文档"^]。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *Volumes explorer*。
+. 选择要编辑其 S3 接入点的卷的操作菜单，然后选择 *Advanced actions*，然后选择 *Manage S3 access points*。
+. 在*管理 S3 接入点*屏幕中，选择操作菜单，然后选择*编辑接入点*。
+. 进行更新，然后选择 *Apply*。
++
+要为日志表功能设置基础架构，您必须选择 *Internet* 作为 S3 访问端点的网络配置。link:setup-journal-table.html["了解如何设置日志表基础架构"]。
+
+

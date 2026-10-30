@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/create-discover-systems.html 
 keywords: Amazon FSx for NetApp ONTAP, fsx, volumes, create system, delete system, access key, secret key, region, availability zones, discover, storage capacity, iops, throughput, security group, security, NetApp Console 
-summary: 创建或发现云存储系统，以便从 NetApp Console 添加和管理卷及其他数据服务。 
+summary: 创建或发现 FSx for ONTAP 文件系统，以便从 NetApp Console 添加和管理卷及其他数据服务。 
 ---
 = 在 NetApp Console 中创建或发现云存储系统
 :hardbreaks:
@@ -14,7 +14,7 @@ summary: 创建或发现云存储系统，以便从 NetApp Console 添加和管�
 
 
 [role="lead"]
-创建或发现云存储系统，以便从 NetApp Console 添加和管理卷及其他数据服务。
+创建或发现第一代和第二代 FSx for ONTAP 文件系统，以便从 NetApp Console 添加和管理卷及其他数据服务。
 
 
 
@@ -74,7 +74,7 @@ NOTE: 从 Codebox 使用 Terraform 时，您复制或下载的代码会隐藏 `f
 
 
 
-.. *标签*：（可选）您最多可以添加 50 个标签。
+.. *标签*：（可选）最多添加 50 个标签。
 
 
 . 在*文件系统详细信息*下，提供以下内容：
@@ -116,7 +116,7 @@ NOTE: 从 Codebox 使用 Terraform 时，您复制或下载的代码会隐藏 `f
 
 
 .结果
-如果您创建了文件系统，新的 FSx for ONTAP 配置将显示在“系统”页面上。
+创建文件系统后，您可以在“系统”页面上查看它。
 
 您可以通过多种方式管理 FSx for ONTAP 文件系统，例如从 NetApp Console 中的工作负载、使用 ONTAP System Manager 以及使用 AWS CloudFormation。
 
@@ -160,7 +160,7 @@ NOTE: 从 Codebox 使用 Terraform 时，您复制或下载的代码会隐藏 `f
 
 
 
-.. *标签*：（可选）您最多可以添加 50 个标签。
+.. *标签*：（可选）最多添加 50 个标签。
 
 
 . 在文件系统详细信息下，提供以下内容：
@@ -174,8 +174,8 @@ NOTE: 从 Codebox 使用 Terraform 时，您复制或下载的代码会隐藏 `f
 .. *每个 HA 对的吞吐量*：选择每个 HA 对数量的吞吐量。第一代文件系统仅支持一个 HA 对。
 .. *Provisioned IOPS*：从下列选项中选择一项：
 +
-*** *自动*：对于自动，每创建一个 GiB，就会添加 3 个 IOPS。
-*** *用户预配*：对于用户预配，输入 IOPS 值。
+*** *自动*：为每个创建的 GiB 添加 3 个 IOPS。
+*** *用户配置*：输入 IOPS 值。
 
 
 .. *ONTAP 凭据*：可选。输入您的 ONTAP 用户名和密码。可以立即或稍后设置密码。
@@ -237,7 +237,7 @@ NOTE: 从 Codebox 使用 Terraform 时，您复制或下载的代码会隐藏 `f
 
 
 .结果
-如果您创建了文件系统，新的 FSx for ONTAP 配置将显示在“系统”页面上。
+创建文件系统后，您可以在“系统”页面上查看它。
 
 您可以通过多种方式管理 FSx for ONTAP 文件系统，例如从 NetApp Console 中的工作负载、使用 ONTAP System Manager 以及使用 AWS CloudFormation。
 
@@ -245,27 +245,27 @@ NOTE: 从 Codebox 使用 Terraform 时，您复制或下载的代码会隐藏 `f
 ====
 
 
-[[discover-an-existing-cloud-storage-system]]
-== 发现现有云存储系统
+[[discover-an-existing-fsx-for-ontap-file-system]]
+== 发现现有的 FSx for ONTAP 文件系统
 
-如果您之前在 Workload Factory 中提供了云存储提供商的凭据，则可以从 Discoverable systems 页面自动发现您的存储系统。您还可以查看可用的数据服务。
+如果您之前在 Workload Factory 中提供了云存储提供商的凭据，则可以从 Discoverable systems 页面自动发现您的 FSx for ONTAP 文件系统。您还可以查看可用的数据服务。
 
 .关于此任务
-您在一个帐户中只能发现一次云存储系统，并将其附加到一个工作区。稍后可以移除该存储系统并将其重新关联到其他工作区。
+您只能在一个帐户中发现一次 FSx for ONTAP 文件系统，并将其附加到一个工作区。稍后可以删除该文件系统并将其重新关联到其他工作区。
 
 .步骤
 . 在 NetApp Console 菜单中，依次选择 *Storage*、*Management* 和 *Discoverable systems*。
-. 将显示已发现的云存储系统的计数。选择*发现*。
+. 将显示已发现的 FSx for ONTAP 文件系统计数。选择*发现*。
 . 选择一个或多个存储系统，然后选择*发现*将其添加到系统页面。
 
 
 [NOTE]
 ====
-* 如果选择未命名的存储系统，您将收到输入系统名称的提示。
-* 如果选择的存储系统没有从控制台管理它所需的凭据，您将收到提示，要求您选择具有所需权限的凭据。
+* 如果选择未命名的文件系统，您将收到输入系统名称的提示。
+* 如果选择的文件系统没有从控制台管理它所需的凭据，您将收到提示，要求您选择具有所需权限的凭据。
 * 以下地区不支持发现：中国地区、GovCloud（美国）地区、秘密云和绝密云。
 
 
 ====
 .结果
-控制台在“系统”页面上显示您发现的系统。您可以通过多种方式管理存储系统，例如从 NetApp Console 中的工作负载，以及使用 ONTAP System Manager 或使用云提供商的存储管理工具。
+控制台在“系统”页面上显示您发现的文件系统。您可以通过多种方式管理文件系统，例如从 NetApp Console 中的“工作负载”、使用 ONTAP System Manager 以及使用云提供商的存储管理工具。

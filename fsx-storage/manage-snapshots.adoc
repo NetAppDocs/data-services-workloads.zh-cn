@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-snapshots.html 
 keywords: snapshot, snapshots, manage snapshots, edit snapshots, access snapshots, delete snapshots, remove snapshots 
-summary: 编辑快照设置、启用目录访问和删除快照，以便在 Workload Factory 中管理快照和数据保护。 
+summary: 编辑快照名称、标签和保留期，使快照不可变，启用快照目录访问，并删除 FSx for ONTAP 卷的快照。 
 ---
 = 管理 FSx for ONTAP 卷的快照
 :allow-uri-read: 
@@ -26,7 +26,7 @@ summary: 编辑快照设置、启用目录访问和删除快照，以便在 Work
 . 选择要编辑快照的卷的操作菜单。
 . 选择*数据保护操作*，然后选择*管理快照*。
 . 从“管理快照”页面中，选择要编辑的快照的操作菜单，然后选择 *编辑*。
-. 在“编辑快照”对话框中，可以编辑以下内容：
+. 在“编辑快照”对话框中，编辑以下设置：
 +
 .. 更改名称。
 .. 更改标签。
@@ -48,7 +48,7 @@ summary: 编辑快照设置、启用目录访问和删除快照，以便在 Work
 [[access-a-snapshot]]
 == 访问快照
 
-启用快照目录访问，使用户能够自主访问快照。
+启用快照目录访问，以便用户可以自主访问快照。
 
 .步骤
 . 登录到 link:https://console.netapp.com["NetApp Console"^]。
@@ -56,7 +56,7 @@ summary: 编辑快照设置、启用目录访问和删除快照，以便在 Work
 . 选择具有要访问的快照的卷的操作菜单。
 . 选择*数据保护操作*，然后选择*管理快照*。
 . 从“管理快照”页面中，选择要访问的快照的“操作”菜单，然后选择 *访问*。
-. 在“访问快照”对话框中，选择*启用快照目录访问*以访问此卷快照和卷的所有快照。
+. 在 Access snapshot 对话框中，选择 *Enable snapshot directory access* 以访问此卷快照和该卷的所有快照。
 +
 ** 对于 NFS 卷：选择 *NFS 访问路径* 以查看快照的 NFS 路径。
 ** 对于 SMB/CIFS 卷：选择 *SMB 访问路径* 以查看快照的 SMB 路径。
@@ -71,7 +71,7 @@ summary: 编辑快照设置、启用目录访问和删除快照，以便在 Work
 [[restore-data-from-a-snapshot]]
 == 从快照还原数据
 
-您可以选择将数据从快照恢复到现有卷或新卷。
+您可以将数据从快照恢复到现有卷或新卷。
 
 link:use-snapshots.html["从 Snapshot 还原卷"]
 
@@ -82,7 +82,7 @@ link:use-snapshots.html["从 Snapshot 还原卷"]
 
 删除快照以释放空间。
 
-在保留期结束之前，无法删除不可变快照。
+在保留期结束之前，您无法删除不可变快照。
 
 .步骤
 . 登录到 link:https://console.netapp.com["NetApp Console"^]。

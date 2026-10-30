@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/provision-iops.html 
 keywords: iops, SSD, provision, allocate 
-summary: 自动或手动为 FSx for ONTAP 文件系统配置 SSD IOPS。 
+summary: 在 Workload Factory 中为 FSx for ONTAP 文件系统启用自动 SSD IOPS 调配或设置用户调配的 IOPS 值。 
 ---
 = 为 FSx for ONTAP 文件系统配置 SSD IOPS
 :allow-uri-read: 
@@ -11,10 +11,10 @@ summary: 自动或手动为 FSx for ONTAP 文件系统配置 SSD IOPS。
 
 
 [role="lead"]
-在 NetApp Workload Factory 中为 FSx for ONTAP 文件系统自动调配或手动调配 SSD IOPS。
+在 NetApp Workload Factory 中自动或手动为 FSx for ONTAP 文件系统配置 SSD IOPS，以控制工作负载的可用性能。
 
 .关于此任务
-您可以为 FSx 文件系统启用自动 SSD IOPS 调配或手动调配 IOPS。
+您可以为 FSx for ONTAP 文件系统启用自动 SSD IOPS 调配或手动调配 IOPS。
 
 自动调配的 IOPS 按每 GiB 三个 IOPS 计算。
 

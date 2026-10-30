@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-snapshot-policy.html 
 keywords: manage snapshot policy, change snapshot policy, assign snapshot policy, remove snapshot policy, snapshot policies, snapshot schedule, update, snapshot long-term retention, enable long-term retention 
-summary: 在 Workload Factory 中管理 FSx for ONTAP 卷的 Snapshot 策略。Snapshot 策略定义系统如何为卷创建快照。 
+summary: 分配、更改、移除和删除快照策略，并在 Workload Factory 中为 FSx for ONTAP 卷启用不可变快照和长期保留。 
 ---
 = 管理 NetApp Workload Factory 中卷的快照策略
 :allow-uri-read: 
@@ -27,7 +27,7 @@ summary: 在 Workload Factory 中管理 FSx for ONTAP 卷的 Snapshot 策略。S
 您可以将 Snapshot 策略分配给单个卷，以便为该卷创建计划快照。
 
 .开始之前
-必须关联链接才能分配快照策略。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+必须关联链接才能分配快照策略。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。关联链接后，返回此操作。
 
 .步骤
 . 登录到 link:https://console.netapp.com["NetApp Console"^]。
@@ -39,7 +39,7 @@ summary: 在 Workload Factory 中管理 FSx for ONTAP 卷的 Snapshot 策略。S
 . 在 Snapshot 策略管理页面上，选择 Snapshot 策略的操作菜单，然后选择 *将策略分配给卷*。
 . 在“分配 Snapshot 策略”对话框中，选择要分配给卷的 Snapshot 策略并查看策略计划。
 +
-如果策略包含不可变快照，并且您要使用它，请接受该声明。
+如果策略包含不可变快照，并且要使用该策略，请接受该语句。
 
 . 选择*分配*。
 
@@ -52,10 +52,10 @@ Snapshot 策略将分配给卷。
 [[change-a-snapshot-policy]]
 == 更改 Snapshot 策略
 
-您可以更改 Snapshot 策略名称、计划和要保留的副本数量，并启用或禁用不可变快照。无法跨存储 VM 启用或禁用策略共享。此选项仅在创建 Snapshot 策略期间可用。
+您可以更改快照策略名称、计划和要保留的副本数，并启用或禁用不可变快照。您无法跨存储虚拟机启用或禁用策略共享。只有在创建快照策略时才能设置此选项。
 
 .开始之前
-要显示现有快照策略，必须关联链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+要显示现有快照策略，必须关联链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。关联链接后，返回此操作。
 
 .步骤
 . 登录到 link:https://console.netapp.com["NetApp Console"^]。
@@ -80,7 +80,7 @@ Snapshot 策略已更新。
 锁定快照，以防止在保留期间删除快照。
 
 .开始之前
-要启用不可变快照，必须关联链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+要启用不可变快照，必须关联链接。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。关联链接后，返回此操作。
 
 .步骤
 . 登录到 link:https://console.netapp.com["NetApp Console"^]。
@@ -148,7 +148,7 @@ NOTE: 复制 Storage VM 数据和配置设置时，编辑长期保留不可用�
 从卷中删除 Snapshot 策略，因为您不再需要该卷的快照，或者因为您要删除分配给多个卷的 Snapshot 策略。要<<删除 Snapshot 策略,删除 Snapshot 策略>>分配给多个卷的策略，您必须手动将其从所有卷中删除。
 
 .开始之前
-必须关联链接才能删除快照策略。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。链接关联后，返回此操作。
+必须关联链接才能删除快照策略。link:create-link.html["了解如何关联现有链接或创建和关联新链接"^]。关联链接后，返回此操作。
 
 .步骤
 . 登录到 link:https://console.netapp.com["NetApp Console"^]。

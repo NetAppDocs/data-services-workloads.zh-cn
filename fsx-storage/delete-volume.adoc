@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/delete-volume.html 
 keywords: delete volume, volume deletion 
-summary: 删除您的 FSx for ONTAP 文件系统中不再需要的卷以释放空间。此操作不可逆。 
+summary: 从 FSx for ONTAP 文件系统中删除不再需要的卷以释放空间。此操作不可逆转。 
 ---
 = 在 NetApp Workload Factory 中删除卷
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 删除您的 FSx for ONTAP 文件系统中不再需要的卷以释放�
 
 
 [role="lead"]
-删除您的 FSx for ONTAP 文件系统中不再需要的卷以释放空间。此操作不可逆。
+从 FSx for ONTAP 文件系统中删除不再需要的卷以释放空间。此操作不可逆转。
 
 .开始之前
 删除卷之前，请考虑以下事项：
