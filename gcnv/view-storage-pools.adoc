@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: gcnv/view-storage-pools.html 
+keywords: view storage pools, storage pools, gcnv 
+summary: 在 NetApp Workload Factory 中查看您的 Google Cloud NetApp Volumes 存储池及其详细信息。 
+---
+= 在 NetApp Workload Factory 中查看 Google Cloud NetApp Volumes 存储池
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在 NetApp Workload Factory 中查看您的 Google Cloud NetApp Volumes 存储池及其详细信息。
+
+.步骤
+. 登录到 link:https://console.netapp.com["NetApp Console"^]。
+. 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Storage* > *Google Cloud NetApp Volumes*。
+. 使用*项目*、*凭据*和*区域*筛选器来确定显示的存储池范围。
+. 查看存储池表，其中显示名称、状态、服务级别和容量等详细信息。
++
+存储池的服务级别为 Standard、Premium、Extreme、Flex File 或 Flex Unified。对于 Flex Unified 存储池，模式显示 Default 或 ONTAP，对于所有其他服务级别，则显示 Default。
+
+. 选择存储池的名称以打开其详细信息，包括吞吐量和描述。
+

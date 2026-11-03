@@ -7,7 +7,7 @@ summary: 更新 S3 访问点详细信息，管理标签，并启用或禁用 FSx
 = 在 NetApp Console 中编辑 FSx for ONTAP 卷的 S3 访问点
 :allow-uri-read: 
 :icons: font
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 [role="lead"]

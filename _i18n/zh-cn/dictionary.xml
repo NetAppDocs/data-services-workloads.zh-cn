@@ -105,7 +105,6 @@
   <block id="292198e01fad7795066f40b6fec350fd" category="list-text">从 *FSx for ONTAP* 中，选择包含要复制的卷的文件系统。</block>
   <block id="bc9c958c3279391522e702151359608b" category="list-text">选择 *Replication relationships* 选项卡。</block>
   <block id="23c1b911bea8dc9e9cdd65d07a7745ca" category="list-text">在复制关系表中，选择要切换的复制关系，然后选择 *Cut over replication* 。</block>
-  <block id="e4d846e7cde6ab6686b9817d81bc55f6" category="list-text">查看"切换复制"对话框中的信息，然后键入 _cut over_ 确认。</block>
   <block id="03fbb06beb5ba7043334c9f7b18e1f16" category="list-text">从 *FSx for ONTAP* 中，选择要更新的文件系统的操作菜单，然后选择*管理*。</block>
   <block id="eb38ae8021803ad1eb467650a72c6ca2" category="list-text">从文件系统概述中，选择 *Replication relationships* 选项卡。</block>
   <block id="e7fac383dedc147790819a6b6ec1ca87" category="list-text">在复制关系选项卡中，选择要初始化的复制关系的操作菜单。</block>
@@ -268,7 +267,6 @@
   <block id="43d2bb31c641fd8b871b835572bc7441" category="paragraph">通过用简单的语言描述要监控的内容来创建自定义仪表板。AI 将引导您完成设置，以便仪表板与您的工作负载和优先级相匹配。</block>
   <block id="bbe48fb854ea022537208eeeff822f91" category="paragraph-title">关于此任务</block>
   <block id="463a1f1058198f82800c115a2a913de5" category="paragraph">自定义仪表板使用 AI 引导的对话框来了解要可视化的内容。您用自然语言描述您的监控需求，系统会询问澄清问题，以确保仪表板满足您的要求。</block>
-  <block id="5af1607522ddad534f7fc3e5976684e5" category="paragraph">创建后，您可以刷新控制面板以查看更新的数据。</block>
   <block id="a8f8e9b8eb3f376a4b560c169094087e" category="paragraph">请记住，自定义仪表板按设计为只读，无法更改存储或工作负载配置。</block>
   <block id="21b694dc2503eab08ab245a8bcfe9f1c" category="inline-link-macro">了解人工智能管理</block>
   <block id="1490f3908001d2cdf7587ba480973340" category="section-title">创建仪表板</block>
@@ -288,9 +286,7 @@
   <block id="01e12de62fa77fda2815719aed8ff892" category="paragraph-title">下一步</block>
   <block id="fb3b6f147b0a44a08f4c961dc053571e" category="paragraph">创建后，您可以：</block>
   <block id="86d47ec5cc124c99638dc3c2f21c96e0" category="list-text">更改控制面板的可见性，以便与您的团队共享</block>
-  <block id="a5c04615d2baa4c3104d2afbb5b85c59" category="list-text">刷新仪表板数据以查看最新信息</block>
   <block id="7bff2130a08698224667671d85a34ed4" category="list-text">删除不再需要的仪表板</block>
-  <block id="ed5184af3d39b3e314759db5b95ba675" category="list-text">查看控制面板详细信息，包括创建者和上次更新时间</block>
   <block id="d10995cac5dfc264a5da7f4abec9025d" category="inline-link-macro">管理自定义控制面板</block>
   <block id="1703fc0755f2533bd9d727fa0298c500" category="inline-link-macro">对自定义信息板进行故障排除</block>
   <block id="b765164d0d63341925efe41eda98a9b0" category="summary">根据您的工作负载和优先级创建个性化的 AI 驱动仪表板，以增强运营可见性，而不受预定义视图的限制。</block>
@@ -366,7 +362,6 @@
   <block id="939742a8d44add9f4ad62a0fc3824a6e" category="list-text">*Change to private dashboard* - 仅您能看到控制面板</block>
   <block id="7e3cce2609a225eafd019dfc30a9437a" category="paragraph">控制面板立即更新。控制面板卡上的可见性标签显示当前状态。</block>
   <block id="9e3f16aef1d22400bdae48c5cb77b00f" category="section-title">刷新仪表板数据</block>
-  <block id="4e424a1ad37782627141d4d50f79b586" category="paragraph">打开仪表板时会加载仪表板数据。您可以刷新它以查看最新信息。</block>
   <block id="74ee9feffcb1603b7eeb47c099c0e5a5" category="section-title">删除仪表板</block>
   <block id="e54360b7371199d6607f76cd1ae6ad17" category="paragraph">删除不再需要的控制面板。此操作为永久操作，无法撤消。</block>
   <block id="3325f3a5c13a73bb87ed2dabebb0b6a3" category="list-text">在*自定义仪表板*页面中，找到要删除的仪表板。</block>
@@ -3011,7 +3006,6 @@
   <block id="38adbad92c37166c4ce64da1eb51513b" category="inline-link-macro">创建卷</block>
   <block id="75ba895a2e374208ae80d98ebcf116ba" category="paragraph">如果使用不可变文件复制源卷，则目标卷和文件系统将保持锁定状态，直到源卷的保留期结束。当您 <block ref="40da211f809bc6c9e6163aa605349c18" category="inline-link-macro-rx"></block> FSx for ONTAP 文件系统时，不可变文件功能可用。</block>
   <block id="db02b80a9dd5a7c959ec87fdf41baa91" category="inline-link-macro">级联复制</block>
-  <block id="e9df00e078102fb55394d13dad9115a4" category="paragraph">您可以复制一个源（读/写）卷或一个数据保护（DP）卷。支持级联复制，但不支持第三个跃点。详细了解<block ref="a7ce0f55df6d6b86426266d8a7eeb328" category="inline-link-macro-rx"></block>。</block>
   <block id="ed5b7e4aa04c57efe98d70f7ef15379d" category="section-title">迁移使用案例</block>
   <block id="3ff25ab258de4c80bbe3f420e00a3c7e" category="paragraph">对于迁移，您可以选择复制一个存储 VM 的存储 VM 数据和配置设置。如果同时迁移数据和配置设置，请确保卷的上次复制在过去 24 小时内完成。您必须选择同一存储 VM 中的所有卷才能使用此功能。所有卷的分层策略默认为源卷的分层策略，建议用于迁移使用情形。</block>
   <block id="a4b076b073df12f01e734ba016dbebd2" category="paragraph">Workload Factory 支持以下存储系统之间的存储虚拟机的迁移复制。</block>
@@ -3021,12 +3015,6 @@
   <block id="811a8960cadc3b9f9379096dc8b6b831" category="list-text">第一代到第一代</block>
   <block id="9b03bdd83a5017b3aa998f32e7ad219f" category="list-text">第二代到第二代</block>
   <block id="e148ba55e71be246708dafe4293a314f" category="paragraph">要迁移存储 VM 数据和配置设置，必须完成三个操作。</block>
-  <block id="c6b6c5bfe5708feb9348282cee3701d5" category="inline-xref">创建复制关系</block>
-  <block id="3297677183a67f243b8c6abf28b4fb81" category="list-text"><block ref="d3f4ef0dd3d11e1cc504390affbdef58" category="inline-xref-macro-rx"></block>，选择 *Migration* 作为用例，然后选择 *Replicate storage VM configuration*。</block>
-  <block id="4578208e79d59d2ad53f30812b33d008" category="inline-xref">初始化复制关系</block>
-  <block id="ee673c79e2fee1e050f07ed104f6188d" category="list-text"><block ref="1876753e18c7b524394b3d041c7ca2f6" category="inline-xref-macro-rx"></block> 将数据从源存储系统传输到目标存储系统。</block>
-  <block id="f2ce5ba0f770aa8ae822f79404813d99" category="inline-xref">切换复制以用于迁移用例</block>
-  <block id="23dd3a896e2b24326fa839ac0c555b13" category="list-text"><block ref="78c2faa9b52f24796e9c82977a0d449a" category="inline-xref-macro-rx"></block> 将数据和配置设置从源文件系统永久迁移到目标 FSx for ONTAP 文件系统。</block>
   <block id="34ed3d0886446fdce0ca12aba8d0a847" category="section-title">步骤 1：创建复制关系</block>
   <block id="388c14942d26a5119b21a74fab9025a3" category="paragraph">在两个 FSx for ONTAP 文件系统之间、本地 ONTAP 系统和 FSx for ONTAP 文件系统之间，或者 Cloud Volumes ONTAP 和 FSx for ONTAP 文件系统之间复制数据。</block>
   <block id="0aa7d11dc16260c47faf9d5b0b642366" category="paragraph">在开始之前，请查看这些要求。</block>
@@ -3049,13 +3037,10 @@
   <block id="938304b34ce3517fe01a2000f5b9d7df" category="paragraph">当复制状态显示 *Idle* 时，数据传输完成。</block>
   <block id="d0d09a499e6cdf9f1d34c4e5929c7f4d" category="section-title">步骤 3：为迁移用例切换复制</block>
   <block id="ed57615365ad2815423480008d91d450" category="section-title">规划切换操作</block>
-  <block id="fa425772bf4dc1e54c8368c2b99d4b1b" category="paragraph">在规划迁移用例的切换操作时，请考虑以下内容。</block>
   <block id="eeb77472aa3a83d51f0873ec83e22572" category="list-text">*Storage VM 配置设置*：</block>
   <block id="d77811034f737ab45ed7ddebe9c096fd" category="inline-xref">切换后更新配置设置</block>
-  <block id="0abde7f01f46e5ae295493bf4b280687" category="list-text">切换操作不会将所有存储虚拟机配置设置迁移到目标存储虚拟机。例如，iSCSI、广播域 MTU 和 DNS 设置不会迁移。切换后在目标存储虚拟机上手动更新这些设置。有关更多详细信息，请参阅 <block ref="af05d35e02c20d22f4e6b1df9b57e0a2" category="inline-xref-macro-rx"></block> 节。</block>
   <block id="893700039eb02078c7602e997d7f9922" category="list-text">如果您的存储 VM 使用域隧道身份验证，请在开始迁移之前在目标文件系统上设置并启用域隧道。</block>
   <block id="03c85e91696d00a533c3da3b08434532" category="list-text">*AWS S3 接入点*：具有 S3 接入点的卷不支持迁移使用情形的切换复制。从源卷中删除 S3 接入点以避免迁移失败。</block>
-  <block id="849ee629a3b8f33b04a9b242a47e3d59" category="list-text">*ONTAP S3 配置*：具有 ONTAP S3 配置的 vserver 不支持迁移用例的切换复制。删除 ONTAP S3 配置，包括 vserver 上的对象存储服务器、存储桶、用户、组或策略，以避免迁移失败。</block>
   <block id="ab3171de62100468c23112d3fda9227b" category="list-text">*LUN 序列号和 iSCSI 目标 IQN*：LUN 序列号和 iSCSI 目标 IQN 在切换期间发生变化。</block>
   <block id="aed0e194718db8e0128d88b14756819e" category="list-text">在切换复制之前，请停止对 Storage VM 的任何客户端访问。</block>
   <block id="3021805b6a1038ca60c0a0b6321eeb81" category="list-text">以下端口必须在与 FSx for ONTAP 文件系统关联的安全组中打开以实现链路连接：端口 443 (HTTPS) 和端口 22 (SSH)。</block>
@@ -3065,7 +3050,6 @@
   <block id="2a6f3123e92916a549d4843b0432ee15" category="list-text">对于 iSCSI：</block>
   <block id="6620d06a6f36ee92ee8c0b9c206e5932" category="list-text">重新创建 igroup</block>
   <block id="1d215d1d64ff0e5459b1b60c4e0f0ba2" category="list-text">更新 LUN 映射</block>
-  <block id="22c26e33ed22192caefb59eb41da6dd7" category="list-text">登录到每个 SAN 客户端并更新新目标的 iSCSI/MPIO 设置并删除旧的 vserver 目标 IP</block>
   <block id="add6659449d7aeb40a4dd48b3f75db00" category="list-text">验证广播域 MTU 设置是否符合预期</block>
   <block id="cd823c1632b612f3a00bc9cf049ef97b" category="list-text">验证 DNS 设置是否符合预期</block>
   <block id="b33f176ae89f054db5b204e18e50bedb" category="list-text">如果源存储虚拟机中有缓存卷，则重新创建缓存关系（ONTAP FlexCache 关系）。</block>
@@ -3426,7 +3410,6 @@
   <block id="408a4f348f40acee70fae7c43f89e8ac" category="inline-link-macro">获取 FSx for ONTAP for Workload Factory 的帮助</block>
   <block id="79b8403eb51e9eb841884de955a99f16" category="paragraph">对于有关 Workload Factory 或 Workload Factory 应用程序和服务的一般性问题，请参阅 <block ref="84e1270a3cfabd4fd60afbaf552cfd80" category="inline-link-macro-rx"></block>。</block>
   <block id="201a18ac1c906df6358f39af33c244de" category="summary">在 NetApp Workload Factory 中管理 FSx for ONTAP 文件系统的块存储。</block>
-  <block id="373d40a556613e20661d6c89ac8751a6" category="paragraph">使用 NetApp Workload Factory 简化块存储资源（包括 igroup 和块设备）的管理，并控制 FSx for ONTAP 块设备的客户端访问，以提供最佳性能并最大限度地降低成本。</block>
   <block id="eb65a539cb451b6fbdc221ea311b28d4" category="paragraph">从 Workload Factory 控制台，您可以管理启动程序组 (igroup) 以控制客户端对块设备的访问。您还可以查看块设备详细信息、增加容量、制作克隆、管理客户端访问、存档非活动块设备的数据以及删除块设备。</block>
   <block id="30f276b848a0c37c6c54368f5714fc72" category="list-text">客户端连接</block>
   <block id="e7963aa68819cfe7f854ea292af57bb0" category="list-text">块设备状态</block>
@@ -4601,8 +4584,6 @@
   <block id="ee58955cf84a9682824159e8019bdbef" category="list-text">选择*数据保护操作*，然后选择*拆分克隆卷*。</block>
   <block id="d774297729b342ccb9c4096a5382bba3" category="list-text">在 Split volume 对话框中，选择 *Delete*。</block>
   <block id="70d5997237e2a666a80612de57a49652" category="paragraph">卷克隆已拆分，并显示在“Volumes”选项卡中。</block>
-  <block id="56df9b1084a1d8fbfcb5630d52db4560" category="summary">在 NetApp Workload Factory 中跟踪 FSx for ONTAP 文件系统资源的成本并生成报告。</block>
-  <block id="132c7cd068e9c3c95296d05738c81a90" category="paragraph">Workload Factory 通过从 AWS Cost Explorer 获取成本数据，跟踪 FSx for ONTAP 文件系统成本和使用情况。跟踪以下成本详细信息：使用类型、使用 SKU、部署类型、使用情况和总成本。</block>
   <block id="80e92f578bcc9bc76e7904c0736e30b0" category="inline-link-macro">详细了解 AWS 成本分配标签。</block>
   <block id="258ef99c8c6162f96d39f58575b891c4" category="section-title">跟踪成本</block>
   <block id="4eb4c996873463b028b9c244954294a7" category="paragraph">Workload Factory 控制台成本仪表板中显示的成本基于 AWS Cost Explorer 的数据，每 24 小时更新一次。</block>
@@ -5886,7 +5867,6 @@
   <block id="8080238bef7e394ebde429d0b0350f39" category="paragraph">发现 Oracle Cloud Infrastructure NetApp Storage Service （OCI NSS） 系统，并从 NetApp Console 管理卷和其他数据服务。</block>
   <block id="426e924adb2bfc6580aff49868fd2947" category="paragraph">在 Workload Factory 中提供您的 OCI NSS 环境的凭据。</block>
   <block id="baf2ffbfd6df3e3088d4ec4d0fe6469c" category="summary">您可以创建和关联链接，以在 NetApp Workload Factory 帐户和 Oracle Cloud Infrastructure NetApp Storage Service 存储系统之间提供信任关系和连接。</block>
-  <block id="0bab62dd41264a0da561a8aee755e228" category="doc">通过链接连接到 Oracle Cloud Infrastructure NetApp Storage Service 存储系统</block>
   <block id="6cda5fe2dd00c5f3962f980ab197b568" category="paragraph">要执行高级存储管理操作，请在您的 NetApp Workload Factory 帐户和 Oracle Cloud Infrastructure NetApp Storage Service (OCI NSS) 系统之间设置连接。此过程涉及创建链接并将其与您的存储系统关联。通过链接关联，您可以直接从 OCI NSS 系统监控和管理通过 OCI API 不可用的某些功能。</block>
   <block id="8bdf8aef803a863146011061e2efad7c" category="paragraph">Workload Factory 中的 _link_ 是租户中的 OCI Functions 应用程序。Workload Factory 使用它与 OCI NSS 存储池（HTTPS 443 和 SSH 22）上的 ONTAP 系统进行通信。</block>
   <block id="c81313fa2caeb789b074d24d89129caa" category="paragraph">链接使用 OCI Functions 执行代码以响应事件，并自动管理该代码所需的计算资源。您创建的链接是您的 NetApp 帐户的一部分，它们与 Oracle Cloud Infrastructure 帐户相关联。</block>
@@ -6376,10 +6356,7 @@
   <block id="17ec06b9eaa321300fab59fd56971e66" category="list-text">选择要更新工作负载的卷的操作菜单。</block>
   <block id="ed2541738b61ca0c7584cd62bf74b27d" category="list-text">选择*高级操作*，然后选择*更改工作负载*。</block>
   <block id="cd9e2d546766552cd75de00b7717f0cf" category="list-text">在"更改工作负载"对话框中，为卷选择正确的工作负载。</block>
-  <block id="8137b647e9c277bf5504be0415118937" category="paragraph">NetApp Workload Factory 为您的 FSx for ONTAP 文件系统成本和使用情况提供综合视图，帮助您有效管理预算并优化资源。您还可以为 FSx for ONTAP 文件系统资源生成成本报告，以便与利益相关者共享。</block>
   <block id="0ecf72bcc13fb55d0aa28c82a90ab6f4" category="paragraph">对于唯一资源，Workload Factory 通过将实际性能层使用量、分配给已调配但未使用空间的性能层成本的比例份额、按容量分配的性能分配和容量池使用量相结合来计算成本。Workload Factory 将每个组件乘以该维度的单位价格，并将结果相加以确定每个资源的总成本。</block>
-  <block id="ecec373dbe2f05b3a3b863fd07d13592" category="paragraph">Workload Factory 使用以下权限从 AWS Cost Explorer 获取 FSx for ONTAP 文件系统资源的成本和使用数据：<block ref="bba6542a0e46014b21a818003b1e41d2" prefix=" " category="inline-code"></block>和<block ref="f74e5982a82afd7d2755b24355dd08c6" prefix=" " category="inline-code"></block>。我们使用 AWS 成本 API 和我们自己的估算来计算总成本。</block>
-  <block id="552ae61b34399969ed0ea2c7955fd9ef" category="paragraph">除了成本仪表板中的成本数据之外，成本执行摘要还显示了您的 FSx for ONTAP 文件系统成本以及您组织的支出模式。您还可以为 FSx for ONTAP 文件系统资源生成成本报告。该报告是可下载的 CSV 文件，您可以与利益相关者共享。</block>
   <block id="e291c5603b49506d01779471f77ce7c8" category="paragraph">请验证您是否符合以下要求：</block>
   <block id="53c306e93da69caff455d3eaa34a6b5c" category="list-text">要按 AWS 分配标记过滤，请验证您的 FSx for ONTAP 文件系统是否已分配标记。</block>
   <block id="9a90fd93ba397d5f48de07251acc1808" category="list-text">延迟事件的组件细分</block>
@@ -6490,7 +6467,6 @@
   <block id="5af9190832e86a39b32955d77e972b2e" category="list-text">选择要启用的详细选项。</block>
   <block id="6ef261950960e68b5c274dbb2ad858c2" category="paragraph">您可以从仪表板目录中查看和管理自定义仪表板。私有仪表板仅对您可见，而您的 Workload Factory 帐户中的所有用户都可以看到公共仪表板。每个仪表板都会显示基本信息，例如创建者的姓名、创建日期和可见性标签（私有或公开）。</block>
   <block id="94ab7238c8d6eb39314e6dc172cba073" category="list-text">从菜单中，选择 *Workloads Overview*，然后选择 *Custom dashboards*。</block>
-  <block id="09716803bbab78d4545cc7210ae61d90" category="paragraph">控制面板从您的工作负载重新加载数据。</block>
   <block id="d2258a9653c6a977efeeb955b27c66e9" category="section-title">编辑仪表板</block>
   <block id="4e2f12e496523d85bae4a969657d45aa" category="paragraph">您可以编辑仪表板以更改其显示的内容，包括指标、图表和时间范围。</block>
   <block id="b13bad0dcb6df4e403e8e2af9058dfe5" category="list-text">在*自定义仪表板*页面中，找到要编辑的仪表板。</block>
@@ -6882,8 +6858,6 @@
   <block id="c22c40952e764e45b7df2a64900275c1" category="list-text">如果在拆分期间使 FlexClone 卷脱机，则拆分操作将暂停。当您将 FlexClone 卷恢复联机时，拆分操作将恢复。</block>
   <block id="a27e74c36d4d969817e56da6fc886e29" category="list-text">将 FlexClone 卷从其父卷拆分后，您无法重新连接它们。</block>
   <block id="641dbf8afdab8b23e51c29e452cbd5dc" category="list-text">要拆分克隆的卷，必须关联链接。<block ref="3d8b5f4a54daf7fc368470fe5a7ec250" category="inline-link-macro-rx"></block>。关联链接后，返回此操作。</block>
-  <block id="79ccfc8de982194cab3acf19277d4a57" category="doc">跟踪 FSx for ONTAP 成本并在 NetApp Workload Factory 中获取报告</block>
-  <block id="9fa871dac57d54d520eddd6e7c2bc7e4" category="paragraph">在成本仪表板中，您可以按 AWS 帐户、凭据、一个或多个区域和时间范围筛选成本和使用数据，以了解您的 FSx for ONTAP 文件系统消耗。Workload Factory 始终按月显示数据。您还可以按一个或多个文件系统以及文件系统中的一个或多个卷进行筛选。AWS 成本分配标签键和标签键值添加了一层筛选，以确定特定成本。_标签_ 由键和值组成。要按标签键和标签键值进行筛选，请将标签分配给您的 FSx for ONTAP 文件系统。 <block ref="8ea95efe0fef689337ea8960e5c1861f" category="inline-link-macro-rx"></block></block>
   <block id="904e5c7e4bec4fed64fcbb6a83a967f6" category="paragraph">Workload Factory 生成可供下载的 CSV 报告。</block>
   <block id="d50ebccae5983a46539e57c6cafdeafa" category="list-text">（可选）选择*启用延迟时间通知*，以便在复制延迟超过阈值时接收通知。</block>
   <block id="57aa08723363676e08889a7debcc7fae" category="paragraph">卷备份是增量备份，这意味着仅保存最近一次备份后更改的卷上的数据。这可以最大限度地减少创建备份所需的时间和备份所需的存储空间，从而通过不复制数据来节省存储成本。</block>
@@ -6894,4 +6868,208 @@
   <block id="5cc3a2f957608c982418e6d81db9bcb5" category="paragraph">有关卷分层策略的详细信息，请参见 AWS FSx for NetApp ONTAP 文档中的 <block ref="de51d392f5d252a956349995f441f55c" category="inline-link-macro-rx"></block>。</block>
   <block id="ed03428f07f32f6a071fde8ad3ae828e" category="list-text">创建快照策略后，其与存储 VM 的关联将无法修改，但您始终可以向卷添加或从卷中删除该策略。</block>
   <block id="0e700b0865ff6014ea0ab70b0131914e" category="summary">查看 Workload Factory 中 Amazon FSx for NetApp ONTAP 的已知限制，包括区域支持、容量管理、iSCSI、数据保护和存储 VM 迁移。</block>
+  <block id="4db89734d848869d20c5c98a44e7de1b" category="list-text">完成这些步骤以测试切换，然后执行实际的切换。</block>
+  <block id="fa0ab2f86cd05046110c737fd5ce84b8" category="paragraph">如果您在此过程中关闭对话框，则可以从 *复制关系* 选项卡中检查 *SVM 迁移状态*，并在准备就绪后继续切换操作。</block>
+  <block id="981cf06d12c9b4f422a2927885d64c6f" category="list-text">查看“切换复制”对话框中的信息，然后键入 _cut over_ 以完成此过程。</block>
+  <block id="f5740048ddae6de6c98d146bef8a05eb" category="doc">Workload Factory 管理增强功能</block>
+  <block id="d5700d6fbdfdaa11c8c6dcbd565d8446" category="section-title">检查和刷新自定义仪表板数据</block>
+  <block id="a2ace9589bb1ff3e1b64e40ba9982721" category="paragraph">现在，您可以查看上次更新自定义控制面板指标的时间，并手动刷新这些指标。将鼠标悬停在*刷新数据*上以查看上次更新的日期和时间。</block>
+  <block id="6497706c70a607634590a156941b4e50" category="paragraph">选择*刷新数据*以开始新的扫描。横幅将确认扫描已开始，并且该按钮将被禁用，直到扫描完成。</block>
+  <block id="2895998bd3d7c5fdb39e7fddc2bd608a" category="paragraph">有新数据可用时，请在通知横幅中选择*立即加载*以更新控制面板。</block>
+  <block id="f418ba29e821ca3da1b907e6156d2db5" category="paragraph">*刷新数据*和*立即加载*均会在 Tracker 中创建数据收集事件。</block>
+  <block id="0b62b5947fe6e091e6c0c1e387e32e69" category="inline-link-macro">了解如何刷新自定义仪表板数据</block>
+  <block id="d6592fddba6a07bb0a917566a4081fc5" category="paragraph"><block ref="d6592fddba6a07bb0a917566a4081fc5" category="inline-link-macro-rx"></block></block>
+  <block id="524f9b4ee818c419ee1585959e10855c" category="section-title">指定自定义仪表板的区域</block>
+  <block id="9aca8419896ce9b5d75b523be971bafb" category="paragraph">如果您的请求未包含区域，自定义控制面板现在会要求您选择一个或多个区域。控制面板数据仅限于您选择的区域。</block>
+  <block id="35a63836682befdc98086e583b61298a" category="inline-link-macro">了解如何创建自定义仪表板</block>
+  <block id="265c60992e7c3b3f876f80926a9c3a65" category="paragraph"><block ref="265c60992e7c3b3f876f80926a9c3a65" category="inline-link-macro-rx"></block></block>
+  <block id="639dc972d056a14ca9535d40d9ba48bb" category="section-title">FSx for ONTAP 链接创建的 IAM 策略</block>
+  <block id="20721709cc5df2882070722a30cc34c3" category="paragraph">用于创建链接的 CloudFormation 模板和 Terraform 代码现在使用 IAM 策略而不是内联 Lambda 权限。</block>
+  <block id="2f101cc9d5d0dd23089ae6fca31ac27f" category="paragraph"><block ref="2f101cc9d5d0dd23089ae6fca31ac27f" category="inline-link-macro-rx"></block></block>
+  <block id="b3e7d6d7f8501adc86f1a7337ebfb531" category="section-title">审核和跟踪 AI 代理操作</block>
+  <block id="5aecb2747daa4a62ad221d70aaf568df" category="paragraph">您现在可以使用 Tracker 查看 AI 代理设置的更改，并在读/写模式下查看每个审批请求，包括代理的问题和用户的答案。</block>
+  <block id="25d50a8630b3c335d684f59cca6d3ace" category="paragraph">通过 Workload Factory API 进行的资源更改由执行该操作的 Workload Factory 服务记录。</block>
+  <block id="db0781c4ffb5f26ba7ad4f2ffe3dfdbd" category="inline-link-macro">了解审核和跟踪代理操作的相关信息</block>
+  <block id="d280606d2d970fea6313288893352119" category="paragraph"><block ref="d280606d2d970fea6313288893352119" category="inline-link-macro-rx"></block></block>
+  <block id="9e81dbda2a0d084e31f85eea0c371131" category="section-title">Amazon FSx for NetApp ONTAP 增强功能</block>
+  <block id="230227ce1631475a082d9f0865ea84b2" category="section-title">启动程序组图增强功能</block>
+  <block id="9312a185b7f4389cd2dc1b61172e5f20" category="paragraph">在“管理客户端访问权限”页面上显示块设备启动器组的图表现在包括主机的更多详细信息。当您将鼠标悬停在图表中的主机上时，将显示主机详细信息，包括主机名、实例 ID、工作负载类型、区域和 iSCSI 限定名称（IQN）。</block>
+  <block id="40a8a1ceba59de4101cf77a14d6fb2d5" category="section-title">针对架构完善的问题的电子邮件增强功能</block>
+  <block id="954ae82c2d96e9bd8c7d4e143bf3c187" category="paragraph">新的电子邮件设计为 Workload Factory 检测到的配置问题提供了更多详细信息和上下文。该电子邮件包括已分析的资源数量、存在警告或严重问题的资源数量，以及这些问题是什么。该电子邮件还链接到 FSx for ONTAP 架构完善的控制面板，以便您可以立即解决问题。</block>
+  <block id="1854fdec65dd4a2dd839c666aba07186" category="section-title">精心设计的仪表板增强功能</block>
+  <block id="4640bfbf90e44f31ffe06c764207a151" category="section-title">支持选定的配置检查</block>
+  <block id="4baa1879436d89821519b031a9b29e1d" category="paragraph">您可以对选定配置手动运行分析，以便仅分析您感兴趣的配置并减少等待时间。</block>
+  <block id="9864fa88fc3747e67b6fc38c9b938677" category="section-title">精心设计的分析中的新建议</block>
+  <block id="a38b9a0af0de5e85c5e64a158079deb5" category="paragraph">Workload Factory 现在在 FSx for ONTAP 文件系统的良好架构分析中包含以下配置：</block>
+  <block id="696836fc5f2a32266d0ffc0fb5047e3b" category="paragraph">对于存储工作负载：</block>
+  <block id="c244576dbf541429d6bef056ce769d1b" category="list-text">*将主机连接到故障转移节点*：检查主机是否连接到主动-被动 FSx for ONTAP 文件系统中的故障转移节点，以确保可靠性。</block>
+  <block id="6ebacaf65862325841aba88bf388a132" category="list-text">*将主机连接到首选节点*：检查主机是否使用首选节点连接到其块设备，以提高性能效率。</block>
+  <block id="b25392745f1a47aaf9f1983cd8b1eff5" category="list-text">*ARP/AI 多设备检测差距*：当卷仅连接了一个块设备时，ARP/AI 可提供全面的保护覆盖。如果卷连接了多个块设备，Workload Factory 会将这些块设备移动到新卷，以便每个卷只有一个块设备。</block>
+  <block id="034f9073833298cb75f90f7455203432" category="list-text">*克隆清理*：检查是否有任何超过 30 天的卷克隆可以删除，以优化存储使用并降低成本。</block>
+  <block id="8e5f97675e6b58e2c142d4e3623f4e20" category="list-text">*将 igroup OS 与主机匹配*：检查启动器组（igroup）的操作系统是否与主机的操作系统匹配，以防止 I/O 或性能问题。</block>
+  <block id="68545ea02d5d413d5558618d4f250fed" category="paragraph">对于 Kubernetes 工作负载：</block>
+  <block id="92ea527417ca1a6f10e672dd5dc590fb" category="list-text">*QoS 配置*：检查 Kubernetes 持久卷是否受到 ONTAP QoS 策略的保护，以提高性能效率。</block>
+  <block id="a48d1b9cc2b4fca01a8c056a0f21ca0b" category="list-text">*专用 Kubernetes 存储虚拟机*：检查文件系统是否正在为 Kubernetes 工作负载使用专用存储虚拟机，以提高隔离度并简化存储管理。</block>
+  <block id="e8b78d1ad4445d483c25f605f3dcd508" category="list-text">*专用 Kubernetes 导出策略*：检查每个 Kubernetes 持久卷是否具有仅允许从集群的工作节点访问的专用导出策略。</block>
+  <block id="15c94f3b03de47c250527326d660fabe" category="list-text">*Kubernetes iSCSI 后端的双向 CHAP*：检查 Trident iSCSI 后端是否启用了双向 CHAP 身份验证以确保安全。</block>
+  <block id="a9f15f720c325ed93ec2ae6e8f017053" category="list-text">*在应用程序存储 VM 上禁用<block ref="d51321f13693d09d4a9cbb2758b42d12" prefix=" " category="inline-code"></block>*：检查是否在应用程序存储 VM 上禁用了<block ref="d51321f13693d09d4a9cbb2758b42d12" prefix=" " category="inline-code"></block>，以防止客户端列出其无法访问的导出。</block>
+  <block id="8c491145be7052ead6caabd40f13d8d8" category="paragraph">对于数据库工作负载：</block>
+  <block id="109086be5976370a05137d1276790c52" category="list-text">*SAP HANA 快照策略*：检查 SAP HANA 卷的快照策略是否设置为“无”，以降低存储成本并提高活动数据库数据的性能。</block>
+  <block id="f516997bc5858804907fffead3bf17bc" category="list-text">*MySQL 快照策略*：检查 MySQL 卷的快照策略是否设置为“None”，以降低存储成本并提高活动数据库数据的性能。</block>
+  <block id="326acdfcec515bde261a6c24416222fc" category="list-text">*PostgreSQL 快照策略*：检查 PostgreSQL 卷的快照策略是否设置为“None”，以降低存储成本并提高活动数据库数据的性能。</block>
+  <block id="b37f9a2971bf4d3f39ba06b420da1cf6" category="section-title">配置的当前值和建议值</block>
+  <block id="da748e56834f287fe9b9c164de80a667" category="paragraph">您可以在架构完善的仪表板中查看某些未优化配置的当前值和推荐值。这可让您在进行修复之前了解推荐值。</block>
+  <block id="0ab265b548fdc40b21483e61ffde3aba" category="list-text">冷数据分层</block>
+  <block id="4c0abf2d4c54820b8d33061abaf30759" category="list-text">Snapshot 策略</block>
+  <block id="6f5cf50fa90f8d99bf50f65e676c6cba" category="list-text">固态硬盘容量余量</block>
+  <block id="4c3fd0f1c4be65a2279b728897c84838" category="section-title">成本改进</block>
+  <block id="7d9291e210fb85e5195b3fd168c5441e" category="section-title">成本预测和见解</block>
+  <block id="abc7b1907c0e0856759e4d13b2c516f0" category="paragraph">现在，您可以使用成本预测功能预测 FSx for ONTAP 文件系统的成本。这有助于您规划预算并有效优化资源。您还可以查看有关成本和使用模式的见解，以确定成本优化的机会。</block>
+  <block id="0e1d8ca59fdf60970c2d4a8bbabe2e5b" category="section-title">AWS 成本和使用情况报告（CUR）</block>
+  <block id="133a30124f90912db7b6e93321823906" category="paragraph">Workload Factory 现在使用 AWS Cost and Usage Reports（CUR）而不是 AWS Cost Explorer 来提供交付给客户拥有的 S3 存储桶的详细计费记录。CUR 提供了更好的成本粒度，并作为高级 FinOps、内部计费和成本分配用例的基础。</block>
+  <block id="9744964a1ca6fbce3b75a4f5042f9597" category="section-title">Storage VM 迁移改进</block>
+  <block id="e6567f9c034c2cedd4efbe2f207f9b2a" category="paragraph">Workload Factory 在用户界面中为迁移存储虚拟机提供增强的指导。这包括分步说明以及在将迁移提交到生产环境之前进行测试运行。</block>
+  <block id="5d9883007f4bc5361c0311ad3ad7cfd1" category="inline-link-macro">详细了解存储虚拟机迁移</block>
+  <block id="f9aacc67b23285dcf36836993d0a0240" category="paragraph"><block ref="f9aacc67b23285dcf36836993d0a0240" category="inline-link-macro-rx"></block></block>
+  <block id="f96336c52a88a7b30c68866854b7e3f2" category="section-title">复制滞后电子邮件通知改进</block>
+  <block id="1e403f6a94558e4fb3362faed8f74a9b" category="paragraph">当发生大量相关复制延迟事件时，Workload Factory 会自动将其合并为一封电子邮件通知，以免您收到过多通知。</block>
+  <block id="f45963c176c2d5c66e1ddbfab6e6a59e" category="section-title">自动容量管理增强</block>
+  <block id="cc7093a020c173b1abf32b6436684cd2" category="paragraph">现在，您可以在要求 Workload Factory 自动管理您的容量之前，打开自动容量管理通知以试用此功能。当您的文件系统容量不足时，您将收到通知。</block>
+  <block id="b3ae445fa637203f0dc17550b5c4a56c" category="section-title">精心设计的仪表板中包含的数据库配置</block>
+  <block id="17d52f36b5492e8aeada41d949434243" category="paragraph">精心设计的仪表板现在包含针对您的数据库配置的建议，使您能够根据最佳实践评估和优化设置。仪表板中包含的首批配置包括：</block>
+  <block id="935aff9bc7bcf43dd1fe5825226b72c1" category="list-text">将块设备操作系统类型与主机匹配</block>
+  <block id="868e9efce60d04bdf51fc2494a73a9ce" category="list-text">非活动的数据块设备（LUN）</block>
+  <block id="797a6fe95ffc7bef7107556bac722567" category="list-text">数据文件（.mdf）放置</block>
+  <block id="27c70398ced593abb96a3c33b5e1072b" category="list-text">日志文件（.ldf）放置</block>
+  <block id="346c87aaab415cd5adb218f88181ede8" category="list-text">多路径 I/O 状态</block>
+  <block id="92a6dbd219f1455bd74f5d666b1b27c5" category="list-text">多路径 I/O 超时</block>
+  <block id="33bf723377efe51bc70f70bbb5efa8a4" category="paragraph">在 Workload Factory 控制台中选择主菜单，然后选择 *Well-architected* 以查找架构完善的仪表板。</block>
+  <block id="2d647234501319107057acb4d3f8dfaf" category="inline-image-macro">Workload Factory 控制台中的架构完善菜单选项</block>
+  <block id="353cc99df6b21e74c805e74bdab4b8aa" category="paragraph"><block ref="353cc99df6b21e74c805e74bdab4b8aa" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="84ae0158deb3f95e6027fdf8d5ff467d" category="section-title">吞吐量决策点</block>
+  <block id="b9b80cf2e741a86ab9f6e9dd0b8f44ac" category="paragraph">您现在可以查看客户端吞吐量建议和自动化决策点。将鼠标悬停在决策点上可查看详细信息，例如当前和推荐的 SKU 或时间窗口中的违规指标（%）。</block>
+  <block id="490c092a516d299c8fbfc8f3e4bca146" category="section-title">Google Cloud NetApp Volumes 增强功能</block>
+  <block id="6d3b86d67ca631d6e7b36cd36908e1a9" category="section-title">查看 Google Cloud NetApp Volumes 存储池</block>
+  <block id="655c266ebeabfc3d2b4a982b26cfc3a8" category="paragraph">您现在可以在 NetApp Workload Factory 中查看您的 Google Cloud NetApp Volumes 存储池。按项目、凭据和区域进行筛选，并选择存储池的名称以查看其完整详细信息，包括可用区、副本可用区、吞吐量、描述和标签。</block>
+  <block id="d96dd657e1823dcd531c1900f529272e" category="section-title">OCI NetApp 存储服务增强功能</block>
+  <block id="3fbce80cc4c6eedf8f73c5f9b6c3f793" category="section-title">针对 OCI NSS 系统的架构完善的分析</block>
+  <block id="9f5fa839697eb430476ab0306b2d577b" category="paragraph">NetApp Workload Factory 包括针对 OCI NSS 系统的架构完善的评估。该评估提供了见解、建议和修复措施，以帮助您实现卓越运营。</block>
+  <block id="d7662b370716819187607c075f76f667" category="paragraph">配置评估可用于 OCI Well-Architected Framework 的以下支柱：</block>
+  <block id="9d065ca994a324833e03b9b5b5ed7cd9" category="list-text">可靠性：文件对象容量、快照策略和 SSD 容量空间</block>
+  <block id="4ddeff02856cd810ad47ff7e36c7b39c" category="list-text">卓越运营：主机可见容量报告和卷容量余量</block>
+  <block id="7dc11e8b104c8a8c4a3b0a79dfe90760" category="list-text">成本优化：冷数据分层、快照清理和存储效率</block>
+  <block id="4c08f7b0400f82cb6607401bcdf078f1" category="inline-link-macro">针对 OCI NSS 系统的架构完善分析</block>
+  <block id="5514a97cb8286872cf232b29c81405be" category="inline-link-macro">实施精心设计的配置</block>
+  <block id="6c5cb49a519e4001a13828cd8f9f28ab" category="paragraph">详细了解<block ref="026b7813287d66b370ca6b12a499c052" category="inline-link-macro-rx"></block>和<block ref="503539a9757057d0d19762cf2dfced52" category="inline-link-macro-rx"></block>。</block>
+  <block id="0e43f192242267f4b6ae5962e9f5b38c" category="inline-link-macro">了解如何刷新仪表板数据</block>
+  <block id="375aa345c9d070c5d5cbb33fd17abdf9" category="paragraph">创建后，您可以查看上次刷新控制面板指标的时间，并请求按需更新。<block ref="8d1eeddf54e1415c46105e0180873b4f" category="inline-link-macro-rx"></block>。</block>
+  <block id="a0029b147e3a4c22ba57efcbb020c23e" category="list-text">请检查*上次更新*时间戳并选择*刷新数据*以请求更新的指标</block>
+  <block id="b70a9e9de689b4f17365d6060076d3b8" category="section-title">审核和跟踪代理操作</block>
+  <block id="774a23889a059a060f089bac423f3b00" category="paragraph">在读写模式下，Tracker 会记录每个审批请求，包括代理的问题和用户的答案。通过 Workload Factory API 进行的资源更改由执行该操作的 Workload Factory 服务记录。例如，通过 Workload Factory 创建的卷会显示在 *Storage* 服务标签下，而不是 *Agent* 下。</block>
+  <block id="13ab1a7b5cd6ff60fb50525984ba6258" category="inline-link-macro">了解如何使用 Tracker 监控操作</block>
+  <block id="ce1e81713ecf4df9a934306eea668257" category="paragraph"><block ref="3451659cf3ed6290294c6cb6aa2fa232" category="inline-link-macro-rx"></block>。</block>
+  <block id="1c25d10ad7fe7b9def7bd90be9bb63ac" category="section-title">检查数据是否为最新</block>
+  <block id="40d839f036c0870ce0f44a810dc01fd9" category="paragraph">您可以随时查看上次更新控制面板数据的时间，并请求刷新。工具提示显示上次更新日期和时间。</block>
+  <block id="3943baa01d778cb77042aa99b8829491" category="paragraph">选择*刷新数据*以开始新的扫描。正在进行扫描时，该按钮不可用。准备好新数据后，将显示一个横幅，其中包含更新控制面板的选项。</block>
+  <block id="d3d3c2c161c272f6861e216f8ab84982" category="paragraph"><block ref="8d1eeddf54e1415c46105e0180873b4f" category="inline-link-macro-rx"></block>。</block>
+  <block id="4561b6d16c60561c7dfef3363842359b" category="paragraph">检查上次刷新仪表板的时间，并在需要当前数据时请求按需扫描。</block>
+  <block id="cb19e9f8b4fdf3bf166690f03f0888ff" category="paragraph">*刷新数据*工具提示显示带有上次刷新仪表板的日期和时间的*上次更新*时间戳。此时间戳指的是收集的数据，而不是上次更改仪表板配置的时间。</block>
+  <block id="34839e5b2cbe60267b78999786be488f" category="paragraph">选择*刷新数据*开始新的扫描。正在运行扫描时，该按钮将被禁用，其工具提示表示正在进行扫描。</block>
+  <block id="3f80dcb08a2a2d2b7e2915dd88cfbff4" category="paragraph">当您选择*刷新数据*或*立即加载*时，Workload Factory 会在 Tracker 中记录一个事件<block ref="3451659cf3ed6290294c6cb6aa2fa232" category="inline-link-macro-rx"></block>。</block>
+  <block id="b2f99e18989e76354ebba4fd4d399227" category="list-text">在控制面板目录中，打开要查看的控制面板。</block>
+  <block id="b01e2768b9cf649d978bf4ea1879ea19" category="list-text">将鼠标悬停在*刷新数据*上可查看*上次更新*的日期和时间。</block>
+  <block id="669bf0e2d3a5223b736f207a1738dcea" category="list-text">要请求更新指标，请选择*刷新数据*。</block>
+  <block id="2c40fb628cd47c18fe14a2939979ebf9" category="paragraph">横幅指示扫描已启动。等待扫描完成。</block>
+  <block id="dd2142eca6bec99aaba2fbc5a1fef1f5" category="list-text">当有新数据可用时，横幅会显示以下消息：“有新数据可用。立即加载，或随时单击‘刷新数据’以更新视图。”</block>
+  <block id="f5f7ef3c1692aa4447b9fb26ad98940c" category="list-text">在横幅中选择*立即加载*，将可用数据加载到控制面板中。或者，选择*刷新数据*以更新视图。</block>
+  <block id="abff96b75117f320254f372b6518244b" category="paragraph">信息板显示已更新的指标。</block>
+  <block id="6347309ad07af7266241819bb2af76d1" category="list-text">*将主机连接到故障转移节点*</block>
+  <block id="e89cb70f69260bd0359dad1d58cb94de" category="paragraph">Workload Factory 建议将主机连接到故障转移节点，以保持连接并避免在故障转移期间发生中断。</block>
+  <block id="d8f7d6931c10571f6b09ab824fb1eb68" category="list-text">*SAP HANA 快照策略*</block>
+  <block id="5430bb473a033ac7ca3cf168ada8eef0" category="paragraph">将 SAP HANA 卷的快照策略设置为“无”，以降低存储成本并提高活动数据库数据的性能。</block>
+  <block id="bed53786c7f97a0d4610c92e2155c179" category="list-text">*MySQL 快照策略*</block>
+  <block id="2cfa406a51ef73bbf2e8700e3f414fba" category="paragraph">将 MySQL 卷的快照策略设置为“None”，以降低存储成本并提高活动数据库数据的性能。</block>
+  <block id="277b9300260dd55ca64290333450ba59" category="list-text">*PostgreSQL 快照策略*</block>
+  <block id="2a902e0c93222642481e7829b61f6885" category="paragraph">将 PostgreSQL 卷的快照策略设置为“None”，以降低存储成本并提高活动数据库数据的性能。</block>
+  <block id="f6713ad974e1c45e6ae6f336e05e1acb" category="list-text">*ARP/AI 多设备检测差距*</block>
+  <block id="99585e92af9e1ad2380aa522d6753d7a" category="paragraph">当卷仅连接了一个块设备时，ARP/AI 提供全面的保护覆盖。如果卷连接了多个块设备，Workload Factory 会将这些块设备移动到新卷，以便每个卷只有一个块设备。</block>
+  <block id="94252ec3a780f58314c91e97ef4e34dd" category="list-text">*Kubernetes iSCSI 后端的双向 CHAP*</block>
+  <block id="33abb23bb89c7fd6e6403f57410fd19d" category="paragraph">对 Trident iSCSI 后端使用双向 CHAP 身份验证，以确保 iSCSI 启动程序和目标相互进行身份验证。这可以防止未经授权的主机针对存储 VM 建立 iSCSI 会话。</block>
+  <block id="6afaedca049edca8b26b3afcc63112c5" category="list-text">*在应用程序 storage VM 上禁用<block ref="d51321f13693d09d4a9cbb2758b42d12" prefix=" " category="inline-code"></block>*</block>
+  <block id="bfd8d5ee3b60e71cb8f894bb8d7d7f01" category="paragraph">在应用程序存储虚拟机上禁用<block ref="d51321f13693d09d4a9cbb2758b42d12" prefix=" " category="inline-code"></block>，以防止客户端列出其无法访问的导出。</block>
+  <block id="17a183ee5c2a455937989091c69ca48d" category="list-text">*专用 Kubernetes storage VM*</block>
+  <block id="aeb9ac6a931deb0972004e13a0b50cbd" category="paragraph">为 Kubernetes 工作负载使用专用存储 VM。将 Kubernetes 存储分开可以更轻松地管理，简化策略设置，并有助于确保存储设置的一致性。</block>
+  <block id="dd54a6cc471e0bb15a8807c9b04d608a" category="list-text">*将 igroup OS 与主机匹配*</block>
+  <block id="9b4b32350b17fe80d09c863ee9493bc1" category="paragraph">将启动器组（igroup）的操作系统与主机的操作系统进行匹配，以防止 I/O 或性能问题。</block>
+  <block id="e2521a2a2f696d450620b08167cf1c24" category="list-text">*克隆清理*</block>
+  <block id="25c12f9fc894aee637d81a1bb835e475" category="paragraph">删除任何超过 30 天的卷克隆，以优化存储使用并降低成本。</block>
+  <block id="32e2568abf1f06db9af3e7c8594aae66" category="paragraph">您可以复制一个源（读/写）卷或一个数据保护（DP）卷。支持级联复制，但不支持第三个跃点。详细了解<block ref="b43da9c23395dea7a8657c3dcd68f92f" category="inline-xref-macro-rx"></block>。</block>
+  <block id="99975dc4e0b5174f74f44270f9c4bb79" category="list-text"><block ref="c333b1c4d501da5c597263cb02a86bf0" category="inline-xref-macro-rx"></block>，选择 *Migration* 作为用例，然后选择 *Replicate storage VM configuration*。</block>
+  <block id="439799af583df4008d7b4f10d93c939a" category="list-text"><block ref="86056281cff85f2bf6f7be28510fe95d" category="inline-xref-macro-rx"></block> 将数据从源存储系统传输到目标存储系统。</block>
+  <block id="48a79c23389fad3919124aa678f218c9" category="list-text"><block ref="8e0c7083554029f9517e717da960b953" category="inline-xref-macro-rx"></block> 测试迁移，然后将数据和配置设置从源文件系统永久迁移到目标 FSx for ONTAP 文件系统。</block>
+  <block id="d69fbbb711f8ff18ddfdec1f828d8dde" category="paragraph">在测试和切换之前，请考虑以下内容。</block>
+  <block id="f54dbcea12e59e12722877876b169b60" category="inline-xref">手动更新这些设置</block>
+  <block id="773c27512e59c2c2dbd6e6ff8964b7d4" category="list-text">切换操作不会将所有存储虚拟机配置设置迁移到目标存储虚拟机。例如，iSCSI、广播域 MTU 和 DNS 设置不会迁移。切换后在目标存储虚拟机上<block ref="e8bd260fbd2f342593da7654c0529249" category="inline-xref-macro-rx"></block>。</block>
+  <block id="e618f0853e36806a08addf80f080aa17" category="list-text">*ONTAP S3 配置*：具有 ONTAP S3 配置的存储 VM 不支持迁移用例的切换复制。删除 ONTAP S3 配置，包括存储 VM 上的 object-store-server、存储桶、用户、组或策略，以避免迁移失败。</block>
+  <block id="24cce11f73b548e9176ae1c180b0e7c1" category="list-text">检查 Workload Factory 文件系统内 Replication relationships 表中的 *SVM 迁移状态* 是否为 *Enabled | Ready to test cutover*。</block>
+  <block id="6685d526488e756ed5738a4874c4bccb" category="section-title">切换复制</block>
+  <block id="12dabbf4de087e3801b25bebe491cfe6" category="paragraph">Workload Factory 可帮助您管理迁移用例中复制的切换过程。首先，它会测试您的环境，以确认切换可以顺利进行。其次，它执行到目标文件系统的实际切换。</block>
+  <block id="641a5b87ae1a6b3f69a51cbf9d3327e7" category="paragraph">在完成迁移测试之前，请确保您可以访问目标存储 VM 上的所有数据。</block>
+  <block id="e710e21634c08d4bb9e43d51a67a87eb" category="paragraph">按照说明切换迁移用例的复制。用户界面将引导您逐步完成切换过程。</block>
+  <block id="d4db5cd7a78570802f5cc12157792523" category="list-text">登录到每个 SAN 客户端并更新新目标的 iSCSI/MPIO 设置，并删除旧存储 VM 目标 IP</block>
+  <block id="78727553c283af369070757e652c05cc" category="paragraph">使用 NetApp Workload Factory 简化块存储资源（包括 igroup 和块设备）的管理，并控制 FSx for ONTAP 块设备的客户端访问，以提供最佳性能并最大限度地降低成本。请参阅块设备 igroup 图以优化客户端连接并快速解决问题。</block>
+  <block id="356b28bbbd0d4021c21f75e7c065f091" category="list-text">主机详细信息，包括主机名、实例 ID、工作负载类型、区域和 iSCSI 限定名称（IQN）</block>
+  <block id="01fae763ec208cbe8aba55abc3b09866" category="summary">在 NetApp Workload Factory 中跟踪 FSx for ONTAP 文件系统资源的成本。</block>
+  <block id="3f9d767840a18ac75b11c7dd9ba87a88" category="doc">跟踪 NetApp Workload Factory 中的资源成本</block>
+  <block id="bfb6f1b412cd95d58b271e3d69547dda" category="paragraph">使用 NetApp Workload Factory 跟踪您的 FSx for ONTAP 文件系统成本和使用情况，以便您可以有效地管理预算并优化资源。我们使用 AWS Cost Explorer 通过需要最低权限的数据来提供总体成本。按资源（文件系统或卷）划分的成本基于 Workload Factory 计算，该计算提供了通过 AWS Cost Explorer 无法获得的独特见解。</block>
+  <block id="c3f094be203d9270a67844e5fa353013" category="paragraph">Workload Factory 使用以下权限从 AWS Cost Explorer 获取 FSx for ONTAP 文件系统资源的成本和使用数据：<block ref="bba6542a0e46014b21a818003b1e41d2" prefix=" " category="inline-code"></block>和<block ref="f74e5982a82afd7d2755b24355dd08c6" prefix=" " category="inline-code"></block>。跟踪以下成本详细信息：使用类型、使用 SKU、部署类型、使用情况和总成本。</block>
+  <block id="0044e1f3a22c6d9ef97c0d6e8c1fdb03" category="paragraph">在“成本”仪表板中，两个选项卡提供总成本和按资源划分的成本。</block>
+  <block id="65ab1b7df4df327df8504998be956f5b" category="list-text">总成本基于直接从 AWS Cost Explorer API 提取的数据。</block>
+  <block id="9b98495d5e24798622609ac8cda337e1" category="list-text">Cost by Resource 按文件系统和/或卷显示成本估算。</block>
+  <block id="512a8b4930f422b87988b36e61c761d2" category="paragraph">Workload Factory 始终按月显示数据。</block>
+  <block id="03bb428183665b2d297f7a2b126ada64" category="paragraph">您可以按 AWS 帐户、凭据、一个或多个区域和时间范围筛选成本和使用数据，以便了解您的 FSx for ONTAP 文件系统消耗情况。您还可以按一个或多个文件系统以及文件系统中的一个或多个卷进行筛选。</block>
+  <block id="2564431d5eb8e6c2a5e05b3cf2258f0b" category="paragraph">AWS 成本分配标签键和标签键值可提供额外的筛选层，以精确定位特定成本。_标签_ 由键和值组成。要按标签键和标签键值进行筛选，请将标签分配给您的 FSx for ONTAP 文件系统。 <block ref="8ea95efe0fef689337ea8960e5c1861f" category="inline-link-macro-rx"></block></block>
+  <block id="00785d0f1296ca2a8d0846890b38a469" category="paragraph">除了成本仪表板中的成本数据之外，AI 生成的成本执行摘要还显示了您的 FSx for ONTAP 文件系统成本和您组织的支出模式。您可以生成 FSx for ONTAP 文件系统资源的 CSV 文件，以便与您的团队和利益相关者共享。</block>
+  <block id="2921ec21e61178e9d5c3b00b52cdcc7f" category="summary">在 NetApp Workload Factory 中查看您的 Google Cloud NetApp Volumes 存储池及其详细信息。</block>
+  <block id="24a255fcd6a980ea654569c0aed96684" category="doc">在 NetApp Workload Factory 中查看 Google Cloud NetApp Volumes 存储池</block>
+  <block id="24fbf973ac266841a1d1950057044a86" category="list-text">选择菜单 <block ref="d0893c56792da060977c8f5dd5abb05a" category="inline-image-macro-rx" type="image"></block>，*Storage* &gt; *Google Cloud NetApp Volumes*。</block>
+  <block id="df8082635850b98b5c044dc4b51ba0fb" category="list-text">使用*项目*、*凭据*和*区域*筛选器来确定显示的存储池范围。</block>
+  <block id="2ccd3603ab54ceda81ae72e3db7d5b45" category="list-text">查看存储池表，其中显示名称、状态、服务级别和容量等详细信息。</block>
+  <block id="2c52de43be722390ea5df253b5dbd317" category="paragraph">存储池的服务级别为 Standard、Premium、Extreme、Flex File 或 Flex Unified。对于 Flex Unified 存储池，模式显示 Default 或 ONTAP，对于所有其他服务级别，则显示 Default。</block>
+  <block id="0a7d44a25a513ebc54a0e4e95b7b3145" category="list-text">选择存储池的名称以打开其详细信息，包括吞吐量和描述。</block>
+  <block id="daae87d6d4b7a65960223391e99b2bf1" category="summary">NetApp Workload Factory 定期分析 OCI NSS 系统配置，以确定是否存在任何配置问题。</block>
+  <block id="8075bafeb6baaa23a8b24e6f5b983e9e" category="doc">OCI NSS 系统配置分析</block>
+  <block id="b22355dc2933d3eb629a9b60fe9c24d0" category="paragraph">NetApp Workload Factory 定期分析 OCI NSS 系统配置，以确定是否存在任何配置问题。当发现问题时，Workload Factory 会向您展示问题所在，并解释需要更改的内容，以便您的存储环境实现最佳性能、成本效率并符合最佳实践。</block>
+  <block id="fbef8b32b5268cdc762132c3c8e01b74" category="list-text">OCI Well-Architected Framework 顾问</block>
+  <block id="a6b85fac6d120c7bd544dcd1f30b35de" category="paragraph">每日分析完成后，配置在部署的 Well-Architected 仪表板中显示为“已优化”或“未优化”。您可以找到按类别组织的配置问题以及建议。Workload Factory 提供了详细说明，以帮助您实施建议的更改。</block>
+  <block id="8848ef7c96763d3f08995681ffc004b6" category="list-text">关联链接。链接连接允许 Workload Factory 分析所有 OCI NSS 系统配置，如数据保护和性能。</block>
+  <block id="3e04fbf67b56db9461ae97dc846ca167" category="paragraph"><block ref="e9af2ce98076e9a8dd007f2845e4e70f" category="inline-link-macro-rx"></block>。</block>
+  <block id="b29f71885ba2ce4a16c86126f52804ae" category="list-text">在您的 OCI 账户中授予查看、规划和分析权限。</block>
+  <block id="ef844ede64315307dee0704956d6aee5" category="inline-link-macro">了解如何向 OCI 帐户授予权限</block>
+  <block id="f25bd2346ab8a5951bd835fdf0f0d7f0" category="paragraph"><block ref="9ca8440835f5980ea2202b41ccc271e7" category="inline-link-macro-rx"></block>。</block>
+  <block id="9782f948325708f7c9a12b48ab18675e" category="paragraph">应提高文件容量阈值，以避免达到卷容量限制。文件容量（索引节点）过低会阻止向卷写入其他数据。Workload Factory 建议将文件容量利用率保持在 80% 以下，以允许创建新文件。</block>
+  <block id="85328d3db8fe5d1da969e2eaeb0023e1" category="paragraph">卓越运营确保有效运行和监控工作负载，并能够支持用户的要求。</block>
+  <block id="7b95c4e901138e8f666b33e68bc581db" category="paragraph">卷容量余量应设置为 10%，以适应增长并防止出现意外的容量问题。</block>
+  <block id="f63ddee9cc0c3851457909a9a862bac0" category="list-text">*冷数据分层* 使用仅快照分层策略，该策略仅将快照数据移动到容量层，同时将活动数据保留在 SSD 层上。这种方法保留了数据库工作负载的低延迟性能，同时降低了存储成本。在 7 天冷却期后对快照数据进行分层。</block>
+  <block id="2607d748d53e53355cf341ff59fd61ac" category="list-text">*Snapshot 清理*</block>
+  <block id="08f59202d2946c1aac674509e0161a4c" category="inline-link-macro">实施精心设计的 OCI NSS 配置</block>
+  <block id="7c3e2dcf300bf174055ca214ab29ff09" category="paragraph"><block ref="7c3e2dcf300bf174055ca214ab29ff09" category="inline-link-macro-rx"></block></block>
+  <block id="d2f04c6606827834c212813ba8530a53" category="doc">通过链接连接到 OCI NetApp 存储服务存储系统</block>
+  <block id="e3a12eeb93ddbad9936f64a12bb2990b" category="summary">Workload Factory 扫描 Amazon FSx for NetApp ONTAP 配置，提供见解和建议，帮助您实现卓越运营。</block>
+  <block id="e56101005a7ed45119ff48406091e6d4" category="doc">实施架构良好的 OCI NSS 系统配置</block>
+  <block id="22979194f7eaddbd9fca2e1fe039b759" category="paragraph">使用 Workload Factory 为您的 Oracle Cloud Infrastructure NetApp 存储服务（OCI NSS）系统实施最佳实践。您可以轻松查看架构完善的状态，了解配置问题，并修复问题以改进任何未在可靠性、安全性、效率、性能和成本方面进行优化的系统的体系结构。</block>
+  <block id="9ff22ac64e3119cfabeca4129d444a57" category="paragraph">Workload Factory 每天分析 OCI NSS 系统部署配置。</block>
+  <block id="aac3b2ff7e39f3ad99e62a7c110f404d" category="inline-link-macro">使用链接连接到 OCI NSS 系统</block>
+  <block id="dfce4fb4ba7e38f099f7cc10188568ff" category="paragraph">链接连接允许 Workload Factory 扫描性能、数据保护和配置问题。<block ref="f7e59cb445429b5d2153bcbc58bac6c3" category="inline-link-macro-rx"></block>以对文件系统资源进行最全面的分析。</block>
+  <block id="86441bb8ed65cedfe101ba30b31d8c3b" category="paragraph">Workload Factory 分析 OCI NSS 系统的以下配置的良好架构状态：</block>
+  <block id="127dbf246c89a2aeb37b444598d9f619" category="list-text">您必须在 OCI 帐户中<block ref="1e9440ab1b64d47ef319a569b579363c" category="inline-link-macro-rx"></block>。</block>
+  <block id="b53c73ee77148a4ebba4c99fab72e627" category="list-text"><block ref="f7e59cb445429b5d2153bcbc58bac6c3" category="inline-link-macro-rx"></block>以对文件系统资源进行最全面的分析。</block>
+  <block id="2ac738cf4c15d21f16261387602209ec" category="paragraph">您可以修复 OCI NSS 系统或文件系统中选定卷的配置问题。您可以选择一个或多个要修复的配置。</block>
+  <block id="f888e88e3e3041557d311ea4519422b1" category="list-text">选择菜单 <block ref="d0893c56792da060977c8f5dd5abb05a" category="inline-image-macro-rx" type="image"></block>，*Workloads* &gt; *Well-architected* &gt; *OCI NSS system*。</block>
+  <block id="3efa1f5617c52b1aa6c34c67d5726abd" category="list-text">为任何配置选择*查看和修复*。请务必仔细阅读该建议。</block>
+  <block id="388720070126c9456cfb2f5019b9abcd" category="paragraph">关闭以停止一个或多个 OCI NSS 系统或卷的配置分析。您可以随时重新启动分析。</block>
+  <block id="ed39d7e152de2ada740ccd3a78afc0bb" category="list-text">在 OCI NSS 系统架构良好的仪表板中，在“配置”下，选择不适用于您的环境的配置。</block>
+  <block id="8b253c1d4259c21c8314fc85adcb31d6" category="section-title">2026年11月1日</block>
+  <block id="b6109a32079ec6b1674d08deef3b061a" category="sidebar">OCI NetApp 存储服务的配置分析</block>
+  <block id="ccffb8af48fec4f0b06bcd53e8686fea" category="sidebar">改进 OCI NetApp 存储服务配置</block>
 </blocks>

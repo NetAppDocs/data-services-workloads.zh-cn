@@ -307,6 +307,8 @@ sidebar:
       url: "/gcnv/add-roles.html"
     - title: 添加 Google Cloud NetApp Volumes 凭据
       url: "/gcnv/add-credentials.html"
+    - title: 查看 Google Cloud NetApp Volumes 存储池
+      url: "/gcnv/view-storage-pools.html"
     - title: Google Cloud NetApp Volumes 的配置分析
       url: "/gcnv/configuration-analysis.html"
     - title: 改进存储池配置
@@ -323,6 +325,10 @@ sidebar:
       url: "/oci/create-discover-systems.html"
     - title: 连接到 OCI 存储系统
       url: "/oci/create-link.html"
+    - title: OCI NetApp 存储服务的配置分析
+      url: "/oci/configuration-analysis.html"
+    - title: 改进 OCI NetApp 存储服务配置
+      url: "/oci/improve-configurations.html"
     - title: OCI NetApp 存储服务的权限参考
       url: "/oci/permissions-oci.html"
   - title: 管理 Workload Factory

@@ -1,0 +1,129 @@
+---
+sidebar: sidebar 
+permalink: oci/configuration-analysis.html 
+keywords: configuration issues, issues, improve, analyze, storage configuration, OCI NSS, recommendation, recommendations 
+summary: NetApp Workload Factory 定期分析 OCI NSS 系统配置，以确定是否存在任何配置问题。 
+---
+= OCI NSS 系统配置分析
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory 定期分析 OCI NSS 系统配置，以确定是否存在任何配置问题。当发现问题时，Workload Factory 会向您展示问题所在，并解释需要更改的内容，以便您的存储环境实现最佳性能、成本效率并符合最佳实践。
+
+主要功能包括：
+
+* 每日配置分析
+* 自动最佳实践验证
+* 主动可观察性
+* 从见解到行动
+* OCI Well-Architected Framework 顾问
+
+
+
+
+[[how-it-works]]
+== 工作原理
+
+NetApp Workload Factory 每天分析受支持的云存储部署中的工作负载。该分析提供架构完善的状态、见解和建议。
+
+每日分析完成后，配置在部署的 Well-Architected 仪表板中显示为“已优化”或“未优化”。您可以找到按类别组织的配置问题以及建议。Workload Factory 提供了详细说明，以帮助您实施建议的更改。
+
+您可以忽略不适用于您环境的配置分析。这样可以避免不必要的警报和不准确的优化结果。
+
+
+
+[[why-it-matters]]
+== 为什么很重要
+
+NetApp Workload Factory 通过将持续评估与建议见解和补救措施相结合，将最佳实践应用于大型存储、数据库和 VMware 环境。自动化修复可减少人为错误，确保统一管理，并保持整个工作负载基础架构的性能和可靠性。
+
+
+
+[[analysis-requirements]]
+== 分析要求
+
+要进行完整的文件系统分析，必须执行以下操作：
+
+* 关联链接。链接连接允许 Workload Factory 分析所有 OCI NSS 系统配置，如数据保护和性能。
++
+link:create-link.html["了解如何关联现有链接或创建和关联新链接"]。
+
+* 在您的 OCI 账户中授予查看、规划和分析权限。
++
+link:add-credentials-oci.html["了解如何向 OCI 帐户授予权限"]。
+
+
+
+
+
+[[best-practices-and-recommendations-for-storage-workloads]]
+== 存储工作负载的最佳实践和建议
+
+精心设计的仪表板根据 ONTAP 最佳实践和 AWS Well-Architected Framework 评估存储配置。评估还提出了改进和修复建议。
+
+架构完善的分析将配置归类为框架的以下支柱：_reliability_、_security_、_operational excellence_、_cost optimization_ 和 _performance efficiency_。
+
+
+NOTE: 目前，Workload Factory 不为所有配置提供特定于工作负载的建议。根据特定工作负载需求定制配置。
+
+
+
+[[reliability]]
+=== 可靠性
+
+可靠性可确保工作负载正确、一致地执行其预期功能，即使在发生中断时也是如此。
+
+* *文件对象容量*
++
+应提高文件容量阈值，以避免达到卷容量限制。文件容量（索引节点）过低会阻止向卷写入其他数据。Workload Factory 建议将文件容量利用率保持在 80% 以下，以允许创建新文件。
+
+* *Snapshot 策略*
++
+安排本地快照以实现高效备份和快速恢复。快照是卷的即时时间点映像。此建议不适用于数据库环境。
+
+* *SSD 容量余量*
++
+SSD 存储层容量不应超过 80% 的利用率。这可能会影响对容量池存储层的数据读取和写入，并影响文件系统的吞吐量。当容量耗尽时，数据卷将变为只读。尝试写入新数据的服务也会失败。
+
+
+
+
+
+[[operational-excellence]]
+=== 卓越运营
+
+卓越运营确保有效运行和监控工作负载，并能够支持用户的要求。
+
+* *主机可见容量报告*
++
+启用主机可见容量报告，以更好地了解卷级别的存储使用情况。
+
+* *卷容量余量*
++
+卷容量余量应设置为 10%，以适应增长并防止出现意外的容量问题。
+
+
+
+
+
+[[cost-optimization]]
+=== 成本优化
+
+成本优化可帮助您在保持低成本的同时为业务创造最大价值。
+
+* *冷数据分层* 使用仅快照分层策略，该策略仅将快照数据移动到容量层，同时将活动数据保留在 SSD 层上。这种方法保留了数据库工作负载的低延迟性能，同时降低了存储成本。在 7 天冷却期后对快照数据进行分层。
+* *Snapshot 清理*
++
+删除不再需要的旧的或手动创建的快照。删除它们可以降低成本并减少混乱，特别是在 SLA 或恢复需求不需要它们的情况下。
+
+* *存储效率*
++
+启用存储效率功能（数据缩减、压缩和重复数据删除），以优化存储利用率并降低 SSD 层成本。
+
+
+
+.下一步
+link:improve-configurations.html["实施精心设计的 OCI NSS 配置"]
