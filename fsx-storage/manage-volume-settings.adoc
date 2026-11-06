@@ -114,5 +114,5 @@ summary: 在 NetApp Workload Factory 中更改卷工作负载、编辑卷标记�
 * link:create-volume.html["在 Workload Factory 中创建卷"]
 * link:manage-volume-capacity.html["在 Workload Factory 中管理卷容量"]
 * link:change-tiering-policy.html["在 Workload Factory 中更改卷分层策略"]
-* link:manage-s3-access-points.html["在 Workload Factory 中管理 S3 接入点"]
+* link:edit-s3-access-points.html["在 Workload Factory 中管理 S3 接入点"]
 

@@ -254,5 +254,5 @@ _平衡（自动）_ 是使用 Workload Factory 控制台创建卷时的默认�
 .相关信息
 * link:manage-volume-capacity.html["在 Workload Factory 中调整卷容量"]
 * link:change-tiering-policy.html["在 Workload Factory 中更改卷分层策略"]
-* link:manage-s3-access-points.html["在 Workload Factory 中管理 S3 接入点"]
+* link:edit-s3-access-points.html["在 Workload Factory 中管理 S3 接入点"]
 

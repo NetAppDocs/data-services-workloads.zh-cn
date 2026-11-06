@@ -52,4 +52,4 @@ Amazon FSx for NetApp ONTAP 允许 NFS 和 SMB 文件系统访问 S3 数据并�
 
 其他相关主题：
 
-link:manage-s3-access-points.html["编辑或删除 NetApp Workload Factory 中卷的 S3 访问点"]
+link:edit-s3-access-points.html["编辑或删除 NetApp Workload Factory 中卷的 S3 访问点"]

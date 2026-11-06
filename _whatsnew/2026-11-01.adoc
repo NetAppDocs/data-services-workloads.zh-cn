@@ -19,7 +19,7 @@
 
 *刷新数据*和*立即加载*均会在 Tracker 中创建数据收集事件。
 
-link:admin/manage-custom-dashboards-fsx.html#refresh-dashboard-data["了解如何刷新自定义仪表板数据"]
+link:https://docs.netapp.com/us-en/data-services-workloads/admin/manage-custom-dashboards-fsx.html#refresh-dashboard-data["了解如何刷新自定义仪表板数据"]
 
 
 
@@ -27,7 +27,7 @@ link:admin/manage-custom-dashboards-fsx.html#refresh-dashboard-data["了解如�
 
 如果您的请求未包含区域，自定义控制面板现在会要求您选择一个或多个区域。控制面板数据仅限于您选择的区域。
 
-link:admin/create-custom-dashboard-fsx.html["了解如何创建自定义仪表板"]
+link:https://docs.netapp.com/us-en/data-services-workloads/admin/create-custom-dashboard-fsx.html["了解如何创建自定义仪表板"]
 
 
 
@@ -35,7 +35,7 @@ link:admin/create-custom-dashboard-fsx.html["了解如何创建自定义仪表�
 
 用于创建链接的 CloudFormation 模板和 Terraform 代码现在使用 IAM 策略而不是内联 Lambda 权限。
 
-link:fsx-storage/create-link.html["了解如何创建链接"]
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-storage/create-link.html["了解如何创建链接"]
 
 
 
@@ -45,7 +45,7 @@ link:fsx-storage/create-link.html["了解如何创建链接"]
 
 通过 Workload Factory API 进行的资源更改由执行该操作的 Workload Factory 服务记录。
 
-link:admin/learn-agent.html#audit-and-tracking-for-agent-actions["了解审核和跟踪代理操作的相关信息"]
+link:https://docs.netapp.com/us-en/data-services-workloads/admin/learn-agent.html["了解审核和跟踪代理操作的相关信息"]
 
 
 
@@ -213,4 +213,4 @@ NetApp Workload Factory 包括针对 OCI NSS 系统的架构完善的评估。�
 * 成本优化：冷数据分层、快照清理和存储效率
 
 
-详细了解link:oci/configuration-analysis.html["针对 OCI NSS 系统的架构完善分析"]和link:oci/improve-configurations.html["实施精心设计的配置"]。
+详细了解link:https://docs.netapp.com/us-en/data-services-workloads/oci/add-credentials-oci.html["针对 OCI NSS 系统的架构完善分析"]和link:https://docs.netapp.com/us-en/data-services-workloads/oci/improve-configurations.html["实施精心设计的配置"]。
