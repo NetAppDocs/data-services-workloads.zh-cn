@@ -293,6 +293,8 @@ sidebar:
       entries:
       - title: FSx for ONTAP 性能
         url: "/fsx-storage/performance-reference.html"
+      - title: FSx for ONTAP 权限
+        url: "/fsx-storage/permissions-reference-fsx.html"
       - title: FSx for ONTAP 安全性
         url: "/fsx-storage/security-reference.html"
   - title: Google Cloud NetApp Volumes
@@ -315,22 +317,32 @@ sidebar:
       url: "/gcnv/improve-configurations.html"
   - title: OCI NetApp 存储服务
     entries:
-    - title: 了解 OCI NetApp 存储服务
-      url: "/oci/learn-about-oci.html"
-    - title: OCI NetApp 存储服务快速入门
-      url: "/oci/quick-start-oci.html"
-    - title: 添加 OCI 凭据
-      url: "/oci/add-credentials-oci.html"
-    - title: 发现 OCI 存储系统
-      url: "/oci/create-discover-systems.html"
-    - title: 连接到 OCI 存储系统
-      url: "/oci/create-link.html"
-    - title: OCI NetApp 存储服务的配置分析
-      url: "/oci/configuration-analysis.html"
-    - title: 改进 OCI NetApp 存储服务配置
-      url: "/oci/improve-configurations.html"
-    - title: OCI NetApp 存储服务的权限参考
-      url: "/oci/permissions-oci.html"
+    - title: 在 Workload Factory 中使用 OCI NetApp 存储服务
+      entries:
+      - title: 了解 OCI NetApp 存储服务
+        url: "/oci/learn-about-oci.html"
+      - title: OCI NetApp 存储服务快速入门
+        url: "/oci/quick-start-oci.html"
+      - title: 添加 OCI 凭据
+        url: "/oci/add-credentials-oci.html"
+      - title: 发现 OCI 存储系统
+        url: "/oci/create-discover-systems.html"
+      - title: 连接到 OCI 存储系统
+        url: "/oci/create-link.html"
+    - title: 保护您的数据
+      entries:
+      - title: 创建网络保管库以保护数据
+        url: "/oci/create-cyber-vault.html"
+    - title: 管理 OCI NetApp 存储服务资源
+      entries:
+      - title: OCI NetApp 存储服务的配置分析
+        url: "/oci/configuration-analysis.html"
+      - title: 改进 OCI NetApp 存储服务配置
+        url: "/oci/improve-configurations.html"
+    - title: 参考
+      entries:
+      - title: OCI NetApp 存储服务的权限参考
+        url: "/oci/permissions-oci.html"
   - title: 管理 Workload Factory
     entries:
     - title: 构建和运行精心设计的工作负载
