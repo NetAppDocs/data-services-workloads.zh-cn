@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: fsx-eda/task-analyze-latency-trends.html 
-keywords: latency graph, latency visualization, latency trends, breach patterns, latency spikes, latency patterns, time range analysis, breach frequency, iops, throughput 
+keywords: latency graph, latency visualization, latency trends, breach patterns, latency spikes, latency patterns, time range analysis, breach frequency, iops, throughput, file system pressure 
 summary: 使用交互式图表分析一段时间内的卷延迟趋势，识别模式并跟踪补救有效性。 
 ---
 = 分析 Workload Factory 中 EDA 的延迟趋势

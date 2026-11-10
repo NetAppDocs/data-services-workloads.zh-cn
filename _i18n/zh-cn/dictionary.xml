@@ -1833,11 +1833,6 @@
   <block id="8eb98f7a0459d22ab367426190a3fb48" category="admonition">只有当链接与 FSx for ONTAP 文件系统关联时，才能看到组件细分。如果没有链接，您仍然可以查看延迟、IOPS 和吞吐量的图形。</block>
   <block id="eb40849137a407e18ca35f8df5165003" category="admonition">ONTAP QoS 分析和 CloudWatch 的延迟值可能略有不同，因为它们以不同的方式收集数据。基本分析使用 ONTAP 数据来确定根本原因。</block>
   <block id="6373f94eea8c31352a32986b39528f84" category="section-title">AI 分析</block>
-  <block id="a0e9b8268d276ba4360cd030f4a16beb" category="paragraph">虽然基本分析可以识别延迟的来源，但涉及数据或集群组件的更复杂情况通常需要更深入的调查。AI 分析通过发现卷过载、配置不当或需要添加更多容量等基本分析可能遗漏的问题，提供更深入的故障排除。</block>
-  <block id="8aa7f64b5600149a4f1b16f3cd4cdf44" category="paragraph">AI 分析的可用性取决于您的帐户设置：</block>
-  <block id="79280f8412f92a7b9f71d47cf17b93e8" category="list-text">*已启用 NetApp 管理的 AI 点数*：您可以运行 AI 分析，而无需额外的 Bedrock 设置。</block>
-  <block id="b22abc9ad9d115a1ead6c959afc1a6d3" category="list-text">*由管理员禁用*：AI 选项不可用。</block>
-  <block id="10fe983c3658bd7369e2e51b32dd02b0" category="paragraph">如果启用了 NetApp 托管的 AI 额度，但达到了您的每月预算，则 AI 分析不可用，并会显示一条消息。</block>
   <block id="f7cc2329f80f5595e6165f0ae01f89d8" category="paragraph">运行 AI 分析时，系统提供：</block>
   <block id="f825ff4432099d6f44cdb5f8f4bfc6db" category="list-text">*潜在根本原因*：导致延迟问题的详细说明</block>
   <block id="102e5bfcdb00d2737ee47f8cfa62267e" category="list-text">*受影响的客户端*：受延迟影响的 EC2 实例名称列表</block>
@@ -2047,29 +2042,23 @@
   <block id="2edaf9b54abbf5ae956607d1cce3419f" category="doc">Workload Factory for EDA 快速入门</block>
   <block id="0595b103e9174c24b7fffa0491687cc5" category="paragraph">通过设置环境、启用监控仪表板和配置延迟分析来优化 FSx for ONTAP 性能以支持 EDA 工作负载，从而开始使用 Workload Factory for EDA。</block>
   <block id="3d784fb83da69a092542ad97e84229a1" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> 登录 Workload Factory</block>
-  <block id="1283af7cc983573ed4713cdd57866991" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> 为 EDA 工作负载添加凭据和权限</block>
   <block id="ccfaa839e768aad68d8df43945f3981f" category="inline-link-macro">为所需权限创建 IAM 策略</block>
   <block id="c4f56d16dd663e4eddc3092f24840c99" category="paragraph"><block ref="ba3df41527d282ff668fde47559ede13" category="inline-link-macro-rx"></block> 其中包括选择 EDA 工作负载功能，以及 <block ref="130ddacc98dcbb955ac32d7d05051cd1" category="inline-link-macro-rx"></block>。</block>
-  <block id="9d416a07e693910e3f444835dcc86a81" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block> 设置您的环境以满足 EDA 要求</block>
   <block id="fecfde27c537152de469ba41e82d7a28" category="paragraph">您需要一个已部署并发现的 FSx for ONTAP 文件系统，其中至少包含一个已配置为 NFS 共享的卷。</block>
   <block id="7601729d359de4f5cd6af27402c9e70e" category="inline-link-macro">详细了解 EDA 要求</block>
   <block id="5e94cb9cffa115d28cda939423c02585" category="paragraph"><block ref="633f3927c4cf021a7edd95ab9b5813a6" category="inline-link-macro-rx"></block>。</block>
-  <block id="76fe6a2921854a310876f2886d0744fa" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block> 启用概览仪表板</block>
   <block id="208586cd32a8a0d00042653ba4659b8e" category="paragraph">启用概述仪表板以监控 FSx for ONTAP 集群的运行状况、容量和吞吐量。接受同意提示，允许 Workload Factory 开始收集 CloudWatch 指标。</block>
   <block id="9c2a400f16596db71684b7bf853679f6" category="inline-link-macro">了解如何激活 Overview 控制面板</block>
   <block id="ba484746496fd986236ce05e4941b11e" category="paragraph"><block ref="b8ebfe6424e9d27bf3ad5b5b28bbc547" category="inline-link-macro-rx"></block>。</block>
-  <block id="6a95e8fe1af51766347f08a14a5010e7" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block> 配置 Projects 仪表板</block>
   <block id="ac8c955f7158cbf6e26b2fe132a5da5a" category="paragraph">配置项目仪表板以监控系统运行状况、性能和存储使用情况，使您能够有效优化 EDA 环境。</block>
   <block id="cdf7ca0f732e877c2df79adf8b2dec38" category="inline-link-macro">了解如何配置 Projects 仪表板</block>
   <block id="54aae42a8d9b94a669be4faf760989f4" category="paragraph"><block ref="df110d106150b671a1fd119c3817e75e" category="inline-link-macro-rx"></block>。</block>
   <block id="e6fbc0b9673f8c86726688d7607fc8f5" category="inline-image-macro">六</block>
-  <block id="47fc6ce38b51022ce7378bb818bcbdbc" category="paragraph-title"><block ref="ef78558f80439832e0f51cc22cee8b8c" category="inline-image-macro-rx" type="image"></block> 为 ONTAP 延迟分析配置 FSx</block>
   <block id="eccc4e57aadb72693d5183af6a022273" category="paragraph">设置延迟阈值，以在影响模拟运行时间之前主动识别和解决性能问题。配置警告和关键警报，设置电子邮件或 SNS 通知以接收实时警报，利用自动化基本分析，并可选择将 AI 分析用于复杂场景。</block>
   <block id="7a13522750dff612c4af95a525a5075b" category="inline-link-macro">了解如何配置延迟监控</block>
   <block id="e92f1fd565b0115330969e68f1df5c93" category="inline-link-macro">分析延迟趋势</block>
   <block id="679aabdd1ec95ed7b75c71ce374528d5" category="paragraph"><block ref="fb26305f25ca1288ccacde22bbaccb07" category="inline-link-macro-rx"></block>。检测到事件后，您可以<block ref="17d96e1b2696eabecce662ae85cda8e7" category="inline-link-macro-rx"></block>使用交互式图形。</block>
   <block id="12e67aac3e7f9227cc35f8f047d7dc74" category="inline-image-macro">七</block>
-  <block id="28d16b2155b937481f163959c1136c11" category="paragraph-title"><block ref="36915574c413876eaa75cbd48f69fd00" category="inline-image-macro-rx" type="image"></block> 与其他服务集成</block>
   <block id="434c0bf5962496285865a6a2af2512b4" category="paragraph">使用 Workload Factory REST API 将 EDA 与其他服务（如服务门户或 Perforce Helix Core）集成。</block>
   <block id="dce6d9a52d216801c96ea309acf6ac73" category="inline-link-macro">了解如何将 EDA 与 Perforce 集成</block>
   <block id="79d86c078f10e35b854431eab12b31a6" category="paragraph"><block ref="46b2e9ce515b7538a0db67e1aa1bc892" category="inline-link-macro-rx"></block>。</block>
@@ -2130,7 +2119,6 @@
   <block id="e83c229f37cf36a4d502c243dffb6c3d" category="list-text">最多显示 200 个事件。随着新事件的添加，旧事件将被删除。</block>
   <block id="3378724912de6e334800d398b5316fcf" category="list-text">即使没有文件系统链接，也会出现事件。要查看基本分析详细信息或运行 AI 分析，需要链接。</block>
   <block id="85af8e40cac423345858be0210476d20" category="list-text">选择 *Latency* 选项卡。</block>
-  <block id="f06921222f3510361d45443110e72880" category="list-text">查看表中每个事件的信息。</block>
   <block id="391d5001f0e7f63a7def2cbcdfbf9795" category="list-text">要查看延迟事件的详细信息，请在 *Severity* 列中选择该事件。这将打开该事件的延迟分析面板。</block>
   <block id="256e5511799cf87e5ea3d5686def55a5" category="list-text">要对表格进行排序，请选择任意列标题。默认情况下，将首先显示按时间排序的关键事件，然后显示按时间排序的警告事件。</block>
   <block id="039dfdde9abd9ac1aa8a2a98cfb44323" category="inline-image-macro">操作菜单图标</block>
@@ -2290,10 +2278,6 @@
   <block id="5626a4ecac9741d9b0e61d578ebf1561" category="list-text">更新筛选器选择时，将刷新所有信息以仅显示匹配的文件系统。</block>
   <block id="fb3123e7d905f809c3bdf82e3ceca6af" category="section-title">查看集群运行状况状态</block>
   <block id="9a30a7ccabea3f518b310e693e0fc96d" category="paragraph">在控制面板的顶端，您可以看到所选文件系统的运行状况和活动摘要。仅当至少一个 FSx for ONTAP 链接连接到您的文件系统时，才会显示此内容。</block>
-  <block id="7da261fafbc98c685b2c0c780ccdbcf1" category="paragraph">集群运行状况状态包括以下关键领域：</block>
-  <block id="ac97fe213f96cc9db6b4ee38d70f798b" category="list-text">*延迟*：检测到的延迟事件数量</block>
-  <block id="3e245db3deb2fe7b566f9dfe8f122ad3" category="list-text">*文件系统弹性*：</block>
-  <block id="a51f6183fddbec434723cff9a6cb22f0" category="list-text">*ONTAP 事件*：按类别（容量、可用性和保护、安全性和其他）划分的 EMS 事件数量</block>
   <block id="c569953f651916e8d6fb2a2e26996486" category="list-text">查看控制面板顶部的集群运行状况状态。</block>
   <block id="45cd3072594a40004f1648f957b11b4f" category="list-text">要查看延迟事件：</block>
   <block id="9bab24fe4c951c13841b658922a21a8b" category="list-text">选择 *Review* 以导航到 *Latency* 选项卡</block>
@@ -2329,11 +2313,6 @@
   <block id="91455d18a42b79b1a34df0d97bfbaffd" category="list-text">*最小延迟（毫秒）*：用于确定吞吐量增加的延迟阈值</block>
   <block id="0a2daf37cc4cac8c9a3da95290e9a399" category="list-text">*最大吞吐量 (SKU)*：允许的最大吞吐量 SKU</block>
   <block id="6b482ace535080820ca5dea3bb557cb6" category="paragraph">选定的文件系统立即切换到新的吞吐量模式。</block>
-  <block id="84a7874f129070a914f70dd3d70a6716" category="section-title">分析容量趋势和决策点</block>
-  <block id="65bd457971cf8d44b2a0e065d040b668" category="paragraph">使用 SSD 使用情况图表可查看存储使用情况如何随时间变化并发现规律。</block>
-  <block id="4dbca2bab9fb0222adee0d079e0d2127" category="paragraph">图表上的决策点表示何时：</block>
-  <block id="232af3ec8ca37d39f0b49ddb6c81830a" category="list-text">*推荐决策点*：容量推荐算法确定需要额外的 SSD 容量。</block>
-  <block id="adcae559988943cef6bf4b9ce78904b2" category="list-text">*自动化决策点*：自动化系统试图增加 SSD 容量。这些点显示操作是成功还是失败。</block>
   <block id="e307894bdae8efc4f4fdacf666cf2573" category="section-title">使用集群表</block>
   <block id="27e86a81d2f78cd7f4181479163bbbeb" category="paragraph">集群表提供了每个 FSx for ONTAP 文件系统的详细视图以及性能和使用指标。</block>
   <block id="88dc1144edaa697995919551780b6e93" category="list-text">在 *概述* 选项卡中，查看集群表。</block>
@@ -6497,11 +6476,8 @@
   <block id="e920df7cb27871af178ff85a428a8b4e" category="list-text">在*高级配置*中，配置吞吐量管理参数：</block>
   <block id="39122245b5363dc3871538d2ef59784e" category="list-text">*连续违规窗口（小时）*：行动前连续违规的持续时间</block>
   <block id="a9d111294543c201d767519d991c1b8d" category="list-text">*连续违规指标 (%)*：用于确定连续违规的百分比阈值</block>
-  <block id="d385fd0ac858ff17553d407851f64c48" category="paragraph">如果关闭 SSD 容量管理，图表将仅显示过去的使用情况，而不会显示建议或自动化决策。</block>
-  <block id="1de4de358ec9c3a1cd36180e2c13a443" category="list-text">从*概述*选项卡中，在表格中选择一个文件系统名称。在集群详细信息视图中，选择*吞吐量*或*SSD 容量*选项以切换图形显示。</block>
   <block id="a01346bc61a98c025144199b0893e264" category="paragraph">如果选择*吞吐量*，图表会显示客户端吞吐量和利用率，因此您可以将需求与配置的吞吐量级别和阈值进行比较。</block>
   <block id="e56ecd5b4053d7385c23bb7c3422bdd5" category="paragraph">如果选择 *SSD 容量*，图表将显示 SSD 使用情况，包括历史容量趋势和容量决策点。</block>
-  <block id="d73906b15c9fc84c1806084ce8720a42" category="paragraph">选择不同的时间范围以查看不同时期的吞吐量或容量趋势。将鼠标悬停在图表上的决策点上，可查看特定时刻的建议或自动化操作的详细信息。使用图表中的见解可以：* 了解需要调整容量的频率 * 评估自动化或推荐模式是否更适合您的工作负载模式 * 识别重复性容量限制 * 根据增长趋势规划未来容量需求 * 对失败的自动化尝试进行故障排除</block>
   <block id="d84848ea25e8f980ed30c066f0e2cab7" category="list-text"><block ref="d84848ea25e8f980ed30c066f0e2cab7" category="inline-link-macro-rx"></block></block>
   <block id="3784e1d30d90c571998c16706c434e4f" category="list-text"><block ref="3784e1d30d90c571998c16706c434e4f" category="inline-link-macro-rx"></block></block>
   <block id="274d09f174202ef30839bc1b86c8644b" category="list-text"><block ref="274d09f174202ef30839bc1b86c8644b" category="inline-link-macro-rx"></block></block>
@@ -7079,4 +7055,54 @@
   <block id="8ffb616052b2a6d32c605e71b735673b" category="list-text"><block ref="8ffb616052b2a6d32c605e71b735673b" category="inline-link-macro-rx"></block></block>
   <block id="58ff05ec25b45f54f79eb1afc9e31b9c" category="list-text">将 S3 访问端点的网络配置设置为 *Internet*。<block ref="f5b1c6fb53ebc8db45e1c55bd4e00f01" category="inline-link-macro-rx"></block>。</block>
   <block id="97ae532f4c2d5ecc574a56c593c13125" category="list-text">您必须在 OCI 帐户中<block ref="87275d1fa5a6199604efc8de3f9418ba" category="inline-link-macro-rx"></block>。</block>
+  <block id="da3e6d90947db5a87778a986ff1db5ba" category="section-title">Workload Factory for EDA 增强功能</block>
+  <block id="0c8274ed6d395bfacc0daf3070e64c0c" category="paragraph">这些增强功能涵盖了延迟分析中的卷详细信息、文件系统压力检查、吞吐量决策点以及再次运行延迟分析。</block>
+  <block id="f65838a0505e6828c4b2c1ae8ce1218d" category="section-title">在延迟分析期间查看卷详细信息</block>
+  <block id="34649924d5b9e1477b2428d04da725a3" category="paragraph">在分析延迟事件时，您可以在 Workload Factory 中查看更多卷详细信息，以便了解卷的配置方式。详细延迟分析页面显示 *卷类型*（RW 或 DP）和 *卷样式*（FlexVol 或 FlexGroup）。</block>
+  <block id="7d36db06649fc95af5dde34418ae17ae" category="inline-link-macro">了解如何分析延迟趋势</block>
+  <block id="10686b705e0e365002c272bd2719b69a" category="paragraph"><block ref="10686b705e0e365002c272bd2719b69a" category="inline-link-macro-rx"></block></block>
+  <block id="59d6e00f849e1dd27d91bb4c786299b8" category="section-title">检查延迟事件的文件系统压力</block>
+  <block id="6f204454acf5d87a64a6daf9900777eb" category="paragraph">在 Workload Factory 中，您可以检查延迟事件发生时文件系统压力是否影响了性能，以便您决定是否调查文件系统。对于出现延迟警报的卷，您可以查看事件发生前 40 分钟的 CloudWatch 数据，并打开文件系统以进行进一步调查。</block>
+  <block id="dfa004f6c9736368068fe71bacbee74e" category="inline-link-macro">了解文件系统压力检查</block>
+  <block id="c6351fb1f8b9c7124503e2dd773f4a6f" category="paragraph"><block ref="c6351fb1f8b9c7124503e2dd773f4a6f" category="inline-link-macro-rx"></block></block>
+  <block id="f8240ccc3d3033d0a4d027c0acb6a2fd" category="section-title">审查 EDA 的吞吐量决策点</block>
+  <block id="8591045ae6ed3a89acd6e3756c7561dc" category="paragraph">您可以在 EDA 概述仪表板上查看客户端吞吐量决策点，以便查看 Workload Factory 何时建议或应用了吞吐量更改。将鼠标悬停在决策点上可查看详细信息，例如当前和推荐的 SKU 或时间窗口中的违规指标。</block>
+  <block id="8f60994adbdba3c89dc164460dbd5fe7" category="inline-link-macro">了解如何查看吞吐量决策点</block>
+  <block id="08935aa85ac8d6983a754c391dc22299" category="paragraph"><block ref="08935aa85ac8d6983a754c391dc22299" category="inline-link-macro-rx"></block></block>
+  <block id="afaff13c48c5bdfb3e3a3820005ef966" category="section-title">再次运行延迟分析</block>
+  <block id="b70ddd63a19670949b4be40fd2900e16" category="paragraph">您可以在 Workload Factory 中再次对卷运行延迟分析，以便在调查或进行更改后刷新结果。选择 *再次运行分析* 以开始新的分析并更新结果。</block>
+  <block id="fcd2af0b46a1f067a85293a63ec8e674" category="inline-link-macro">了解如何分析延迟问题</block>
+  <block id="5e2edfccf304d8ab47ad0fd4e7d469b9" category="paragraph"><block ref="5e2edfccf304d8ab47ad0fd4e7d469b9" category="inline-link-macro-rx"></block></block>
+  <block id="224009967bde255805cbcd6d65368b81" category="paragraph">虽然基本分析可以识别延迟的来源，但涉及数据或集群组件的更复杂情况通常需要更深入的调查。人工智能分析通过发现卷过载、配置不当或需要添加更多容量等基本分析可能遗漏的问题，提供了更深入的故障排除。</block>
+  <block id="faffdafc286086cc0dbf1bbb1be9ad24" category="section-title">文件系统压力</block>
+  <block id="b174f2d4d910ae1039afecd55cf7605d" category="paragraph">对于具有延迟警报的卷，您可以运行按需检查，以查看事件发生时文件系统是否承受了足以影响性能的压力。该检查会审查事件发生前 40 分钟的 CloudWatch 数据，并返回 *Pressured* 或 *Not pressured*。有压力的结果意味着文件系统压力影响性能和延迟的可能性超过 80%。该检查还包含指向 FSx for ONTAP 资源的链接，以便您可以查看相关指标。</block>
+  <block id="e886df54588d52e0380fc881467880b0" category="section-title">了解吞吐量决策点</block>
+  <block id="d5b00b16ab6db83fdf23282158c24ffc" category="paragraph">客户端吞吐量图表显示系统何时建议更改吞吐量或自动调整吞吐量。这些标记也会出现在图表图例中。如果吞吐量管理处于关闭状态，则图表仅显示过去的吞吐量，不会显示建议或自动更改。</block>
+  <block id="1478d9dba08b46cdbef08e98cdb80335" category="list-text">当系统检测到吞吐量需要增加时显示。将鼠标悬停在决策点上以查看详细信息。如果在同一时间戳出现多个建议，该点会显示建议的数量以及最新建议的详细信息。</block>
+  <block id="0c990789e7c8c34746cdf8245924ae90" category="list-text">当自动化系统尝试增加吞吐量时显示。将鼠标悬停在决策点上以查看详细信息。如果增加成功，还会显示新的 SKU。如果失败，则会显示简短的解释。如果同时发生多个故障，该点将显示故障数量以及最近一次故障的详细信息。</block>
+  <block id="c6f02cbeb83957a98e034aa44ac8d06b" category="paragraph">使用客户端吞吐量图表：</block>
+  <block id="bcc32ea0c2c748a56864977ad681aae4" category="list-text">查看您需要更多吞吐量的频率</block>
+  <block id="627aca367632fb159e4a6c08e87b8226" category="list-text">选择自动化模式还是推荐模式更适合您的需求</block>
+  <block id="c44c2990e89eee02f130dbf8adf9df07" category="list-text">识别反复出现的吞吐量限制</block>
+  <block id="47c3141ddd1f9f9483f34cdb8af8ae43" category="list-text">随着使用量的增长，规划未来的吞吐量需求</block>
+  <block id="2825d743c065d395cd4879e2dfe972bd" category="paragraph-title"><block ref="b89db254b5f489dc0a965897dd00fa63" category="inline-image-macro-rx" type="image"></block> 为 EDA 工作负载添加凭据和权限</block>
+  <block id="c5da6783663d36c551b7323656ca0692" category="paragraph-title"><block ref="4b6bbaeae9b6799ee02ea5158d279251" category="inline-image-macro-rx" type="image"></block> 设置您的环境以满足 EDA 要求</block>
+  <block id="017f2723eafcf7cc580b9fe943460a85" category="paragraph-title"><block ref="569b2be0fb2eea776857d64ee5106536" category="inline-image-macro-rx" type="image"></block> 启用概览仪表板</block>
+  <block id="02ce3aa38a5f2efb9553af62a0a5e716" category="paragraph-title"><block ref="f610d23a86677ccfb4c33a40915b9811" category="inline-image-macro-rx" type="image"></block> 配置 Projects 仪表板</block>
+  <block id="b64c4174569364d10f20f68eab56a270" category="paragraph-title"><block ref="f09591425c0f3fd757475086b083ff7d" category="inline-image-macro-rx" type="image"></block> 为 ONTAP 延迟分析配置 FSx</block>
+  <block id="f5b334c5b74f89dabdc34df73fc51042" category="paragraph-title"><block ref="16098bde15117a589097874ab29ed657" category="inline-image-macro-rx" type="image"></block> 与其他服务集成</block>
+  <block id="77940ad0aaabd15b52dda5e8a86f480b" category="list-text">要更新结果，请选择*再次运行分析*。将开始对该卷进行新的分析，分析完成后面板会更新。</block>
+  <block id="6f751f6512545197043d490e308e9992" category="section-title">分析容量和吞吐量趋势以及决策点</block>
+  <block id="67033c99fa50f0a89f11f15d3c03c253" category="paragraph">查看一段时间内的容量和吞吐量趋势，以便发现模式并计划容量或吞吐量变化。</block>
+  <block id="322cceacdd52c951c88a1d93df7f0dd8" category="list-text">从*概述*选项卡中，在表格中选择一个文件系统名称。</block>
+  <block id="ddbda74454b43f792ee3816b12e08af9" category="list-text">在集群详细信息视图中，选择*吞吐量*或*SSD 容量*选项以切换图形显示。</block>
+  <block id="d92136d041599b752e93710c829f0583" category="list-text">选择不同的时间范围以查看不同时期的吞吐量或容量趋势</block>
+  <block id="8d33ce28efafbfe7600930c556bcfd55" category="list-text">将鼠标悬停在图表上的决策点上，可查看特定时刻的建议或自动化操作的详细信息</block>
+  <block id="4d43a6d1e695bf0a99e5bc33d3ca3fda" category="list-text">使用图表中的见解：</block>
+  <block id="8aa0b0a22cf225f503177c8f1de7df3c" category="list-text">了解需要调整容量的频率</block>
+  <block id="dc036d0aefd6c43f7e0e90f879128e16" category="list-text">评估自动化或推荐模式是否更适合您的工作负载模式</block>
+  <block id="274e06045627d8934cd9bb52e8c64f53" category="list-text">识别重复性容量限制</block>
+  <block id="38e979158d55ae25a36aba4d97b0a8b4" category="list-text">根据增长趋势规划未来的容量需求</block>
+  <block id="2814ccd9bf1ef1faffa5931e29ee7f74" category="list-text">对失败的自动化尝试进行故障排除</block>
+  <block id="f2abe5914eba19478c3b813d9def8548" category="sidebar">FSx for ONTAP 延迟分析</block>
 </blocks>

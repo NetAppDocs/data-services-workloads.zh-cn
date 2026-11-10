@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: fsx-eda/task-use-overview-dashboard.html 
-keywords: cluster overview, filter dashboard, cluster health, capacity recommendations, SSD management, throughput management, bulk edit, decision points, clusters table, ONTAP events, latency events 
+keywords: cluster overview, filter dashboard, cluster health, capacity recommendations, SSD management, throughput management, bulk edit, decision points, throughput decision points, clusters table, ONTAP events, latency events 
 summary: 使用概述仪表板监控集群运行状况，查看容量建议，管理 SSD 和吞吐量设置，并分析 FSx for ONTAP 文件系统的性能趋势。 
 ---
 = 使用 Workload Factory 中的 Overview 仪表板进行 EDA
@@ -47,19 +47,6 @@ summary: 使用概述仪表板监控集群运行状况，查看容量建议，�
 == 查看集群运行状况状态
 
 在控制面板的顶端，您可以看到所选文件系统的运行状况和活动摘要。仅当至少一个 FSx for ONTAP 链接连接到您的文件系统时，才会显示此内容。
-
-.关于此任务
-集群运行状况状态包括以下关键领域：
-
-* *延迟*：检测到的延迟事件数量
-* *文件系统弹性*：
-+
-** *SSD capacity*：显示有多少文件系统使用 Automate、Recommend 或 None 来管理 SSD 容量。
-** *吞吐量*：显示有多少文件系统使用 Automate、Recommend 或 None 来管理吞吐量。
-
-
-* *ONTAP 事件*：按类别（容量、可用性和保护、安全性和其他）划分的 EMS 事件数量
-
 
 .步骤
 . 查看控制面板顶部的集群运行状况状态。
@@ -169,30 +156,31 @@ Workload Factory 会自动为每个 FSx for ONTAP 文件系统运行建议。您
 
 
 
-[[analyze-capacity-trends-and-decision-points]]
-== 分析容量趋势和决策点
+[[analyze-capacity-and-throughput-trends-and-decision-points]]
+== 分析容量和吞吐量趋势以及决策点
 
-使用 SSD 使用情况图表可查看存储使用情况如何随时间变化并发现规律。
-
-.关于此任务
-图表上的决策点表示何时：
-
-* *推荐决策点*：容量推荐算法确定需要额外的 SSD 容量。
-* *自动化决策点*：自动化系统试图增加 SSD 容量。这些点显示操作是成功还是失败。
-+
-如果关闭 SSD 容量管理，图表将仅显示过去的使用情况，而不会显示建议或自动化决策。
-
-
+查看一段时间内的容量和吞吐量趋势，以便发现模式并计划容量或吞吐量变化。
 
 .步骤
-. 从*概述*选项卡中，在表格中选择一个文件系统名称。在集群详细信息视图中，选择*吞吐量*或*SSD 容量*选项以切换图形显示。
+. 从*概述*选项卡中，在表格中选择一个文件系统名称。
+. 在集群详细信息视图中，选择*吞吐量*或*SSD 容量*选项以切换图形显示。
++
+** 如果选择*吞吐量*，图表会显示客户端吞吐量和利用率，因此您可以将需求与配置的吞吐量级别和阈值进行比较。
+** 如果选择 *SSD 容量*，图表将显示 SSD 使用情况，包括历史容量趋势和容量决策点。
 
 
-如果选择*吞吐量*，图表会显示客户端吞吐量和利用率，因此您可以将需求与配置的吞吐量级别和阈值进行比较。
+. 选择不同的时间范围以查看不同时期的吞吐量或容量趋势
+. 将鼠标悬停在图表上的决策点上，可查看特定时刻的建议或自动化操作的详细信息
+. 使用图表中的见解：
++
+** 了解需要调整容量的频率
+** 评估自动化或推荐模式是否更适合您的工作负载模式
+** 识别重复性容量限制
+** 根据增长趋势规划未来的容量需求
+** 对失败的自动化尝试进行故障排除
 
-如果选择 *SSD 容量*，图表将显示 SSD 使用情况，包括历史容量趋势和容量决策点。
 
-选择不同的时间范围以查看不同时期的吞吐量或容量趋势。将鼠标悬停在图表上的决策点上，可查看特定时刻的建议或自动化操作的详细信息。使用图表中的见解可以：* 了解需要调整容量的频率 * 评估自动化或推荐模式是否更适合您的工作负载模式 * 识别重复性容量限制 * 根据增长趋势规划未来容量需求 * 对失败的自动化尝试进行故障排除
+
 
 
 

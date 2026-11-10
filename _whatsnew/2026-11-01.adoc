@@ -186,6 +186,45 @@ image:well-architected-menu-option.png["Workload Factory 控制台中的架构�
 
 
 
+[[workload-factory-for-eda-enhancements]]
+=== Workload Factory for EDA 增强功能
+
+这些增强功能涵盖了延迟分析中的卷详细信息、文件系统压力检查、吞吐量决策点以及再次运行延迟分析。
+
+
+
+==== 在延迟分析期间查看卷详细信息
+
+在分析延迟事件时，您可以在 Workload Factory 中查看更多卷详细信息，以便了解卷的配置方式。详细延迟分析页面显示 *卷类型*（RW 或 DP）和 *卷样式*（FlexVol 或 FlexGroup）。
+
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-eda/task-analyze-latency-trends.html["了解如何分析延迟趋势"]
+
+
+
+==== 检查延迟事件的文件系统压力
+
+在 Workload Factory 中，您可以检查延迟事件发生时文件系统压力是否影响了性能，以便您决定是否调查文件系统。对于出现延迟警报的卷，您可以查看事件发生前 40 分钟的 CloudWatch 数据，并打开文件系统以进行进一步调查。
+
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-eda/learn-latency-monitoring.html#file-system-pressure["了解文件系统压力检查"]
+
+
+
+==== 审查 EDA 的吞吐量决策点
+
+您可以在 EDA 概述仪表板上查看客户端吞吐量决策点，以便查看 Workload Factory 何时建议或应用了吞吐量更改。将鼠标悬停在决策点上可查看详细信息，例如当前和推荐的 SKU 或时间窗口中的违规指标。
+
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-eda/task-use-overview-dashboard.html#analyze-capacity-and-throughput-trends-and-decision-points["了解如何查看吞吐量决策点"]
+
+
+
+==== 再次运行延迟分析
+
+您可以在 Workload Factory 中再次对卷运行延迟分析，以便在调查或进行更改后刷新结果。选择 *再次运行分析* 以开始新的分析并更新结果。
+
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-eda/task-analyze-latency-issues.html["了解如何分析延迟问题"]
+
+
+
 [[google-cloud-netapp-volumes-enhancements]]
 === Google Cloud NetApp Volumes 增强功能
 

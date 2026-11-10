@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: fsx-eda/task-analyze-latency-issues.html 
-keywords: latency analysis, analyze latency, latency events, root cause analysis, QoS delay center, AI analysis, latency troubleshooting, volume latency, basic analysis, affected clients, remediation steps, iops, throughput 
+keywords: latency analysis, analyze latency, latency events, root cause analysis, QoS delay center, AI analysis, latency troubleshooting, volume latency, basic analysis, affected clients, remediation steps, iops, throughput, analysis status 
 summary: 查看和分析延迟事件，以查找 FSx for ONTAP 卷的性能问题。使用基本分析和可选的 AI 分析来确定根本原因和建议的修复方法。 
 ---
 = 分析 Workload Factory for EDA 中的延迟问题
@@ -37,7 +37,6 @@ summary: 查看和分析延迟事件，以查找 FSx for ONTAP 卷的性能问�
 . 登录到 link:https://console.netapp.com["NetApp Console"^]。
 . 选择菜单 image:workloads-menu-icon.png["汉堡菜单图标用于导航到 Workloads，即 Workload Factory 的菜单项"]，*Workloads* > *EDA*。
 . 选择 *Latency* 选项卡。
-. 查看表中每个事件的信息。
 . 要查看延迟事件的详细信息，请在 *Severity* 列中选择该事件。这将打开该事件的延迟分析面板。
 . 要对表格进行排序，请选择任意列标题。默认情况下，将首先显示按时间排序的关键事件，然后显示按时间排序的警告事件。
 . 要关闭一个或多个事件，请在每个事件旁边选择 image:icon-action.png["操作菜单图标"] *Dismiss*。
@@ -76,11 +75,7 @@ AI 分析的可用性取决于您的帐户设置。如果启用了 NetApp 托管
 
 有关使用图形的详细说明，请参见 link:task-analyze-latency-trends.html["分析延迟趋势"]。
 
-
-
-[[steps]]
-=== 步骤
-
+.步骤
 . 在 *延迟* 选项卡中，找到要分析的事件。
 . 在 *Severity* 列中，选择一个延迟事件以打开该事件的分析面板。
 . 查看*基本*选项卡。如果链接已连接，请打开组件细分，查看延迟的来源。如果没有链接，请选择提示以链接一个链接，以便分析组件。
@@ -95,6 +90,7 @@ AI 分析的可用性取决于您的帐户设置。如果启用了 NetApp 托管
 
 
 . 选择*查看完整分析*以查看 AI 分析的完整结果，包括显示选定时间段内 CloudWatch 指标的卷延迟、IOPS 和吞吐量的性能图表。
+. 要更新结果，请选择*再次运行分析*。将开始对该卷进行新的分析，分析完成后面板会更新。
 . 按照建议的步骤修复延迟问题。
 . 进行更改后，请检查延迟事件表以确认此问题已修复。
 

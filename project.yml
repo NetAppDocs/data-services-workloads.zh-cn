@@ -215,6 +215,16 @@ sidebar:
           url: "/fsx-eda/task-activate-overview-dashboard.html"
         - title: 使用 Overview 控制面板
           url: "/fsx-eda/task-use-overview-dashboard.html"
+      - title: FSx for ONTAP 延迟分析
+        entries:
+        - title: 了解延迟监控
+          url: "/fsx-eda/learn-latency-monitoring.html"
+        - title: 配置延迟监控
+          url: "/fsx-eda/task-configure-latency-monitoring.html"
+        - title: 分析延迟问题
+          url: "/fsx-eda/task-analyze-latency-issues.html"
+        - title: 分析延迟趋势
+          url: "/fsx-eda/task-analyze-latency-trends.html"
       - title: 项目使用情况分析
         entries:
         - title: 了解 Projects 仪表板

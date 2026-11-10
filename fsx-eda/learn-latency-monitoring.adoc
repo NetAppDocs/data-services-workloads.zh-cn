@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: fsx-eda/learn-latency-monitoring.html 
-keywords: latency analysis, CloudWatch alarms, volume latency, read latency, write latency, critical events, warning events, latency thresholds, IOPS thresholds, latency monitoring, FSx for ONTAP, root cause analysis, QoS delay center, automated analysis 
+keywords: latency analysis, CloudWatch alarms, volume latency, read latency, write latency, critical events, warning events, latency thresholds, IOPS thresholds, latency monitoring, FSx for ONTAP, root cause analysis, QoS delay center, automated analysis, file system pressure 
 summary: 了解 Workload Factory for EDA 中的延迟监控如何使用自动化基本分析和可选的 AI 分析，帮助您检测并分析 FSx for ONTAP 卷的性能问题。 
 ---
 = 了解 Workload Factory for EDA 中的延迟监控
@@ -108,15 +108,7 @@ NOTE: ONTAP QoS 分析和 CloudWatch 的延迟值可能略有不同，因为它�
 [[ai-analysis]]
 === AI 分析
 
-虽然基本分析可以识别延迟的来源，但涉及数据或集群组件的更复杂情况通常需要更深入的调查。AI 分析通过发现卷过载、配置不当或需要添加更多容量等基本分析可能遗漏的问题，提供更深入的故障排除。
-
-AI 分析的可用性取决于您的帐户设置：
-
-* *已启用 NetApp 管理的 AI 点数*：您可以运行 AI 分析，而无需额外的 Bedrock 设置。
-* *由管理员禁用*：AI 选项不可用。
-
-
-如果启用了 NetApp 托管的 AI 额度，但达到了您的每月预算，则 AI 分析不可用，并会显示一条消息。
+虽然基本分析可以识别延迟的来源，但涉及数据或集群组件的更复杂情况通常需要更深入的调查。人工智能分析通过发现卷过载、配置不当或需要添加更多容量等基本分析可能遗漏的问题，提供了更深入的故障排除。
 
 运行 AI 分析时，系统提供：
 
@@ -124,6 +116,13 @@ AI 分析的可用性取决于您的帐户设置：
 * *受影响的客户端*：受延迟影响的 EC2 实例名称列表
 * *潜在的补救措施*：两个或多个具体措施来解决问题
 
+
+
+
+[[file-system-pressure]]
+=== 文件系统压力
+
+对于具有延迟警报的卷，您可以运行按需检查，以查看事件发生时文件系统是否承受了足以影响性能的压力。该检查会审查事件发生前 40 分钟的 CloudWatch 数据，并返回 *Pressured* 或 *Not pressured*。有压力的结果意味着文件系统压力影响性能和延迟的可能性超过 80%。该检查还包含指向 FSx for ONTAP 资源的链接，以便您可以查看相关指标。
 
 
 
